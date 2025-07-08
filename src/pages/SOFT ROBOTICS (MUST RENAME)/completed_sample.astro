@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import CalloutCard from "../../components/CalloutCard.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Completed_sample">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Introduction'>Introduction</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Equations'>Equations</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Callout'>Callout</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Test Subsection'>Test Subsection</a></li></ul>
+</li>
+</ul>
+</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Images'>Images</a></li>
+</ul>
+</div>
+<SubSection title="Introduction" id="Introduction">
+<p>The ``introduction" will become an item in the navigation tree of your webpage.</p>
+<p>A full list of how to include every element can be found at:</p>
+<a target='_blank' rel='noopener noreferrer' href=https://www.mechref.org/about/docs>https://www.mechref.org/about/docs</a>
+<p>A full starter page can be found at:</p>
+<a target='_blank' rel='noopener noreferrer' href=https:/www.mechref.org/about/examples/example>https:/www.mechref.org/about/examples/example</a>
+<a target='_blank' rel='noopener noreferrer' href=https:/www.refpages.org>https:/www.refpages.org</a>
+</SubSection>
+<SubSubSection title="Equations" id="Equations">
+<p>this subsection will also become an item in the navigation tree</p>
+<p>This should be an inline equation  <InlineEquation equation="e^{i \\pi}+1 =0" />  Immediately followed by text.</p>
+<p>This is one way to display an equation</p>
+<DisplayEquation equation='e^{i \\pi}+1 =0' title="" />
+<p>This is another way to display equation</p>
+
+<DisplayEquation equation="e^{i \\pi}+1 =0" title="" />
+
+<p>This is a third way to display equation</p>
+
+<DisplayEquation equation="e^{i \\pi}+1 =0" title="" />
+
+</SubSubSection>
+<SubSubSection title="Callout" id="Callout">
+<p>this subsection will also become an item in the navigation tree</p>
+    <CalloutCard title="Extra!">
+        <u class="m-0">Callout Card</u>
+<p>This is my new callout card with lots of exciting information</p>
+    </CalloutCard>
+<p>{</p>
+</SubSubSection>
+<SubSubSubSection title="Test Subsection" id="Test Subsection">
+<p>}</p>
+<p>this subsubsection will also become an item in the navigation tree</p>
+</SubSubSubSection>
+<SubSection title="Images" id="Images">
+<p>this section will also become an item in the navigation tree. Conversion between images in .tex and .astro may not be fully supported.</p>
+<Image src='/COURSE/FigFolder/width=5cm]{block I.jpg' width='7'> Image caption</Image>
+
+</SubSection>
+</Layout>
