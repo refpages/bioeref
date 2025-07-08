@@ -1,0 +1,74 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import CalloutCard from "../../components/CalloutCard.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Worskshop_sample">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Introduction'>Introduction</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Equations'>Equations</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Stuff'>Stuff</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#More Detailed Stuff'>More Detailed Stuff</a></li></ul>
+</li>
+</ul>
+</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Images'>Images</a></li>
+</ul>
+</div>
+<SubSection title="Introduction" id="Introduction">
+<p>Replacing with random text</p>
+<p>The ``introduction" will become an item in the navigation tree of your webpage.</p>
+<p>A full list of how to include every element can be found at:</p>
+<a target='_blank' rel='noopener noreferrer' href=https://www.mechref.org/about/docs>https://www.mechref.org/about/docs</a>
+<p>A full starter page can be found at:</p>
+<a target='_blank' rel='noopener noreferrer' href=https:/www.mechref.org/about/examples/example>https:/www.mechref.org/about/examples/example</a>
+<p>\href{https://publish.illinois.edu/bioe415-al1/}</p>
+<p>{https://publish.illinois.edu/bioe415-al1/}</p>
+<p>{\lipsum[1]}</p>
+</SubSection>
+<SubSubSection title="Equations" id="Equations">
+<p>this subsection will also become an item in the navigation tree</p>
+<p>This should be an inline equation  <InlineEquation equation="\\frac{1}{\\tau s + 1}" />  immediately followed by text.</p>
+<p>This is one way to display an equation</p>
+<DisplayEquation equation='\\frac{\\tau s}{\\tau s + 1}' title="" />
+<p>This is another way to display equation</p>
+
+<DisplayEquation equation="\\frac{\\tau s}{\\tau s + 1}" title="" />
+
+<p>This is a third way to display equation</p>
+
+<DisplayEquation equation="\\alpha \\sum_0^\\infty" title="" />
+
+<p>{\lipsum[2-3]}</p>
+</SubSubSection>
+<SubSubSection title="Stuff" id="Stuff">
+<p>this subsection will also become an item in the navigation tree</p>
+    <CalloutCard title="Extra!">
+        <u class="m-0">Callout Card</u>
+<p>Some really important stuff</p>
+    </CalloutCard>
+<p>{\lipsum[4]}</p>
+</SubSubSection>
+<SubSubSubSection title="More Detailed Stuff" id="More Detailed Stuff">
+<p>this subsubsection will also become an item in the navigation tree</p>
+<p>{\lipsum[5]}</p>
+</SubSubSubSection>
+<SubSection title="Images" id="Images">
+<p>This section will also become an item in the navigation tree. Conversion between images in .tex and .astro may not be fully supported.</p>
+<Image src='/COURSE/FigFolder/width=5cm]{block I.jpg' width='7'> Image caption</Image>
+
+</SubSection>
+</Layout>
