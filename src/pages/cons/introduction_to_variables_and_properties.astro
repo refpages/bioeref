@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import CalloutCard from "../../components/CalloutCard.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Introduction to Variables and Properties">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Variables, Units, Dimensions'>Variables, Units, Dimensions</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Extensive and Intensive Properties'>Extensive and Intensive Properties</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Extensive Properties'>Extensive Properties</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Intensive Properties'>Intensive Properties</a></li></ul>
+</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Scalar and Vector properties'>Scalar and Vector properties</a></li>
+</ul>
+</div>
+<SubSection title="Variables, Units, Dimensions" id="Variables, Units, Dimensions">
+<p>Being able to measure and quantify physical variables is critical to finding solutions to problems in biological and medical systems. Most of the numbers encountered in engineering calculations represent the magnitude of measurable physical variables, which are quantities, properties, or variables that can be measured or calculated by multiplying or dividing other variables.</p>
+<p>Examples of physical variables include mass, length, temperature, and velocity. Measured physical variables are usually represented with a number or scalar value (e.g., 6) and a unit (e.g., mL/min).</p>
+<p>A unit is a predetermined quantity of a particular variable that is defined by custom, convention, or law. Numbers used in engineering calculations must be given with the appropriate units. For example, a statement that “The total blood flow in the circulation of an adult human is 5” is meaningless, but “The total blood flow rate in the circulation of an adult human is 5 L/min” quantifies how much blood flows through the adult circulatory system.</p>
+<p>A mistake that beginning engineers often make is to write variables without units. Students sometimes claim that they can keep track of the units in their heads and do not need to write them down repeatedly. This attitude leads to many mistakes when calculating solutions, which can lead to significant consequences, as in the Mars Climate Orbiter incident. Experienced engineers rarely omit units.</p>
+<p>In engineering calculations, many other physical variables such as force or energy are commonly used. The units of these variables can be reduced to combinations of the seven base quantities. In this textbook, the term dimension can be thought of as a generic unit of a physical variable, which is not scaled to a particular amount for quantitative purposes.</p>
+</SubSection>
+<SubSection title="Extensive and Intensive Properties" id="Extensive and Intensive Properties">
+<p>Physical properties can be classified as either extensive or intensive. An extensive property is defined as a physical quantity that is the sum of the properties of separate non-interacting subsystems that compose the entire system. The numerical value of an extensive property depends on the size of the system, the quantity of matter in the system, or the sample taken. In trying to think about whether a physical property is extensive or intensive, consider whether the physical property would change if the system of interest is doubled or halved. If the physical property changes when the system is doubled or halved, the property is extensive. Another characteristic of an extensive property is that it can be counted. Later, you will learn that only extensive properties may be counted in accounting and conservation equations. In this book, extensive properties that are counted include total mass and moles; individual species mass and moles; elemental mass and moles; positive, negative, and net electrical charge; linear and angular momentum; and total, mechanical, and electrical energy.</p>
+</SubSection>
+<SubSubSection title="Extensive Properties" id="Extensive Properties">
+<p>Some visual examples of extensive properties include mass, total energy, and volume. For example, consider a system with a mass of 1 kg of water. If you double the mass of water—consequently doubling the amount of water in the system—you have a mass of 2 kg of water. Since mass, the property of interest of the system, changed, the physical property is extensive. Consider as a second example the amount of energy needed to melt ice. The amount of energy required to melt one ice cube, a bag of ice purchased at a grocery store, and an iceberg is quite different. The reason for this is that energy is an extensive property and depends on the quantity of material in the system—in this case the amount of ice—to know how much energy is required to transform ice to liquid water. A third example is the volume of a homogeneous piece of a ceramic implant. If you cut the volume of implant in half, the physical property of volume changes—hence, the physical property of volume is extensive.</p>
+</SubSubSection>
+<SubSubSection title="Intensive Properties" id="Intensive Properties">
+<p>An intensive property is defined as a physical property that does not depend on the size of the system or the sample taken. In trying to think about whether a physical property is extensive or intensive, consider whether the physical property would change if the system of interest is doubled or halved. If the physical property does not change when the system is doubled or halved, the property is intensive. Intensive properties cannot be counted in the same way that extensive properties are. Later, you will learn that intensive variables are not appropriately used in accounting and conservation equations.</p>
+<p>Examples of intensive properties include temperature, pressure, density, mass fractions, and mole fractions of individual system components in each phase. For discussion, return to the three systems of water, ice, and ceramic implant. Consider 1 kg of water that has a temperature 25°C. If you double the size of this system to 2 kg of water, the temperature of the water (25°C) will remain unchanged. Since the physical property of temperature is unchanged, temperature is an intensive property.</p>
+</SubSubSection>
+<SubSection title="Scalar and Vector properties" id="Scalar and Vector properties">
+<p>Physical variables are either scalar or vector quantities. Scalar quantities can be defined by a magnitude alone. A vector quantity must be defined by both magnitude and direction. The vector must be defined with respect to a reference point to its origin, which can be done by specifying an arbitrary point as an origin and using a coordinate system, such as Cartesian (rectangular), spherical, or cylindrical, to show the direction and magnitude of the vector. To denote a vector quantity in this book, we use an arrow above the variable or symbol that represents the quantity (e.g., (<InlineEquation equation="\\vec{v}" />) for velocity vector).</p>
+<p>The product of two scalar quantities is still a scalar quantity. The product of a scalar quantity and a vector quantity is a vector that has the same direction as the original vector if the scalar is positive and the opposite direction if the scalar is negative. An example is the multiplication of mass (scalar) and acceleration (vector) to yield a force (vector).</p>
+    <CalloutCard title="Extra!">
+        <u class="m-0">Callout Card</u>
+<p>Check out this great resource for unit conversions!</p>
+    </CalloutCard>
+
+</SubSection>
+</Layout>
