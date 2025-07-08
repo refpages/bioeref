@@ -1,0 +1,151 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import CalloutCard from "../../components/CalloutCard.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Conservation and Accounting Laws">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conceptual framework for accounting'>Conceptual framework for accounting</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Process to use Accounting equations'>Process to use Accounting equations</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Forms of Accounting Equations'>Forms of Accounting Equations</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Algebraic Accounting Equations'>Algebraic Accounting Equations</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Differential Accounting Equations'>Differential Accounting Equations</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Integral Accounting Equations'>Integral Accounting Equations</a></li></ul>
+</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Accumulation'>Accumulation</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Example Conservation Problem'>Example Conservation Problem</a></li>
+</ul>
+</div>
+<SubSection title="Conceptual framework for accounting" id="Conceptual framework for accounting">
+<p>Conservation—the preservation of a physical quantity during movement, transformation, or reaction—is a fundamental concept in engineering and science. Along with the second law of thermodynamics (the disorder in the universe spontaneously increases), a handful of conservation principles provide the governing laws for virtually all physical behavior. Engineers mathematically describe these laws in conjunction with initial or boundary conditions. The foundations of many fields of engineering, including bioengineering, are based on understanding and applying conservation laws.</p>
+<p>These laws can be applied to total mass, mass and moles of elements, linear and angular momentum, net electrical charge, and total energy. These laws have become axioms that serve as the fundamental basis for problem solving across engineering disciplines.</p>
+<p>Not all extensive physical properties are conserved. In other words, some extensive properties are created or destroyed during changes in or to the system. Those that are not conserved must be described using an accounting equation, a more generalized version of the conservation equation.</p>
+<p>An accounting equation is a mathematical description of the movement, generation, consumption, and accumulation of an extensive property within a system of interest.</p>
+<p>Below is a list of extensive properties that can be counted:</p>
+<Itemize>
+
+  <Item>Total mass</Item>
+<Item>Mass of individual species</Item>
+<Item>Mass of individual element</Item>
+<Item>Total moles</Item>
+<Item>Moles of individual species</Item>
+<Item>Moles of individual element</Item>
+<Item>Total energy</Item>
+<Item>Thermal energy</Item>
+<Item>Mechanical energy</Item>
+<Item>Electrical energy</Item>
+<Item>Net electrical charge</Item>
+<Item>Positive electrical charge</Item>
+<Item>Negative electrical charge</Item>
+<Item>Linear momentum</Item>
+<Item>Angular momentum</Item>
+
+</Itemize>
+    <CalloutCard title="Extra!">
+        <u class="m-0">Callout Card</u>
+<p>Note that volume is not on this list. Compressible fluids (especially gases) may invalidate volume-based accounting equations. If volumes are given, use density to convert to mass values and then use a mass accounting equation.</p>
+    </CalloutCard>
+<p>All the extensive properties listed above can be counted in accounting equations, but only a subset of these extensive properties is always conserved. Below is a complete list of extensive properties that are conserved in all situations (except nuclear reactions):</p>
+<Itemize>
+
+  <Item>Total mass</Item>
+  <Item>Mass of individual element</Item>
+<Item>Moles of individual element</Item>
+<Item>Total energy</Item>
+<Item>Net charge</Item>
+<Item>Linear momentum</Item>
+<Item>Angular momentum</Item>
+
+</Itemize>
+</SubSection>
+<SubSection title="Process to use Accounting equations" id="Process to use Accounting equations">
+<p>To be able to write an accounting statement, three items are necessary:</p>
+<Enumerate>
+
+  <Item>The extensive property to be counted must be specified.</Item>
+  <Item>The system and its surroundings must be defined by specifying a boundary.</Item>
+  <Item>A time period must be specified.</Item>
+
+</Enumerate>
+<p>I NEED TO COME BACK TO THIS TO ADD SOME EXPANDABLE BLOCKS ...</p>
+<p>text test</p>
+</SubSection>
+<SubSection title="Forms of Accounting Equations" id="Forms of Accounting Equations">
+<p>Mathematically, we illustrate both these concepts:</p>
+<p>Accounting (insert display equation box here)</p>
+
+<DisplayEquation equation="Input - Output + Generation - Consumption = Accumulation" title="" />
+
+<p>\begin{center}</p>
+<p>and Conservation (insert display equation box here).</p>
+<p>\end{center}</p>
+
+<DisplayEquation equation="Input - Output = Accumulation" title="" />
+
+<p>or (insert display equation box here)</p>
+
+<DisplayEquation equation="Accumulation=Final Condition-Initial Condition" title="" />
+
+<p>Accounting equations can be represented in three forms:</p>
+<Itemize>
+
+<Item>Algebraic</Item>
+<Item>Differential</Item>
+<Item>Integral</Item>
+
+</Itemize>
+<p>The following equations will be shown with <InlineEquation equation="\\Psi" /> representing any extensive property.</p>
+</SubSection>
+<SubSubSection title="Algebraic Accounting Equations" id="Algebraic Accounting Equations">
+<p>Algebraic accounting equations are generally applied to extensive properties within a defined system and time period. Algebraic equations can be applied when discrete quantities or “chunks” of extensive property are involved. They cannot be applied when rates or time dependent terms are involved.</p>
+
+<DisplayEquation equation="\\Psi_{in} - \\Psi_{out}+ \\Psi_{gen} - \\Psi_{cons} = \\Psi^{sys}_{acc}" title="" />
+
+</SubSubSection>
+<SubSubSection title="Differential Accounting Equations" id="Differential Accounting Equations">
+<p>Differential accounting equations are used when we have flow rates. A flow rate describes the transport of an extensive property over a period of time. We can represent the rate with a dot over the variable, <InlineEquation equation="\\dot{\\Psi}" />.</p>
+
+<DisplayEquation equation="\\dot{\\Psi}_{in{}}-\\dot{\\Psi}_{out{}}+\\dot{\\Psi}_{gen{}}-\\dot{\\Psi}_{cons{}}=\\dot{\\Psi}^{sys}_{acc{}}=\\frac{d\\Psi}{dt}" title="" />
+
+</SubSubSection>
+<SubSubSection title="Integral Accounting Equations" id="Integral Accounting Equations">
+<p>Integral balances are most useful when trying to evaluate conditions between two discrete time points. Integral accounting equations can be written to incorporate rates of change of an extensive property. When developing an integral balance, you can write the differential balance equation and integrate it between the initial and final times.</p>
+
+<DisplayEquation equation="\\int_{t_f}^{t_0}{\\dot{\\Psi}_{in}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{out}dt}+ \\int_{t_f}^{t_0}{\\dot{\\Psi}_{gen}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{cons}dt}= \\int_{t_f}^{t_0}{\\dot{\\Psi}^{sys}_{acc}dt}" title="" />
+
+<p>Insert nicely formatted table</p>
+<p>Various forms of the accounting equation and how to select the correct one</p>
+<p>Algebraic	Differential	Integral</p>
+<p>Can it incorporate discrete transfer of extensive property?	Yes	No	Sometimes (if given for a time period)</p>
+<p>Does it involve a time interval?	Finite	Ongoing or continuous	Finite</p>
+<p>Can it incorporate rates?	No	Yes	Yes</p>
+<p>What is the dimension of the equation?	Extensive property	Extensive property/time	Extensive property</p>
+</SubSubSection>
+<SubSection title="Accumulation" id="Accumulation">
+<p>The Accumulation term describes the net gain or loss of an extensive property contained within a system. When an Accumulation term is present, the amount of extensive property in the system has changed during the time period of interest. There are two terms that describe the characteristics of the Accumulation term of a system: steady-state or dynamic. Steady-state is a condition in which the values of all the variables in a system (e.g., temperature, pressure, volume, and flow rate) do not change with time, although minor fluctuations about constant mean values may occur. Let us illustrate this by using a photography analogy. If you take</p>
+<p>multiple, imaginary “snapshots” of a steady-state system over a time period, each snapshot should look the same as the previous one. The initial and final conditions and all the intermediate snapshots of the system are identical or nearly so. The snapshots show that no quantity of the extensive property has accumulated in the system.</p>
+<p>A common misconception is that systems with Input and Output terms cannot be in steady-state. This is false. Systems can have Input and Output terms, as well as Generation and Consumption terms, and still operate in steady-state. What makes a system steady-state is that it does not change over time, nor is there positive or negative accumulation of the extensive property within the system of interest.</p>
+</SubSection>
+<SubSection title="Example Conservation Problem" id="Example Conservation Problem">
+<p>Insert example box here</p>
+<p>Consider the chemical reaction for photosynthesis.</p>
+
+<DisplayEquation equation="6 CO_2 + 6 H_2O + light \\rightarrow C_6H_{12}O_6 + 6O_2" title="" />
+
+<p>The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.</p>
+
+</SubSection>
+</Layout>
