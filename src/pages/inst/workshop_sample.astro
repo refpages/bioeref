@@ -32,12 +32,15 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>Replacing with random text</p>
 <p>The ``introduction" will become an item in the navigation tree of your webpage.</p>
 <p>A full list of how to include every element can be found at:</p>
-<a target='_blank' rel='noopener noreferrer' href=https://www.mechref.org/about/docs>https://www.mechref.org/about/docs</a>
+<a target="_blank" rel="noopener noreferrer" href="https://www.mechref.org/about/docs">https://www.mechref.org/about/docs</a>
 <p>A full starter page can be found at:</p>
-<a target='_blank' rel='noopener noreferrer' href=https:/www.mechref.org/about/examples/example>https:/www.mechref.org/about/examples/example</a>
-<p>\href{https://publish.illinois.edu/bioe415-al1/}</p>
-<p>{https://publish.illinois.edu/bioe415-al1/}</p>
-<p>{\lipsum[1]}</p>
+<a target="_blank" rel="noopener noreferrer" href="https://www.mechref.org/about/docs">https://www.mechref.org/about/docs</a>
+
+<p>
+  <a href="https://publish.illinois.edu/bioe415-al1/" target="_blank" rel="noopener noreferrer">
+    https://publish.illinois.edu/bioe415-al1/
+  </a>
+</p>
 </SubSection>
 <SubSubSection title="Equations" id="Equations">
 <p>this subsection will also become an item in the navigation tree</p>
@@ -50,9 +53,8 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 
 <p>This is a third way to display equation</p>
 
-<DisplayEquation equation="\\alpha \\sum_0^\\infty" title="" />
+<DisplayEquation equation="\\alpha \\sum_{0}^{\\infty}" title="" />
 
-<p>{\lipsum[2-3]}</p>
 </SubSubSection>
 <SubSubSection title="Stuff" id="Stuff">
 <p>this subsection will also become an item in the navigation tree</p>
@@ -60,15 +62,13 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
         <u class="m-0">Callout Card</u>
 <p>Some really important stuff</p>
     </CalloutCard>
-<p>{\lipsum[4]}</p>
 </SubSubSection>
 <SubSubSubSection title="More Detailed Stuff" id="More Detailed Stuff">
 <p>this subsubsection will also become an item in the navigation tree</p>
-<p>{\lipsum[5]}</p>
 </SubSubSubSection>
 <SubSection title="Images" id="Images">
 <p>This section will also become an item in the navigation tree. Conversion between images in .tex and .astro may not be fully supported.</p>
-<Image src='/COURSE/FigFolder/width=5cm]{block I.jpg' width='7'> Image caption</Image>
+<Image src="/COURSE/FigFolder/block%20I.jpg" width="7">Image caption</Image>
 
 </SubSection>
 </Layout>
