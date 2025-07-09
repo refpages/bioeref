@@ -1,0 +1,122 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import CalloutCard from "../../components/CalloutCard.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Conservation of Mass">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Overview - types of mass'>Overview - types of mass</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation statements'>Conservation statements</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Algebraic Equation'>Algebraic Equation</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Differential Equation'>Differential Equation</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Integral Equations'>Integral Equations</a></li></ul>
+</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Multicomponent mixtures'>Multicomponent mixtures</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Systems with chemical reactions'>Systems with chemical reactions</a></li>
+</ul>
+</div>
+<SubSection title="Overview - types of mass" id="Overview - types of mass">
+<p>The amount of a material is expressed through the base physical variables of mass or mole. Mass <InlineEquation equation="m" /> is a quantity of matter that has weight in a gravitational field. Common units are grams <InlineEquation equation="g" />, kilograms <InlineEquation equation="kg" />, pounds <InlineEquation equation="lb_m" />, etc.</p>
+    <CalloutCard title="Extra!">
+        <u class="m-0">Callout Card</u>
+<p>Note the <InlineEquation equation="m" /> on <InlineEquation equation="lb_m" />! This indicates that it represents the mass in Imperial Units within Earth's gravitational field. Later on, we will define <InlineEquation equation="lb_f" /> a force unit in Imperial Units, so it's important to include the <InlineEquation equation="m" /> when using this unit.</p>
+    </CalloutCard>
+<p>The mole <InlineEquation equation="n" /> is a base unit describing an amount of any substance containing Avogadro’s number of molecules of that substance.  One mole contains <InlineEquation equation="6.02x10^{23}" /> atoms of that element and has a mass, in grams, equal to the atomic weight of the element. For example, a single molecule of O\textsubscript{2} has an atomic weight of 32.0 amu; in one mole of O\textsubscript{2}, there are <InlineEquation equation="6.02x10^{23}" />molecules of O\textsubscript{2}, having a mass of 32.0 g collectively.</p>
+<p>The molecular weight, <InlineEquation equation="M" />, of component A is related to the mass, <InlineEquation equation="m" />, and the number of moles, <InlineEquation equation="n" />, of that component:</p>
+
+<DisplayEquation equation="n_A = \\frac{m_A}{M_A}" title="" />
+
+<p>Common units are g/mol and lbm/lbm-mol.</p>
+<p>Mass flow rate describes the transport of material over a period of time.</p>
+
+<DisplayEquation equation="\\dot{m} = Av\\rho" title="" />
+
+<p>Where A is the cross-sectional area of a cylindrical tube.</p>
+
+<DisplayEquation equation="A = \\frac{\\pi}{4} D^2 = \\pi r^2" title="" />
+
+</SubSection>
+<SubSection title="Conservation statements" id="Conservation statements">
+<p>The following equations can be written for any unit of mass including total mass, species mass, element mass, total moles, element moles, species moles. If the system is a non-compressible gas, then volume can be used.</p>
+</SubSection>
+<SubSubSection title="Algebraic Equation" id="Algebraic Equation">
+
+<DisplayEquation equation="\\sum{m_{in}}-\\sum{m_{out}}+\\sum{m_{gen}}-\\sum{m_{cons}} = m_{acc}" title="" />
+
+</SubSubSection>
+<SubSubSection title="Differential Equation" id="Differential Equation">
+
+<DisplayEquation equation="\\sum{\\dot{m}_{in}}-\\sum{\\dot{m}_{out}}+\\sum{\\dot{m}_{gen}}-\\sum{\\dot{m}_{cons}} = \\frac{m^{sys}}{dt}" title="" />
+
+</SubSubSection>
+<SubSubSection title="Integral Equations" id="Integral Equations">
+
+<DisplayEquation equation="\\int^{t_f}_{t_0}\\sum{\\dot{m}_{in}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{out}}+\\int^{t_f}_{t_0}\\sum{\\dot{m}_{gen}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{cons}} =\\int^{t_f}_{t_0} \\frac{m^{sys}}{dt}" title="" />
+
+</SubSubSection>
+<SubSection title="Multicomponent mixtures" id="Multicomponent mixtures">
+<p>Consider systems with mass entering and leaving in streams. Each chemical species or compound, s, in each stream is associated with its species flow rate as <InlineEquation equation="\\dot{n}_s" />[moles of s/time] or <InlineEquation equation="\\dot{m}_s" /> [mass of s/time]. The total flow rate of the stream, in either moles or mass, can be calculated by summing the individual species flows over all species s present in the stream:</p>
+
+<DisplayEquation equation="\\dot{m}=\\sum_{s}{\\dot{m}_s}" title="" />
+
+
+<DisplayEquation equation="\\dot{n}=\\sum_{s}{\\dot{n}_s}" title="" />
+
+<p>An alternative way of representing a stream is to give its total flow, in rate of either moles or mass, together with the composition of the stream. Two convenient measures of composition of a species are the mass or weight fraction (w\textsubscript{s}) and the mole fraction (x\textsubscript{s}). All mass and mole fractions of all species s in a stream must sum to 1:</p>
+
+<DisplayEquation equation="1=\\sum_{s}{w}_s}" title="" />
+
+
+<DisplayEquation equation="1=\\sum_{s}{{x}_s}" title="" />
+
+<p>Where mass and mole fractions are related to mass and molar flow rates, respectively</p>
+
+<DisplayEquation equation="w_s=\\frac{\\dot{m}_s}{\\dot{m}}" title="" />
+
+
+<DisplayEquation equation="x_s=\\frac{\\dot{n}_s}{\\dot{n}}" title="" />
+
+<p>and using the molecular weight according to</p>
+
+<DisplayEquation equation="\\dot{n}_s=\\frac{\\dot{m}_s}{M_s}}" title="" />
+
+<p>The differential conservation equations for systems containing multiple inlets and outlets can be extended to systems that contain multiple species in each stream. For open, nonreacting, steady-state systems, the following mass conservation equations are written for:</p>
+<p>Species mass: <InlineEquation equation="\\sum{\\dot{m}_{in,s}}-\\sum{\\dot{m}_{out,s}}=0" /></p>
+<p>Species moles: <InlineEquation equation="\\sum{\\dot{n}_{in,s}}-\\sum{\\dot{n}_{out,s}}=0" /></p>
+<p>Element mass: <InlineEquation equation="\\sum{\\dot{m}_{in,e}}-\\sum{\\dot{m}_{out,e}}=0" /></p>
+<p>Element moles: <InlineEquation equation="\\sum{\\dot{n}_{in,e}}-\\sum{\\dot{n}_{out,e}}=0" /></p>
+</SubSection>
+<SubSection title="Systems with chemical reactions" id="Systems with chemical reactions">
+<p>When approaching a problem involving a chemical reaction, you must write out the reaction and balance the equation before moving any further into the problem. Stoichiometric balances and reaction rates must always be worked in units of moles or molecules.</p>
+<p>The reaction rate (R) characterizes the extent to which a chemical reaction proceeds. Reaction rate is expressed in moles or moles/time.</p>
+<p>R is a constant for a stoichiometric equation and is not tied to a specific species and/or compound in a reacting system. R may be given, deduced, or calculated using the following:</p>
+
+<DisplayEquation equation="\\sum{\\dot{n}_{in,s}}-\\sum{\\dot{n}_{out,s}}+\\sigma_sR=0" title="" />
+
+<p>or</p>
+<DisplayEquation equation="R = \\frac{\\dot{n}_{in,s}-\\dot{n}_{out,s}}{-\\sigma_s}" title="" />
+
+<p>The fractional conversion (f) of a reactant is the fraction of reactant s that reacts in the system relative to the total amount of s introduced into the system.</p>
+
+<DisplayEquation equation="f_s=\\frac{\\dot{n}_{cons, s}}{\\dot{n}_{in, s}}=\\frac{\\dot{n}_{in,s}-\\dot{n}_{out,s}}{-\\dot{n}_{in,s}}=\\frac{-R\\sigma_s}{\\dot{n}_{in, s}}" title="" />
+
+<p>Finally, the limiting reactant is mathematically defined as the minimum of the following expression for all species in the system.</p>
+
+<DisplayEquation equation="\\bigl\\{\\frac{\\dot{n}_{in, s}}{-\\sigma_s}\\bigr\\}" title="" />
+
+
+</SubSection>
+</Layout>
