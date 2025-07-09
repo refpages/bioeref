@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Problem Solving Approaches">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Problem solving process'>Problem solving process</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation statement'>Conservation statement</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#MATLAB'>MATLAB</a></li>
+</ul>
+</div>
+<p>Developing a pattern or methodology for solving engineering problems is important for consistency and thoroughness. The application of accounting and conservation equations should be carried out in an organized manner; this makes the solution easy to follow, check, and replicate. As a new engineer, you may find going through these steps tedious and excessive for seemingly simple problems. However, when the level of difficulty increases, having a method or process to fall back on will be invaluable. Experienced engineers use most of the steps below when solving real-world problems.</p>
+<SubSection title="Problem solving process" id="Problem solving process">
+
+<p>1. \textbf{Assemble}. Information regarding the problem, including a picture, should be assembled and rewritten.</p>
+<p>The \textbf{objective} of the problem or the answer that you are seeking to find should be clearly stated. This is often written as: "Find the flow rate . . ."</p>
+<p>Draw a \textbf{diagram} showing all relevant information. Often, a simple box diagram showing all components entering and leaving the system allows information to be summarized in a convenient way. The system, surroundings, and system boundary should be drawn and labeled. When possible, all known quantitative information should be shown on the diagram.</p>
+<p>2. \textbf{Analyze}. A framework for understanding what is known and what is not known is developed at this stage.</p>
+<p>State any \textbf{assumptions} applied to the problem. Biological systems are extremely complex, since many processes and reactions, as well as transport of materials, are often going on simultaneously. Knowing when and where to make assumptions to simplify the system to a few salient features is the mark of an outstanding engineer. An example of an assumption is that the human forearm can be modeled as a cylinder.</p>
+<p>State a \textbf{basis} of calculation. A basis is a specified input or output to a system (usually given as a flow rate or amount). In some problem statements, the basis is given. In other problems, values of components are given relative to one another and not as absolute amounts or rates. Select a basis if one is not given. Mass and energy problems often need a basis.</p>
+<p>If the problem involves chemical reaction(s), list the compounds involved and stoichiometrically \textbf{balance the chemical reaction}(s).</p>
+<p>3. \textbf{Calculate}. Equations are developed and solved in a logical manner.</p>
+<p>\textbf{Write down all appropriate accounting and/or conservation equations.} Writing down the governing equations and then simplifying them by analyzing the system to eliminate unnecessary terms can be a helpful tool in solving engineering problems. For example, if asking the question, “Is this system at steady-state?” results in a positive response, the governing equation may be simplified by making the Accumulation term equal zero. Write down any other essential equations needed to solve the problem.</p>
+<p>Use the appropriate equations to \textbf{calculate the unknown quantities.} This is the heart of solving the problem and may require extensive effort. In some cases, the calculation of unknown quantities can be done sequentially. In other cases, it may be best to solve a series of equations using MATLAB or other computer software.</p>
+<p>4. \textbf{Finalize}. Correct answers to the problem statement are stated clearly.</p>
+<p>\textbf{State the answers clearly with appropriate significant figures and units. }Confirm that you answered the specific questions asked by the problem statement.</p>
+<p>\textbf{Check that your results are reasonable and make sense}. Three methods to validate a quantitative problem include:</p>
+<Enumerate>
+
+    <Item>Back-substitution: Substitute your solution back into the initial equations and make sure that it works.</Item>
+    <Item>Order-of-magnitude estimation: Develop a crude and simple to solve approximation of the answer and make sure the more exact solution is reasonably close to it. </Item>
+    <Item>Test of reasonableness: Applying a test of reasonableness means verifying that the solution makes sense (e.g., the power needed to operate a pacemaker should be less than that required to operate the microwave).</Item>
+
+</Enumerate>
+</SubSection>
+<SubSection title="Conservation statement" id="Conservation statement">
+<p>text test</p>
+</SubSection>
+<SubSection title="MATLAB" id="MATLAB">
+
+</SubSection>
+</Layout>
