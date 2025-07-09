@@ -1,0 +1,109 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Conservation of Momentum">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Overview - types of momentum'>Overview - types of momentum</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation statements'>Conservation statements</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Linear Momentum'>Linear Momentum</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Angular Momentum'>Angular Momentum</a></li></ul>
+</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Rigid Body Statics'>Rigid Body Statics</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Fluid Statics'>Fluid Statics</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Collision systems'>Collision systems</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsteadystate momentum'>Unsteadystate momentum</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Mechanical Energy Accounting'>Mechanical Energy Accounting</a></li>
+</ul>
+</div>
+<SubSection title="Overview - types of momentum" id="Overview - types of momentum">
+<p>Any moving object possesses both linear and angular momentum. Linear momentum <InlineEquation equation="\\dot{\\vec{p}}" /> is an extensive property that quantifies the motion of a particle or a system proportional to the mass. Angular momentum <InlineEquation equation="\\dot{\\vec{L}}" /> is an extensive property, proportional to the mass of the system, which applies to any object undergoing motion, particularly rotational motion about a point. Angular momentum is used to describe the torque on bodies in static and dynamic analyses of structures. Whereas linear momentum is parallel to the motion of an object, angular momentum is normal to an object’s motion.</p>
+
+<DisplayEquation equation="\\dot{\\vec{p}}=\\dot{m}\\vec{v}" title="" />
+<p>and</p>
+<DisplayEquation equation="\\dot{\\vec{L}}=\\vec{r} \\times \\dot{\\vec{p}} = \\vec{r} \\times (\\dot{m}\\vec{v})" title="" />
+
+<p>When a force acts on a system, it may produce a torque <InlineEquation equation="\\vec{\\tau}" />, which is a measure of how a force changes the rotational motion of an object. Torque has both magnitude and direction and is calculated as the cross product of the position vector <InlineEquation equation="\\vec{r}" /> and the applied external force <InlineEquation equation="\\vec{F}" />:</p>
+
+<DisplayEquation equation="\\vec{\\tau}=\\vec{r} \\times \\vec{F}" title="" />
+
+</SubSection>
+<SubSection title="Conservation statements" id="Conservation statements">
+<p>Linear and angular momentum are always conserved in the universe. Thus, momentum cannot be produced or destroyed in a system or in the universe. Recall that the Generation and Consumption terms describe the production and destruction of an extensive property in a system. In problems involving momentum, Generation and Consumption terms are eliminated from the accounting equation, which then reduces to the conservation equation.</p>
+</SubSection>
+<SubSubSection title="Linear Momentum" id="Linear Momentum">
+
+<DisplayEquation equation="\\sum_{in}\\dot{\\vec{p}}_{in} - \\sum_{out}\\dot{\\vec{p}}_{out} + \\sum{\\vec{F}}=\\frac{d\\vec{p}^{sys}}{dt}" title="" />
+
+</SubSubSection>
+<SubSubSection title="Angular Momentum" id="Angular Momentum">
+
+<DisplayEquation equation="\\sum_{in}\\dot{\\vec{L}}_{in} - \\sum_{out}\\dot{\\vec{L}}_{out} + \\sum(\\vec{r} \\times \\vec{F})=\\frac{d\\vec{L}^{sys}}{dt}" title="" />
+
+</SubSubSection>
+<SubSection title="Rigid Body Statics" id="Rigid Body Statics">
+<p>One common class of engineering problems involves the application of the conservation of momentum to closed, steady-state systems. In a closed (but not isolated) system, movement of momentum through bulk material transport across the system boundary does not occur. However, external forces may act on the system. For this situation, the differential form of the statement of the conservation of linear momentum is often used and is reduced from the closed, steady-state situation:</p>
+
+<DisplayEquation equation="\\sum \\vec{F} = 0" title="" />
+
+<p>additionally, this property is conserved across each dimension, such that</p>
+
+<DisplayEquation equation="\\sum \\vec{F}_x = \\sum \\vec{F}_y = \\sum \\vec{F}_z= 0" title="" />
+
+<p>Similarly, this property is conserved for angular momentum, such that</p>
+
+<DisplayEquation equation="\\sum(\\vec{r} \\times \\vec{F})=0" title="" />
+
+<p>and is similarly conserved across dimensions, such that</p>
+
+<DisplayEquation equation="\\sum(\\vec{r} \\times \\vec{F})_x=\\sum(\\vec{r} \\times \\vec{F})_y=\\sum(\\vec{r} \\times \\vec{F})_z=0" title="" />
+
+</SubSection>
+<SubSection title="Fluid Statics" id="Fluid Statics">
+<p>Another class of problems involves fluids that do not move, or static fluids. The viscosity of a static fluid does not influence its behavior, since it is not flowing. P is the pressure exerted on the system by the surroundings, z is the height in the z-direction, ρ is the density of the fluid, and g is the gravitational constant (magnitude only). An important result from above is that the pressure varies as a function of the position z within a system containing a static fluid.</p>
+
+<DisplayEquation equation="\\frac{dP}{dz}=-\\rho g" title="" />
+<p>or</p>
+<DisplayEquation equation="\\Delta P = -\\rho g \\Delta z" title="" />
+
+</SubSection>
+<SubSection title="Collision systems" id="Collision systems">
+<p>Consider a system with no bulk mass transfer across the system boundary and no external forces. Such a system is isolated, and no momentum accumulates in it. Under these conditions, the integral formulation of the equation is commonly used. In these situations, the conservation of momentum equation is reduced to the following:</p>
+
+<DisplayEquation equation="0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}" title="" />
+
+<p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. The coefficient is defined as the ratio of <InlineEquation equation="v_{separation}" />, the difference in velocities after collision, and <InlineEquation equation="v_{approach}" />, the difference in velocities before collision of two objects, A and B.</p>
+
+<DisplayEquation equation="e = \\frac{v_{separation}}{v_{approach}}= \\frac{v_{B,f}-v_{A,f}}{v_{A,0}-v_{B,0}}" title="" />
+
+</SubSection>
+<SubSection title="Unsteadystate momentum" id="Unsteadystate momentum">
+<p>In an unsteady-state system, at least one variable describing the system (e.g., pressure, flow rate) changes with time. Unsteady-state systems gain or lose momentum with bulk material transfer or when external forces act on them; thus, the Accumulation term is always nonzero. For systems with no bulk transfer of material across the system boundary, the differential form of the conservation of linear momentum equation reduces to</p>
+
+<DisplayEquation equation="\\sum \\vec{F}=\\frac{d}{dt}(\\vec{p}^{sys}) = m^{sys}\\vec{a}^{sys}" title="" />
+
+</SubSection>
+<SubSection title="Mechanical Energy Accounting" id="Mechanical Energy Accounting">
+<p>Mechanical energy involves the motion and displacement of fluids and bodies, as well as the forces that can change motion and displacement. Mechanical energy is the summation of the kinetic energy, potential energy, and work of a system. The mechanical energy equation accounts only for mechanical energy and its conversion to and from other types of energy.</p>
+<p>Movement of mass flowing as a fluid transfers mechanical energy into and out of a system in the forms of kinetic energy, potential energy, and flow work. When a fluid is in motion at a given velocity, the fluid possesses kinetic energy. The potential energy a fluid possesses results from its position in a gravitational field. Flow work is the energy required to push the fluid into and out of a system.</p>
+<p>The steady-state mechanical energy accounting equation is:</p>
+
+<DisplayEquation equation="\\dot{m} (\\hat{E}_{P, in}-\\hat{E}_{P, out})+\\dot{m}(\\hat{E}_{K, in}-\\hat{E}_{K, out})-\\dot{m}(\\frac{P_{in}}{\\rho_{in}}-\\frac{P_{out}}{\\rho_{out}}) + \\dot{W}_{shaft} - \\sum \\dot{f} = 0" title="" />
+
+<p>where <InlineEquation equation="\\dot{m}" /> is the mass flow rate, <InlineEquation equation="\\hat{E}_P" /> is the specific potential energy (potential energy per unit mass), <InlineEquation equation="\\hat{E}_K" /> is the specific kinetic energy (kinetic energy per unit mass), Pi and Pj are the pressures at the system boundary where mass flow enters and leaves, <InlineEquation equation="\\rho" /> is the density of the fluid, <InlineEquation equation="\\dot{W}_{shaft}" /> is the total nonflow and non-expansion work (i.e., shaft work), and <InlineEquation equation="\\dot{f}" /> is the total frictional losses.</p>
+
+</SubSection>
+</Layout>

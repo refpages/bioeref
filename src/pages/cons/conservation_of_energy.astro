@@ -1,0 +1,97 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import CalloutCard from "../../components/CalloutCard.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Conservation of Energy">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Overview - types of Energy'>Overview - types of Energy</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Potential Energy'>Potential Energy</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Kinetic Energy'>Kinetic Energy</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Heat and Work'>Heat and Work</a></li></ul>
+</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation statements'>Conservation statements</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Enthalpy'>Enthalpy</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Systems with chemical reactions'>Systems with chemical reactions</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dynamic systems'>Dynamic systems</a></li>
+</ul>
+</div>
+<SubSection title="Overview - types of Energy" id="Overview - types of Energy">
+<p>An open system allows the exchange of an extensive property through bulk material transfer with its surroundings. In an open system, energy is exchanged through movement of material and all mass possesses energy. A closed system allows for the transfer of an extensive property through means other than bulk material transfer. Heat and work are forms of energy that transit across the system boundary in the absence of any physical material.</p>
+<p>It is good to remember that total energy is conserved while mechanical, electrical, and thermal energy are not conserved. This is because energy is neither created nor destroyed in the universe (except for nuclear reactions) but merely changes form.</p>
+</SubSection>
+<SubSubSection title="Potential Energy" id="Potential Energy">
+<p>To consider the change in potential energy of a mass between two different positions or heights, where g is the gravitational acceleration constant, h is the height relative to a reference plane, and 1 and 2 denote the two different positions in space.</p>
+
+<DisplayEquation equation="\\Delta E_P = E_{P,2}-E_{P,1}= \\dot{m}g (h_2-h_1)" title="" />
+
+</SubSubSection>
+<SubSubSection title="Kinetic Energy" id="Kinetic Energy">
+<p>The kinetic energy (EK) of a system is calculated using m as the mass of a body and v as the velocity. Since kinetic energy is a scalar quantity, a direction for the velocity does not need to be denoted. Kinetic energy can also move into and out of a system with a flow rate described by <InlineEquation equation="\\dot{m}" />. The rate of kinetic energy is calculated as</p>
+
+<DisplayEquation equation="E_K = \\frac{1}{2}\\dot{m}v^2" title="" />
+
+</SubSubSection>
+<SubSubSection title="Heat and Work" id="Heat and Work">
+<p>Heat and work only exist when a system, and hence a system boundary, has been established. Heat and work can only be understood as the movement of energy through direct and non-direct contacts—not bulk material transfer.</p>
+<p>Heat (Q) is energy that flows due to a difference in temperature. The direction of heat flow is always from a region of higher temperature to one of lower temperature. Heat, <InlineEquation equation="\\dot{Q}" />, is calculated based on the effective surface area over which the transfer occurs, A, and the temperature gradient: where h is the heat transfer coefficient (per unit area), <InlineEquation equation="T^{surr}" />, is the temperature of the surroundings, and <InlineEquation equation="T^{sys}" /> is the temperature of the system.</p>
+
+<DisplayEquation equation="\\dot{Q}=hA(T^{surr}-T^{sys})" title="" />
+
+<p>Work (W) is energy that flows across a system boundary as a result of a driving force other than temperature. Work is a path-dependent function because it requires knowledge on how the final state of the system was reached from the initial state. Work done by a fluid flowing into the system can be calcualted using the pressure, P, area, A, and velocity, v.</p>
+
+<DisplayEquation equation="\\dot{W}=PAv" title="" />
+
+<p>Work can also be added to a system by mixing, stirring, etc. This nonflow work is referred to as shaft work. <InlineEquation equation="\\dot{W}_{shaft} > 0" /> becasue it is added to the system.</p>
+</SubSubSection>
+<SubSection title="Conservation statements" id="Conservation statements">
+<p>The total energy of a system is always conserved. The conservation equation for total energy is a mathematical description of the movement and accumulation of total energy in a system of interest. The law of the conservation of total energy states that total energy can be neither created nor destroyed, but only converted from one form into an equivalent quantity of another form of energy.</p>
+<p>The generic conservation equation is written to account for the movement of total energy into and out of the system by bulk mass transfer and for the transfer of heat and work across the system boundary. No Generation and Consumption terms are present, since total energy is conserved. The differential form of the conservation of total energy is:</p>
+
+<DisplayEquation equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P, in}+\\hat{E}_{K, in}+\\hat{H}_{in}) - \\sum_{in} \\dot{m}_{out} (\\hat{E}_{P, out}+\\hat{E}_{K, out}+\\hat{H}_{out})+ \\dot{Q} + \\dot{W}_{shaft} = \\frac{dE^{sys}_T}{dt}" title="" />
+
+     <CalloutCard title="Extra!">
+        <u class="m-0">Callout Card</u>
+<p>Note the hat on the energy terms. The hat means that they are intensive because they haven't been multiplied by mass yet. For example, <InlineEquation equation="\\hat{E}_{P, in}=gh_{in}" /> and <InlineEquation equation="\\hat{E}_{K, in} = \\frac{1}{2}v^2" />.</p>
+    </CalloutCard>
+</SubSection>
+<SubSection title="Enthalpy" id="Enthalpy">
+<p>text test</p>
+</SubSection>
+<SubSection title="Systems with chemical reactions" id="Systems with chemical reactions">
+<p>During chemical reactions, rearranging the bonds between the atoms of reactants and products causes changes in the internal energy of a system. In reactions, energy is required to break the existing bonds of the reactants, and energy is released during bond formation to create the products. The difference between the final and initial energy states of the products and reactants is known as the heat of reaction.</p>
+<p>The heat of reaction or enthalpy of reaction <InlineEquation equation="\\Delta \\hat{H}_r" /> is the enthalpy change for a single process reacting at a specific constant temperature and pressure in which stoichiometric quantities of reactants react completely to form products. The standard heat of reaction <InlineEquation equation="\\Delta \\hat{H}^{\\circ}_r" /> is designated with a degree symbol and is the heat of reaction when both the reactants and products are at a specified reference temperature and pressure, usually 25°C and 1 atm. The heat of reaction is always given on a per-mole basis.</p>
+
+<DisplayEquation equation="\\Delta \\hat{H}_r = \\sum_{product} (n_{product}\\hat{H}_{product})-\\sum_{reactant} (n_{reactant}\\hat{H}_{reactant})" title="" />
+
+    <CalloutCard title="Extra!">
+        <u class="m-0">Callout Card</u>
+<p>For a reaction of the format, <InlineEquation equation="aA + bB \\rightarrow pP + qQ" />, the heat of reaction would be <InlineEquation equation="\\Delta \\hat{H}_r = (p\\hat{H}_P)+(q\\hat{H}_Q)-(a\\hat{H}_A)-(b\\hat{H}_B)" />.</p>
+    </CalloutCard>
+</SubSection>
+<SubSection title="Dynamic systems" id="Dynamic systems">
+<p>In the case of dynamic systems, the right hand side of the equation will not be zero; instead, it will 'accumulate' internal energy. These cases occur when the system is experiencing energy changes due to mass or temperature changes of the system.</p>
+<p>In these cases, the right side of the equation will be converted from change in total energy to internal energy as follows</p>
+
+<DisplayEquation equation="\\frac{dE^{sys}_T}{dt} = m^{sys} C_v\\frac{dT}{dt}" title="" />
+
+<p>giving an overall equation of</p>
+
+<DisplayEquation equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P, in}+\\hat{E}_{K, in}+\\hat{H}_{in}) - \\sum_{in} \\dot{m}_{out} (\\hat{E}_{P, out}+\\hat{E}_{K, out}+\\hat{H}_{out})+ \\dot{Q} + \\dot{W}_{shaft} = m^{sys} C_v\\frac{dT}{dt}" title="" />
+
+
+</SubSection>
+</Layout>
