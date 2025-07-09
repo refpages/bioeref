@@ -61,13 +61,13 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>All the extensive properties listed above can be counted in accounting equations, but only a subset of these extensive properties is always conserved. Below is a complete list of extensive properties that are conserved in all situations (except nuclear reactions):</p>
 <Itemize>
 
-  <Item>Total mass</Item>
-  <Item>Mass of individual element</Item>
-<Item>Moles of individual element</Item>
-<Item>Total energy</Item>
-<Item>Net charge</Item>
-<Item>Linear momentum</Item>
-<Item>Angular momentum</Item>
+    <Item>Total mass</Item>
+    <Item>Mass of individual element</Item>
+    <Item>Moles of individual element</Item>
+    <Item>Total energy</Item>
+    <Item>Net charge</Item>
+    <Item>Linear momentum</Item>
+    <Item>Angular momentum</Item>
 
 </Itemize>
 </SubSection>
@@ -89,9 +89,7 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 
 <DisplayEquation equation="Input - Output + Generation - Consumption = Accumulation" title="" />
 
-<p>\begin{center}</p>
 <p>and Conservation (insert display equation box here).</p>
-<p>\end{center}</p>
 
 <DisplayEquation equation="Input - Output = Accumulation" title="" />
 
@@ -102,9 +100,9 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>Accounting equations can be represented in three forms:</p>
 <Itemize>
 
-<Item>Algebraic</Item>
-<Item>Differential</Item>
-<Item>Integral</Item>
+    <Item>Algebraic</Item>
+    <Item>Differential</Item>
+    <Item>Integral</Item>
 
 </Itemize>
 <p>The following equations will be shown with <InlineEquation equation="\\Psi" /> representing any extensive property.</p>
@@ -118,7 +116,7 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <SubSubSection title="Differential Accounting Equations" id="Differential Accounting Equations">
 <p>Differential accounting equations are used when we have flow rates. A flow rate describes the transport of an extensive property over a period of time. We can represent the rate with a dot over the variable, <InlineEquation equation="\\dot{\\Psi}" />.</p>
 
-<DisplayEquation equation="\\dot{\\Psi}_{in{}}-\\dot{\\Psi}_{out{}}+\\dot{\\Psi}_{gen{}}-\\dot{\\Psi}_{cons{}}=\\dot{\\Psi}^{sys}_{acc{}}=\\frac{d\\Psi}{dt}" title="" />
+<DisplayEquation equation="\\dot{\\Psi}_{in}-\\dot{\\Psi}_{out}+\\dot{\\Psi}_{gen}-\\dot{\\Psi}_{cons}=\\dot{\\Psi}^{sys}_{acc}=\\frac{d\\Psi}{dt}" title="" />
 
 </SubSubSection>
 <SubSubSection title="Integral Accounting Equations" id="Integral Accounting Equations">
