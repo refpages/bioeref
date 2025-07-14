@@ -13,6 +13,9 @@ import Item from "../../components/Item.astro"
 import Itemize from "../../components/Itemize.astro" 
 import InlineEquation from "../../components/InlineEquation.astro" 
 import DisplayEquation from "../../components/DisplayEquation.astro" 
+import DisplayTable from "../../components/DisplayTable.astro"
+import Row from "../../components/Row.astro"
+import Col from "../../components/Col.astro"
 ---
 <Layout title="Conservation of Momentum">
 <div slot="navtree">
@@ -86,9 +89,52 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <DisplayEquation equation="0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}" title="" />
 
 <p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. The coefficient is defined as the ratio of <InlineEquation equation="v_{separation}" />, the difference in velocities after collision, and <InlineEquation equation="v_{approach}" />, the difference in velocities before collision of two objects, A and B.</p>
-
+<DisplayTable id="rec-tc">
+		<thead>
+			<tr>
+				<th noborder>type of collision</th>
+                <th>definition</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>elastic collisions</td>
+				<td>collisions where there is no loss in kinetic energy</td> 
+			</tr>
+			<tr>
+				<td>inelastic collisions</td>
+				<td>collisions where there are losses in kinetic energy, typically due to internal friction</td>
+			</tr>
+		</tbody>
+	</DisplayTable>
 <DisplayEquation equation="e = \\frac{v_{separation}}{v_{approach}}= \\frac{v_{B,f}-v_{A,f}}{v_{A,0}-v_{B,0}}" title="" />
-
+<DisplayTable id="rec-tc">
+		<thead>
+			<tr>
+				<th noborder>range</th>
+				<th>type of collision</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>\(e = 0\)</td>
+				<td>This corresponds to a perfectly inelastic collision. The velocity of both objects after the collision is the same</td> 
+			</tr>
+			<tr>
+				<td>\(0 &lt; e &lt; 1\)</td>
+				<td>This corresponds to an inelastic collision that happens in the real world, where some kinetic energy is lost</td>
+			</tr>
+			<tr>
+				<td>\(e = 1\)</td>
+				<td>This corresponds to a perfectly elastic collision, where no kinetic energy is lost.</td>
+			</tr>
+			<tr>
+				<td>\(e &gt; 1\)</td>
+				<td>This corresponds to a superelastic collision, where energy is gained/released, like a chemical reaction, a reduction of rotational energy.</td>
+			</tr>
+		</tbody>
+		
+	</DisplayTable>
 </SubSection>
 <SubSection title="Unsteadystate momentum" id="Unsteadystate momentum">
 <p>In an unsteady-state system, at least one variable describing the system (e.g., pressure, flow rate) changes with time. Unsteady-state systems gain or lose momentum with bulk material transfer or when external forces act on them; thus, the Accumulation term is always nonzero. For systems with no bulk transfer of material across the system boundary, the differential form of the conservation of linear momentum equation reduces to</p>
