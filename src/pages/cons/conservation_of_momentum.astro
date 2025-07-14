@@ -36,13 +36,13 @@ import Col from "../../components/Col.astro"
 <SubSection title="Overview - types of momentum" id="Overview - types of momentum">
 <p>Any moving object possesses both linear and angular momentum. Linear momentum <InlineEquation equation="\\dot{\\vec{p}}" /> is an extensive property that quantifies the motion of a particle or a system proportional to the mass. Angular momentum <InlineEquation equation="\\dot{\\vec{L}}" /> is an extensive property, proportional to the mass of the system, which applies to any object undergoing motion, particularly rotational motion about a point. Angular momentum is used to describe the torque on bodies in static and dynamic analyses of structures. Whereas linear momentum is parallel to the motion of an object, angular momentum is normal to an object’s motion.</p>
 
-<DisplayEquation equation="\\dot{\\vec{p}}=\\dot{m}\\vec{v}" title="" />
+<DisplayEquation title="Linear Momentum" background="True" equation="\\dot{\\vec{p}}=\\dot{m}\\vec{v}" title="" />
 <p>and</p>
-<DisplayEquation equation="\\dot{\\vec{L}}=\\vec{r} \\times \\dot{\\vec{p}} = \\vec{r} \\times (\\dot{m}\\vec{v})" title="" />
+<DisplayEquation title="Angular Momentum" background="True" equation="\\dot{\\vec{L}}=\\vec{r} \\times \\dot{\\vec{p}} = \\vec{r} \\times (\\dot{m}\\vec{v})" title="" />
 
 <p>When a force acts on a system, it may produce a torque <InlineEquation equation="\\vec{\\tau}" />, which is a measure of how a force changes the rotational motion of an object. Torque has both magnitude and direction and is calculated as the cross product of the position vector <InlineEquation equation="\\vec{r}" /> and the applied external force <InlineEquation equation="\\vec{F}" />:</p>
 
-<DisplayEquation equation="\\vec{\\tau}=\\vec{r} \\times \\vec{F}" title="" />
+<DisplayEquation title="Torque" background="True" equation="\\vec{\\tau}=\\vec{r} \\times \\vec{F}" title="" />
 
 </SubSection>
 <SubSection title="Conservation statements" id="Conservation statements">
@@ -61,27 +61,27 @@ import Col from "../../components/Col.astro"
 <SubSection title="Rigid Body Statics" id="Rigid Body Statics">
 <p>One common class of engineering problems involves the application of the conservation of momentum to closed, steady-state systems. In a closed (but not isolated) system, movement of momentum through bulk material transport across the system boundary does not occur. However, external forces may act on the system. For this situation, the differential form of the statement of the conservation of linear momentum is often used and is reduced from the closed, steady-state situation:</p>
 
-<DisplayEquation equation="\\sum \\vec{F} = 0" title="" />
+<DisplayEquation title="Sum of Forces" background="True" equation="\\sum \\vec{F} = 0" title="" />
 
 <p>additionally, this property is conserved across each dimension, such that</p>
 
-<DisplayEquation equation="\\sum \\vec{F}_x = \\sum \\vec{F}_y = \\sum \\vec{F}_z= 0" title="" />
+<DisplayEquation title="Sum of Forces by Dimension" background="True" equation="\\sum \\vec{F}_x = \\sum \\vec{F}_y = \\sum \\vec{F}_z= 0" title="" />
 
 <p>Similarly, this property is conserved for angular momentum, such that</p>
 
-<DisplayEquation equation="\\sum(\\vec{r} \\times \\vec{F})=0" title="" />
+<DisplayEquation title="Sum of Torque" background="True" equation="\\sum(\\vec{r} \\times \\vec{F})=0" title="" />
 
 <p>and is similarly conserved across dimensions, such that</p>
 
-<DisplayEquation equation="\\sum(\\vec{r} \\times \\vec{F})_x=\\sum(\\vec{r} \\times \\vec{F})_y=\\sum(\\vec{r} \\times \\vec{F})_z=0" title="" />
+<DisplayEquation title="Sum of Torque by Dimension" background="True" equation="\\sum(\\vec{r} \\times \\vec{F})_x=\\sum(\\vec{r} \\times \\vec{F})_y=\\sum(\\vec{r} \\times \\vec{F})_z=0" title="" />
 
 </SubSection>
 <SubSection title="Fluid Statics" id="Fluid Statics">
 <p>Another class of problems involves fluids that do not move, or static fluids. The viscosity of a static fluid does not influence its behavior, since it is not flowing. P is the pressure exerted on the system by the surroundings, z is the height in the z-direction, ρ is the density of the fluid, and g is the gravitational constant (magnitude only). An important result from above is that the pressure varies as a function of the position z within a system containing a static fluid.</p>
 
-<DisplayEquation equation="\\frac{dP}{dz}=-\\rho g" title="" />
+<DisplayEquation title="Fluid Statics" background="True" equation="\\frac{dP}{dz}=-\\rho g" title="" />
 <p>or</p>
-<DisplayEquation equation="\\Delta P = -\\rho g \\Delta z" title="" />
+<DisplayEquation title="Fluid Stastics One Dimension" background="True" equation="\\Delta P = -\\rho g \\Delta z" title="" />
 
 </SubSection>
 <SubSection title="Collision systems" id="Collision systems">
@@ -145,7 +145,7 @@ import Col from "../../components/Col.astro"
 <SubSection title="Unsteadystate momentum" id="Unsteadystate momentum">
 <p>In an unsteady-state system, at least one variable describing the system (e.g., pressure, flow rate) changes with time. Unsteady-state systems gain or lose momentum with bulk material transfer or when external forces act on them; thus, the Accumulation term is always nonzero. For systems with no bulk transfer of material across the system boundary, the differential form of the conservation of linear momentum equation reduces to</p>
 
-<DisplayEquation equation="\\sum \\vec{F}=\\frac{d}{dt}(\\vec{p}^{sys}) = m^{sys}\\vec{a}^{sys}" title="" />
+<DisplayEquation title="Unsteady Linear Momentum Accounting Equation" background="True" equation="\\sum \\vec{F}=\\frac{d}{dt}(\\vec{p}^{sys}) = m^{sys}\\vec{a}^{sys}" title="" />
 
 </SubSection>
 <SubSection title="Mechanical Energy Accounting" id="Mechanical Energy Accounting">
