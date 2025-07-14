@@ -37,16 +37,16 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>The mole <InlineEquation equation="n" /> is a base unit describing an amount of any substance containing Avogadro’s number of molecules of that substance.  One mole contains <InlineEquation equation="6.02x10^{23}" /> atoms of that element and has a mass, in grams, equal to the atomic weight of the element. For example, a single molecule of O\textsubscript{2} has an atomic weight of 32.0 amu; in one mole of O\textsubscript{2}, there are <InlineEquation equation="6.02x10^{23}" />molecules of O\textsubscript{2}, having a mass of 32.0 g collectively.</p>
 <p>The molecular weight, <InlineEquation equation="M" />, of component A is related to the mass, <InlineEquation equation="m" />, and the number of moles, <InlineEquation equation="n" />, of that component:</p>
 
-<DisplayEquation equation="n_A = \\frac{m_A}{M_A}" title="" />
+<DisplayEquation title="Mole Fraction" background="True" equation="n_A = \\frac{m_A}{M_A}" title="" />
 
 <p>Common units are g/mol and lbm/lbm-mol.</p>
 <p>Mass flow rate describes the transport of material over a period of time.</p>
 
-<DisplayEquation equation="\\dot{m} = Av\\rho" title="" />
+<DisplayEquation title="Mass of FLuid Flow" background="True" equation="\\dot{m} = Av\\rho" title="" />
 
 <p>Where A is the cross-sectional area of a cylindrical tube.</p>
 
-<DisplayEquation equation="A = \\frac{\\pi}{4} D^2 = \\pi r^2" title="" />
+<DisplayEquation title="Mass of FLuid Flow in Cylinder" background="True" equation="A = \\frac{\\pi}{4} D^2 = \\pi r^2" title="" />
 
 </SubSection>
 <SubSection title="Conservation statements" id="Conservation statements">
@@ -91,7 +91,7 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 
 <p>and using the molecular weight according to</p>
 
-<DisplayEquation equation="\\dot{n}_s=\\frac{\\dot{m}_s}{M_s}" title="" />
+<DisplayEquation title="Using Molecular Weight to Convert Mass to Moles" background="True" equation="\\dot{n}_s=\\frac{\\dot{m}_s}{M_s}" title="" />
 
 <p>The differential conservation equations for systems containing multiple inlets and outlets can be extended to systems that contain multiple species in each stream. For open, nonreacting, steady-state systems, the following mass conservation equations are written for:</p>
 <p>Species mass: <InlineEquation equation="\\sum{\\dot{m}_{in,s}}-\\sum{\\dot{m}_{out,s}}=0" /></p>
