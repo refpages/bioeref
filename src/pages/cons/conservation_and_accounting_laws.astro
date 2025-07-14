@@ -17,6 +17,10 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 import Example from "../../components/Example.astro"
 import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
+    
+import DisplayTable from "../../components/DisplayTable.astro"
+
+
 
 
 ---
@@ -134,13 +138,45 @@ import Col from "../../components/Col.astro"
 
 <DisplayEquation title="Integral Accounting Equation." background="True" equation="\\int_{t_f}^{t_0}{\\dot{\\Psi}_{in}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{out}dt}+ \\int_{t_f}^{t_0}{\\dot{\\Psi}_{gen}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{cons}dt}= \\int_{t_f}^{t_0}{\\dot{\\Psi}^{sys}_{acc}dt}" title="" />
 
-<p>Insert nicely formatted table</p>
-<p>Various forms of the accounting equation and how to select the correct one</p>
-<p>Algebraic	Differential	Integral</p>
-<p>Can it incorporate discrete transfer of extensive property?	Yes	No	Sometimes (if given for a time period)</p>
-<p>Does it involve a time interval?	Finite	Ongoing or continuous	Finite</p>
-<p>Can it incorporate rates?	No	Yes	Yes</p>
-<p>What is the dimension of the equation?	Extensive property	Extensive property/time	Extensive property</p>
+  
+<DisplayTable id="id" class_="mb-3">
+<thead>
+<tr>
+<th class="table-shaded" noborder> </th>
+<th class="table-shaded">Algebraic</th>
+<th class="table-shaded">Differential</th>
+<th class="table-shaded">Integral</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Can it incorporate discrete transfer of extensive property?</td>
+<td>Yes</td>
+<td>No</td>
+<td>Sometimes</td>
+</tr>
+<tr>
+<td>Does it involve a time interval?</td>
+<td>Finite</td>
+<td>Ongoing</td>
+<td>Finite</td>
+</tr>
+<tr>
+<td>Can it incorporate rates?</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>What is the dimension of the equation?</td>
+<td>Extensive Property</td>
+<td>Extensive Property/time</td>
+<td>Extensive Property</td>
+</tr>
+</tbody>
+</DisplayTable>
+
+
 </SubSubSection>
 <SubSection title="Accumulation" id="Accumulation">
 <p>The Accumulation term describes the net gain or loss of an extensive property contained within a system. When an Accumulation term is present, the amount of extensive property in the system has changed during the time period of interest. There are two terms that describe the characteristics of the Accumulation term of a system: steady-state or dynamic. Steady-state is a condition in which the values of all the variables in a system (e.g., temperature, pressure, volume, and flow rate) do not change with time, although minor fluctuations about constant mean values may occur. Let us illustrate this by using a photography analogy. If you take</p>
