@@ -86,7 +86,12 @@ import Col from "../../components/Col.astro"
 <SubSection title="Collision systems" id="Collision systems">
 <p>Consider a system with no bulk mass transfer across the system boundary and no external forces. Such a system is isolated, and no momentum accumulates in it. Under these conditions, the integral formulation of the equation is commonly used. In these situations, the conservation of momentum equation is reduced to the following:</p>
 
-<DisplayEquation equation="0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}" title="" />
+<DisplayEquationCustom id="rec-ecp" title="Solution procedure of perfectly elastic collisions." background="True">
+		<DisplayEquation equation="\\begin{aligned}                            m_1 \\vec{v}_{1, i} + m_2 \\vec{v}_{2, i} &amp;= m_1 \\vec{v}_{1, f} + m_2 \\vec{v}_{2, f} \\\\                            0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}                            \\end{aligned}" />
+		<p>
+			where subscripts \(i, f\) denote initial and final velocities, respectively.
+		</p>
+	</DisplayEquationCustom>
 
 <p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. The coefficient is defined as the ratio of <InlineEquation equation="v_{separation}" />, the difference in velocities after collision, and <InlineEquation equation="v_{approach}" />, the difference in velocities before collision of two objects, A and B.</p>
 <DisplayTable id="rec-tc">
