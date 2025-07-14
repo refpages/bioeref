@@ -33,6 +33,79 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>A mistake that beginning engineers often make is to write variables without units. Students sometimes claim that they can keep track of the units in their heads and do not need to write them down repeatedly. This attitude leads to many mistakes when calculating solutions, which can lead to significant consequences, as in the Mars Climate Orbiter incident. Experienced engineers rarely omit units.</p>
 <p>In engineering calculations, many other physical variables such as force or energy are commonly used. The units of these variables can be reduced to combinations of the seven base quantities. In this textbook, the term dimension can be thought of as a generic unit of a physical variable, which is not scaled to a particular amount for quantitative purposes.</p>
 </SubSection>
+<SubSection title="Units of Interest" id="units_of_interest"></SubSection>
+<SubSubSection title="Typical Units in SI and English Systems" id="typical_units_in_si_and_english_systems">
+
+
+
+  <p class="text-center"><em>Typical Units in SI and English Systems: Dimensions</em></p>
+  
+  <DisplayTable id="dim-table">
+    <thead>
+      <tr>
+        <th>Dimension</th><th>SI</th><th>US</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Length</th><td>meter (m)</td><td>foot (ft)</td>
+      </tr>
+      <tr>
+        <th>Mass</th><td>kilogram (kg)</td><td>pound mass (lb)</td>
+      </tr>
+      <tr>
+        <th>Time</th><td>second (s)</td><td>second (s)</td>
+      </tr>
+    </tbody>
+  </DisplayTable>
+
+
+  <p class="text-center"><em>Typical Units in SI and English Systems: State properties</em></p>
+  <DisplayTable id="state-table">
+    <thead>
+      <tr>
+        <th>State property</th><th>SI</th><th>US</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Pressure</th><td>1 Pa = N/m<InlineEquation equation="^2" /> = J/m<InlineEquation equation="^3" /></td><td></td>
+      </tr>
+      <tr>
+        <th>    Volume</th><td>m<InlineEquation equation="^3" /></td><td>ft<InlineEquation equation="^3" /></td>
+      </tr>
+      <tr>
+        <th>    Temperature</th><td>degrees Celcius (<InlineEquation equation="^{\\circ}" />C)</td><td>degrees Fahrenheit (<InlineEquation equation="^{\\circ}" />F)</td>
+      </tr>
+      <tr>
+        <th>    Absolute Temperature</th><td>Kelvin (K)</td><td>degree Rankine (<InlineEquation equation="^{\\circ}" />R)</td>
+      </tr>
+      <tr>
+        <th rowspan="2">    Internal Energy, Enthalpy</th><td>Joules (J)</td><td>British thermal Unit (Btu)</td>
+      </tr>
+      <tr>
+        <td>Newton-meter (N<InlineEquation equation="\\cdot" />m)</td><td>Foot-pound force (ft<InlineEquation equation="\\cdot" />lbf)</td>
+      </tr>
+      <tr>
+        <th>    Entropy</th><td>(J/K)</td><td>Btu/<InlineEquation equation="^{\\circ}" />R</td>
+      </tr>
+    </tbody>
+  </DisplayTable>
+</SubSubSection>
+
+<SubSubSection title="Useful Conversions" id="useful_conversions">
+<h4><strong>Pressure</strong></h4>
+ 
+
+<DisplayEquation equation='\\begin{aligned}   1~\\textrm{standard atm} &= 1.01325 ~\\textrm{bar} = 1.01325 \\times 10^{5} ~\\textrm{Pa} = 14.696~\\textrm{psi} \\\\ &= 760~\\textrm{mmHg} = 29.92~\\textrm{inHg}\\end{aligned}' title="Pressure unit conversions" background="True"/>
+
+<h4><strong>Temperature</strong></h4>
+ 
+
+<DisplayEquation equation='\\begin{aligned}\\textrm{Fahrenheit to Celcius:}&~ ^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)X (9/5) \\\\    \\textrm{Celsius to Kelvin:}&~ ^{\\circ}\\textrm{K} = ^{\\circ}\\textrm{C} + 273.15\\end{aligned}' title="Temperature unit conversions" background="True"/>
+<h4><strong>Energy</strong></h4>
+
+</SubSubSection>
 <SubSection title="Extensive and Intensive Properties" id="Extensive and Intensive Properties">
 <p>Physical properties can be classified as either extensive or intensive. An extensive property is defined as a physical quantity that is the sum of the properties of separate non-interacting subsystems that compose the entire system. The numerical value of an extensive property depends on the size of the system, the quantity of matter in the system, or the sample taken. In trying to think about whether a physical property is extensive or intensive, consider whether the physical property would change if the system of interest is doubled or halved. If the physical property changes when the system is doubled or halved, the property is extensive. Another characteristic of an extensive property is that it can be counted. Later, you will learn that only extensive properties may be counted in accounting and conservation equations. In this book, extensive properties that are counted include total mass and moles; individual species mass and moles; elemental mass and moles; positive, negative, and net electrical charge; linear and angular momentum; and total, mechanical, and electrical energy.</p>
 </SubSection>
