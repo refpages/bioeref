@@ -46,12 +46,12 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 </SubSection>
 <SubSubSection title="Linear Momentum" id="Linear Momentum">
 
-<DisplayEquation equation="\\sum_{in}\\dot{\\vec{p}}_{in} - \\sum_{out}\\dot{\\vec{p}}_{out} + \\sum{\\vec{F}}=\\frac{d\\vec{p}^{sys}}{dt}" title="" />
+<DisplayEquation title="Linear Momentum Accounting Equation." background="True"  equation="\\sum_{in}\\dot{\\vec{p}}_{in} - \\sum_{out}\\dot{\\vec{p}}_{out} + \\sum{\\vec{F}}=\\frac{d\\vec{p}^{sys}}{dt}" title="" />
 
 </SubSubSection>
 <SubSubSection title="Angular Momentum" id="Angular Momentum">
 
-<DisplayEquation equation="\\sum_{in}\\dot{\\vec{L}}_{in} - \\sum_{out}\\dot{\\vec{L}}_{out} + \\sum(\\vec{r} \\times \\vec{F})=\\frac{d\\vec{L}^{sys}}{dt}" title="" />
+<DisplayEquation title="Angular Momentum Accounting Equation." background="True"  equation="\\sum_{in}\\dot{\\vec{L}}_{in} - \\sum_{out}\\dot{\\vec{L}}_{out} + \\sum(\\vec{r} \\times \\vec{F})=\\frac{d\\vec{L}^{sys}}{dt}" title="" />
 
 </SubSubSection>
 <SubSection title="Rigid Body Statics" id="Rigid Body Statics">
@@ -101,7 +101,7 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>Movement of mass flowing as a fluid transfers mechanical energy into and out of a system in the forms of kinetic energy, potential energy, and flow work. When a fluid is in motion at a given velocity, the fluid possesses kinetic energy. The potential energy a fluid possesses results from its position in a gravitational field. Flow work is the energy required to push the fluid into and out of a system.</p>
 <p>The steady-state mechanical energy accounting equation is:</p>
 
-<DisplayEquation equation="\\dot{m} (\\hat{E}_{P, in}-\\hat{E}_{P, out})+\\dot{m}(\\hat{E}_{K, in}-\\hat{E}_{K, out})-\\dot{m}(\\frac{P_{in}}{\\rho_{in}}-\\frac{P_{out}}{\\rho_{out}}) + \\dot{W}_{shaft} - \\sum \\dot{f} = 0" title="" />
+<DisplayEquation title="Mechanical Energy Accounting Equation." background="True"  equation="\\dot{m} (\\hat{E}_{P, in}-\\hat{E}_{P, out})+\\dot{m}(\\hat{E}_{K, in}-\\hat{E}_{K, out})-\\dot{m}(\\frac{P_{in}}{\\rho_{in}}-\\frac{P_{out}}{\\rho_{out}}) + \\dot{W}_{shaft} - \\sum \\dot{f} = 0" title="" />
 
 <p>where <InlineEquation equation="\\dot{m}" /> is the mass flow rate, <InlineEquation equation="\\hat{E}_P" /> is the specific potential energy (potential energy per unit mass), <InlineEquation equation="\\hat{E}_K" /> is the specific kinetic energy (kinetic energy per unit mass), Pi and Pj are the pressures at the system boundary where mass flow enters and leaves, <InlineEquation equation="\\rho" /> is the density of the fluid, <InlineEquation equation="\\dot{W}_{shaft}" /> is the total nonflow and non-expansion work (i.e., shaft work), and <InlineEquation equation="\\dot{f}" /> is the total frictional losses.</p>
 
