@@ -36,13 +36,13 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <SubSubSection title="Potential Energy" id="Potential Energy">
 <p>To consider the change in potential energy of a mass between two different positions or heights, where g is the gravitational acceleration constant, h is the height relative to a reference plane, and 1 and 2 denote the two different positions in space.</p>
 
-<DisplayEquation equation="\\Delta E_P = E_{P,2}-E_{P,1}= \\dot{m}g (h_2-h_1)" title="" />
+<DisplayEquation title="Potential Energy" background="True" equation="\\Delta E_P = E_{P,2}-E_{P,1}= \\dot{m}g (h_2-h_1)" title="" />
 
 </SubSubSection>
 <SubSubSection title="Kinetic Energy" id="Kinetic Energy">
 <p>The kinetic energy (EK) of a system is calculated using m as the mass of a body and v as the velocity. Since kinetic energy is a scalar quantity, a direction for the velocity does not need to be denoted. Kinetic energy can also move into and out of a system with a flow rate described by <InlineEquation equation="\\dot{m}" />. The rate of kinetic energy is calculated as</p>
 
-<DisplayEquation equation="E_K = \\frac{1}{2}\\dot{m}v^2" title="" />
+<DisplayEquation title="Kinetic Energy" background="True" equation="E_K = \\frac{1}{2}\\dot{m}v^2" title="" />
 
 </SubSubSection>
 <SubSubSection title="Heat and Work" id="Heat and Work">
@@ -52,11 +52,11 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 </Image>
 <p>Heat (Q) is energy that flows due to a difference in temperature. The direction of heat flow is always from a region of higher temperature to one of lower temperature. Heat, <InlineEquation equation="\\dot{Q}" />, is calculated based on the effective surface area over which the transfer occurs, A, and the temperature gradient: where h is the heat transfer coefficient (per unit area), <InlineEquation equation="T^{surr}" />, is the temperature of the surroundings, and <InlineEquation equation="T^{sys}" /> is the temperature of the system.</p>
 
-<DisplayEquation equation="\\dot{Q}=hA(T^{surr}-T^{sys})" title="" />
+<DisplayEquation title="Heat Transfer Across a Surface" background="True" equation="\\dot{Q}=hA(T^{surr}-T^{sys})" title="" />
 
 <p>Work (W) is energy that flows across a system boundary as a result of a driving force other than temperature. Work is a path-dependent function because it requires knowledge on how the final state of the system was reached from the initial state. Work done by a fluid flowing into the system can be calcualted using the pressure, P, area, A, and velocity, v.</p>
 
-<DisplayEquation equation="\\dot{W}=PAv" title="" />
+<DisplayEquation title="Work due to Pressure and Volume Changes" background="True" equation="\\dot{W}=PAv" title="" />
 
 <p>Work can also be added to a system by mixing, stirring, etc. This nonflow work is referred to as shaft work. <InlineEquation equation="\\dot{W}_{shaft} > 0" /> becasue it is added to the system.</p>
 </SubSubSection>
@@ -80,7 +80,7 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>During chemical reactions, rearranging the bonds between the atoms of reactants and products causes changes in the internal energy of a system. In reactions, energy is required to break the existing bonds of the reactants, and energy is released during bond formation to create the products. The difference between the final and initial energy states of the products and reactants is known as the heat of reaction.</p>
 <p>The heat of reaction or enthalpy of reaction <InlineEquation equation="\\Delta \\hat{H}_r" /> is the enthalpy change for a single process reacting at a specific constant temperature and pressure in which stoichiometric quantities of reactants react completely to form products. The standard heat of reaction <InlineEquation equation="\\Delta \\hat{H}^{\\circ}_r" /> is designated with a degree symbol and is the heat of reaction when both the reactants and products are at a specified reference temperature and pressure, usually 25°C and 1 atm. The heat of reaction is always given on a per-mole basis.</p>
 
-<DisplayEquation equation="\\Delta \\hat{H}_r = \\sum_{product} (n_{product}\\hat{H}_{product})-\\sum_{reactant} (n_{reactant}\\hat{H}_{reactant})" title="" />
+<DisplayEquation title="Energy with Chemical Reactions" background="True" equation="\\Delta \\hat{H}_r = \\sum_{product} (n_{product}\\hat{H}_{product})-\\sum_{reactant} (n_{reactant}\\hat{H}_{reactant})" title="" />
 
     <CalloutCard title="Extra!">
         <u class="m-0">Callout Card</u>
@@ -91,7 +91,7 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>In the case of dynamic systems, the right hand side of the equation will not be zero; instead, it will 'accumulate' internal energy. These cases occur when the system is experiencing energy changes due to mass or temperature changes of the system.</p>
 <p>In these cases, the right side of the equation will be converted from change in total energy to internal energy as follows</p>
 
-<DisplayEquation equation="\\frac{dE^{sys}_T}{dt} = m^{sys} C_v\\frac{dT}{dt}" title="" />
+<DisplayEquation title="Internal Energy" background="True" equation="\\frac{dE^{sys}_T}{dt} = m^{sys} C_v\\frac{dT}{dt}" title="" />
 
 <p>giving an overall equation of</p>
 
