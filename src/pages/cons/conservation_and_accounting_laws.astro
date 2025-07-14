@@ -115,19 +115,19 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <SubSubSection title="Algebraic Accounting Equations" id="Algebraic Accounting Equations">
 <p>Algebraic accounting equations are generally applied to extensive properties within a defined system and time period. Algebraic equations can be applied when discrete quantities or “chunks” of extensive property are involved. They cannot be applied when rates or time dependent terms are involved.</p>
     
-<DisplayEquation title="ALgebraic Accounting Equation." background="True" equation="\\Psi_{in} - \\Psi_{out}+ \\Psi_{gen} - \\Psi_{cons} = \\Psi^{sys}_{acc}"/>
+<DisplayEquation title="Algebraic Accounting Equation." background="True" equation="\\Psi_{in} - \\Psi_{out}+ \\Psi_{gen} - \\Psi_{cons} = \\Psi^{sys}_{acc}"/>
 
 </SubSubSection>
 <SubSubSection title="Differential Accounting Equations" id="Differential Accounting Equations">
 <p>Differential accounting equations are used when we have flow rates. A flow rate describes the transport of an extensive property over a period of time. We can represent the rate with a dot over the variable, <InlineEquation equation="\\dot{\\Psi}" />.</p>
 
-<DisplayEquation equation="\\dot{\\Psi}_{in}-\\dot{\\Psi}_{out}+\\dot{\\Psi}_{gen}-\\dot{\\Psi}_{cons}=\\dot{\\Psi}^{sys}_{acc}=\\frac{d\\Psi}{dt}" title="" />
+<DisplayEquation title="Differential Accounting Equation." background="True"  equation="\\dot{\\Psi}_{in}-\\dot{\\Psi}_{out}+\\dot{\\Psi}_{gen}-\\dot{\\Psi}_{cons}=\\dot{\\Psi}^{sys}_{acc}=\\frac{d\\Psi}{dt}" title="" />
 
 </SubSubSection>
 <SubSubSection title="Integral Accounting Equations" id="Integral Accounting Equations">
 <p>Integral balances are most useful when trying to evaluate conditions between two discrete time points. Integral accounting equations can be written to incorporate rates of change of an extensive property. When developing an integral balance, you can write the differential balance equation and integrate it between the initial and final times.</p>
 
-<DisplayEquation equation="\\int_{t_f}^{t_0}{\\dot{\\Psi}_{in}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{out}dt}+ \\int_{t_f}^{t_0}{\\dot{\\Psi}_{gen}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{cons}dt}= \\int_{t_f}^{t_0}{\\dot{\\Psi}^{sys}_{acc}dt}" title="" />
+<DisplayEquation title="Integral Accounting Equation." background="True" equation="\\int_{t_f}^{t_0}{\\dot{\\Psi}_{in}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{out}dt}+ \\int_{t_f}^{t_0}{\\dot{\\Psi}_{gen}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{cons}dt}= \\int_{t_f}^{t_0}{\\dot{\\Psi}^{sys}_{acc}dt}" title="" />
 
 <p>Insert nicely formatted table</p>
 <p>Various forms of the accounting equation and how to select the correct one</p>
@@ -143,12 +143,28 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <p>A common misconception is that systems with Input and Output terms cannot be in steady-state. This is false. Systems can have Input and Output terms, as well as Generation and Consumption terms, and still operate in steady-state. What makes a system steady-state is that it does not change over time, nor is there positive or negative accumulation of the extensive property within the system of interest.</p>
 </SubSection>
 <SubSection title="Example Conservation Problem" id="Example Conservation Problem">
-<p>Insert example box here</p>
-<p>Consider the chemical reaction for photosynthesis.</p>
 
+    
+<Example title="Consider the chemical reaction for photosynthesis." solution="True">
+<div class="d-flex flex-row">
+<Row>
+<Col values="12 md-4">
+<p>
+Given the chemical formula for photosynthesis, balance the moles of glucose and oxygen. Does this system follow the rules of conservation?
 <DisplayEquation equation="6 CO_2 + 6 H_2O + light \\rightarrow C_6H_{12}O_6 + 6O_2" title="" />
+</p>
+</Col>
+<Col values="12 md-8">
+//<Image src="IMAGE " width="7"></Image>
+</Col>
+</Row>
+</div>
+<div slot="solution">
+<p>
+The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.
+</p>
+</div>
+</Example>
 
-<p>The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.</p>
 
-</SubSection>
 </Layout>
