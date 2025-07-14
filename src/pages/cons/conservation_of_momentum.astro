@@ -17,6 +17,7 @@ import DisplayEquationCustom from "../../components/DisplayEquationCustom.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
+import Warning from "../../components/Warning.astro"
 ---
 <Layout title="Conservation of Momentum">
 <div slot="navtree">
@@ -81,8 +82,30 @@ import Col from "../../components/Col.astro"
 
 <DisplayEquation title="Fluid Statics" background="True" equation="\\frac{dP}{dz}=-\\rho g" title="" />
 <p>or</p>
-<DisplayEquation title="Fluid Stastics One Dimension" background="True" equation="\\Delta P = -\\rho g \\Delta z" title="" />
 
+<DisplayEquation equation="\\Delta P = -\\rho g \\Delta z" background="True" title="Fluid Stastics One Dimension"   id="hfp-eq" derivation="True">
+            <p>
+                Ignoring air pressure:
+				<Image src='/cons/hydrostatic_fluid_pressure/FluidDerivation.jpg' width='4'> </Image>
+                <DisplayEquation equation="\\begin{aligned} \\sum{F_y} &amp;= 0  \\\\ P(z)A - W &amp;= 0   \\\\   P(z)A - (\\rho \\ A \\ z) \\ g &amp;=  0 \\\\   P(z)  &amp;= \\rho \\ g \\ z          \\end{aligned}"/>
+                
+			 </p>
+    </DisplayEquation>
+
+
+
+
+<Warning title="Don't confuse pressure with force!" id="force-pressure">
+    <p>
+      Pressure is a force distributed over an area (force per area) and therefore has units of Pascals (Pa). To calculate the resultant force from hydrostatic fluid pressure, you must use  
+    </p>
+
+	<DisplayEquation equation="F_R = P \\ A"/>
+
+	<p> where <InlineEquation equation=" A " /> is the area that the force is applied over. 
+	</p>	
+	
+</Warning>
 </SubSection>
 <SubSection title="Collision systems" id="Collision systems">
 <p>Consider a system with no bulk mass transfer across the system boundary and no external forces. Such a system is isolated, and no momentum accumulates in it. Under these conditions, the integral formulation of the equation is commonly used. In these situations, the conservation of momentum equation is reduced to the following:</p>
