@@ -47,6 +47,9 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 </SubSubSection>
 <SubSubSection title="Heat and Work" id="Heat and Work">
 <p>Heat and work only exist when a system, and hence a system boundary, has been established. Heat and work can only be understood as the movement of energy through direct and non-direct contacts—not bulk material transfer.</p>
+<Image src="/cons/heatandwork.png">
+  <span class="fw-bold">System Diagram</span>: A schematic representation of a system illustrating its key features, including system boundaries and depictions of energy flow.
+</Image>
 <p>Heat (Q) is energy that flows due to a difference in temperature. The direction of heat flow is always from a region of higher temperature to one of lower temperature. Heat, <InlineEquation equation="\\dot{Q}" />, is calculated based on the effective surface area over which the transfer occurs, A, and the temperature gradient: where h is the heat transfer coefficient (per unit area), <InlineEquation equation="T^{surr}" />, is the temperature of the surroundings, and <InlineEquation equation="T^{sys}" /> is the temperature of the system.</p>
 
 <DisplayEquation equation="\\dot{Q}=hA(T^{surr}-T^{sys})" title="" />
@@ -60,7 +63,9 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <SubSection title="Conservation statements" id="Conservation statements">
 <p>The total energy of a system is always conserved. The conservation equation for total energy is a mathematical description of the movement and accumulation of total energy in a system of interest. The law of the conservation of total energy states that total energy can be neither created nor destroyed, but only converted from one form into an equivalent quantity of another form of energy.</p>
 <p>The generic conservation equation is written to account for the movement of total energy into and out of the system by bulk mass transfer and for the transfer of heat and work across the system boundary. No Generation and Consumption terms are present, since total energy is conserved. The differential form of the conservation of total energy is:</p>
-
+<Image src="/cons/mass&heat&work.png">
+  <span class="fw-bold">System Diagram</span>: A schematic representation of a system illustrating its key features, including system boundaries and depictions of energy and mass flows.
+</Image>
 <DisplayEquation title="Energy Accounting Equation." background="True"  equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P, in}+\\hat{E}_{K, in}+\\hat{H}_{in}) - \\sum_{in} \\dot{m}_{out} (\\hat{E}_{P, out}+\\hat{E}_{K, out}+\\hat{H}_{out})+ \\dot{Q} + \\dot{W}_{shaft} = \\frac{dE^{sys}_T}{dt}" title="" />
 
      <CalloutCard title="Extra!">
