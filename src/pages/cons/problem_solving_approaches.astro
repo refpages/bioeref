@@ -43,6 +43,59 @@ import Example from "../../components/Example.astro"
 <p>State any assumptions applied to the problem. Biological systems are extremely complex, since many processes and reactions, as well as transport of materials, are often going on simultaneously. Knowing when and where to make assumptions to simplify the system to a few salient features is the mark of an outstanding engineer. An example of an assumption is that the human forearm can be modeled as a cylinder.</p>
 <p>State a basis of calculation. A basis is a specified input or output to a system (usually given as a flow rate or amount). In some problem statements, the basis is given. In other problems, values of components are given relative to one another and not as absolute amounts or rates. Select a basis if one is not given. Mass and energy problems often need a basis.</p>
 <p>If the problem involves chemical reaction(s), list the compounds involved and stoichiometrically balance the chemical reaction(s).</p>
+<Example title="Balance the chemical reaction." solution="True">
+<div class="d-flex flex-row">
+<Row>
+<Col values="12 md-4">
+<p>
+Balance the atoms for each element separately, starting with carbon atoms. 
+</p>
+</Col>
+<Col values="12 md-8">
+<DisplayEquation equation="CH_4 + O_2 \\rightarrow CO_2 + H_2O" title="" />
+</Col>
+</Row>
+</div>
+<div slot="solution">
+<p>
+There is one carbon atom on each side, so that is balanced. 
+The hydrogen atom balance has 4 of the left and 2 on the right side. We need to add a 2 to the water to balance it. 
+There are two oxygen atoms on the left and four on the right, we need to add a 2 to the oxygen compound.
+Now we can check the balance and verify. 
+Consider drawing a table to help you keep track 
+    
+<DisplayTable id="id" class_="mb-3">
+<thead>
+<tr>
+<th class="table-shaded">Element</th>
+<th class="table-shaded" noborder>Left Side (Reactants)</th>
+<th class="table-shaded">Right Side (Products)</th>
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carbon (C)</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Hydrogen (H)</td>
+<td>4</td>
+<td>2 -> 4</td>
+</tr>
+<tr>
+<td>Oxygen (O)</td>
+<td>2 -> 4</td>
+<td>4</td>
+</tr>
+</tbody>
+</DisplayTable>
+
+
+</p>
+</div>
+</Example>
 </SubSubSection>
 <SubSubSection title="Calculate" id="Calculate">
 <p>3. Calculate. Equations are developed and solved in a logical manner.</p>
