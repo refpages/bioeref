@@ -50,7 +50,11 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <Image src="/cons/heatandwork.png">
   <span class="fw-bold">System Diagram</span>: A schematic representation of a system illustrating its key features, including system boundaries and depictions of energy flow.
 </Image>
-<p>Heat (Q) is energy that flows due to a difference in temperature. The direction of heat flow is always from a region of higher temperature to one of lower temperature. Heat, <InlineEquation equation="\\dot{Q}" />, is calculated based on the effective surface area over which the transfer occurs, A, and the temperature gradient: where h is the heat transfer coefficient (per unit area), <InlineEquation equation="T^{surr}" />, is the temperature of the surroundings, and <InlineEquation equation="T^{sys}" /> is the temperature of the system.</p>
+<p>Heat (Q) is energy that flows due to a difference in temperature. The direction of heat flow is always from a region of higher temperature to one of lower temperature. Heat spontaneously flows from a hot object to a colder object, but not the other way around. It is impossible for any system to operate in such a way that the sole result would be an energy transfer by heat from a cooler to a hotter body.</p>
+<Image src="/cons/heatflow.png">
+  <span class="fw-bold">Heat FLow</span>: Schematic illustration of the Clausius Statement of the Second Law.
+</Image>
+<p>Heat, <InlineEquation equation="\\dot{Q}" />, is calculated based on the effective surface area over which the transfer occurs, A, and the temperature gradient: where h is the heat transfer coefficient (per unit area), <InlineEquation equation="T^{surr}" />, is the temperature of the surroundings, and <InlineEquation equation="T^{sys}" /> is the temperature of the system.</p>
 
 <DisplayEquation title="Heat Transfer Across a Surface" background="True" equation="\\dot{Q}=hA(T^{surr}-T^{sys})" title="" />
 
