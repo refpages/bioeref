@@ -117,7 +117,7 @@ import Warning from "../../components/Warning.astro"
 		</p>
 	</DisplayEquationCustom>
 
-<p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. The coefficient is defined as the ratio of <InlineEquation equation="v_{separation}" />, the difference in velocities after collision, and <InlineEquation equation="v_{approach}" />, the difference in velocities before collision of two objects, A and B.</p>
+
 <DisplayTable id="rec-tc">
 		<thead>
 			<tr>
@@ -136,7 +136,10 @@ import Warning from "../../components/Warning.astro"
 			</tr>
 		</tbody>
 	</DisplayTable>
-<DisplayEquation equation="e = \\frac{v_{separation}}{v_{approach}}= \\frac{v_{B,f}-v_{A,f}}{v_{A,0}-v_{B,0}}" title="" />
+<p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. The coefficient is defined as the ratio of <InlineEquation equation="v_{separation}" />, the difference in velocities after collision, and <InlineEquation equation="v_{approach}" />, the difference in velocities before collision of two objects, A and B.</p>
+<DisplayEquationCustom id="rec-ecp" title="Coefficient of Restitution." background="True">
+<DisplayEquation equation="e = \\frac{v_{separation}}{v_{approach}}= \\frac{v_{B,f}-v_{A,f}}{v_{A,0}-v_{B,0}}" title="" >
+</DisplayEquationCustom>
 <DisplayTable id="rec-tc">
 		<thead>
 			<tr>
