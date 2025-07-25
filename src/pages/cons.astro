@@ -1,10 +1,32 @@
 ---
-//WHEN THE PAGE IS MOVED TO ITS PROPER PLACE, i.e. /SRC/PAGES, 
-//REMOVE THE TWO LINES ABOVE, AND UNCOMMENT THE LINES BELOW
-import Layout from "../layouts/Layout.astro"
+import Layout from "../layouts/CourseMenuLayout.astro"
+import Section from "../components/Section.astro"
+import SubSection from "../components/SubSection.astro"
+import Image from "../components/Image.astro"
+
 import "../../public/static/css/course_home_pages.css"
+
 ---
- 
+ <style>
+       h2 {
+              font-weight: 700;
+              letter-spacing: -0.7px;
+       }
+       .small-img {
+              width: 120px;
+              height: 120px;
+       }
+       .border-orange {
+              border: 6px solid #C84113;
+       }
+       .border-blue {
+
+               border: 6px solid #13294B;
+
+       }
+
+</style>
+
 <Layout title="Conservation Principles for Bioengineering">
    
   <h1>
