@@ -75,8 +75,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </Image>
 <DisplayEquation title="Energy Accounting Equation." background="True"  equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P, in}+\\hat{E}_{K, in}+\\hat{H}_{in}) - \\sum_{in} \\dot{m}_{out} (\\hat{E}_{P, out}+\\hat{E}_{K, out}+\\hat{H}_{out})+ \\dot{Q} + \\dot{W}_{shaft} = \\frac{dE^{sys}_T}{dt}" title="" />
 
-     <CalloutCard title="Extra!">
-        <u class="m-0">Callout Card</u>
+     <CalloutCard title="Attention!">
+        <u class="m-0"></u>
 <p>Note the hat on the energy terms. The hat means that they are intensive because they haven't been multiplied by mass yet. For example, <InlineEquation equation="\\hat{E}_{P, in}=gh_{in}" /> and <InlineEquation equation="\\hat{E}_{K, in} = \\frac{1}{2}v^2" />.</p>
     </CalloutCard>
 </SubSection>
@@ -89,11 +89,24 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <DisplayEquation title="Energy with Chemical Reactions" background="True" equation="\\Delta \\hat{H}_r = \\sum_{product} (n_{product}\\hat{H}_{product})-\\sum_{reactant} (n_{reactant}\\hat{H}_{reactant})" title="" />
 
-    <CalloutCard title="Extra!">
-        <u class="m-0">Callout Card</u>
+    <CalloutCard title="For Example">
+        <u class="m-0"></u>
 <p>For a reaction of the format, <InlineEquation equation="aA + bB \\rightarrow pP + qQ" />, the heat of reaction would be <InlineEquation equation="\\Delta \\hat{H}_r = (p\\hat{H}_P)+(q\\hat{H}_Q)-(a\\hat{H}_A)-(b\\hat{H}_B)" />.</p>
     </CalloutCard>
 </SubSection>
+
+<SubSection title="Systems with combustion reactions" id="Systems with combustion reactions">
+<p>Heat of Combustion refers to the enthalpy change required to combust 1 mol of an organic substance with oxygen. These are common in many biochemical reactions in the body.</p>
+<p>The heat of combustion, <InlineEquation equation="\\Delta \\hat{H}_c" />, is the enthalpy change for a combustion process. Similar to heat of reaction, the standard heat of combustion <InlineEquation equation="\\Delta \\hat{H}^{\\circ}_c" /> is designated with a degree symbol and is the heat of reaction when both the reactants and products are at a specified reference temperature and pressure, 25°C and 1 atm. The heat of combustion is always given on a per-mole basis.</p>
+
+<DisplayEquation title="Heat of Combustion" background="True" equation="\\Delta \\hat{H}_c = \\sum_{reactants} (\sigma_{reactants}\\hat{H}_{c,reactants})-\\sum_{products} (\sigma_{products}\\hat{H}_{c,products})" title="" />
+
+    <CalloutCard title="Careful!">
+        <u class="m-0"></u>
+<p>Note that combustion is reactants minus products! This is important because the heat of combustion values are based on the consumption of the organic compounds, not production</p>
+    </CalloutCard>
+</SubSection>
+
 <SubSection title="Dynamic systems" id="Dynamic systems">
 <p>In the case of dynamic systems, the right hand side of the equation will not be zero; instead, it will 'accumulate' internal energy. These cases occur when the system is experiencing energy changes due to mass or temperature changes of the system.</p>
 <p>In these cases, the right side of the equation will be converted from change in total energy to internal energy as follows</p>
