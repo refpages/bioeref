@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/CourseMenuLayout.astro"
+import Section from "../components/Section.astro"
+import SubSection from "../components/SubSection.astro"
+import Image from "../components/Image.astro"
+
+import "../../public/static/css/course_home_pages.css"
+
+---
+ <style>
+       h2 {
+              font-weight: 700;
+              letter-spacing: -0.7px;
+       }
+       .small-img {
+              width: 120px;
+              height: 120px;
+       }
+       .border-orange {
+              border: 6px solid #C84113;
+       }
+       .border-blue {
+
+               border: 6px solid #13294B;
+
+       }
+
+</style>
+
+<Layout title="Soft Robotics">
+   
+  <h1>
+    <strong>Soft Robotics</strong>
+  </h1>
+  <section class="mt-sm-4 mt-2">
+    <ol>
+    <li><a href="/cons/mechanical_properties?origin=coursemenu">Mechanical Properties</a></li>
+    <li><a href="/cons/mechanical_programming?origin=coursemenu">Mechanical Programming</a</li>
+    <li><a href="/cons/actuators?origin=coursemenu">Actuators</a</li>  
+    <li><a href="/cons/sensors?origin=coursemenu">Sensors</a</li>  
+    <li><a href="/cons/control_systems?origin=coursemenu">Control Systems</a</li> 
+    <li><a href="/cons/applications?origin=coursemenu">Applications</a</li> 
+    <li><a href="/cons/design_processes?origin=coursemenu">Design Processes</a</li> 
+    <li><a href="/cons/prototyping?origin=coursemenu">Prototyping</a</li> 
+    </ol>
+  </section>
+
+<div style="height:40px"></div>
+
+  <h2 class="site-title">Faculty Authors:</h2>
+  <div style="height:10px"></div>
+
+  <div>
+      <ul class="list-unstyled d-flex flex-wrap text-center mb-1 ml-4">
+              <li class="me-5 text-center">
+                    <a href="https://bioengineering.illinois.edu/people/golecki">
+                    <img class="border-orange small-img rounded-circle" src="/design/Holly_Golecki.jpg" />
+                    </a>
+                    <h2 style="font-size:20px" class="site-title mt-2">Holly Golecki</h2>
+              </li>
+      </ul>
+  </div> 
+<section class="mt-sm-4 mt-2">
+  <h3 class="fw-bold w-100">Helpful links:</h3>
+  <p>Check out Professor Golecki's research website, e.g:</p>
+  <ul>
+    <li><a href="https://golecki.bioengineering.illinois.edu">Golecki Research Group</a></li>
+  </ul>
+</section>
+</div>
+</Layout>
