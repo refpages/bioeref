@@ -1,6 +1,31 @@
-//import Layout from "../layouts/Layout.astro"
-//import "../../public/static/css/course_home_pages.css"
+gn---
+import Layout from "../layouts/CourseMenuLayout.astro"
+import Section from "../components/Section.astro"
+import SubSection from "../components/SubSection.astro"
+import Image from "../components/Image.astro"
+
+import "../../public/static/css/course_home_pages.css"
+
 ---
+ <style>
+       h2 {
+              font-weight: 700;
+              letter-spacing: -0.7px;
+       }
+       .small-img {
+              width: 120px;
+              height: 120px;
+       }
+       .border-orange {
+              border: 6px solid #C84113;
+       }
+       .border-blue {
+
+               border: 6px solid #13294B;
+
+       }
+
+</style>
 
 <Layout title="Signals and Systems">
     <!-- Change the above and below to your couse name-->
@@ -9,19 +34,34 @@
   </h1>
   <section class="mt-sm-4 mt-2">
     <ol>
-      <li><a href="/<course_abbreviation>/<code_for_page_1>?origin=coursemenu">Page 1</a></li>
-      <li><a href="/<course_abbreviation>/<code_for_page_2>?origin=coursemenu">Page 2</a></li>
-      <li><a href="/<course_abbreviation>/<code_for_page_3>?origin=coursemenu">Page 3</a></li>
+    <li><a href="/signals/underconstruction_page?origin=coursemenu">Topic 1</a></li>
+    <li><a href="/signals/underconstruction_page?origin=coursemenu">Topic 2</a</li>
+    <li><a href="/signals/underconstruction_page?origin=coursemenu">Topic 3</a</li> 
     </ol>
   </section>
-  <section class="mt-sm-4 mt-2">
-    
-    <h3 class="fw-bold w-100">Helpful links:</h3>
-    <p>Add any useful links to your course, can remove this section if there are none, e.g:</p>
-    <ul>
-      <li><a href="/sta/pltips">PrairieLearn tips</a></li>
-      <li><a href="/sta/pltips">Other cool thing</a></li>
-    </ul>
-  </section>
+
+
+<div style="height:40px"></div>
+
+  <h2 class="site-title">Faculty Authors:</h2>
+  <div style="height:10px"></div>
+
+  <div>
+      <ul class="list-unstyled d-flex flex-wrap text-center mb-1 ml-4">
+              <li class="me-5 text-center">
+                    <a href="https://bioengineering.illinois.edu/people/aansari2">
+                    <img class="border-orange small-img rounded-circle" src="/signals/Ali Ansari.jpg" />
+                    </a>
+                    <h2 style="font-size:20px" class="site-title mt-2">Ali Ansari</h2>
+              </li>
+      </ul>
+  </div> 
+<section class="mt-sm-4 mt-2">
+  <h3 class="fw-bold w-100">Helpful links:</h3>
+  <p>Coming soon!</p>
+  <ul>
+    <li><a href="https://bioengineering.illinois.edu"></a></li>
+  </ul>
+</section>
 </div>
 </Layout>
