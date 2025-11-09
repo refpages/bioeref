@@ -51,6 +51,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p> In Progress </p>
 </SubSection>
 
+<h4><strong>Table Example</strong></h4>
  <p class="text-center"><em>Table Example</em></p>
   
   <DisplayTable id="dim-table">
@@ -71,5 +72,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
       </tr>
     </tbody>
   </DisplayTable>
+
+<h4><strong>Formula Box</strong></h4>
+
+<DisplayEquation equation='\\begin{aligned}\\textrm{Fahrenheit to Celcius:}&~ ^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)X (9/5) \\\\    \\textrm{Celsius to Kelvin:}&~ ^{\\circ}\\textrm{K} = ^{\\circ}\\textrm{C} + 273.15\\end{aligned}' title="Temperature unit conversions" background="True"/>
 
 </Layout>
