@@ -122,7 +122,28 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <h4><strong>Image</strong></h4>
 
 <Image src="/transfer/testing.png">
-  <span class="fw-bold">System Diagram</span>: A schematic representation of a system illustrating its key features, including system boundaries and depictions of energy and mass flows.
+  <span class="fw-bold">Test Image</span>: Lecture Notes
 </Image>
+
+<h4><strong>Example Problem</strong></h4>
+<Example title="Example" solution="True">
+<div class="d-flex flex-row">
+<Row>
+<Col values="12 md-4">
+<p>
+Example
+</p>
+</Col>
+<Col values="12 md-8">
+<DisplayEquation equation="2" title="" />
+</Col>
+</Row>
+</div>
+<div slot="solution">
+<p>
+solution explanation
+</p>
+</div>
+</Example>
 
 </Layout>
