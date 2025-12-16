@@ -46,12 +46,14 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p>6. Sign off the email in a professional manner. Note who wrote the email (For example: "drafted by [NAME] on behalf of Team [Project name or number]"). </p>
 
 <h4><strong>Example email</strong></h4>
- 
-    <CalloutCard title="Example email!">
-        <u class="m-0">Callout Card</u>
-    <p>Dear Dr. Smith, We are Team [Team name] from the {University Course]. We are excited to work with you this semester. We would appreciate your time for an initial meeting to understand your needs and introduce ourselves. Team X</p>    
-    </CalloutCard>
-</SubSection>
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Example Client Email">
+<p>
+Dear Dr. Smith, We are Team [Team name] from the {University Course]. We are excited to work with you this semester. We would appreciate your time for an initial meeting to understand your needs and introduce ourselves. Team X
+</p>
+</CalloutCard>
+</CalloutContainer>
 
 <SubSection title="Regular Client Updates" id="Regular Client Updates">
 <p>Instructions for Future Communication with Clients: In odd numbered weeks, starting in Week 3, your team should send one email to your client, copying all teaching staff and team members. 
