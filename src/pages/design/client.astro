@@ -15,13 +15,10 @@ import InlineEquation from "../../components/InlineEquation.astro"
 import DisplayEquation from "../../components/DisplayEquation.astro"
 import PrairieDrawCanvas from "../../components/PrairieDrawCanvas.astro"
 import Center from "../../components/Center.astro"
-import CalloutContainer from "../../components/CalloutContainer.astro"
 import CalloutCard from "../../components/CalloutCard.astro"
 import Warning from "../../components/Warning.astro"
 import Example from "../../components/Example.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
-
-
 ---
 <Layout title="Interacting with your client">
 <div slot="navtree">
@@ -32,7 +29,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </ul>
 </div>
 <SubSection title="Working with your client" id="Working with your client">
-<p>Introduction to working with client. Congratulations! If you are visiting this page you are probably now paired with a design team and an client, stakeholder, or community partner for your project! The first thing you want to do is establish a mode of communication with your client for the duration of the project.</p>
+<p>Introduction to working with client. Congratulations! If you are visiting this page you are probably now paired with a design team and an client, stakeholder, or community partner for your project![...]
 <p>Description of what will be in this section.</p>
 </SubSection>
 <SubSection title="Initial client email" id="Initial client email">
@@ -42,23 +39,23 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p>2. Decide on an email subject. Choose something short, but easy to recognize, so your emails stand out to your client. Use the same subject in each email so they are easy to recognize and find.</p>
 <p>3. Address your client in a professional manner. "Dear Dr. [Name]," "Greetings Professor [Name]", "Hello Ms./Mr. [Name]"</p>
 <p>4. Introduce yourselves, its a good idea to include professional photos/ Linkedin link for your team members, so your sponsor (who may be remote) can get to know your team.</p> 
-<p>5. Request a meeting scheduled with your design team and clients as soon as possible. This first meeting is important for setting expectations and gathering as much information about the project as possible. Remember to bring a list of questions and take notes in the meeting.</p> 
+<p>5. Request a meeting scheduled with your design team and clients as soon as possible. This first meeting is important for setting expectations and gathering as much information about the project as[...]
 <p>6. Sign off the email in a professional manner. Note who wrote the email (For example: "drafted by [NAME] on behalf of Team [Project name or number]"). </p>
 
 <h4><strong>Example email</strong></h4>
     
 <Example id="ID" title="TITLE" solution="True">
 <div class="d-flex flex-row">
-<Row>
-<Col values="12 md-4">
-<p>
-Dear Dr. Smith, We are Team [Team name] from the [University Course]. We are excited to work with you this semester. We would appreciate your time for an initial meeting to understand your needs and introduce ourselves. Team X
-</p>
-</Col>
-<Col values="12 md-8">
-<Image src="IMAGE " width="7"></Image>
-</Col>
-</Row>
+<div class="row">
+  <div class="col-12 col-md-4">
+    <p>
+    Dear Dr. Smith, We are Team [Team name] from the [University Course]. We are excited to work with you this semester. We would appreciate your time for an initial meeting to understand your needs and i[...]
+    </p>
+  </div>
+  <div class="col-12 col-md-8">
+    <Image src="IMAGE " width="7"></Image>
+  </div>
+</div>
 </div>
 </Example>
 
@@ -66,13 +63,15 @@ Dear Dr. Smith, We are Team [Team name] from the [University Course]. We are exc
 <CalloutContainer slot="cards">
 <CalloutCard title="Example Client Email">
 <p>
-Dear Dr. Smith, We are Team [Team name] from the [University Course]. We are excited to work with you this semester. We would appreciate your time for an initial meeting to understand your needs and introduce ourselves. Team X
+Dear Dr. Smith, We are Team [Team name] from the [University Course]. We are excited to work with you this semester. We would appreciate your time for an initial meeting to understand your needs and i[...]
 </p>
 </CalloutCard>
 </CalloutContainer>
 
 <SubSection title="Regular Client Updates" id="Regular Client Updates">
 <p>Instructions for Future Communication with Clients: In odd numbered weeks, starting in Week 3, your team should send one email to your client, copying all teaching staff and team members. 
-Undergraduates should write the email, send to your MEng project managers, and then MEng students edit and send along to client. This email should detail: #1 Work completed in the previous weeks, #2 Questions you have for the client or questions you will seek advice on that week, #3 Plans for the next two weeks.
-Be sure to note who wrote the email. Be proactive about communicating with your client. You may not always hear back, but your group should be emailing your client every other week with an update email and copying the teaching staff.</p>
+Undergraduates should write the email, send to your MEng project managers, and then MEng students edit and send along to client. This email should detail: #1 Work completed in the previous weeks, #2 Q[...]
+Be sure to note who wrote the email. Be proactive about communicating with your client. You may not always hear back, but your group should be emailing your client every other week with an update emai[...]
 </SubSection>
+
+</Layout>
