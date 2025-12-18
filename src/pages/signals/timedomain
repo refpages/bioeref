@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro" 
+---
+<Layout title="Time Domain">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Introduction'>Introduction</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Signal Characteristics'>Signal Characteristics</a></li>
+</ul>
+</div>
+
+<Section title="Time Domain" id="Time Domain"></Section>
+<SubSubSection title="Introduction" id="Introduction">
+<p>The most intuitive way for signals to be represented is in the time domain. Any particular signal is made up of a measured value on the y axis, and the time at which that measurement was obtained on the x axis. These signals are directly related to physical signals, for example, the electrical impulses that control heart rate in an EKG is measured in the time domain and provides useful physiological information about the patient it is sourced from.</p>
+    <img id="ekg" src="/signals/EKGPlaceholder.jpg"/>
+    <style type="text/css">
+        #ekg {
+            display: block;
+            margin-left: auto;
+            margin-right: auto }
+    </style>
+</SubSubSection>
+
+<SubSubSection title="Signal Characteristics" id="Signal Characteristics">
+<p>Signals within the time domain have a set of characteristics that can categorize the type of signal it is, what information it holds or lacks, and what can be done with it mathematically for analysis.</p>
+<img id="shape" src="/signals/SignalShape.png"/>
+    <style type="text/css">
+        #shape {
+            display: block;
+            margin-left: auto;
+            margin-right: auto }
+    </style>
+<p>These definitions describe the shape of various signals. Step and Impulse signals are especially useful as inputs in system design. Since these signals are expected to produce a specific, known response, the response that they produce can be used to characterize the system they were passed through.</p>
+<p>Likewise, sinusoids are incredibly common outputs from systems. They are present anytime oscillations occur in a signal from noise, or repeated signals such as the EKG above. In addition, they are used in Fourier analysis by approximating a complicated waveform with stacked sine waves.</p>
+<img id="char" src="/signals/SignalChar.png"/>
+    <style type="text/css">
+        #char {
+            display: block;
+            margin-left: auto;
+            margin-right: auto }
+    </style>
+<p>Once we know the waveform and characteristics of a particular signal, we can start to predict its behaviour and apply transformations to better understand the signal and its components.</p>
+</SubSubSection>
+</Layout>
