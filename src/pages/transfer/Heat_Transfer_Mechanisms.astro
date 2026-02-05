@@ -191,7 +191,18 @@ This type of transfer increases the total entropy of the system in alignment wit
 -->
 
 <SubSection title="Governing Equations & Boundary Conditions of Heat Transfer" id="Governing Equations & Boundary Conditions of Heat Transfer">
- <p> Insert here </p> 
+ <p> In order to predict the temperature distributions in a system, we need two things: a governing equation and a set of boundary and initial conditions.  
+</p> 
+
+<p> The governing heat equation is derived from an energy balance applied to a differential control volume and encapsulates the combined effects of energy storage,
+conduction, convection, and internal heat generation. However, to obtain a solution, we must utilize known quantities called boundary conditions that describe heat 
+transfer at particular surfaces and interfaces, as well as initial conditions for time-dependent problems.
+</p> 
+
+<p>
+In the following sections, we introduce the general heat transfer equation and the most common types of boundary conditions in heat transfer problems. 
+</p> 
+
 </SubSection>
 
 <SubSection title="General Heat Transfer Equation" id="General Heat Transfer Equation">
@@ -199,12 +210,25 @@ This type of transfer increases the total entropy of the system in alignment wit
 <h4><strong>Governing Equation of Heat Transfer (Cartersian Coordinates)</strong></h4>
 <DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" title="Governing heat equation (1D Cartesian)" background="True"/>
 
-<h4><strong>What does each term mean?</strong></h4>
+<p>
+The governing heat equation shown above is the general one-dimensional form used in this course.
+It is written in Cartesian coordinates and includes all possible mechanisms that can contribute to heat
+transfer in a system.
+</p>
+
+<p>
+In practice, many problems involve simplifying assumptions (e.g., steady state, no fluid flow, or no internal
+heat generation), which allow certain terms to be removed. 
+</p>
+
+<p>
+The meaning of each term and the conditions under which it should be retained or dropped are summarized below.
+</p>
+
 <Image src="/transfer/Governing_Equation_Table.png">
-  <span class="fw-bold">Test Image</span>: Lecture Notes
+  <span class="fw-bold">Figure 1</span>: Table summarizes the physical meaning of each term and 
+when it should be retained or removed based on problem conditions.
 </Image>
-
-
 
 </SubSection>
 
