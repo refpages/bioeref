@@ -196,9 +196,47 @@ This type of transfer increases the total entropy of the system in alignment wit
 
 <SubSection title="General Heat Transfer Equation" id="General Heat Transfer Equation">
 
-<h4><strong>Formula Box</strong></h4>
-
+<h4><strong>Governing Equation of Heat Transfer (Cartersian Coordinates)</strong></h4>
 <DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" title="Governing heat equation (1D Cartesian)" background="True"/>
+
+<h4><strong>What does each term mean?</strong></h4>
+<DisplayTable id="heat-eq-terms">
+  <thead>
+    <tr>
+      <th>Term</th>
+      <th>What is it?<br><em>(rates of…)</em></th>
+      <th>When do I keep it?</th>
+      <th>When can I drop it?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>\(\dfrac{\partial T}{\partial t}\)</th>
+      <td>Stored energy</td>
+      <td>Unsteady state, \(T\) changing with time (transient)</td>
+      <td>Steady state (constant \(T\))</td>
+    </tr>
+    <tr>
+      <th>\(u\dfrac{\partial T}{\partial x}\)</th>
+      <td>Bulk flow (convection)</td>
+      <td>Fluid flow</td>
+      <td>No flow (solid)</td>
+    </tr>
+    <tr>
+      <th>\(\dfrac{k}{\rho c_p}\dfrac{\partial^2 T}{\partial x^2}\)</th>
+      <td>Conduction</td>
+      <td>Almost always</td>
+      <td>No conduction (no temperature gradient)</td>
+    </tr>
+    <tr>
+      <th>\(\dfrac{Q}{\rho c_p}\)</th>
+      <td>Generation</td>
+      <td>Conversion of energy in system</td>
+      <td>No generation / source</td>
+    </tr>
+  </tbody>
+</DisplayTable>
+
 
 </SubSection>
 
