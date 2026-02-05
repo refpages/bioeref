@@ -194,64 +194,31 @@ This type of transfer increases the total entropy of the system in alignment wit
 </SubSection>
 
 <SubSection title="General Heat Transfer Equation" id="General Heat Transfer Equation">
- <p> <h4><strong>Governing Heat Equation in Cartesian Coordinates</strong></h4>
+ <h4><strong>Governing Heat Equation in Cartesian Coordinates</strong></h4>
 <DisplayEquation 
-  id="heat-equation-cartesian"
+  id="heat-eq-cart" 
   title="General heat equation (Cartesian coordinates)" 
-  background={true} 
-  derivation={true}
-  equation="\\rho c\\,\\frac{\\partial T}{\\partial t} + \\rho c\\left(u_x\\frac{\\partial T}{\\partial x} + u_y\\frac{\partial T}{\partial y} + u_z\\frac{\\partial T}{\partial z}\\right) = k\\left(\\frac{\\partial^2 T}{\\partial x^2} + \\frac{\\partial^2 T}{\\partial y^2} + \\frac{\\partial^2 T}{\\partial z^2}\\right) + \\dot{q}"
+  background=True 
+  derivation=True
+  equation="\\rho c\\frac{\\partial T}{\\partial t} + \\rho c\\left(u_x\\frac{\\partial T}{\\partial x} + u_y\\frac{\\partial T}{\\partial y} + u_z\\frac{\\partial T}{\\partial z}\\right) = k\\left(\\frac{\\partial^2 T}{\\partial x^2} + \\frac{\\partial^2 T}{\\partial y^2} + \\frac{\\partial^2 T}{\\partial z^2}\\right) + \\dot{q}"
 >
-  <!-- 1. Define a differential control volume and write the energy balance -->
   <p>
-    Consider a small box‑shaped control volume of dimensions 
-    <em>Δx</em>, <em>Δy</em> and <em>Δz</em>; its volume is 
-    <em>Δx&nbsp;Δy&nbsp;Δz</em>.  
-    The total heat flux at each face consists of conduction and convection, and 
-    internal heat generation occurs at a rate <em>q̇</em> per unit volume.  
-    Applying the first law of thermodynamics to this control volume gives the energy 
-    balance “in – out + generation = storage”.
+    Consider a small control volume of size Δx·Δy·Δz.  A conservation of
+    energy statement says <em>in – out + generation = storage</em>.
+    Heat enters and leaves each face by conduction and convection, and
+    generation occurs at rate \(\dot{q}\).
   </p>
 
-  <!-- 2. Conduction and convection terms -->
   <p>
-    Heat enters and leaves by conduction and by bulk flow.  
-    For conduction, Fourier’s law gives the heat flux components 
-    \(q_x = -k\\,\\partial T/\\partial x\), \(q_y = -k\\,\\partial T/\\partial y\) and 
-    \(q_z = -k\\,\\partial T/\\partial z\).  
-    The net conductive heat into the control volume in the <em>x</em>‑direction is 
-    \(q_x|_x\,Δy\,Δz - q_x|_{x+Δx}\,Δy\,Δz\); similar expressions hold for <em>y</em> and <em>z</em>.  
-    For convection, the heat carried by fluid is ρ c T per unit mass; 
-    the net convective energy is 
-    \((ρc\,u_x T)|_x\,Δy\,Δz - (ρc\,u_x T)|_{x+Δx}\,Δy\,Δz\) etc..  
-    Heat generation contributes \(q̇\,Δx\,Δy\,Δz\), and 
-    the stored (accumulated) energy is 
-    \(ρc\,∂T/∂t\,Δx\,Δy\,Δz\).
+    Using Fourier’s law for conduction in x, y, z and conservation of mass
+    to handle bulk flow, dividing by the volume and taking the limit as 
+    Δx → 0, etc., leads to the general heat equation.
+    Dividing through by ρ c introduces the thermal diffusivity \(\alpha\) and gives:
   </p>
 
-  <!-- 3. Form the PDE -->
-  <p>
-    Dividing the energy‑balance equation by the control‑volume volume and 
-    letting <em>Δx, Δy, Δz → 0</em> converts the finite differences to derivatives.  
-    Collecting like terms yields the general heat equation:
-  </p>
-  <DisplayEquation equation="\\rho c\\,\\frac{\\partial T}{\\partial t} + \\rho c\\left(u_x\\frac{\\partial T}{\\partial x} + u_y\\frac{\\partial T}{\\partial y} + u_z\\frac{\\partial T}{\\partial z}\\right) = k\\left(\\frac{\\partial^2 T}{\\partial x^2} + \\frac{\\partial^2 T}{\\partial y^2} + \\frac{\\partial^2 T}{\\partial z^2}\\right) + \\dot{q}" />
-  <p>
-    Here ρ is density, <em>c</em> is specific heat, <em>k</em> is thermal conductivity, 
-    \(\mathbf{u}=(u_x,u_y,u_z)\) is the velocity field, 
-    and \(q̇\) is volumetric heat generation.  
-    Dividing through by ρ c and using the thermal diffusivity 
-    \(\\alpha = k/(ρc)\) gives a convenient form:
-  </p>
-  <DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u_x\\frac{\\partial T}{\\partial x} + u_y\\frac{\\partial T}{\\partial y} + u_z\\frac{\\partial T}{\\partial z} = \\alpha \\left(\\frac{\\partial^2 T}{\\partial x^2} + \\frac{\\partial^2 T}{\\partial y^2} + \\frac{\\partial^2 T}{\\partial z^2}\\right) + \\frac{\\dot{q}}{\\rho c}" />
-  <p>
-    The four terms on the right side represent, respectively, conduction, 
-    generation, storage and convective flow.  
-    In special cases (steady‑state, no flow, no generation) some terms drop out, 
-    reducing the equation to the familiar diffusion equation.
-  </p>
+  <DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u_x\\frac{\\partial T}{\\partial x} + u_y\\frac{\\partial T}{\\partial y} + u_z\\frac{\\partial T}{\\partial z} = \\alpha\\left(\\frac{\\partial^2 T}{\\partial x^2} + \\frac{\\partial^2 T}{\\partial y^2} + \\frac{\\partial^2 T}{\\partial z^2}\\right) + \\frac{\\dot{q}}{\\rho c}" />
 </DisplayEquation>
- </p>
+
 </SubSection>
 
 <SubSection title="Boundary Conditions" id="Boundary Conditions">
