@@ -69,7 +69,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </SubSection>
 
 <SubSubSection title="Steady State" id="Steady State">
-<p> In steady-state heat conduction, temperature does not change with time. However, temperature can change with positon and this is what drives the transfer of heat. There are three main examples of steady-state heat conduction: </p>
+<p> In steady state heat conduction, temperature does not change with time. However, temperature can change with positon and this is what drives the transfer of heat. There are three main examples of steady state heat conduction: </p>
 <Itemize>
 
 <Item>In a slab</Item>
@@ -80,15 +80,33 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 </SubSubSection>
 
-<!--
 <SubSubSection title="Unsteady State" id="Unsteady State">
-<!-- <p> Insert here </p> -->
+<p> In unsteady state heat conduction, temperature changes over time. There are three main examples of unsteady state heat conduction: </p>
+<Itemize>
+
+<Item>With no spatial variation</Item>
+<Item>With semi-infinite geometry</Item>
+<Item>With finite geometry</Item>
+
+</Itemize>
 </SubSubSection>
 
 <SubSection title="Convection" id="Convection">
-<!-- <p> Insert here </p> -->
+<p> Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid over a surface. </p>
+<p> The equation that describes convection is </p>
+<DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="" />
+<p> Lets go over the variables present in this equation: </p>
+<Itemize>
+
+<Item><InlineEquation equation="q_{1-2} (W)" /> = rate of heat flow from 1 to 2 </Item>
+<Item><InlineEquation equation="A (m^2)" /> = area normal to the direction of heat flow</Item>
+<Item><InlineEquation equation="T_1 - T_2 (C)" /> = temperature difference between the surface and fluid</Item>
+<Item><InlineEquation equation="h (\\frac{W}{m^2C})" /> = convective heat transfer coefficient (this coefficient always includes the effect of conduction in the fluid)</Item>
+
+</Itemize>
 </SubSection>
 
+<!--
 <SubSection title="Heat Transfer with Phase Change" id="Conduction">
 <!-- <p> Insert here </p> -->
 </SubSection>
