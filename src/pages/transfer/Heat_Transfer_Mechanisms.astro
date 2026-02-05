@@ -50,9 +50,12 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <SubSection title="Conduction" id="Conduction">
 <p> Conductive heat transfer is the transport of thermal energy through a medium due to temperature gradients within the material. Energy is transferred down the temperature gradient. The method of heat transfer is called diffusion. Diffusion is the net transfer of energy due to random molecular motion. 
 </p>
-<p> Fourier’s equation is used to describe conductive heat transfer: 
+<p> Fourier’s equation is used to describe conductive heat transfer. You can calculate heat flow and heat flux using Fourier's equation. 
 </p>
+<p> Heat Flow: </p>
 <DisplayEquation equation="\\frac{q_x}{A} = -k \\frac{dT}{dx}" title="" />
+<p> Heat Flux: </p>
+<DisplayEquation equation="q^{''}_x = -k \\frac{dT}{dx}" title="" />
 </SubSection>
 
 <!--
