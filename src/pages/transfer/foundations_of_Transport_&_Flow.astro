@@ -72,9 +72,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 These transport processes reduce gradients over time, moving the system toward equilibrium. 
 An important principle to understand is that transport occurs when a driving force exists, which is proportional to flow. At the same time, a resistance to flow will impede its motion. 
 The flow relationship is described in an Ohm's Law type of formulation. 
-For example, the fluid flow through a blood vessel, <DisplayEquation equation="q = \frac{deltaP}{R}" title="" />, is proportional to the pressure difference across the vessel divided by the resistance throughout the vessel.
+For example, the fluid flow through a blood vessel, <InlineEquation equation="q = \\frac{deltaP}{R}" />, is proportional to the pressure difference across the vessel divided by the resistance throughout the vessel.
  </p>
-<p> These Reference Pages will focus primarily on heat transport (the transfer of thermal energy) and mass transfer (the movement of chemical species). In the next few sections, primary mechanisms of their transport will be introduced before more detailed explorations later. 
+<p> These Reference Pages will focus primarily on heat transport (the transfer of thermal energy) and mass transfer (the movement of chemical species). 
+In the next few sections, primary mechanisms of their transport will be introduced before more detailed explorations later. 
  </p>
 </SubSection> 
 
@@ -142,7 +143,10 @@ When a concentration gradient exists, molecules move randomly, but on average, t
         <th>Driving Force</th><td>Temperature gradient</td><td>Concentration gradient</td><td>Electrical potential</td>
       </tr>
       <tr>
-        <th>Resistive Element</th><td>Thermal conductivity (k)</td><td>Molecular diffusivity (D)</td><td>Electrical resistance(D)</td>
+        <th>Resistive Element</th><td>Thermal conductivity (k)</td><td>Molecular diffusivity (D)</td><td>Electrical resistance (R)</td>
+      </tr>
+     <tr>
+        <th>Governed By</th><td>Fourier's Law</td><td>Fick's Law</td><td>Ohm's Law</td>
       </tr>
     </tbody>
   </DisplayTable>
