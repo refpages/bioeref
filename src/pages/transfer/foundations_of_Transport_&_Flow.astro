@@ -41,10 +41,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <SubSection title="What is Transport?" id="What is Transport?">
  <p>
- <p> Transport refers to how energy, mass, and momentum move through systems, and it is a core idea in biology, the environment, and engineering. These processes are essential for the function of living systems, operate across many scales, and are critical to the design and function of bioengineered technologies.  
+ <p> Transport refers to how energy, mass, charge, and momentum move through systems, and it is a core concept in biology, the environment, and engineering. These processes are essential for the function of living systems, operate across wide scales, and are critical to the design and function of bioengineered technologies.  
 </p>
- <p>
- <p> To fully understand transport, it is important to combine biological context and mathematical tools to analyze living systems such as plants, animals, and the human body, as well as natural systems like air, water, and soil. Unlike purely mechanical or chemical systems, biological systems involve additional complexities, including metabolism, heat production, and oxygen use, which affect how transport occurs. Transport can be split into biomedical, plant, bioprocessing, and bioenvironmental contexts.   
+ <p> To fully understand transport within the scope of bioengineering, biological context and mathematical tools are combined to analyze living systems such as plants, animals, and the human body, as well as natural systems like air, water, and soil. Unlike purely mechanical or chemical systems, biological systems involve additional complexities that affect transport, including metabolism, heat production, and oxygen consumption.   
 </p>
 </SubSection> 
 
@@ -53,57 +52,62 @@ import DisplayTable from "../../components/DisplayTable.astro"
  <p> Transport in biomedical context occurs at the sub-cellular, cellular, transcellular, tissue/organ, whole body, populations levels. Some examples include thermoregulation, metabolism, bioheat transfer, blood as oxygen carrier, membrane transport, and liquid diffusion in tissue.    
 </p>
  <p>
- <p> Understanding transport at these levels can help with clinical and bioengineering applications such as cryosurgery, laser ablation of tumors, drug dosing, dialysis machines, artificial organs, gene delivery, and cryopreservation.
+ <p> Understanding transport at these levels can help with the design and analysis of a wide range of clinical and bioengineering applications, such as:
+<Itemize>
+<Item> cryopreservation </Item>
+<Item> laser ablation of tumors </Item>
+<Item> drug dosing and delivery </Item>
+<Item> dialysis machines </Item>
+<Item> artificial organs </Item>
+<Item> gene delivery </Item>
+<Item> cryosurgery </Item>
+</Itemize>
 </p>
 
 </SubSubSection>
 
-<SubSection title="Modes of Heat & Mass Transfer Overview" id="Modes of Heat & Mass Transfer Overview">
+<SubSection title="Modes of Heat & Mass Transfer" id="Modes of Heat & Mass Transfer">
  <p>
- <p> Transport phenomena describe how energy, mass, and momentum move through systems, generally biological and engineered systems. For our purposes, we will be focusing primarily on heat transport (the transfer of thermal energy) and mass transfer (the movement of chemical species). 
-</p>
- <p>
-An important principle to understand is that transport occurs when a driving force exists. For heat transfer, the driving force is a temperature gradient. For mass transfer, the driving force is a concentration gradient. These transport processes reduce gradients over time, moving the system toward equilibrium.
+ <p> Transport phenomena describe how energy, mass, charge, and momentum move through systems, whether biological or engineered systems. 
+These transport processes reduce gradients over time, moving the system toward equilibrium. 
+An important principle to understand is that transport occurs when a driving force exists, which is proportional to flow. At the same time, a resistance to flow will impede its motion. 
+The flow relationship is described in an Ohm's Law type of formulation. 
+For example, the fluid flow through a blood vessel, <DisplayEquation equation="q = \frac{deltaP}{R}" title="" />, is proportional to the pressure difference across the vessel divided by the resistance throughout the vessel.
  </p>
-In the next few sections, these primary mechanisms of heat and mass transport will be introduced before a more detailed exploration later. 
+<p> These Reference Pages will focus primarily on heat transport (the transfer of thermal energy) and mass transfer (the movement of chemical species). In the next few sections, primary mechanisms of their transport will be introduced before more detailed explorations later. 
  </p>
 </SubSection> 
 
 
 <SubSubSection title="Conduction" id="Conduction">
-<p> Conduction is a mode of heat transfer that occurs through direct molecular motion within a material, without any bulk motion of the material itself. 
-When a temperature gradient exists within a solid, thermal energy is transferred from regions of high temperature to regions of lower temperature as molecules randomly interact.
+<p> Conduction occurs through direct molecular motion within a material, without any bulk motion of the material itself. 
+When a temperature gradient exists within a solid, thermal energy is transferred from regions of high temperature to regions of lower temperature as molecules randomly collide. 
+When two solids at different temperatures are placed in contact, thermal energy is transferred from the hotter material to the cooler object until thermal equilibrium is reached (i.e., the objects are at the same temperature).
  </p> 
 
 <Image src="/transfer/Conductive_Heat_Example.png">
   <span class="fw-bold">Figure 1</span>: Microscopic view of conduction between two solids.
 </Image>
-<p>
-At the molecular level, conduction functions by random molecular motion and collisions.
-As you can see in Figure 1, when two solids at different temperatures are placed in contact, thermal energy is transferred
-from the hotter material to the cooler object until thermal equilibrium is reached.
- </p> 
 
 </SubSubSection>
 
 <SubSubSection title="Convection" id="Convection">
- <p> Convection is a mode of heat transfer that occurs due to the bulk motion of a fluid, such as air, water, or blood. 
-A fluid is any substance that can flow, including both liquids and gases. In Figure 2, a solid 
-surface is hotter than the fluid flowing past it, so heat moves from the surface into the fluid.
-As the fluid flows, it carries heat away from the surface. </p>
+ <p> Convection occurs due to the bulk motion of a fluid. 
+A fluid is any substance that can flow, including both liquids and gases such as air, water, or blood. As the fluid flows, it carries heat away from the surface. </p>
 
 <div style={{ maxWidth: "500px", margin: "1rem auto" }}>
 <Image src="/transfer/Convective_Heat_Example.png">
-  <span class="fw-bold">Figure 2</span>: Convection from a surface to a moving fluid. Image adapted from Colorado State University, Department of Chemical and Bioengineering.
+  <span class="fw-bold">Figure 2</span>: Convection from a surface to a moving fluid. The solid surface is hotter, so heat moves from the surface into the fluid. 
+(Image adapted from Colorado State University, Department of Chemical and Bioengineering.)
 </Image>
 </div>
 
 </SubSubSection>
 
 <SubSubSection title="Radiation" id="Radiation">
- <p> Radiation is a mode of heat transfer that occurs due to the emission and absorption of electromagnetic waves and does not require direct contact or fluid motion.
-
-A familiar example of radiative heat transfer might be feeling warmth from the sun. In biological systems, radiation contributes to heat exchange between the body and the environment, as the body continuously emits infrared radiation into its surroundings. 
+ <p> Radiation occurs due to the emission and absorption of electromagnetic waves. It does not require direct contact or fluid motion.
+A familiar example of radiative heat transfer is feeling warmth from the sun. 
+In biological systems, radiation contributes to bidirectional heat exchange between the system and its surroundings, as the body can continuously emit and absorb infrared radiation. 
  </p> 
 </SubSubSection>
 
@@ -121,41 +125,34 @@ When a concentration gradient exists, molecules move randomly, but on average, t
 <SubSection title="Similarities between Heat & Mass Transfer" id="Similarities between Heat & Mass Transfer">
 <p> Heat and mass transfer are mathematically and conceptually analogous transport processes governed by gradients, material properties, conservation laws, and shared modes of diffusion and convection. 
 </p>
-<p> Both transport processes describe the movement of an extensive quantity driven by gradients and are governed by conservation laws. Gradients drive transport of heat and mass, generating flux. This flux is resisted by the heat conductance of the medium, or by the molecular diffusivity of the chemical species. For example, Ohm's Law governs the flow of electrons (ie. current), driven by voltage and hindered by resistance. 
+<p> Both transport processes describe the movement of an extensive quantity driven by gradients and are governed by conservation laws (e.g., conservation of energy and conservation of mass). Gradients drive transport of heat and mass, generating flux. This flux is resisted by the heat conductance of the medium, or by the molecular diffusivity of the chemical species. For example, Ohm's Law governs the flow of electrons (ie. current), driven by voltage and hindered by resistance. 
 </p>
 
   <DisplayTable id="dim-table">
     <thead>
       <tr>
-        <th> </th><th>Heat Transfer</th><th>Mass Transfer</th>
+        <th>Type of Flow</th><th>Heat</th><th>Mass</th><th>Electrical</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>What is Moving</th><td>Thermal energy</td><td>Chemical species</td>
+        <th>What is Moving</th><td>Thermal energy (heat)</td><td>Chemical species</td><td>Charge (ions)</td>
       </tr>
       <tr>
-        <th>Conserved Quantity</th><td>Energy</td><td>Mass</td>
+        <th>Driving Force</th><td>Temperature gradient</td><td>Concentration gradient</td><td>Electrical potential</td>
       </tr>
       <tr>
-        <th>Driving Force</th><td>Temperature gradient</td><td>Concentration gradient</td>
-      </tr>
-      <tr>
-        <th>Resistive Element</th><td>Thermal conductivity (k)</td><td>Molecular diffusivity (D)</td>
+        <th>Resistive Element</th><td>Thermal conductivity (k)</td><td>Molecular diffusivity (D)</td><td>Electrical resistance(D)</td>
       </tr>
     </tbody>
   </DisplayTable>
 
-<p class="text-center"><em> Table 1. A comparison of variables considered in heat and mass transfer. </em></p> 
+<p class="text-center"><em> Table 1. A comparison of components in various types of flow. </em></p> 
 
-<p> Heat and mass transfer differ in their modes of transport. While heat transfer has three modes of transport (conduction, convection, and radiation) as explored above, mass transfer has diffusion, dispersion, and pressure-driven transport. 
-</p>
+
 
 <CalloutContainer slot="cards">
     <CalloutCard title="Heads  up!">
-        <p>
-            <strong> Modes of heat and mass transfer </strong> builds on this content later in the course.
-            </p>
             <p>
                 Learn more about this topic on the <a href="/transfer/Heat_Transfer_Mechanisms">Heat Transfer Mechanisms</a> and <a href="/transfer/Mass_Transfer_Mechanisms">Mass Transfer Mechanisms</a> pages.
             </p>
