@@ -26,14 +26,24 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Heat Transfer Mechanisms">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Thermodynamic Laws & Conservation Principles'>Thermodynamic Laws & Conservation Principles</a></li>
+
+<!-- <p> <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Thermodynamic Laws & Conservation Principles'>Thermodynamic Laws & Conservation Principles</a></li> </p> -->
+
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Thermodynamic Laws & Conservation Principles'>Thermodynamic Laws & Conservation Principles</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Zeroth Law'>Zeroth Law: Thermal Equilibrium</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#First Law'>First Law: Conservation of Energy</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Second Law'>Second Law: Directionality of Heat Transfer</a></li>
+
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsteady State'>Unsteady State</a></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Steady State'>Steady State</a></li>
+
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conduction'>Conduction</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Steady State'>Steady State</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsteady State'>Unsteady State</a></ul>
 
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection'>Convection</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Heat Transfer with Phase Change'>Heat Transfer with Phase Change</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Radiative Heat Transfer'>Radiative Heat Transfer</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Heat Transfer with Phase Change'>Heat Transfer with Phase Change</a></li>
 
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Governing Equations & Boundary Conditions of Heat Transfer'>Governing Equations & Boundary Conditions of Heat Transfer</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#General Heat Transfer Equation'>General Heat Transfer Equation</a></li>
@@ -41,7 +51,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </li>
 </ul>
 </div>
-
 
 <SubSection title="Thermodynamic Laws & Conservation Principles" id="Thermodynamic Laws & Conservation Principles">
 
@@ -55,50 +64,37 @@ Heat refers specifically to the transfer of thermal energy across a system bound
     </CalloutCard>
 </CalloutContainer>
 
-<h4 style="text-align: center;">
-  <strong>Zeroth Law of Thermodynamics: Thermal Equillibrium</strong>
-</h4>
+<SubSubSection title="Zeroth Law: Thermal Equilibrium" id="Zeroth Law">
+
+<p> While the Zeroth law of thermodynamics was established in the 1930's after the First and Second laws, it was named the Zeroth law
+to recognize its foundational nature in defining both temperature and thermal equilibrium.
 
 <p> The zeroth law of thermodynamics establishes the concept of thermal equilibrium and provides a foundation for defining and measuring temperature. 
 It states that if two systems are in thermal equilibrium with a third, then they are in thermal equilibrium with each other. 
 If a temperature difference exists, then heat will flow (from hot to cold) only until thermal equilibrium is reached. 
 Therefore, the zeroth law essentially defines the condition under which we expect heat transfer to cease.
 
-<p> 
-This law plays a crucial role in understanding heat transfer by identifying that temperature is a shared property of systems in equilibrium and explaining why it can be compared consistently between different objects. 
+<p> This law plays a crucial role in understanding heat transfer by identifying that temperature is a shared property of systems in equilibrium and explaining why it can be compared consistently between different objects. 
 It also provides the physical justification for the use of thermometers. When they are placed in contact with an object and allowed to reach thermal equilibrium, the thermometer and the object share the same temperature. 
 </p>
+</SubSubSection>
 
-
-
-<CalloutCard title="Did you know?">
-        <u class="m-0">Callout Card</u>
-<p>While the Zeroth law of thermodynamics was established in the 1930's after the First and Second laws, it was named the Zeroth law
-to recognize its foundational nature in defining both temperature and thermal equillibrium.</p>
-    </CalloutCard>
-
-<h4 style="text-align: center;">
-  <strong>First Law of Thermodynamics: Conservation of Energy</strong>
-</h4>
+<SubSubSection title="First Law: Conservation of Energy" id="First Law">
 
 <p> The first law of thermodynamics expresses the principle of energy conservation: energy cannot be created or destroyed, and can only be transferred or converted between forms. 
 This law helps in understanding all situations of heat transfer and explains why temperature change occurs. 
 </p>
 
-<p> 
-A system’s temperature can increase only if thermal energy enters the system or is generated internally, 
+<p>  A system’s temperature can increase only if thermal energy enters the system or is generated internally, 
 and it can only decrease if thermal energy leaves the system or is consumed. 
-Temperature changes as a consequence of energy transfer or conversion, and never spontaneously. 
+Temperature changes as a consequence of energy transfer or conversion, and never spontaneously.  </p>
+
+<p> When the first law is applied to heat transfer problems, it is expressed as a balance within the boundary of the system: energy entering the system, energy leaving the system, generation or consumption of heat within the system, and energy stored within the system.
 </p>
+</SubSubSection>
 
-<p>
-When the first law is applied to heat transfer problems, it is expressed as a balance within the boundary of the system: energy entering the system, energy leaving the system, generation or consumption of heat within the system, and energy stored within the system.
 
-</p>
-
-<h4 style="text-align: center;">
-  <strong>Second Law of Thermodynamics: Directionality of Heat Transfer</strong>
-</h4>
+<SubSubSection title="Second Law: Directionality of Heat Transfer" id="Second Law">
 
 <p> The second law of thermodynamics is important in understanding the directionality of heat transfer. 
 It states that in an isolated system, the total energy of the system can only increase or remain constant over time. 
@@ -107,73 +103,87 @@ It states that in an isolated system, the total energy of the system can only in
 <p>  In heat transfer, this explains why heat transfer only spontaneously occurs from regions of higher temperature to regions of lower temperature. 
 This type of transfer increases the total entropy of the system in alignment with the second law.
 </p>
-
 </SubSection>
-
 
 
 
 <SubSection title="Conduction" id="Conduction">
-<p> Conductive heat transfer is the transport of thermal energy through a medium due to temperature gradients within the material. Energy is transferred down the temperature gradient. The method of heat transfer is called diffusion. Diffusion is the net transfer of energy due to random molecular motion. 
+<p> Conductive (or diffusive) heat transfer is the transport of thermal energy through a medium due to temperature gradients within the material. 
+Energy is transferred down the temperature gradient from high to low. The net transfer of energy is due to random molecular motion. 
 </p>
-<p> Fourier’s equation is used to describe conductive heat transfer. You can calculate heat flow and heat flux using Fourier's equation. 
+<p> <b>Fourier’s Law</b> is used to describe conductive heat transfer:
 </p>
-<p> Heat Flow: </p>
-<DisplayEquation equation="\\frac{q_x}{A} = -k \\frac{dT}{dx}" title="" />
-<p> Heat Flux: </p>
-<DisplayEquation equation="q^{''}_x = -k \\frac{dT}{dx}" title="" />
-<p> Lets go over the variables present in these equations: </p>
+<DisplayEquation equation="q^{''}_x = \\frac{q_x}{A} = -k \\frac{dT}{dx}" title="" />
+<p> where </p>
 <Itemize>
-
-<Item><InlineEquation equation="q_x (W)" /> = rate of heat flow in the x direction </Item>
-<Item><InlineEquation equation="A (m^2)" /> = area perpendicular to the direction of heat flow</Item>
-<Item><InlineEquation equation="q^{''}_x (\\frac{W}{m^2})" /> = rate of heat flow per unit area</Item>
-<Item><InlineEquation equation="T (C or K)" /> = temperature of the medium at x</Item>
-<Item><InlineEquation equation="k (\\frac{W}{mC} or \\frac{W}{mK})" /> = thermal conductivity of the medium</Item>
-
+<Item><InlineEquation equation="q^{''}_x [\\frac{W}{m^2}]" /> = flux, or rate of heat flow per unit area</Item>
+<Item><InlineEquation equation="q_x [W]" /> = rate of heat flow in the x direction </Item>
+<Item><InlineEquation equation="A [m^2]" /> = surface area perpendicular to the direction of heat flow</Item>
+<Item><InlineEquation equation="T [K]" /> = temperature of the medium at x</Item>
+<Item><InlineEquation equation="k [\\frac{W}{mK}]" /> = thermal conductivity of the medium</Item>
 </Itemize>
 </SubSection>
 
 <SubSubSection title="Steady State" id="Steady State">
-<p> In steady state heat conduction, temperature does not change with time. However, temperature can change with positon and this is what drives the transfer of heat. There are three main examples of steady state heat conduction: </p>
+<p> In steady state heat conduction, temperature does not change with time. However, temperature can change with position, which drives the transfer of heat. 
+There are three main examples of steady state heat conduction: </p>
 <Itemize>
 
 <Item>In a slab</Item>
 <Item>In a cylinder</Item>
 <Item>With heat generation (Q)</Item>
-
 </Itemize>
-
 </SubSubSection>
 
 <SubSubSection title="Unsteady State" id="Unsteady State">
-<p> In unsteady state heat conduction, temperature changes over time. There are three main examples of unsteady state heat conduction: </p>
+<p> In unsteady state (or transient) heat conduction, temperature changes over time. There are three main examples of unsteady state heat conduction: </p>
 <Itemize>
-
 <Item>With no spatial variation</Item>
 <Item>With semi-infinite geometry</Item>
 <Item>With finite geometry</Item>
-
 </Itemize>
 </SubSubSection>
 
 <SubSection title="Convection" id="Convection">
-<p> Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid over a surface. </p>
-<p> The equation that describes convection is </p>
+<p> Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface: </p>
 <DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="" />
-<p> Lets go over the variables present in this equation: </p>
+<p> where </p>
 <Itemize>
-
-<Item><InlineEquation equation="q_{1-2} (W)" /> = rate of heat flow from 1 to 2 </Item>
-<Item><InlineEquation equation="A (m^2)" /> = area normal to the direction of heat flow</Item>
-<Item><InlineEquation equation="T_1 - T_2 (C)" /> = temperature difference between the surface and fluid</Item>
-<Item><InlineEquation equation="h (\\frac{W}{m^2C})" /> = convective heat transfer coefficient (this coefficient always includes the effect of conduction in the fluid)</Item>
-
+<Item><InlineEquation equation="q_{1-2} [W]" /> = rate of heat flow from 1 (hotter) to 2 (colder) </Item>
+<Item><InlineEquation equation="A [m^2]" /> = surface area normal to the direction of heat flow</Item>
+<Item><InlineEquation equation="T_1 [K]" /> = temperature of 1</Item>
+<Item><InlineEquation equation="T_2 [K]" /> = temperature of 2</Item>
+<Item><InlineEquation equation="h [\\frac{W}{m^2 K}]" /> = convective heat transfer coefficient (which always includes the effect of conduction in the fluid)</Item>
 </Itemize>
+
+<p>The convective heat transfer coefficient is not a material property. </p>
 </SubSection>
 
+
+<SubSection title="Radiative Heat Transfer" id="Radiative Heat Transfer">
+    <p> Radiative heat transfer is the transport of thermal energy emitted as electromagnetic waves. It is attributed to changes in electron configuration within the atoms of the target matter. 
+    No medium (i.e. physical contact or fluid motion) is required for this mode of heat transfer, as it is spontaneously emitted. </p>
+    <p> The maximum flux at which radiation may be <i>emitted</i> by a body is governed by the <b>Stefan-Boltzmann Law</b>: </p> 
+
+        <DisplayEquation equation="q^{''} = \\frac{q}{A} = \\sigma T^4" title="" />
+    <p> where </p>
+    
+    <Itemize>
+    <Item><InlineEquation equation="q^{''} [\\frac{W}{m^2}]" /> = rate of heat flow per unit area</Item>
+    <Item><InlineEquation equation="q [W]" /> = rate of heat emission </Item>
+    <Item><InlineEquation equation="A [m^2]" /> = area of radiating surface</Item>
+    <Item><InlineEquation equation="\\sigma = 5.67 x 10^{-8} [\\frac{W}{m^2 K^4}]" /> = Stefan-Boltzmann constant</Item>
+    <Item><InlineEquation equation="T [K]" /> = temperature of the radiating surface</Item>
+    </Itemize>
+    
+    When also considering the the energy <i>received</i> by the body from its surroundings, the net exchange can be calculated as:
+        <DisplayEquation equation="q^{''}_{1-surroundings} = \\sigma (T_{1}^{4}-T_{surroundings}^{4})" title="" /> 
+    </SubSection>
+
+
 <SubSection title="Heat Transfer with Phase Change" id="Conduction">
-    <p> Phase changes complicate heat transfer, as the process is energy intensive and causes changes in the properties of the material. Affected properties include volume, density, thermal conductivity, specific heat, dielectric properties (i.e. the interaction of a material with electromagnetic waves), and mechanical properties (i.e. elastic modulus) </p>
+    <p> Phase changes complicate heat transfer, as the process is energy intensive and causes changes in the properties of the material. 
+    Affected properties include volume, density, thermal conductivity, specific heat, dielectric properties (i.e. the interaction of a material with electromagnetic waves), and mechanical properties (i.e. elastic modulus) </p>
     
     <p> For example, consider the cooling of water from vapor to liquid to ice: </p>
     
@@ -182,11 +192,12 @@ This type of transfer increases the total entropy of the system in alignment wit
         <Item> <i> Volume decreases. </i>  As the density of a material increases, volume decreases. </Item>
         <Item> <i> Thermal conductivity increases. </i> The thermal conductivity of ice is nearly three times greater than water. </Item>
         <Item> <i> Specific heat slightly decreases. </i> Generally, <InlineEquation equation="C_{p, gas} < C_{p, solid} \\leq C_{p, liquid}" /> Intuitively, liquids buffer temperature best. </Item>
-        <Item>  <i> Dielectric properties decrease. </i> For example, frozen food takes much longer to microwave, due to poor microwave absorption. </Item>
+        <Item> <i> Dielectric properties decrease. </i> For example, frozen food takes much longer to microwave, due to poor microwave absorption. </Item>
         <Item> <i> Elastic modulus decreases. </i> Typically, materials become more brittle at colder temperatures. </Item>
     </Itemize>
     
-    <p> As a material changes phase, so does the energy of the system. The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
+    <p> As a material changes phase, so does the energy of the system. The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
+    Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
     
     <Image src="/transfer/phase_diagram.png">
         <span class="fw-bold">Phase Diagram</span>: A depiction of the three phases and phase transitions, dependent on temperature and pressure. At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
@@ -198,27 +209,6 @@ This type of transfer increases the total entropy of the system in alignment wit
 
 </SubSection>
 
-<SubSection title="Radiative Heat Transfer" id="Radiative Heat Transfer">
-    <p> Radiative heat transfer is the transport of thermal energy emitted as electromagnetic waves. It is attributed to changes in electron configuration within the atoms of the target matter. No medium (i.e. physical contact, fluid motion) is required in this mode of heat transfer, as it is spontaneously emitted. </p>
-    
-    <p> The maximum flux at which radiation may be <i>emitted</i> by a body is governed by the <b> Stefan-Boltzmann Law </b>: </p> 
-    
-    <DisplayEquation equation="\\frac{q}{A} = q^{''} = \\sigma T^4" title="Stefan-Boltzmann Law of Radiative Heat Transfer" />
-    
-    <p> Let's go over the variables present in these equations: </p>
-    
-    <Itemize>
-    <Item><InlineEquation equation="q (W)" /> = rate of heat emission </Item>
-    <Item><InlineEquation equation="A (m^2)" /> = area of radiating surface</Item>
-    <Item><InlineEquation equation="q^{''} (\\frac{W}{m^2})" /> = rate of heat flow per unit area</Item>
-    <Item><InlineEquation equation="\\sigma = 5.67*10^{-8} \\frac{W}{m^2k^4}" /> = Stefan-Boltzmann constant</Item>
-    <Item><InlineEquation equation="T (C,K)" /> = temperature of the radiating surface</Item>
-    </Itemize>
-    
-    To calculate the <i>received</i> energy from surroundings, the net exchange can be calculated as such:
-    
-    <DisplayEquation equation="q^{''}_{1-surroundings} = \\sigma (T_{1}^{4}-T_{surroundings}^{4})" title="Stefan-Boltzmann Law of Radiative Heat Transfer" /> 
-</SubSection>
 
 <SubSection title="Governing Equations & Boundary Conditions of Heat Transfer" id="Governing Equations & Boundary Conditions of Heat Transfer">
  <p> In order to predict the temperature distributions in a system, we need two things: a governing equation and a set of boundary and initial conditions.  
