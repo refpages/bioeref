@@ -47,9 +47,23 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 
 <SubSection title="Thermodynamic Laws" id="Thermodynamic Laws">
+<p> Test </p>
 </SubSection>
 
 <SubSubSection title="Zeroth Law: Thermal Equilibrium" id="Zeroth Law">
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Remember!">
+            <p>     Temperature and heat are related, but not the same thing!
+                <b>Temperature</b> is a property of an object or system that describes the average kinetic energy of the particles within it. 
+                <b>Heat</b> refers specifically to the transfer of thermal energy across a system boundary due to a temperature difference.  </p>
+
+               <p> To convert between Fahrenheit, Celsius, and Kelvin:
+            <DisplayEquation equation="^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)X (9/5)" title="" />
+            <DisplayEquation equation="^{\\circ}\\textrm{C} + 273.15" title="" />
+            </p>
+    </CalloutCard>
+</CalloutContainer>
 
 <p> While the Zeroth law of thermodynamics was established in the 1930's after the First and Second laws, it was named the Zeroth law
 to recognize its foundational nature in defining both temperature and thermal equilibrium.
@@ -89,21 +103,6 @@ It states that in an isolated system, the total energy of the system can only in
 <p>  In heat transfer, this explains why heat transfer only spontaneously occurs from regions of higher temperature to regions of lower temperature. 
 This type of transfer increases the total entropy of the system in alignment with the second law.
 </p>
-
-
-<CalloutContainer slot="cards">
-    <CalloutCard title="Remember!">
-            <p>     Temperature and heat are related, but not the same thing!
-                <b>Temperature</b> is a property of an object or system that describes the average kinetic energy of the particles within it. 
-                <b>Heat</b> refers specifically to the transfer of thermal energy across a system boundary due to a temperature difference.  </p>
-
-               <p> To convert between Fahrenheit, Celsius, and Kelvin:
-            <DisplayEquation equation="^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)X (9/5)" title="" />
-            <DisplayEquation equation="^{\\circ}\\textrm{C} + 273.15" title="" />
-            </p>
-    </CalloutCard>
-</CalloutContainer>
-
 
 </SubSection>
 
@@ -147,9 +146,9 @@ There are three main examples of steady state heat conduction: </p>
 </SubSubSection>
 
 <SubSection title="Convection" id="Convection">
-<p> Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface: </p>
+<p> Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface:
 <DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="" />
-<p> where </p>
+<p> where 
 <Itemize>
 <Item><InlineEquation equation="q_{1-2} [W]" /> = rate of heat flow from 1 (hotter) to 2 (colder) </Item>
 <Item><InlineEquation equation="A [m^2]" /> = surface area normal to the direction of heat flow</Item>
