@@ -47,20 +47,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 
 <SubSection title="Thermodynamic Laws" id="Thermodynamic Laws">
-
-<CalloutContainer slot="cards">
-    <CalloutCard title="Remember!">
-            <p>     Temperature and heat are related, but not the same thing!
-                <b>Temperature</b> is a property of an object or system that describes the average kinetic energy of the particles within it. 
-                <b>Heat</b> refers specifically to the transfer of thermal energy across a system boundary due to a temperature difference.  </p>
-
-               <p> To convert between Fahrenheit, Celsius, and Kelvin:
-            <DisplayEquation equation="^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)X (9/5)" title="" />
-            <DisplayEquation equation="^{\\circ}\\textrm{C} + 273.15" title="" />
-            </p>
-    </CalloutCard>
-</CalloutContainer>
-
 </SubSection>
 
 <SubSubSection title="Zeroth Law: Thermal Equilibrium" id="Zeroth Law">
@@ -103,6 +89,22 @@ It states that in an isolated system, the total energy of the system can only in
 <p>  In heat transfer, this explains why heat transfer only spontaneously occurs from regions of higher temperature to regions of lower temperature. 
 This type of transfer increases the total entropy of the system in alignment with the second law.
 </p>
+
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Remember!">
+            <p>     Temperature and heat are related, but not the same thing!
+                <b>Temperature</b> is a property of an object or system that describes the average kinetic energy of the particles within it. 
+                <b>Heat</b> refers specifically to the transfer of thermal energy across a system boundary due to a temperature difference.  </p>
+
+               <p> To convert between Fahrenheit, Celsius, and Kelvin:
+            <DisplayEquation equation="^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)X (9/5)" title="" />
+            <DisplayEquation equation="^{\\circ}\\textrm{C} + 273.15" title="" />
+            </p>
+    </CalloutCard>
+</CalloutContainer>
+
+
 </SubSection>
 
 
@@ -249,6 +251,11 @@ removed based on problem conditions. Table adapted from Datta (2017): Chapter 3 
  <p> To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (which describe heat 
 transfer at particular surfaces and interfaces) as well as initial conditions (for time-dependent problems). </p> 
 </SubSection>
+
+
+
+
+
 
 
 <!--
