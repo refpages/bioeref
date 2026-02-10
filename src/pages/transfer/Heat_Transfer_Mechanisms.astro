@@ -187,7 +187,7 @@ There are three main examples of steady state heat conduction: </p>
     <p> Phase changes complicate heat transfer, as the process is energy intensive and causes changes in the properties of the material. 
     Affected properties include volume, density, thermal conductivity, specific heat, dielectric properties (i.e. the interaction of a material with electromagnetic waves), and mechanical properties (i.e. elastic modulus) </p>
     
-    <p> For example, consider the cooling of water from vapor to liquid to ice: </p>
+    <p> For example, consider the cooling of water from vapor to liquid to ice:
     
     <Itemize>
         <Item> <i> Density increases. </i> Solids have the highest density, since atoms are tightly packed together. </Item>
@@ -203,7 +203,8 @@ The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </
     Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
     
     <Image src="/transfer/phase_diagram.png">
-        <span class="fw-bold">Phase Diagram</span>: A depiction of the three phases and phase transitions, dependent on temperature and pressure. At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
+        <span class="fw-bold">Phase Diagram</span>: A depiction of the three phases and phase transitions, dependent on temperature and pressure. 
+    At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
     </Image>
     
     <Image src="/transfer/enthalpy_diagram_water.png">
@@ -221,7 +222,8 @@ transfer in a system, and encapsulates the combined effects of energy storage, c
 
 <p> The governing heat equation can be written in Cartesian or radial coordinates. While heat transfer can occur in three dimensions, it is simplified here to be solved with heat flowing only in one direction (x,r). </p> 
 
-<b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" title="Governing Heat Equation (Cartesian)" background="True"/></b>
+<b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" 
+title="Governing Heat Equation (Cartesian)" background="True"/></b>
 <b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="Governing Heat Equation (Cylindrical)" background="True"/></b>
 <b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="Governing Heat Equation (Spherical)" background="True"/></b>
 
@@ -232,6 +234,7 @@ The meaning of each term and the conditions under which it should be retained or
 
 In general terms, the governing equation for any coordinate system (without flow) can be written as:
 <DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="" background="True" id="General Form"/>
+
 
 <!--
 <Image src="/transfer/Governing_Equation_Tables.png">
@@ -245,8 +248,10 @@ when it should be retained or removed based on problem conditions.
   <span class="fw-bold">Figure 2</span>: Table summarizes the possible variations of the governing equations depending on which terms are retained or
 removed based on problem conditions. Table adapted from Datta (2017): Chapter 3 (Table 3.2).
 </Image>
-</SubSection>   -->
+ -->
 
+
+</SubSection>  
 
 <SubSection title="Boundary and Initial Conditions" id="Boundary and Initial Conditions">
  <p> To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (which describe heat 
@@ -260,7 +265,6 @@ transfer at particular surfaces and interfaces) as well as initial conditions (f
 
 
 <!--
-
 <div style="margin-top: 40px;"></div>
 
 <h4><strong>Table Example</strong></h4>
@@ -286,9 +290,6 @@ transfer at particular surfaces and interfaces) as well as initial conditions (f
   </DisplayTable>
 
 <h4><strong>Formula Box</strong></h4>
-
-<DisplayEquation equation='\\begin{aligned}\\textrm{Fahrenheit to Celcius:}&~ ^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)X (9/5) \\\\    \\textrm{Celsius to Kelvin:}&~ ^{\\circ}\\textrm{K} = ^{\\circ}\\textrm{C} + 273.15\\end{aligned}' 
-title="Temperature unit conversions" background="True"/>
 
 <h4><strong>Formula Box With Derivation Drop Down</strong></h4>
 
