@@ -170,7 +170,7 @@ There are three main examples of steady state heat conduction: </p>
 <Item><InlineEquation equation="h [\\frac{W}{m^2 K}]" /> = convective heat transfer coefficient (which always includes the effect of conduction in the fluid)</Item>
 </Itemize>
 
-<p>The convective heat transfer coefficient is not a material property. </p>
+<p>Note that the convective heat transfer coefficient is not a material property. </p>
 </SubSection>
 
 
@@ -190,9 +190,10 @@ There are three main examples of steady state heat conduction: </p>
     <Item><InlineEquation equation="\\sigma = 5.67*10^{-8} [\\frac{W}{m^2 K^4}]" /> = Stefan-Boltzmann constant</Item>
     <Item><InlineEquation equation="T [K]" /> = temperature of the radiating surface</Item>
     </Itemize>
-    
-    When also considering the the energy received by the body from its surroundings, the <i>net</i> exchange can be calculated as:
-        <DisplayEquation equation="q^{''}_{1-surroundings} = \\sigma (T_{1}^{4}-T_{surroundings}^{4})" title="" /> 
+
+     <DisplayEquation equation="q^{''}_{system-surroundings} = \\sigma (T_{system}^{4}-T_{surroundings}^{4})" title=" When also considering the the energy received by the body from its surroundings, the net exchange of radiation can be calculated as:" background="True"/>
+
+  
     </SubSection>
 
 
@@ -218,7 +219,7 @@ There are three main examples of steady state heat conduction: </p>
 The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
     Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
     
-    <Image src="/transfer/phase_diagram.png" width="300" height="300">
+    <Image src="/transfer/phase_diagram.png" width="100" height="100">
         <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. 
     At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
     </Image>
