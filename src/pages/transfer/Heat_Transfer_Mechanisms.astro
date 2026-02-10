@@ -219,7 +219,7 @@ There are three main examples of steady state heat conduction: </p>
 The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
     Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
     
-    <Image src="/transfer/phase_diagram.png" width="50" height="50">
+    <Image src="/transfer/phase_diagram.png" width={100} height={100}>
         <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. 
     At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
     </Image>
@@ -248,13 +248,14 @@ title="Governing Heat Equation (Cartesian)" background="True"/></b>
 <b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="Governing Heat Equation (Cylindrical)" background="True"/></b>
 <b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="Governing Heat Equation (Spherical)" background="True"/></b>
 
+In general terms, the governing equation for any coordinate system (without flow) can be written as:
+<DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="" background="True" id="General Form"/>
+
 <p> In practice, many problems involve simplifying assumptions (e.g., steady state, no fluid flow, or no internal heat generation), which allow certain terms to be removed. 
 The meaning of each term and the conditions under which it should be retained or dropped are summarized in Table 1. </p>
 
 <p align="center"> <b> Table 1 here... </b> </p>
 
-In general terms, the governing equation for any coordinate system (without flow) can be written as:
-<DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="" background="True" id="General Form"/>
 
 
 
