@@ -219,21 +219,21 @@ The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </
 <p> The governing heat equation is derived from an energy balance applied to a differential control volume and Fourier's Law. It includes all possible mechanisms that can contribute to heat
 transfer in a system, and encapsulates the combined effects of energy storage, conduction, convection, and internal heat generation, and allows the prediction of the temperature profile within the system. </p> 
 
-<p> The governing heat equation can be written in Cartesian or radial coordinates. While heat transfer can occur in three dimensions, it is simplified here to be solved in one direction (x). </p> 
+<p> The governing heat equation can be written in Cartesian or radial coordinates. While heat transfer can occur in three dimensions, it is simplified here to be solved with heat flowing only in one direction (x,r). </p> 
 
-<DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" title="Governing Heat Equation (Cartesian)" background="True"/>
-<b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... }" title="Governing Heat Equation (Cylindrical)" background="True"/></b>
-<DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... }" title="Governing Heat Equation (Spherical)" background="True"/>
+<b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" title="Governing Heat Equation (Cartesian)" background="True"/></b>
+<b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="Governing Heat Equation (Cylindrical)" background="True"/></b>
+<b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="Governing Heat Equation (Spherical)" background="True"/></b>
 
 <p> In practice, many problems involve simplifying assumptions (e.g., steady state, no fluid flow, or no internal heat generation), which allow certain terms to be removed. 
 The meaning of each term and the conditions under which it should be retained or dropped are summarized in Table 1. </p>
 
-<p> <b> Table 1 here... </b> </p>
+<p align="center"> <b> Table 1 here... </b> </p>
 
-In general terms, the governing equation for any coordinate system can be written as:
-<DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... }" title="" background="True" id="General Form"/>
+In general terms, the governing equation for any coordinate system (without flow) can be written as:
+<DisplayEquation equation="\\frac{\\partial T}{\\partial t} + ... ... " title="" background="True" id="General Form"/>
 
-
+<!--
 <Image src="/transfer/Governing_Equation_Tables.png">
   <span class="fw-bold">Figure 1</span>: Table summarizes the physical meaning of each term and 
 when it should be retained or removed based on problem conditions.
@@ -245,11 +245,12 @@ when it should be retained or removed based on problem conditions.
   <span class="fw-bold">Figure 2</span>: Table summarizes the possible variations of the governing equations depending on which terms are retained or
 removed based on problem conditions. Table adapted from Datta (2017): Chapter 3 (Table 3.2).
 </Image>
-</SubSection>
+</SubSection>   -->
+
 
 <SubSection title="Boundary and Initial Conditions" id="Boundary and Initial Conditions">
  <p> To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (which describe heat 
-transfer at particular surfaces and interfaces) as well as initial conditions (for time-dependent problems). </p> 
+transfer at particular surfaces and interfaces) as well as initial conditions (for unsteady state or time-dependent problems). </p> 
 </SubSection>
 
 
@@ -310,9 +311,7 @@ title="Temperature unit conversions" background="True"/>
     </Center>
 
     <p>
-      Pythagorus' theorem immediately gives us vector lengths
-      in 2D.  To find the length of a vector in 3D we can use
-      Pythagorus' theorem twice, as shown below. This gives
+    This gives
       the two right-triangle calculations:
 
       <DisplayEquation equation="\\begin{aligned}      \\ell^2 &amp;= a_1^2 + a_2^2 \\\\      a^2 &amp;= \\ell^2 + a_3^2 = a_1^2 + a_2^2 + a_3^2.      \\end{aligned}" />
