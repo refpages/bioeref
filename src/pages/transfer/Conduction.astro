@@ -31,17 +31,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </ul>
 </div>
 
-
-<CalloutContainer slot="cards">
-    <CalloutCard title="Remember!">
-            <p> Always keep track of your units. To convert between Fahrenheit, Celsius, and Kelvin:
-            <DisplayEquation equation="^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)*(9/5)" title="" />
-            <DisplayEquation equation="K = ^{\\circ}\\textrm{C} + 273.15" title="" />
-            </p>
-    </CalloutCard>
-</CalloutContainer>
-
-
 <p> Conductive (or diffusive) heat transfer is the transport of thermal energy through a medium due to temperature gradients within the material. 
 Energy is transferred down the temperature gradient from high to low. The net transfer of energy is due to random molecular motion. 
 </p>
@@ -59,6 +48,15 @@ Energy is transferred down the temperature gradient from high to low. The net tr
 <Item><InlineEquation equation="T [K]" /> = temperature of the medium at x</Item>
 <Item><InlineEquation equation="k [\\frac{W}{mK}]" /> = thermal conductivity of the medium</Item>
 </Itemize>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Remember!">
+            <p> Always keep track of your units. To convert between Fahrenheit, Celsius, and Kelvin:
+            <DisplayEquation equation="^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)*(9/5)" title="" />
+            <DisplayEquation equation="K = ^{\\circ}\\textrm{C} + 273.15" title="" />
+            </p>
+    </CalloutCard>
+</CalloutContainer>
 
 <SubSection title="Steady State" id="Steady State">
 <p> In steady state heat conduction, <i>temperature does not change with time</i>. However, temperature can change with position, and this gradient drives the transfer of heat. 
