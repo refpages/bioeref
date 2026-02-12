@@ -23,4 +23,34 @@ import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
-<Layout title="Change of Phase">
+<Layout title="Heat Transfer with Phase Change">
+
+<p> Phase changes complicate heat transfer, as the process is energy intensive and causes changes in the properties of the material. 
+    Affected properties include volume, density, thermal conductivity, specific heat, dielectric properties (i.e. the interaction of a material with electromagnetic waves), and mechanical properties (i.e. elastic modulus) </p>
+    
+    <p> For example, consider the cooling of water from vapor to liquid to ice:
+    
+    <Itemize>
+        <Item> <i> Density increases. </i> Solids have the highest density, since atoms are tightly packed together. </Item>
+        <Item> <i> Volume decreases. </i>  As the density of a material increases, volume decreases. </Item>
+        <Item> <i> Thermal conductivity increases. </i> The thermal conductivity of ice is nearly three times greater than water. </Item>
+        <Item> <i> Specific heat slightly decreases. </i> Generally, <InlineEquation equation="C_{p, gas} < C_{p, solid} \\leq C_{p, liquid}" /> Intuitively, liquids buffer temperature best. </Item>
+        <Item> <i> Dielectric properties decrease. </i> For example, frozen food takes much longer to microwave, due to poor microwave absorption. </Item>
+        <Item> <i> Elastic modulus decreases. </i> Typically, materials become more brittle at colder temperatures. </Item>
+    </Itemize>
+    
+    <p> As a material changes phase, so does the energy of the system. 
+The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
+    Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
+    
+    <Image src="/transfer/phase_diagram.png" width="3"> CAPTION
+        <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. 
+    At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
+    CAPTION </Image>
+
+
+    <Image src="/transfer/enthalpy_diagram_water.png" width="4">
+        <span class="fw-bold">Enthalpy Diagram</span>: Enthalpy changes in water, showing the latent heats of fusion and vaporization at melting and freezing point temperatures. 
+    </Image>
+
+</Layout>
