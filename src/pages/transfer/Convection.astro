@@ -24,3 +24,19 @@ import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
 <Layout title="Convection">
+
+
+<DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface:" background="True"/>
+
+<p> where 
+<Itemize>
+<Item><InlineEquation equation="q_{1-2} [W]" /> = rate of heat flow from 1 (hotter) to 2 (colder) </Item>
+<Item><InlineEquation equation="A [m^2]" /> = surface area normal to the direction of heat flow</Item>
+<Item><InlineEquation equation="T_1 [K]" /> = temperature of 1 (e.g., system)</Item>
+<Item><InlineEquation equation="T_2 [K]" /> = temperature of 2 (e.g., surroundings)</Item>
+<Item><InlineEquation equation="h [\\frac{W}{m^2 K}]" /> = convective heat transfer coefficient (which always includes the effect of conduction in the fluid)</Item>
+</Itemize>
+
+<p>Note that the convective heat transfer coefficient is not a material property. </p>
+
+</Layout>
