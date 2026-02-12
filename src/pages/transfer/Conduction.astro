@@ -24,3 +24,61 @@ import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
 <Layout title="Conduction">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Steady State'>Steady State</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsteady State'>Unsteady State</a></li>
+</ul>
+</div>
+
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Remember!">
+            <p> Always keep track of your units. To convert between Fahrenheit, Celsius, and Kelvin:
+            <DisplayEquation equation="^{\\circ}\\textrm{C} = (^{\\circ}\\textrm{F} -32)*(9/5)" title="" />
+            <DisplayEquation equation="K = ^{\\circ}\\textrm{C} + 273.15" title="" />
+            </p>
+    </CalloutCard>
+</CalloutContainer>
+
+
+<p> Conductive (or diffusive) heat transfer is the transport of thermal energy through a medium due to temperature gradients within the material. 
+Energy is transferred down the temperature gradient from high to low. The net transfer of energy is due to random molecular motion. 
+</p>
+
+<DisplayEquation equation="q^{''}_x = \\frac{q_x}{A} = -k \\frac{dT}{dx}" title="Fourier’s Law is used to describe conductive heat transfer:" background="True"/>
+
+
+<!-- <p> <b>Fourier’s Law</b> is used to describe conductive heat transfer: </p>  <DisplayEquation equation="q^{''}_x = \\frac{q_x}{A} = -k \\frac{dT}{dx}" title="" />    -->
+
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="q^{''}_x [\\frac{W}{m^2}]" /> = flux, or rate of heat flow per unit area</Item>
+<Item><InlineEquation equation="q_x [W]" /> = rate of heat flow in the x direction </Item>
+<Item><InlineEquation equation="A [m^2]" /> = surface area perpendicular to the direction of heat flow</Item>
+<Item><InlineEquation equation="T [K]" /> = temperature of the medium at x</Item>
+<Item><InlineEquation equation="k [\\frac{W}{mK}]" /> = thermal conductivity of the medium</Item>
+</Itemize>
+
+<SubSection title="Steady State" id="Steady State">
+<p> In steady state heat conduction, <i>temperature does not change with time</i>. However, temperature can change with position, and this gradient drives the transfer of heat. 
+There are three main examples of steady state heat conduction: </p>
+<Itemize>
+
+<Item>In a slab</Item>
+<Item>In a cylinder</Item>
+<Item>With heat generation (Q)</Item>
+</Itemize>
+</SubSection>
+
+
+<SubSection title="Unsteady State" id="Unsteady State">
+<p> In unsteady state (or transient) heat conduction, <i>temperature changes over time</i>. There are three main examples of unsteady state heat conduction: </p>
+<Itemize>
+<Item>With no spatial variation</Item>
+<Item>With semi-infinite geometry</Item>
+<Item>With finite geometry</Item>
+</Itemize>
+</SubSection>
+
+</Layout>
