@@ -23,4 +23,23 @@ import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
-<Layout title="Radiation">
+<Layout title="Radiative Heat Transfer">
+
+    <p> Radiative heat transfer is the transport of thermal energy emitted as electromagnetic waves. It is attributed to changes in electron configuration within the atoms of the target matter. 
+    No medium (i.e. physical contact or fluid motion) is required for this mode of heat transfer, as it is spontaneously emitted. </p>
+  
+     <DisplayEquation equation="q^{''} = \\frac{q}{A} = \\sigma T^4" title="The maximum flux at which radiation may be emitted by a body is governed by the Stefan-Boltzmann Law:" background="True"/>
+
+    <p> where </p>
+    <Itemize>
+    <Item><InlineEquation equation="q^{''} [\\frac{W}{m^2}]" /> = rate of heat flow per unit area</Item>
+    <Item><InlineEquation equation="q [W]" /> = rate of heat emission </Item>
+    <Item><InlineEquation equation="A [m^2]" /> = area of radiating surface</Item>
+    <Item><InlineEquation equation="\\sigma = 5.67*10^{-8} [\\frac{W}{m^2 K^4}]" /> = Stefan-Boltzmann constant</Item>
+    <Item><InlineEquation equation="T [K]" /> = temperature of the radiating surface</Item>
+    </Itemize>
+
+     <DisplayEquation equation="q^{''}_{system-surroundings} = \\sigma (T_{system}^{4}-T_{surroundings}^{4})" title=" When also considering the the energy received by the body from its surroundings, the net exchange of radiation can be calculated as:" background="True"/>
+
+  
+    </Layout>
