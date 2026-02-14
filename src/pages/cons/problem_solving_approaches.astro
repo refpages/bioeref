@@ -106,22 +106,25 @@ Consider drawing a table to help you keep track
 </Example>
 </SubSubSection>
 <SubSubSection title="Calculate" id="Calculate">
-<p>3. Calculate. Equations are developed and solved in a logical manner.</p>
-<p>Write down all appropriate accounting and/or conservation equations. Writing down the governing equations and then simplifying them by analyzing the system to eliminate unnecessary terms can be a helpful tool in solving engineering problems. For example, if asking the question, “Is this system at steady-state?” results in a positive response, the governing equation may be simplified by making the Accumulation term equal zero. Write down any other essential equations needed to solve the problem.</p>
-<p>Use the appropriate equations to calculate the unknown quantities. This is the heart of solving the problem and may require extensive effort. In some cases, the calculation of unknown quantities can be done sequentially. In other cases, it may be best to solve a series of equations using MATLAB or other computer software.</p>
+<p>Phase 3. Calculate. With the framework ready, you can now construct and solve your mathematical models.</p>
+<Itemize>
+<Item>Identify Governing Equations: List the relevant accounting or conservation formulas. You can often simplify these by evaluating the system state; for instance, if the process is at steady-state, you can immediately set the accumulation term to zero.</Item>
+<Item>Execute the Math: Solve for your variables in a structured sequence. While some problems can be solved step-by-step by hand, more complex systems may require computational tools like MATLAB to handle multiple simultaneous equations.</Item>
+</Itemize>
 </SubSubSection>
 <SubSubSection title="Finalize" id="Finalize">
-<p>4. Finalize. Correct answers to the problem statement are stated clearly.</p>
-<p>Finalize by stating the answers clearly with appropriate significant figures and units. Confirm that you answered the specific questions asked by the problem statement.</p>
-<p>Verify that your results are reasonable and make sense. Three methods to validate a quantitative problem include:</p>
-
+<p>Phase 4. Finalize. The final step is to present your findings clearly and verify their accuracy.</p>
+<Itemize>
+<Item>Present Results: Clearly state the final values, ensuring they include the correct units and reflect the proper number of significant figures. Double-check that you have actually answered the specific question posed at the start.</Item>
+<Item> Quality Assurance: Confirm the validity of your answer using these three techniques:</Item>
 <Enumerate>
+<Item>Inverse Verification: Plug your result back into the original formulas to see if they balance.</Item>
 
-    <Item>Back-substitution: Substitute your solution back into the initial equations and make sure that it works.</Item>
-    <Item>Order-of-magnitude estimation: Develop a crude and simple to solve approximation of the answer and make sure the more exact solution is reasonably close to it. </Item>
-    <Item>Test of reasonableness: Applying a test of reasonableness means verifying that the solution makes sense (e.g., the power needed to operate a pacemaker should be less than that required to operate the microwave).</Item>
+<Item>Rough Approximation: Perform a "back-of-the-envelope" calculation to ensure your exact answer is in the right ballpark.</Item>
 
+<Item>The Logic Test: Ask if the number makes physical sense (e.g., a prosthetic limb shouldn't weigh more than the patient).</Item>
 </Enumerate>
+</Itemize>
 </SubSubSection>
 
 
