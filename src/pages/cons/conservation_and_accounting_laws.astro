@@ -64,16 +64,16 @@ import DisplayTable from "../../components/DisplayTable.astro"
         <u class="m-0">Callout Card</u>
 <p>Note that volume is not on this list. Compressible fluids (especially gases) may invalidate volume-based accounting equations. If volumes are given, use density to convert to mass values and then use a mass accounting equation.</p>
     </CalloutCard>
+<p>An accounting equation acts as a mathematical ledger. It tracks how an extensive property enters, leaves, is produced, or is used up within a specific boundary over a set timeframe.</p>
 <p>All the extensive properties listed above can be counted in accounting equations, but only a subset of these extensive properties is always conserved. Below is a complete list of extensive properties that are conserved in all situations (except nuclear reactions):</p>
 <Itemize>
 
-    <Item>Total mass</Item>
-    <Item>Mass of individual element</Item>
-    <Item>Moles of individual element</Item>
-    <Item>Total energy</Item>
-    <Item>Net charge</Item>
-    <Item>Linear momentum</Item>
-    <Item>Angular momentum</Item>
+    <Item>Total mass can be counted for individual species</Item>
+    <Item>Mass of individual element can be counted per element</Item>
+    <Item>Moles of individual element can be counted per element</Item>
+    <Item>Total energy can be counted according to thermal and mechanical energy</Item>
+    <Item>Net charge can be counted across a system</Item>
+    <Item>Linear momentum and Angular momentum can be counted across a system</Item>
 
 </Itemize>
 </SubSection>
@@ -177,7 +177,15 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <SubSection title="Accumulation" id="Accumulation">
 <p>The Accumulation term describes the net gain or loss of an extensive property contained within a system. When an Accumulation term is present, the amount of extensive property in the system has changed during the time period of interest. There are two terms that describe the characteristics of the Accumulation term of a system: steady-state or dynamic. Steady-state is a condition in which the values of all the variables in a system (e.g., temperature, pressure, volume, and flow rate) do not change with time, although minor fluctuations about constant mean values may occur. Let us illustrate this by using a photography analogy. If you take</p>
 <p>multiple, imaginary “snapshots” of a steady-state system over a time period, each snapshot should look the same as the previous one. The initial and final conditions and all the intermediate snapshots of the system are identical or nearly so. The snapshots show that no quantity of the extensive property has accumulated in the system.</p>
-<p>A common misconception is that systems with Input and Output terms cannot be in steady-state. This is false. Systems can have Input and Output terms, as well as Generation and Consumption terms, and still operate in steady-state. What makes a system steady-state is that it does not change over time, nor is there positive or negative accumulation of the extensive property within the system of interest.</p>
+<p>A system is in steady-state when its internal conditions (temperature, pressure, etc.) remain constant over time. </p>
+<Itemize>
+
+    <Item>The Misconception: Many believe steady-state means nothing is moving.</Item>
+    <Item>The Reality: A system can have massive amounts of input and output, but as long as the Accumulation is zero, it is in steady-state.</Item>
+
+</Itemize>
+
+
 </SubSection>
 <SubSection title="Example Conservation Problem" id="Example Conservation Problem">
 
