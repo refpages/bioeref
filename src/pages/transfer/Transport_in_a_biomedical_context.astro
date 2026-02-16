@@ -24,10 +24,24 @@ import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
 <Layout title="Transport in a Biomedical Context">
-
+<SubSection title="Levels of Transport" id="Levels of Transport">
  <p> Transport in biomedical context occurs at the sub-cellular, cellular, transcellular, tissue/organ, whole body, populations levels. 
 Some examples include thermoregulation, metabolism, bioheat transfer, blood as oxygen carrier, membrane transport, and liquid diffusion in tissue.    
 </p>
+</SubSection> 
+
+SubSection title="Thermoregulation" id="Thermoregulation">
+ <p> Thermoregulation is a homeostatic process that allows animals to maintain constant core temperature by balancing heat gain and loss in response to environmental changes. We can use heat transfer to understand how these processes occur.     
+</p>
+<CalloutContainer slot="cards">
+    <CalloutCard title="Fun Fact!">
+            <p> Elephants cannot sweat. Instead, their ears act as extended fins and to drive their thermoregulation process. Extended fins increase the rate of heat transfer due to the large surface area. Elephant’s blood flow also adapts as a response to external temperature. 
+            </p>
+    </CalloutCard>
+</CalloutContainer>
+</SubSection> 
+
+<SubSection title="Clinical and Biomedical Applications" id="Clinical and Biomedical Applications">
  <p> Understanding transport at these levels can help with the design and analysis of a wide range of clinical and bioengineering applications, such as:
 <Itemize>
 <Item> cryopreservation </Item>
@@ -39,5 +53,7 @@ Some examples include thermoregulation, metabolism, bioheat transfer, blood as o
 <Item> cryosurgery </Item>
 </Itemize>
 </p>
+</SubSection>
+
 
 </Layout>
