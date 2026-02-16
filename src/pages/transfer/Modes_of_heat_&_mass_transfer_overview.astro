@@ -31,7 +31,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection'>Convection</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Radiation'>Radiation</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Diffusion'>Diffusion</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Similarities between Heat & Mass Transfer'>Similarities between Heat & Mass Transfer</a></li>
 </ul>
 </div>
 
@@ -54,7 +53,7 @@ In the next few sections, primary mechanisms of their transport are introduced. 
 </SubSection> 
 
 
-<SubSubSection title="Conduction" id="Conduction">
+<SubSection title="Conduction" id="Conduction">
 <p> Conduction occurs through direct molecular motion within a material, without any bulk motion of the material itself. 
 When a temperature gradient exists within a solid, thermal energy is transferred from regions of high temperature to regions of lower temperature as molecules randomly collide. 
 When two solids at different temperatures are placed in contact, thermal energy is transferred from the hotter material to the cooler object 
@@ -63,9 +62,9 @@ until thermal equilibrium is reached (i.e., the objects are at the same temperat
 
 <!-- <Image src="/transfer/Conductive_Heat_Example.png">   <span class="fw-bold">Figure 1</span>: Microscopic view of conduction between two solids. </Image> -->
 
-</SubSubSection>
+</SubSection>
 
-<SubSubSection title="Convection" id="Convection">
+<SubSection title="Convection" id="Convection">
  <p> Convection occurs due to the bulk motion of a fluid. 
 A fluid is any substance that can flow, including both liquids and gases such as air, water, or blood. As it flows, it carries heat away from the surface. </p>
 
@@ -73,17 +72,17 @@ A fluid is any substance that can flow, including both liquids and gases such as
 <Image src="/transfer/Convective_Heat_Example.png">   <span class="fw-bold">Figure 2</span>: Convection from a surface to a moving fluid. The solid surface is hotter, so heat moves from the surface into the fluid. 
 (Image adapted from Colorado State University, Department of Chemical and Bioengineering.)  </Image>  </div> -->
 
-</SubSubSection>
+</SubSection>
 
 
-<SubSubSection title="Radiation" id="Radiation">
+<SubSection title="Radiation" id="Radiation">
  <p> Radiation occurs due to the emission and absorption of electromagnetic waves. It does not require direct contact or fluid motion.
 A familiar example of radiative heat transfer is feeling warmth from the sun. 
 In biological systems, radiation contributes to bidirectional heat exchange between the system and its surroundings, as the body can continuously emit and absorb infrared radiation. 
  </p> 
-</SubSubSection>
+</SubSection>
 
-<SubSubSection title="Diffusion" id="Diffusion">
+<SubSection title="Diffusion" id="Diffusion">
 <p> Diffusion is a mode of mass transfer driven by the random motion of molecules. 
 When a concentration gradient exists, molecules move randomly, but on average, there will be a net movement of species from regions of higher concentration to lower concentration. 
 Diffusion doesn’t require bulk fluid motion. 
@@ -91,50 +90,6 @@ Diffusion doesn’t require bulk fluid motion.
 <!-- <em>Example: Drop of colored dye spreading through still water over time. 
 Even though the water itself is not moving, the dye molecules will disperse until achieving a uniform concentration.  </em> -->
  </p> 
-
-</SubSubSection>
-
-<SubSection title="Similarities between Heat & Mass Transfer" id="Similarities between Heat & Mass Transfer">
-<p> Heat and mass transfer are mathematically and conceptually analogous transport processes governed by gradients, material properties, conservation laws, and shared modes of diffusion and convection. 
-</p>
-<p> Both transport processes describe the movement of an extensive quantity driven by gradients and are governed by conservation laws (e.g., conservation of energy and conservation of mass). 
-Gradients drive transport of heat and mass, generating flux. 
-This flux is resisted by the heat conductance of the medium, or by the molecular diffusivity of the chemical species. 
-For example, Ohm's Law governs the flow of electrons (ie. current), driven by voltage and hindered by resistance. 
-</p>
-
-  <DisplayTable id="dim-table">
-    <thead>
-      <tr>
-        <th>Type of Flow</th><th>Heat</th><th>Mass</th><th>Electrical</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>What is Moving</th><td>Thermal energy (heat)</td><td>Chemical species</td><td>Charge (ions)</td>
-      </tr>
-      <tr>
-        <th>Driving Force</th><td>Temperature gradient</td><td>Concentration gradient</td><td>Electrical potential</td>
-      </tr>
-      <tr>
-        <th>Resistive Element</th><td>Thermal conductivity (k)</td><td>Molecular diffusivity (D)</td><td>Electrical resistance (R)</td>
-      </tr>
-     <tr>
-        <th>Governed By</th><td>Fourier's Law</td><td>Fick's Law</td><td>Ohm's Law</td>
-      </tr>
-    </tbody>
-  </DisplayTable>
-
-<p class="text-center"><em><b> Table 1</b>: A comparison of components in various types of flow. </em></p> 
-
-
-
-<CalloutContainer slot="cards">
-    <CalloutCard title="Need a review?">
-            <p> <b>Conservation principles</b> have also been covered in <a href="/cons/conservation_of_mass">Conservation of Mass</a> and <a href="/cons/conservation_of_energy">Conservation of Energy</a>.
-            </p>
-               </CalloutCard>
-</CalloutContainer>
 
 </SubSection>
 
