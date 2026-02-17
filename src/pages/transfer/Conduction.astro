@@ -47,7 +47,15 @@ import DisplayTable from "../../components/DisplayTable.astro"
 Energy is transferred "down" the temperature gradient from high to low based on the <a href="/transfer/Thermodynamic_laws/#SecondLaw">Second Law of Thermodynamics</a>. 
 The net transfer of energy is due to random molecular motion. 
 </p>
-<p><b> Fourier’s Law</b> is used to describe conductive heat transfer:</p>
+
+<Image src="/transfer/Conduction.jpg">
+    <span class="fw-bold">Figure 1</span>: A temperature gradient drives heat conduction through a material. 
+The material has constant thermal conductivity <i>k</i>, and cross-sectional area <i>A</i> through which the heat flows from hot to cold along a thickness <i>d</i> 
+(<a href="https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/01%3A_Temperature_and_Heat/1.07%3A_Mechanisms_of_Heat_Transfer">
+image source</a>).
+</Image>
+
+<p><b> Fourier’s Law</b> is used to describe conductive heat transfer:
 <DisplayEquation equation="q^{''}_x = \\frac{q_x}{A} = -k \\frac{dT}{dx}" title="" background="True"/>
 
 <p> where </p>
@@ -69,7 +77,7 @@ We can consider three examples of steady state heat conduction. </p>
 
 
 <Image src="/transfer/heat_profiles.png">
-    <span class="fw-bold">Temperature Profiles</span>: The temperature profile through the object varies based on its geometry and internal heat generation.
+    <span class="fw-bold">Figure 2</span>: The temperature profile through the object varies based on its geometry and internal heat generation.
 </Image>
 
 <p> A slab has a linear temperature profile at steady-state. If the slab has a constant internal heat generation, it yields a parabolic temperature profile instead. 
