@@ -40,7 +40,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p> The governing heat equation is derived from an energy balance applied to a differential control volume and Fourier's Law. It includes all possible mechanisms that can contribute to heat
 transfer in a system, and encapsulates the combined effects of energy storage, conduction, convection, and internal heat generation, and allows the prediction of the temperature profile within the system. </p> 
 
-<p> The governing heat equation can be written in Cartesian or radial coordinates. While heat transfer can occur in three dimensions, it is simplified here to be solved with heat flowing only in one direction (x,r). </p> 
+<p> The governing heat equation can be written in Cartesian or radial coordinates. While heat transfer can occur in three dimensions, it is simplified here to be solved with heat flowing only in one direction (<i>x,r</i>). </p> 
 
 <b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" 
 title="Governing Heat Equation (Cartesian)" background="True"/></b>
@@ -50,11 +50,10 @@ title="Governing Heat Equation (Cartesian)" background="True"/></b>
 In general terms, the governing equation for any coordinate system (without flow) can be written as:
 <DisplayEquation equation="\\frac{k}{\\rho c_p} \\nabla^2 T + \\frac{Q}{\\rho c_p} = \\frac{\\partial T}{\\partial t}" title="" background="True" id="General Form"/>
 
-<p> In practice, many problems involve simplifying assumptions (e.g., steady state, no fluid flow, or no internal heat generation), which allow certain terms to be removed. 
-The meaning of each term and the conditions under which it should be retained or dropped are summarized in Table 1. </p>
+<p> In practice, many problems involve simplifying assumptions (e.g., system steady state, no bulk flow in the system, or no internal heat generation), which allow certain terms to be removed. 
+The meaning of each term and the conditions under which it should be retained or dropped are summarized below. </p>
 
  <p class="text-center"><em>Governing Equation Simplifications</em></p>
-  
   <DisplayTable id="dim-table">
     <thead>
       <tr>
@@ -87,7 +86,7 @@ The meaning of each term and the conditions under which it should be retained or
 <SubSection title="Boundary and Initial Conditions" id="Boundary-and-Initial-Conditions">
  <p> To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (which describe heat 
 transfer at particular surfaces and interfaces) as well as initial conditions (for unsteady state or time-dependent problems). </p> 
-<p> Heat transfer contains three general boundary conditions: surface temperature specified, surface heat flux is specified, and convection of a fluid at the surface.
+<p> Heat transfer contains three general boundary conditions.
 </p>
 </SubSection>
 
@@ -99,20 +98,18 @@ transfer at particular surfaces and interfaces) as well as initial conditions (f
 </SubSubsection>
 
 <SubSubSection title="Surface Heat flux Specified" id="Surface-heat-flux-is-specified">
-<p> Heat flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: 
+<p> Heat flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: </p>
 <Itemize>
 <Item> <b>Insulated Condition:</b> the surface is highly insulated so the flux at the surface can be estimated as zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial T}{\\partial x}(x=L)=0"/>. </Item>
 <Item> <b>Symmetric Condition:</b> the system has symmetric geometry making the flux at the centerline equal to zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial T}{\\partial x}(x=0)=0"/>. </Item>
 </Itemize>
-</p>
 </SubSubSection>
 
 <SubSubSection title="Convection at the Surface" id="Convection-at-the-surface">
-<p> When there is liquid at the surface, the flow of heat due to conduction can be set equal to the flow due to convection. There is one special case for this boundary condition: 
+<p> When there is liquid at the surface, the flow of heat due to conduction can be set equal to the flow due to convection. There is one special case for this boundary condition: </p>
 <Itemize>
 <Item> When <i>h</i> is large, the system looks like the boundary condition where the surface temperature can be specified as 0. </Item>
 </Itemize>
-</p>
 </SubSubSection>
 
 </Layout>
