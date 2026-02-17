@@ -26,9 +26,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Convection">
 <SubSection title="Convection" id="Convection">
 
-<DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface:" background="True"/>
+<p>Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface, and is based on <b>Newton's Law of Cooling</b>:</p>
+<DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="" background="True"/>
 
-<p> where 
+where 
 <Itemize>
 <Item><InlineEquation equation="q_{1-2} [W]" /> = rate of heat flow from 1 (hotter) to 2 (colder) </Item>
 <Item><InlineEquation equation="A [m^2]" /> = surface area normal to the direction of heat flow</Item>
@@ -37,6 +38,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Item><InlineEquation equation="h [\\frac{W}{m^2 K}]" /> = convective heat transfer coefficient (which always includes the effect of conduction in the fluid)</Item>
 </Itemize>
 
-<p>Note that the convective heat transfer coefficient is not a material property. </p>
+<p> The convective heat transfer coefficient <i>h</i> is a proportionality constant between the temperature difference and heat flux.
+Note that it is not a material property, but depends on geometry, flow conditions, and fluid properties, which can all be measured experimentally. </p>
+
+<p> Convection can be <b>free</b> (driven by differences in density) or <b>forced</b> (driven by external forces such as pumps and fans). </p>
 
 </Layout>
