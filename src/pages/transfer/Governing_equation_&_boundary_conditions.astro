@@ -28,9 +28,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#General-Heat-Transfer-Governing-Equation'>General Heat Transfer Governing Equation</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Boundary-and-Initial-Conditions'>Boundary and Initial Conditions</a><ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type-1-Surface-temperature-specified'>Type 1 Surface temperature specified</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type-2-Surface-heat-flux-is-specified'>Type 2 Surface heat flux is specified</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type-3-Convection-at-the-surface'>Type 3 Convection at the surface</a></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-temperature-specified'>Surface Temperature Specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-heat-flux-is-specified'>Surface Heat Flux Specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection-at-the-surface'>Convection at the Surface</a></ul>
 </li>
 </ul>
 </div>
@@ -63,7 +63,7 @@ The meaning of each term and the conditions under which it should be retained or
     </thead>
     <tbody>
       <tr>
-        <th><InlineEquation equation="\\frac{\\partial T}{\\partial t}"/></th><td>Stored energy</td><td>Unsteady state, T changing with time (transient)</td><td>Steady state (constant T)</td>
+        <th><InlineEquation equation="\\frac{\\partial T}{\\partial t}"/></th><td>Stored energy</td><td>Unsteady state, <i>T</i> changing with time (transient)</td><td>Steady state (constant <i>T</i>)</td>
       </tr>
       <tr>
         <th><InlineEquation equation="u\\frac{\\partial T}{\\partial x}"/></th><td>Bulk flow (Convection)</td><td>Fluid flow</td><td>No flow (solid)</td>
@@ -81,22 +81,6 @@ The meaning of each term and the conditions under which it should be retained or
 
 
 
-<!--
-<Image src="/transfer/Governing_Equation_Tables.png">
-  <span class="fw-bold">Figure 1</span>: Table summarizes the physical meaning of each term and 
-when it should be retained or removed based on problem conditions.
-</Image>
-
-<p> Figure 2 displays all variations of the governing equation that might be obtained after simplifying it using system conditions. </p>
-
-<Image src="/transfer/Governing_Equation_Variations.png">
-  <span class="fw-bold">Figure 2</span>: Table summarizes the possible variations of the governing equations depending on which terms are retained or
-removed based on problem conditions. Table adapted from Datta (2017): Chapter 3 (Table 3.2).
-</Image>
- -->
-
-
-
 
 </SubSection>  
 
@@ -107,11 +91,11 @@ transfer at particular surfaces and interfaces) as well as initial conditions (f
 </p>
 </SubSection>
 
-<SubSubSection title="Type 1 Surface temperature specified" id="Type-1-Surface-temperature-specified">
+<SubSubSection title="Surface Temperature Specified" id="Surface-temperature-specified">
 <p> Temperature at the surface can be specified as a constant or a function of time </p>
 </SubSubsection>
 
-<SubSubSection title="Type 2 Surface heat flux is specified" id="Type-2-Surface-heat-flux-is-specified">
+<SubSubSection title="Surface Heat flux Specified" id="Surface-heat-flux-is-specified">
 <p> Heat flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: 
 <Itemize>
 <Item> Insulated Condition: the surface is highly insulated so the flux at the surface can be estimated as 0. </Item>
@@ -120,10 +104,10 @@ transfer at particular surfaces and interfaces) as well as initial conditions (f
 </p>
 </SubSubSection>
 
-<SubSubSection title="Type 3 Convection at the surface" id="Type-3-Convection-at-the-surface">
+<SubSubSection title="Convection at the Surface" id="Convection-at-the-surface">
 <p> When there is liquid at the surface, the flow of heat due to conduction can be set equal to the flow due to convection. There is one special case for this boundary condition: 
 <Itemize>
-<Item> When h is large, the system looks like BC Type 1 where the surface temperature can be estimated as 0. </Item>
+<Item> When <i>h</i> is large, the system looks like BC Type 1 where the surface temperature can be estimated as 0. </Item>
 </Itemize>
 </p>
 </SubSubSection>
