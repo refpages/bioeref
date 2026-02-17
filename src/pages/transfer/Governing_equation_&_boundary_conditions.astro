@@ -47,7 +47,7 @@ title="Governing Heat Equation (Cartesian)" background="True"/></b>
 <b><DisplayEquation equation="\\rho c_p \\frac{\\partial T}{\\partial t} = k\\frac{1}{r} \\frac{\\partial}{\\partial r} (r\\frac{\\partial T}{\\partial r}) + Q" title="Governing Heat Equation (Cylindrical)" background="True"/></b>
 <b><DisplayEquation equation="\\rho c_p \\frac{\\partial T}{\\partial t} = k\\frac{1}{r^2} \\frac{\\partial}{\\partial r} (r^2\\frac{\\partial T}{\\partial r}) + Q" title="Governing Heat Equation (Spherical)" background="True"/></b>
 
-In general terms, the governing equation for any coordinate system (without flow) can be written as:
+<div> In general terms, the <b>Governing Equation</b> for any coordinate system (without flow) can be written as: </div>
 <DisplayEquation equation="\\frac{k}{\\rho c_p} \\nabla^2 T + \\frac{Q}{\\rho c_p} = \\frac{\\partial T}{\\partial t}" title="" background="True" id="General Form"/>
 
 <p> In practice, many problems involve simplifying assumptions (e.g., <a href="/transfer/Conduction/#SteadyState">system at steady state</a>, 
@@ -72,19 +72,16 @@ The meaning of each term and the conditions under which it should be retained or
         <th><InlineEquation equation="\\frac{k}{\\rho c_p} \\frac{\\partial ^2 T}{\\partial x^2}"/></th><td>Conduction</td><td>Almost always</td><td>No conduction (no temperature gradient)</td>
       </tr>
       <tr>
-        <th><InlineEquation equation="\\frac{Q}{\\rho c_p}"/></th><td>Generation</td><td>Conversion of energy in the system</td><td>No generation/source</td>
+        <th><InlineEquation equation="\\frac{Q}{\\rho c_p}"/></th><td>Generation</td><td>Conversion of energy in the system</td><td>No generation/heat source</td>
       </tr>
     </tbody>
   </DisplayTable>
-
-
 </SubSection>  
 
-<SubSection title="Boundary and Initial Conditions" id="Boundary-and-Initial-Conditions">
+<SubSection title="Boundary and Initial Conditions" id="Boundary-and-Initial-Conditions"> 
  <p> To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (which describe heat 
 transfer at particular surfaces and interfaces) as well as initial conditions (for unsteady state or time-dependent problems). </p> 
-<p> Heat transfer contains three general boundary conditions.
-</p>
+<p> Heat transfer contains three general boundary conditions. </p>
 </SubSection>
 
 <SubSubSection title="Surface Temperature Specified" id="Surface-temperature-specified">
@@ -92,15 +89,7 @@ transfer at particular surfaces and interfaces) as well as initial conditions (f
 <Itemize>
 <Item> <i>For example:</i> <InlineEquation equation="T(x=L)=100 K">. </Item>
 </Itemize>
-</SubSubsection>
-
-<SubSubSection title="Surface Heat flux Specified" id="Surface-heat-flux-is-specified">
-<p> Temperature at the surface can be specified as a constant or a function of time. </p>
-<Itemize>
-<Item> <i>For example:</i> <InlineEquation equation="T(x=L)=100 K">. </Item>
-<Item> <i>For example:</i> <InlineEquation equation="T(x=L)=100 K">. </Item>
-</Itemize>
-</SubSubsection>
+</SubSubSubsection>
 
 <SubSubSection title="Surface Heat flux Specified" id="Surface-heat-flux-is-specified">
 <p> Heat flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: </p>
