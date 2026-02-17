@@ -60,13 +60,16 @@ The meaning of each term and the conditions under which it should be retained or
     </thead>
     <tbody>
       <tr>
-        <th>insert equation</th><td>Stored Energy</td><td>Unsteady state, T changing with time (transient)</td><td>Steady state (constant T)</td>
+        <th><InlineEquation equation="\\frac{\\partial T}{\\partial t}"/></th><td>Stored energy</td><td>Unsteady state, T changing with time (transient)</td><td>Steady state (constant T)</td>
       </tr>
       <tr>
-        <th>insert equation</th><td>Bulk Flow (Convection)</td><td>Fluid Flow</td><td>No flow (solid)</td>
+        <th><InlineEquation equation="u\\frac{\\partial T}{\\partial x}"/></th><td>Bulk flow (Convection)</td><td>Fluid flow</td><td>No flow (solid)</td>
       </tr>
       <tr>
-        <th>insert equation</th><td>Conduction</td><td>Almost always</td><td>No conduction (no temperature gradient)</td>
+        <th><InlineEquation equation="\\frac{k}{\\rho c_p} \\frac{\\partial ^2 T}{\\partial x^2}"/></th><td>Conduction</td><td>Almost always</td><td>No conduction (no temperature gradient)</td>
+      </tr>
+      <tr>
+        <th><InlineEquation equation="\\frac{Q}{\\rho c_p}"/></th><td>Generation</td><td>Conversion of energy in the system</td><td>No generation/source</td>
       </tr>
     </tbody>
   </DisplayTable>
