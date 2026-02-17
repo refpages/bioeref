@@ -27,7 +27,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#General Heat Transfer Governing Equation'>General Heat Transfer Governing Equation</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Boundary and Initial Conditions'>Boundary and Initial Conditions</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Boundary and Initial Conditions'>Boundary and Initial Conditions</a></li><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type 1: Surface temperature specified'>Type 1: Surface temperature specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type 2: Surface heat flux is specified'>Type 2: Surface heat flux is specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type 3: Convection at the surface'>Type 3: Convection at the surface</a></ul>
+
 </ul>
 </div>
 
@@ -100,4 +104,28 @@ removed based on problem conditions. Table adapted from Datta (2017): Chapter 3 
 <SubSection title="Boundary and Initial Conditions" id="Boundary and Initial Conditions">
  <p> To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (which describe heat 
 transfer at particular surfaces and interfaces) as well as initial conditions (for unsteady state or time-dependent problems). </p> 
+<p> Heat transfer contains three general boundary conditions: surface temperature specified, surface heat flux is specified, and convection of a fluid at the surface.
+</p>
+<Subsubsection title="Type 1: Surface temperature specified" id="Type 1: Surface temperature specified">
+<p> Temperature at the surface can be specified as a constant or a function of time </p>
+</Subsubsection>
+
+<Subsubsection title="Type 2: Surface heat flux is specified" id="Type 2: Surface heat flux is specified">
+<p> Heat flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: 
+<Itemize>
+<Item> Insulated Condition: the surface is highly insulated so the flux at the surface can be estimated as 0. </Item>
+<Item> Symmetric Condition: the system has symmetric geometry making the flux at the centerline equal to 0. </Item>
+</Itemize>
+</p>
+</Subsubsection>
+
+<Subsubsection title="Type 3: Convection at the surface" id="Type 3: Convection at the surface">
+<p> When there is liquid at the surface, the flow of heat due to conduction can be set equal to the flow due to convection. There is one special case for this boundary condition: 
+<Itemize>
+<Item> When h is large, the system looks like BC Type 1 where the surface temperature can be estimated as 0. </Item>
+</Itemize>
+</p>
+</Subsubsection>
+
 </SubSection>
+
