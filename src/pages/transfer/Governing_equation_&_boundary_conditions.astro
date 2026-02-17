@@ -27,8 +27,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#General Heat Transfer Governing Equation'>General Heat Transfer Governing Equation</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Boundary and Initial Conditions'>Boundary and Initial Conditions</a>
-
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Boundary and Initial Conditions'>Boundary and Initial Conditions</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type 1: Surface temperature specified'>Type 1: Surface temperature specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type 2: Surface heat flux is specified'>Type 2: Surface heat flux is specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Type 3: Convection at the surface'>Type 3: Convection at the surface</a></ul>
 </ul>
 </div>
 
@@ -103,6 +105,8 @@ removed based on problem conditions. Table adapted from Datta (2017): Chapter 3 
 transfer at particular surfaces and interfaces) as well as initial conditions (for unsteady state or time-dependent problems). </p> 
 <p> Heat transfer contains three general boundary conditions: surface temperature specified, surface heat flux is specified, and convection of a fluid at the surface.
 </p>
+</SubSection>
+
 <Subsubsection title="Type 1: Surface temperature specified" id="Type 1: Surface temperature specified">
 <p> Temperature at the surface can be specified as a constant or a function of time </p>
 </Subsubsection>
@@ -124,5 +128,5 @@ transfer at particular surfaces and interfaces) as well as initial conditions (f
 </p>
 </Subsubsection>
 
-</SubSection>
+</Layout>
 
