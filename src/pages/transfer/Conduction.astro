@@ -44,37 +44,34 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 
 <p> Conductive (or diffusive) heat transfer is the transport of thermal energy through a medium due to temperature gradients within the material. 
-Energy is transferred down the temperature gradient from high to low. The net transfer of energy is due to random molecular motion. 
+Energy is transferred "down" the temperature gradient from high to low based on the <a href="/transfer/Thermodynamic_laws/">Second Law of Thermodynamics</a>. 
+The net transfer of energy is due to random molecular motion. 
 </p>
 
 <DisplayEquation equation="q^{''}_x = \\frac{q_x}{A} = -k \\frac{dT}{dx}" title="Fourier’s Law is used to describe conductive heat transfer:" background="True"/>
 
 <p> where </p>
 <Itemize>
-<Item><InlineEquation equation="q^{''}_x [\\frac{W}{m^2}]" /> = flux, or rate of heat flow per unit area</Item>
-<Item><InlineEquation equation="q_x [W]" /> = rate of heat flow in the x direction </Item>
+<Item><InlineEquation equation="q^{''}_x [\\frac{W}{m^2}]" /> = flux (rate of heat flow per unit area)</Item>
+<Item><InlineEquation equation="q_x [W]" /> = rate of heat flow in the <i>x</i>-direction </Item>
 <Item><InlineEquation equation="A [m^2]" /> = surface area perpendicular to the direction of heat flow</Item>
-<Item><InlineEquation equation="T [K]" /> = temperature of the medium at x</Item>
+<Item><InlineEquation equation="T [K]" /> = temperature of the medium at <i>x</i></Item>
 <Item><InlineEquation equation="k [\\frac{W}{mK}]" /> = thermal conductivity of the medium</Item>
 </Itemize>
 
 </SubSection> 
 
 <SubSection title="Steady State" id="Steady State">
-<p> In steady state heat conduction, <i>temperature does not change with time</i>. However, temperature can change with position, and this gradient drives the transfer of heat. 
-There are three main examples of steady state heat conduction: </p>
-<Itemize>
+<p> In steady state heat conduction, <b>temperature does not change with time</b>. However, temperature can change with position, and this gradient drives the transfer of heat. 
+We can consider three examples of steady state heat conduction. </p>
 
-<Item>In a slab</Item>
-<Item>In a cylinder</Item>
-<Item>In a slab, with heat generation (Q)</Item>
-</Itemize>
 
 <Image src="/transfer/heat_profiles.png">
-    <span class="fw-bold">Heat Profiles</span>: A diagram of the three different heat profiles, based on geometry and heat generation.  
+    <span class="fw-bold">Temperature Profiles</span>: The temperature profile through the object varies based on its geometry and internal heat generation.
 </Image>
 
-<p> In steady-state, a regular slab has a linear heat profile. If the slab has a constant internal heat generation, it yields a parabolic profile instead. Cylindrical and spherical geometries have nonlinear heat profiles, because it has to adjust with the varying cross-sectional area to keep the total heat flow as constant. </p>
+<p> A slab has a linear temperature profile at steady-state. If the slab has a constant internal heat generation, it yields a parabolic temperature profile instead. 
+Cylindrical and spherical geometries have nonlinear temperature profiles, as the cross-sectional area varies with position through the object. </p>
 
 <DisplayTable id="dim-table">
 	<thead>
@@ -108,12 +105,12 @@ There are three main examples of steady state heat conduction: </p>
 	</tbody>
   </DisplayTable>
 
-<p class="text-center"><em><b> Table 1</b>: Steady-state temperature, flow, and thermal resistance in slab, cylindrical, and spherical geometries. </em></p> 
+<p class="text-center"><em><b> Table 1</b>: Steady-state temperature, flow, and thermal resistance in slab (Cartesian), cylindrical, and spherical geometries. </em></p> 
 
 </SubSection>
 
 <SubSection title="Unsteady State" id="Unsteady State">
-<p> In unsteady state (or transient) heat conduction, <i>temperature changes over time</i>. There are three main examples of unsteady state heat conduction: </p>
+<p> In unsteady state (or transient) heat conduction, <b>temperature changes over time</b>. There are three main examples of unsteady state heat conduction: </p>
 <Itemize>
 <Item>With no spatial variation</Item>
 <Item>With semi-infinite geometry</Item>
