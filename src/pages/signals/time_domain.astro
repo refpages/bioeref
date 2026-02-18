@@ -54,38 +54,64 @@ import DisplayTable from "../../components/DisplayTable.astro"
     </thead>
     <tbody>
         <tr>
-            <td>Sinusoid: Usually represents sounds. Defined mathematically with sine and cosince functions.</td><td>IMAGE</td>
+            <td><b><u>Sinusoid</b></u>: Usually represents sounds. Defined mathematically with sine and cosince functions.</td><td>IMAGE</td>
         </tr>
         <tr>
-            <td>Step: representes different, digital states which the signal value jumps to instantaneously. A unit step jumps frpm 0 to 1.</td><td>IMAGE</td>
+            <td><b><u>Step</b></u>: representes different, digital states which the signal value jumps to instantaneously. A unit step jumps frpm 0 to 1.</td><td>IMAGE</td>
         </tr>
         <tr>
-            <td>Ramp/Triangle: A sweep function that either increases or decreases at a constant rate. Forms a ramp when changing values and triangle when returning to the original.</td><td>IMAGE</td>
+            <td><b><u>Ramp/Triangle</b></u>: A sweep function that either increases or decreases at a constant rate. Forms a ramp when changing values and triangle when returning to the original.</td><td>IMAGE</td>
         </tr>
         <tr>
-            <td>Rectangle: A temporary state change that returns to the original value. Can be represented as two, opposite Step functions offset in time.</td><td>IMAGE</td>
+            <td><b><u>Rectangle</b></u>: A temporary state change that returns to the original value. Can be represented as two, opposite Step functions offset in time.</td><td>IMAGE</td>
         </tr>
         <tr>
-            <td>Sinc: A decaying function that that can be used to represent an attenuating signal, based on a sinusoidal signal.</td><td>IMAGE</td>
+            <td><b><u>Sinc</b></u>: A decaying function that that can be used to represent an attenuating signal, based on a sinusoidal signal.</td><td>IMAGE</td>
         </tr>
         <tr>
-            <td>Impulse: An infinitely tall and infinitely thin function. Useful for system response testing.</td><td>IMAGE</td>
+            <td><b><u>Impulse</b></u>: An infinitely tall and infinitely thin function. Useful for system response testing.</td><td>IMAGE</td>
         </tr>
         <tr>
-            <td>Exponential: Can be used to represent non-linear functions, and things that have a limit or asymptote.</td><td>IMAGE</td>
+            <td><b><u>Exponential</b></u>: Can be used to represent non-linear functions, and things that have a limit or asymptote.</td><td>IMAGE</td>
         </tr>
     </tbody>
 </DisplayTable>
 
 <p>These definitions describe the shape of various signals. Step and Impulse signals are especially useful as inputs in system design. Since these signals are expected to produce a specific, known response, the response that they produce can be used to characterize the system they were passed through.</p>
 <p>Likewise, sinusoids are incredibly common outputs from systems. They are present anytime oscillations occur in a signal from noise, or repeated signals such as the EKG above. In addition, they are used in Fourier analysis by approximating a complicated waveform with stacked sine waves.</p>
-<img id="char" src="/signals/SignalChar.png"/>
-    <style type="text/css">
-        #char {
-            display: block;
-            margin-left: auto;
-            margin-right: auto }
-    </style>
+
+<DisplayTable id="char-table">
+    <thead>
+        <tr>
+            <th>Characteristic</th><th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><u><b>Continuous vs Discrete</b></u></td><td>If the x axis (time) is smooth, or granular with occasionally sampled data.<td>
+        </tr>
+        <tr>
+            <td><u><b>Analog vs Digital</b></u></td><td>If the y axis is smooth, or granular with specific allowed values.</td>
+        </tr>
+        <tr>
+            <td><u><b>Deterministic vs Stochastic</b></u></td><td>If the signal is definable with an equation, or completely random</td>
+        </tr>
+        <tr>
+            <td><u><b>Periodic vs Aperiodic</b></u></td><td>If the signal has a period T which is repeated, or if it is transient and non-repeating.
+        </tr>
+        <tr>
+            <td><u><b>Time Invariant vs Nonstationary</b></u></td><td>If a delay or offset affects the signal then it is nonstationary. If not, it is time invariant.</td>
+        </tr>
+        <tr>
+            <td><u><b>Causal vs Noncausal</b></u></td><td>Where the signal of interest starts. If the signal starts before t = 0 then it is noncausal.</td>
+        </tr>
+        <tr>
+            <td><u><b>Linear vs Non-linear</b></u></td><td>Whether changes in system or input parameters affects the signal following homogeneity rules or not.</td>
+        </tr>
+    </tbody>
+</DisplayTable>
+
+
 <p>Once we know the waveform and characteristics of a particular signal, we can start to predict its behaviour and apply transformations to better understand the signal and its components.</p>
 </SubSubSection>
 </Layout>
