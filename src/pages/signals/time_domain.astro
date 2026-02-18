@@ -54,7 +54,14 @@ import DisplayTable from "../../components/DisplayTable.astro"
     </thead>
     <tbody>
         <tr>
-            <td><b><u>Sinusoid</b></u>: Usually represents sounds. Defined mathematically with sine and cosince functions.</td><td>IMAGE</td>
+            <td><b><u>Sinusoid</b></u>: Usually represents sounds. Defined mathematically with sine and cosince functions.</td>
+            <td><img id="sine" src="/signals/sinusoid.png"/>
+                <style type="text/css">
+                #sine {
+                    display: block; 
+                    margin-left: auto;
+                    margin-right: auto }
+                </style></td>
         </tr>
         <tr>
             <td><b><u>Step</b></u>: representes different, digital states which the signal value jumps to instantaneously. A unit step jumps frpm 0 to 1.</td><td>IMAGE</td>
