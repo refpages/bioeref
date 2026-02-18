@@ -21,15 +21,17 @@ import Warning from "../../components/Warning.astro"
 import Example from "../../components/Example.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
-<Layout title="Time Domain">
+<Layout title="Fourier Transform">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Introduction'>Introduction</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Signal Characteristics'>Signal Characteristics</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Fourier Transform'>Fourier Transform</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Frequency Domain'>Frequency Domain</a></li>
 </ul>
 </div>
 
 <Section title="Time Domain" id="Time Domain"></Section>
+
 <SubSubSection title="Introduction" id="Introduction">
 <p>The most intuitive way for signals to be represented is in the time domain. Any particular signal is made up of a measured value on the y axis, and the time at which that measurement was obtained on the x axis. These signals are directly related to physical signals, for example, the electrical impulses that control heart rate in an EKG is measured in the time domain and provides useful physiological information about the patient it is sourced from.</p>
     <img id="ekg" src="/signals/EKGPlaceholder.png"/>
