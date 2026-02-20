@@ -21,18 +21,19 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Conservation of Energy">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Overview - types of Energy'>Overview - types of Energy</a><ul class='list-group list-group-flush py-0'>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Overview: Types of Energy'>Overview: Types of Energy</a><ul class='list-group list-group-flush py-0'>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Potential Energy'>Potential Energy</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Kinetic Energy'>Kinetic Energy</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Heat and Work'>Heat and Work</a></li></ul>
 </li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation statements'>Conservation statements</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation Statements'>Conservation Statements</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Enthalpy'>Enthalpy</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Systems with chemical reactions'>Systems with chemical reactions</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dynamic systems'>Dynamic systems</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Systems with Chemical Reactions'>Systems with Chemical Reactions</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Systems with Combustion Reactions'>Systems with Combustion Reactions</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dynamic Systems'>Dynamic Systems</a></li>
 </ul>
 </div>
-<SubSection title="Overview - types of Energy" id="Overview - types of Energy">
+<SubSection title="Overview: Types of Energy" id="Overview: Types of Energy">
 <CalloutContainer slot="cards">
 <CalloutCard title="Learn More">
 <p>
@@ -92,7 +93,7 @@ This content has been adapted from multiple sources including:
 
 <p>Work can also be added to a system by mixing, stirring, etc. This nonflow work is referred to as shaft work. <InlineEquation equation="\\dot{W}_{shaft} > 0" /> becasue it is added to the system.</p>
 </SubSubSection>
-<SubSection title="Conservation statements" id="Conservation statements">
+<SubSection title="Conservation Statements" id="Conservation Statements">
 <p>The total energy of a system is always conserved. The conservation equation for total energy is a mathematical description of the movement and accumulation of total energy in a system of interest. The law of the conservation of total energy states that total energy can be neither created nor destroyed, but only converted from one form into an equivalent quantity of another form of energy.</p>
 <p>The generic conservation equation is written to account for the movement of total energy into and out of the system by bulk mass transfer and for the transfer of heat and work across the system boundary. No Generation and Consumption terms are present, since total energy is conserved. The differential form of the conservation of total energy is:</p>
 <Image src="/cons/mass&heat&work.png">
@@ -112,7 +113,7 @@ This content has been adapted from multiple sources including:
 </Image>
 <p>Reference state(s) are arbitrarily chosen phase, temperature, and pressure which we know a specific enthalpy of. Specific enthalpy does not depend on path, so a series of hypothetical steps from one condition to the next that are convenient for calculation can be chosen.</p> 
 </SubSection>
-<SubSection title="Systems with chemical reactions" id="Systems with chemical reactions">
+<SubSection title="Systems with Chemical Reactions" id="Systems with Chemical Reactions">
 <p>During chemical reactions, rearranging the bonds between the atoms of reactants and products causes changes in the internal energy of a system. In reactions, energy is required to break the existing bonds of the reactants, and energy is released during bond formation to create the products. The difference between the final and initial energy states of the products and reactants is known as the heat of reaction.</p>
 <p>The heat of reaction or enthalpy of reaction <InlineEquation equation="\\Delta \\hat{H}_r" /> is the enthalpy change for a single process reacting at a specific constant temperature and pressure in which stoichiometric quantities of reactants react completely to form products. The standard heat of reaction <InlineEquation equation="\\Delta \\hat{H}^{\\circ}_r" /> is designated with a degree symbol and is the heat of reaction when both the reactants and products are at a specified reference temperature and pressure, usually 25°C and 1 atm. The heat of reaction is always given on a per-mole basis.</p>
 
@@ -124,7 +125,7 @@ This content has been adapted from multiple sources including:
     </CalloutCard>
 </SubSection>
 
-<SubSection title="Systems with combustion reactions" id="Systems with combustion reactions">
+<SubSection title="Systems with Combustion Reactions" id="Systems with Combustion Reactions">
 <p>Heat of Combustion refers to the enthalpy change required to combust 1 mol of an organic substance with oxygen. These are common in many biochemical reactions in the body.</p>
 <p>The heat of combustion, <InlineEquation equation="\\Delta \\hat{H}_c" />, is the enthalpy change for a combustion process. Similar to heat of reaction, the standard heat of combustion <InlineEquation equation="\\Delta \\hat{H}^{\\circ}_c" /> is designated with a degree symbol and is the heat of reaction when both the reactants and products are at a specified reference temperature and pressure, 25°C and 1 atm. The heat of combustion is always given on a per-mole basis.</p>
 
@@ -136,7 +137,7 @@ This content has been adapted from multiple sources including:
     </CalloutCard>
 </SubSection>
 
-<SubSection title="Dynamic systems" id="Dynamic systems">
+<SubSection title="Dynamic Systems" id="Dynamic Systems">
 <p>In the case of dynamic systems, the right hand side of the equation will not be zero; instead, it will 'accumulate' internal energy. These cases occur when the system is experiencing energy changes due to mass or temperature changes of the system.</p>
 <p>In these cases, the right side of the equation will be converted from change in total energy to internal energy as follows</p>
 
