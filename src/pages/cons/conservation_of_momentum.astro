@@ -119,7 +119,7 @@ An important result from above is that the pressure varies as a function of the 
 <p>Consider a system with no bulk mass transfer across the system boundary and no external forces. Such a system is isolated, and no momentum accumulates in it. Under these conditions, the integral formulation of the equation is commonly used. In these situations, the conservation of momentum equation is reduced to the following:</p>
 
 <DisplayEquationCustom id="rec-ecp" title="Solution procedure of perfectly elastic collisions." background="True">
-		<DisplayEquation equation="\\begin{aligned}                            m_1 \\vec{v}_{1, i} + m_2 \\vec{v}_{2, i} &amp;= m_1 \\vec{v}_{1, f} + m_2 \\vec{v}_{2, f} \\\\                            0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}                            \\end{aligned}" />
+		<DisplayEquation equation="\\begin{aligned}             m_1 \\vec{v}_{1, i} + m_2 \\vec{v}_{2, i} &amp;= m_1 \\vec{v}_{1, f} + m_2 \\vec{v}_{2, f} \\\\             0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}                            \\end{aligned}" />
 		<p>
 			where subscripts \(i, f\) denote initial and final velocities, respectively.
 		</p>
@@ -134,10 +134,6 @@ An important result from above is that the pressure varies as a function of the 
 		</thead>
 		<tbody>
 			<tr>
-				<td>elastic collisions</td>
-				<td>collisions where there is no loss in kinetic energy</td> 
-			</tr>
-			<tr>
 				<td>inelastic collisions</td>
 				<td>collisions where there are losses in kinetic energy, typically due to internal friction</td>
 			</tr>
@@ -146,6 +142,62 @@ An important result from above is that the pressure varies as a function of the 
 
 <p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. 
 The coefficient is defined as the ratio of <InlineEquation equation="v_{separation}" />, the difference in velocities after collision, and <InlineEquation equation="v_{approach}" />, the difference in velocities before collision of two objects, A and B.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<DisplayEquationCustom id="rec-ecp" title="Solution procedure of perfectly elastic collisions." background="True">
+		<DisplayEquation equation="\\begin{aligned}             m_1 \\vec{v}_{1, i} + m_2 \\vec{v}_{2, i} &amp;= m_1 \\vec{v}_{1, f} + m_2 \\vec{v}_{2, f} \\\\             0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}                            \\end{aligned}" />
+		<p>
+			where subscripts \(i, f\) denote initial and final velocities, respectively.
+		</p>
+	</DisplayEquationCustom>
+
+<DisplayTable id="rec-tc">
+		<thead>
+			<tr>
+				<th noborder>type of collision</th>
+                <th>definition</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>inelastic collisions</td>
+				<td>collisions where there are losses in kinetic energy, typically due to internal friction</td>
+			</tr>
+		</tbody>
+	</DisplayTable>
+
+<p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <DisplayEquationCustom id="rec-ecp" title="Coefficient of Restitution." background="True">
 <DisplayEquation equation="e = \\frac{v_{separation}}{v_{approach}}= \\frac{v_{B,f}-v_{A,f}}{v_{A,0}-v_{B,0}}" title="" >
 </DisplayEquationCustom>
@@ -178,7 +230,8 @@ The coefficient is defined as the ratio of <InlineEquation equation="v_{separati
 
 	</DisplayTable>
 
-<p> TEST <p>In an unsteady-state system, at least one variable describing the system (e.g., pressure, flow rate) changes with time. Unsteady-state systems gain or lose momentum with bulk material transfer or when external forces act on them; thus, the Accumulation term is always nonzero. For systems with no bulk transfer of material across the system boundary, the differential form of the conservation of linear momentum equation reduces to TEST</p>
+<p> TEST In an unsteady-state system, at least one variable describing the system (e.g., pressure, flow rate) changes with time. </p>
+
 </SubSection>
 
 
