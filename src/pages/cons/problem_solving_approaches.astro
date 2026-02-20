@@ -26,7 +26,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Problem Solving Approaches">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Problem solving process'>Problem solving process</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Problem Solving Process'>Problem Solving Process</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Assemble'>Assemble</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Analyze'>Analyze</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Calculate'>Calculate</a></li>
@@ -34,31 +34,48 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </li>
 </ul>
 </div>
-<SubSection title="Problem solving process" id="Problem solving process">
+<SubSection title="Problem Solving Process" id="Problem Solving Process">
+
+<!-- <CalloutContainer slot="cards">
+<CalloutCard title="Learn More">
+<p> Need more explanation? See more content in these references </p>
+<p> This content has been adapted from multiple sources including:
+<Itemize>
+<Item> <a href="https://www.pearson.com/en-us/subject-catalog/p/bioengineering-fundamentals/P200000003208/9780137517091?srsltid=AfmBOopm88RAvXlWCVcIqmFrrWOaM0_NiEvx13WfIJokJzMiLOSpaIgW"> A. Saterbak, K. San, and L. McIntire, (2018). Bioengineering Fundamentals, 2nd Edition.</a>
+</Item>
+<Item> <a href="https://www.wiley.com/en-us/Fundamentals+of+Heat+and+Mass+Transfer%2C+8th+Edition-p-9781119353881">Heat, F. O., & Incropera, M. T. F. P. (2001). Fundamentals Of Heat And Mass Transfer. </a>
+</Item>
+<Item> <a href="https://www-sciencedirect.com/book/monograph/9780128009444/biofluid-mechanics">Rubenstein, David A, Wei Yin, and Mary D Frame. (2015). Biofluid Mechanics : An Introduction to Fluid Mechanics, Macrocirculation, and Microcirculation, 2nd Edition.</a>
+</Item>
+</Itemize>
+</p>
+</CalloutCard>
+</CalloutContainer> -->
+
+<p>Establishing a standardized routine for tackling technical challenges is vital for maintaining precision and clarity. Approaching conservation and accounting tasks in a systematic way ensures that your work is transparent, easy to audit, and repeatable by others. 
+While these stages might feel redundant for basic exercises, mastering this "Avengers Assemble" framework is essential for managing the high-level complexity found in professional engineering.</p>
+</SubSection>
+
+
+<SubSubSection title="Assemble" id="Assemble">
+
 <CalloutContainer slot="cards">
 <CalloutCard title="Learn More">
-<p>
-Need more explanation? See more content in these references
-</p>
-<p>
-This content has been adapted from multiple sources including:
+<p> Need more explanation? See more content in these references </p>
+<p> This content has been adapted from multiple sources including:
 <Itemize>
-<Item>
-<a href="https://www.pearson.com/en-us/subject-catalog/p/bioengineering-fundamentals/P200000003208/9780137517091?srsltid=AfmBOopm88RAvXlWCVcIqmFrrWOaM0_NiEvx13WfIJokJzMiLOSpaIgW"> A. Saterbak, K. San, and L. McIntire, (2018). Bioengineering Fundamentals, 2nd Edition, 2018.</a>
+<Item> <a href="https://www.pearson.com/en-us/subject-catalog/p/bioengineering-fundamentals/P200000003208/9780137517091?srsltid=AfmBOopm88RAvXlWCVcIqmFrrWOaM0_NiEvx13WfIJokJzMiLOSpaIgW"> A. Saterbak, K. San, and L. McIntire, (2018). Bioengineering Fundamentals, 2nd Edition.</a>
 </Item>
-<Item>
-<a href="https://www.wiley.com/en-us/Fundamentals+of+Heat+and+Mass+Transfer%2C+8th+Edition-p-9781119353881">Heat, F. O., & Incropera, M. T. F. P. (2001). Fundamentals Of Heat And Mass Transfer. </a>
+<Item> <a href="https://www.wiley.com/en-us/Fundamentals+of+Heat+and+Mass+Transfer%2C+8th+Edition-p-9781119353881">Heat, F. O., & Incropera, M. T. F. P. (2001). Fundamentals Of Heat And Mass Transfer. </a>
 </Item>
-<Item>
-<a href="https://www-sciencedirect.com/book/monograph/9780128009444/biofluid-mechanics">Rubenstein, David A, Wei Yin, and Mary D Frame. (2015). Biofluid Mechanics : An Introduction to Fluid Mechanics, Macrocirculation, and Microcirculation. Second edition.</a>
+<Item> <a href="https://www-sciencedirect.com/book/monograph/9780128009444/biofluid-mechanics">Rubenstein, David A, Wei Yin, and Mary D Frame. (2015). Biofluid Mechanics : An Introduction to Fluid Mechanics, Macrocirculation, and Microcirculation, 2nd Edition.</a>
 </Item>
 </Itemize>
 </p>
 </CalloutCard>
 </CalloutContainer>
-<p>Establishing a standardized routine for tackling technical challenges is vital for maintaining precision and clarity. Approaching conservation and accounting tasks in a systematic way ensures that your work is transparent, easy to audit, and repeatable by others. While these stages might feel redundant for basic exercises, mastering this "Avengers Assemble" framework is essential for managing the high-level complexity found in professional engineering.</p>
-</SubSection>
-<SubSubSection title="Assemble" id="Assemble">
+
+
 <p>Phase 1. Assemble. Your first task is to collect and reorganize all data related to the scenario. Start by explicitly defining your goal; for example, "Determine the velocity of..." or "Calculate the mass of...".</p>
 <Itemize>
 <Item>Visualize the System: Create a comprehensive diagram that captures all moving parts. A basic block flow diagram is often the most effective way to show materials entering or exiting the system.</Item>
@@ -68,7 +85,8 @@ This content has been adapted from multiple sources including:
 <SubSubSection title="Analyze" id="Analyze">
 <p> Phase 2. In this stage, you build a logical bridge between what is known and what remains to be found.</p>
 <Itemize>
-<Item>Document Assumptions: Biological environments are incredibly intricate, involving numerous simultaneous reactions and transport phenomena. A skilled engineer knows how to simplify these systems—such as treating a blood vessel as a rigid pipe—to focus on the most important variables.</Item>
+<Item>Document Assumptions: Biological environments are incredibly intricate, involving numerous simultaneous reactions and transport phenomena. 
+A skilled engineer knows how to simplify these systems—such as treating a blood vessel as a rigid pipe—to focus on the most important variables.</Item>
 <Item>Establish a Calculation Basis: Pick a specific starting point, such as a set time frame or a fixed flow rate. If the problem only provides relative ratios rather than absolute numbers, you must choose a basis to make the math possible.</Item>
 <Item>Chemical Balances: If the scenario involves reactions, identify every participating molecule and ensure the chemical equations are stoichiometrically balanced before proceeding.</Item>
 </Itemize>
@@ -91,7 +109,7 @@ There is one carbon atom on each side, so that is balanced.
 The hydrogen atom balance has 4 of the left and 2 on the right side. We need to add a 2 to the water to balance it. 
 There are two oxygen atoms on the left and four on the right, we need to add a 2 to the oxygen compound.
 Now we can check the balance and verify. 
-Consider drawing a table to help you keep track 
+Consider drawing a table to help you keep track. 
     
 <DisplayTable id="id" class_="mb-3">
 <thead>
