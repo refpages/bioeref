@@ -83,6 +83,10 @@ In a closed (but not isolated) system, movement of momentum through bulk materia
 <DisplayEquation title="Sum of Torque by Dimension" background="True" equation="\\sum(\\vec{r} \\times \\vec{F})_x=\\sum(\\vec{r} \\times \\vec{F})_y=\\sum(\\vec{r} \\times \\vec{F})_z=0" title="" />
 
 </SubSection>
+
+
+
+
 <SubSection title="Fluid Statics" id="Fluid Statics">
 <p>Another class of problems involves fluids that do not move, or static fluids. The viscosity of a static fluid does not influence its behavior, since it is not flowing. P is the pressure exerted on the system by the surroundings, z is the height in the z-direction, ρ is the density of the fluid, and g is the gravitational constant (magnitude only). 
 An important result from above is that the pressure varies as a function of the position z within a system containing a static fluid.</p>
@@ -91,91 +95,38 @@ An important result from above is that the pressure varies as a function of the 
 <p>or</p>
 
 <DisplayEquation equation="\\Delta P = -\\rho g \\Delta z" background="True" title="Fluid Stastics One Dimension"   id="hfp-eq" derivation="True">
-            <p>
-                Ignoring air pressure:
+            <p>    Ignoring air pressure:
 				<Image src='/cons/hydrostatic_fluid_pressure/FluidDerivation.jpg' width='4'> </Image>
                 <DisplayEquation equation="\\begin{aligned} \\sum{F_y} &amp;= 0  \\\\ P(z)A - W &amp;= 0   \\\\   P(z)A - (\\rho \\ A \\ z) \\ g &amp;=  0 \\\\   P(z)  &amp;= \\rho \\ g \\ z          \\end{aligned}"/>
-                
+			 </p>
+    </DisplayEquation>
+
+<Warning title="Don't confuse pressure with force!" id="force-pressure">
+    <p>   Pressure is a force distributed over an area (force per area) and therefore has units of Pascals (Pa). To calculate the resultant force from hydrostatic fluid pressure, you must use  
+    </p>
+	<DisplayEquation equation="F_R = P \\ A"/>
+
+	<p> where <InlineEquation equation=" A " /> is the area that the force is applied over.	</p>	
+	</Warning>
+
+</SubSection>
+
+
+<SubSection title="Fluid Statics" id="Fluid Statics">
+<p>Another class of problems involves fluids that do not move, or static fluids. The viscosity of a static fluid does not influence its behavior, since it is not flowing. P is the pressure exerted on the system by the surroundings, z is the height in the z-direction, ρ is the density of the fluid, and g is the gravitational constant (magnitude only). 
+An important result from above is that the pressure varies as a function of the position z within a system containing a static fluid.</p>
+
+<DisplayEquation title="Fluid Statics" background="True" equation="\\frac{dP}{dz}=-\\rho g" title="" />
+<p>or</p>
+
+<DisplayEquation equation="\\Delta P = -\\rho g \\Delta z" background="True" title="Fluid Stastics One Dimension"   id="hfp-eq" derivation="True">
+            <p>    Ignoring air pressure:
+				<Image src='/cons/hydrostatic_fluid_pressure/FluidDerivation.jpg' width='4'> </Image>
+                <DisplayEquation equation="\\begin{aligned} \\sum{F_y} &amp;= 0  \\\\ P(z)A - W &amp;= 0   \\\\   P(z)A - (\\rho \\ A \\ z) \\ g &amp;=  0 \\\\   P(z)  &amp;= \\rho \\ g \\ z          \\end{aligned}"/>
 			 </p>
     </DisplayEquation>
 
 
-<Warning title="Don't confuse pressure with force!" id="force-pressure">
-    <p>
-      Pressure is a force distributed over an area (force per area) and therefore has units of Pascals (Pa). To calculate the resultant force from hydrostatic fluid pressure, you must use  
-    </p>
-
-	<DisplayEquation equation="F_R = P \\ A"/>
-
-	<p> where <InlineEquation equation=" A " /> is the area that the force is applied over. 
-	</p>	
-	
-</Warning>
-</SubSection>
-
-
-
-<SubSection title="Collision Systems" id="Collision Systems">
-<p>Consider a system with no bulk mass transfer across the system boundary and no external forces. Such a system is isolated, and no momentum accumulates in it. Under these conditions, the integral formulation of the equation is commonly used. In these situations, the conservation of momentum equation is reduced to the following:</p>
-
-<DisplayEquationCustom id="rec-ecp" title="Solution procedure of perfectly elastic collisions." background="True">
-		<DisplayEquation equation="\\begin{aligned}                            m_1 \\vec{v}_{1, i} + m_2 \\vec{v}_{2, i} &amp;= m_1 \\vec{v}_{1, f} + m_2 \\vec{v}_{2, f} \\\\                            0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}                            \\end{aligned}" />
-		<p>
-			where subscripts \(i, f\) denote initial and final velocities, respectively.
-		</p>
-	</DisplayEquationCustom>
-
-
-<DisplayTable id="rec-tc">
-		<thead>
-			<tr>
-				<th noborder>type of collision</th>
-                <th>definition</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>elastic collisions</td>
-				<td>collisions where there is no loss in kinetic energy</td> 
-			</tr>
-			<tr>
-				<td>inelastic collisions</td>
-				<td>collisions where there are losses in kinetic energy, typically due to internal friction</td>
-			</tr>
-		</tbody>
-	</DisplayTable>
-<p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. 
-The coefficient is defined as the ratio of <InlineEquation equation="v_{separation}" />, the difference in velocities after collision, and <InlineEquation equation="v_{approach}" />, the difference in velocities before collision of two objects, A and B.</p>
-<DisplayEquationCustom id="rec-ecp" title="Coefficient of Restitution." background="True">
-<DisplayEquation equation="e = \\frac{v_{separation}}{v_{approach}}= \\frac{v_{B,f}-v_{A,f}}{v_{A,0}-v_{B,0}}" title="" >
-</DisplayEquationCustom>
-<DisplayTable id="rec-tc">
-		<thead>
-			<tr>
-				<th noborder>range</th>
-				<th>type of collision</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>\(e = 0\)</td>
-				<td>This corresponds to a perfectly inelastic collision. The velocity of both objects after the collision is the same</td> 
-			</tr>
-			<tr>
-				<td>\(0 &lt; e &lt; 1\)</td>
-				<td>This corresponds to an inelastic collision that happens in the real world, where some kinetic energy is lost</td>
-			</tr>
-			<tr>
-				<td>\(e = 1\)</td>
-				<td>This corresponds to a perfectly elastic collision, where no kinetic energy is lost.</td>
-			</tr>
-			<tr>
-				<td>\(e &gt; 1\)</td>
-				<td>This corresponds to a superelastic collision, where energy is gained/released, like a chemical reaction, a reduction of rotational energy.</td>
-			</tr>
-		</tbody>
-		
-	</DisplayTable>
 </SubSection>
 
 
@@ -241,6 +192,7 @@ The coefficient is defined as the ratio of <InlineEquation equation="v_{separati
 		
 	</DisplayTable>
 </SubSection>
+
 
 
 
