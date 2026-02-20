@@ -119,14 +119,14 @@ An important result from above is that the pressure varies as a function of the 
 <SubSection title="Collision Systems" id="Collision Systems">
 <p>Consider a system with no bulk mass transfer across the system boundary and no external forces. Such a system is isolated, and no momentum accumulates in it. Under these conditions, the integral formulation of the equation is commonly used. In these situations, the conservation of momentum equation is reduced to the following:</p>
 
-<DisplayEquationCustom id="rec-ecp" title="Solution procedure of perfectly elastic collisions." background="True">
+<DisplayEquationCustom id="rec-ecp-1" title="Solution procedure of perfectly elastic collisions." background="True">
 		<DisplayEquation equation="\\begin{aligned}             m_1 \\vec{v}_{1, i} + m_2 \\vec{v}_{2, i} &amp;= m_1 \\vec{v}_{1, f} + m_2 \\vec{v}_{2, f} \\\\             0=\\vec{p}_f^{sys}-\\vec{p}_0^{sys}                            \\end{aligned}" />
 		<p>
 			where subscripts \(i, f\) denote initial and final velocities, respectively.
 		</p>
 	</DisplayEquationCustom>
 
-<DisplayTable id="rec-tc">
+<DisplayTable id="rec-tc-1">
 		<thead>
 			<tr>
 				<th noborder>type of collision</th>
@@ -145,16 +145,16 @@ An important result from above is that the pressure varies as a function of the 
 		</tbody>
 	</DisplayTable>
 
-<p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (e), can be used to develop an additional equation to solve a problem. 
+<p>A relationship describing the elasticity of colliding objects, the coefficient of restitution (<InlineEquation equation="e"/>), can be used to develop an additional equation to solve a problem. 
 The coefficient is defined as the ratio of <InlineEquation equation="v_{separation}" />, the difference in velocities after collision, and <InlineEquation equation="v_{approach}" />, the difference in velocities before collision of two objects, A and B.</p>
 
 
 
-<DisplayEquationCustom id="rec-ecp" title="Coefficient of Restitution" background="True">
+<DisplayEquationCustom id="rec-ecp-2" title="Coefficient of Restitution" background="True">
 <DisplayEquation equation="e = \\frac{v_{separation}}{v_{approach}}= \\frac{v_{B,f}-v_{A,f}}{v_{A,0}-v_{B,0}}" title="" >
 </DisplayEquationCustom>
 
-<DisplayTable id="rec-tc">
+<DisplayTable id="rec-tc-2">
 		<thead>
 			<tr>
 				<th noborder>range</th>
@@ -183,44 +183,15 @@ The coefficient is defined as the ratio of <InlineEquation equation="v_{separati
 
 </SubSection>
 
-<p> TEST In an unsteady-state system, at least one variable describing the system (e.g., pressure, flow rate) changes with time. </p>
-
-<DisplayTable id="rec-tc">
-		<thead>
-			<tr>
-				<th noborder>range</th>
-				<th>type of collision</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>\(e = 0\)</td>
-				<td>This corresponds to a perfectly inelastic collision. The velocity of both objects after the collision is the same</td> 
-			</tr>
-			<tr>
-				<td>\(0 &lt; e &lt; 1\)</td>
-				<td>This corresponds to an inelastic collision that happens in the real world, where some kinetic energy is lost</td>
-			</tr>
-			<tr>
-				<td>\(e = 1\)</td>
-				<td>This corresponds to a perfectly elastic collision, where no kinetic energy is lost.</td>
-			</tr>
-			<tr>
-				<td>\(e &gt; 1\)</td>
-				<td>This corresponds to a superelastic collision, where energy is gained/released, like a chemical reaction, a reduction of rotational energy.</td>
-			</tr>
-		</tbody>
-	</DisplayTable>
-
-
-
 
 
 <SubSection title="Unsteadystate Momentum" id="Unsteadystate Momentum">
+<div class="full-width" >
+
 <p>In an unsteady-state system, at least one variable describing the system (e.g., pressure, flow rate) changes with time. Unsteady-state systems gain or lose momentum with bulk material transfer or when external forces act on them; thus, the Accumulation term is always nonzero. For systems with no bulk transfer of material across the system boundary, the differential form of the conservation of linear momentum equation reduces to</p>
 
 <DisplayEquation title="Unsteady Linear Momentum Accounting Equation" background="True" equation="\\sum \\vec{F}=\\frac{d}{dt}(\\vec{p}^{sys}) = m^{sys}\\vec{a}^{sys}" title="" />
-
+</div>
 </SubSection>
 
 
