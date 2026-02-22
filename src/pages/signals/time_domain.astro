@@ -29,14 +29,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </ul>
 </div>
 
-<CalloutContainer slot="cards">
-    <CalloutCard title="References:">
-            <p>Example EKG courtesy of:
-            <a href="https://www.researchgate.net/figure/a-Digitized-human-EKG-signal-with-peak-to-peak-amplitude-of-002-V-p-50-mV-b_fig4_235385147">https://www.researchgate.net/figure/a-Digitized-human-EKG-signal-with-peak-to-peak-amplitude-of-002-V-p-50-mV-b_fig4_235385147</a></p>
-            <p>Learn more about how EKGs are used in healthcare from the <a href="https://www.heart.org/en/health-topics/heart-attack/diagnosing-a-heart-attack/electrocardiogram">American Heart Association</a>
-    </CalloutCard>
-</CalloutContainer>
-
 <Section title="Time Domain" id="Time Domain"></Section>
 <SubSubSection title="Introduction" id="Introduction">
 <p>The most intuitive way for signals to be represented is in the time domain. Any particular signal is made up of a measured value on the y axis, and the time at which that measurement was obtained on the x axis. These signals are directly related to physical signals, for example, the electrical impulses that control heart rate in an EKG is measured in the time domain and provides useful physiological information about the patient it is sourced from.</p>
@@ -50,7 +42,12 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <p>In this EKG, the time domain is useful for analysing the PQRST components of the heart's electrical signals. Changes in the interval between these components such as delays, hastening, additional, or missing components can indicate pathology, and suggest specific causes.
 </SubSubSection>
-
+    <CalloutContainer slot="cards">
+        <CalloutCard title="References:">
+                <p>Example EKG courtesy of: <a href="https://www.researchgate.net/figure/a-Digitized-human-EKG-signal-with-peak-to-peak-amplitude-of-002-V-p-50-mV-b_fig4_235385147">https://www.researchgate.net/figure/a-Digitized-human-EKG-signal-with-peak-to-peak-amplitude-of-002-V-p-50-mV-b_fig4_235385147</a></p>
+                <p>Learn more about how EKGs are used in healthcare from the <a href="https://www.heart.org/en/health-topics/heart-attack/diagnosing-a-heart-attack/electrocardiogram">American Heart Association</a>
+        </CalloutCard>
+    </CalloutContainer>
 <SubSubSection title="Signal Characteristics" id="Signal Characteristics">
 <p>Signals within the time domain have a set of characteristics that can categorize the type of signal it is, what information it holds or lacks, and what can be done with it mathematically for analysis.</p>
 
