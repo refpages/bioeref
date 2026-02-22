@@ -33,11 +33,12 @@ import DisplayTable from "../../components/DisplayTable.astro"
     <p>The most intuitive way for signals to be represented is in the time domain. Any particular signal is made up of a measured value on the y axis, and the time at which that measurement was obtained on the x axis. These signals are directly related to physical signals, for example, the electrical impulses that control heart rate in an EKG is measured in the time domain and provides useful physiological information about the patient it is sourced from.</p>
         <Image id="ekg" src="/signals/EKGsignal.jpg" width='6'></Image>
     <p>In this EKG, the time domain is useful for analysing the PQRST components of the heart's electrical signals. Changes in the interval between these components such as delays, hastening, additional, or missing components can indicate pathology, and suggest specific causes.
-    <CalloutCard title="Additional Info:">
-        <p>Example EKG attributed to: <a href="https://cdn.pasco.com/product_document/012-16895A_EKG.pdf">https://cdn.pasco.com/product_document/012-16895A_EKG.pdf</a></p>
-        <p>Learn more about how EKGs are used in healthcare from the <a href="https://www.heart.org/en/health-topics/heart-attack/diagnosing-a-heart-attack/electrocardiogram">American Heart Association.</a></p>
-    </CalloutCard>
-    <p> test </p>
+    <CalloutContainer slot="cards">
+        <CalloutCard title="Additional Info:">
+            <p>Example EKG attributed to: <a href="https://cdn.pasco.com/product_document/012-16895A_EKG.pdf">https://cdn.pasco.com/product_document/012-16895A_EKG.pdf</a></p>
+            <p>Learn more about how EKGs are used in healthcare from the <a href="https://www.heart.org/en/health-topics/heart-attack/diagnosing-a-heart-attack/electrocardiogram">American Heart Association.</a></p>
+        </CalloutCard>
+    </CalloutContainer>
 </SubSection>
 
 <SubSection title="Signal Characteristics" id="Signal Characteristics">
