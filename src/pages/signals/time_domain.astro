@@ -30,7 +30,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </div>
 
 <Section title="Time Domain" id="Time Domain"></Section>
-<SubSubSection title="Introduction" id="Introduction">
+<SubSection title="Introduction" id="Introduction">
 <p>The most intuitive way for signals to be represented is in the time domain. Any particular signal is made up of a measured value on the y axis, and the time at which that measurement was obtained on the x axis. These signals are directly related to physical signals, for example, the electrical impulses that control heart rate in an EKG is measured in the time domain and provides useful physiological information about the patient it is sourced from.</p>
     <img id="ekg" src="/signals/EKGsignal.jpg"/>
     <style type="text/css">
@@ -45,9 +45,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
             <p>Example EKG attributed to: <a href="https://cdn.pasco.com/product_document/012-16895A_EKG.pdf">https://cdn.pasco.com/product_document/012-16895A_EKG.pdf</a></p>
             <p>Learn more about how EKGs are used in healthcare from the <a href="https://www.heart.org/en/health-topics/heart-attack/diagnosing-a-heart-attack/electrocardiogram">American Heart Association.</a>
     </CalloutCard>
-</SubSubSection>
+</SubSection>
 
-<SubSubSection title="Signal Characteristics" id="Signal Characteristics">
+<SubSection title="Signal Characteristics" id="Signal Characteristics">
 <p>Signals within the time domain have a set of characteristics that can categorize the type of signal it is, what information it holds or lacks, and what can be done with it mathematically for analysis.</p>
 
 <DisplayTable id="shape-table">
@@ -166,5 +166,5 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 
 <p>Once we know the waveform and characteristics of a particular signal, we can start to predict its behaviour and apply transformations to better understand the signal and its components.</p>
-</SubSubSection>
+</SubSection>
 </Layout>
