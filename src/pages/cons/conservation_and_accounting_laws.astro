@@ -28,7 +28,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conceptual Framework for Accounting'>Conceptual Framework for Accounting</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Process to use Accounting equations'>Process to use Accounting equations</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Process to Use Accounting equations'>Process to use Accounting equations</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Forms of Accounting Equations'>Forms of Accounting Equations</a><ul class='list-group list-group-flush py-0'>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Algebraic Accounting Equations'>Algebraic Accounting Equations</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Differential Accounting Equations'>Differential Accounting Equations</a></li>
@@ -40,7 +40,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </div>
 <SubSection title="Conceptual Framework for Accounting" id="Conceptual Framework for Accounting">
 
-<p>In the realm of engineering, conservation refers to the principle that certain physical quantities remain constant as they move or change form within a system. While many laws of physics are governed by these principles, not every property is conserved. For those that can be created or lost (like specific chemical species or certain types of energy), we use an accounting equation to track their status.</p>
+<p>In the realm of engineering, conservation refers to the principle that certain physical quantities remain constant as they move or change form within a system. While many laws of physics are governed by these principles, not every property is conserved. 
+For those that can be created or lost (like specific chemical species or certain types of energy), we use an accounting equation to track their status.</p>
 <p>Below is a list of extensive properties that can be counted:</p>
 <Itemize>
 
@@ -64,6 +65,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
     <CalloutCard title="Attention!">
 <p>Note that volume is not on this list. Compressible fluids (especially gases) may invalidate volume-based accounting equations. If volumes are given, use density to convert to mass values and then use a mass accounting equation.</p>
     </CalloutCard>
+
 <p>An accounting equation acts as a mathematical ledger. It tracks how an extensive property enters, leaves, is produced, or is used up within a specific boundary over a set timeframe.</p>
 <p>All the extensive properties listed above can be counted in accounting equations, but only a subset of these extensive properties is always conserved. Below is a complete list of extensive properties that are conserved in all situations (except nuclear reactions):</p>
 <Itemize>
@@ -77,7 +79,16 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 </Itemize>
 </SubSection>
-<SubSection title="Process to use Accounting equations" id="Process to use Accounting equations">
+
+<SubSection title="Process to Use Accounting Equations" id="Process to Use Accounting equations">
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+<p> Check out <strong> <a href="/transfer/foundations_of_Transport_&_Flow"> Foundations of Transport & Flow </a> </strong> . </p>
+</CalloutCard>
+</CalloutContainer>
+
+
 <p>To be able to write an accounting statement, three items are necessary:</p>
 <Enumerate>
 
@@ -89,23 +100,24 @@ import DisplayTable from "../../components/DisplayTable.astro"
   <span class="fw-bold">System Diagram</span>: A schematic representation of a system illustrating its key features, including system boundaries and depictions of energy and mass flows.
 </Image>
 
-
 </Enumerate>
 
 </SubSection>
+
+
 <SubSection title="Forms of Accounting Equations" id="Forms of Accounting Equations">
 <p>Mathematically, we illustrate both these concepts:</p>
-<p>Accounting (insert display equation box here)</p>
+<p>Accounting:</p>
 
-<DisplayEquation equation="Input - Output + Generation - Consumption = Accumulation" title="" />
+<DisplayEquation title="" background="True" equation="Input - Output + Generation - Consumption = Accumulation"/>
 
-<p>and Conservation (insert display equation box here).</p>
+<p>and Conservation: (insert display equation box here).</p>
+<DisplayEquation title="" background="True" equation="Input - Output = Accumulation"/>
 
-<DisplayEquation equation="Input - Output = Accumulation" title="" />
+<p>or</p>
 
-<p>or (insert display equation box here)</p>
+<DisplayEquation title="" background="True" equation="Accumulation=Final Condition-Initial Condition"/>
 
-<DisplayEquation equation="Accumulation=Final Condition-Initial Condition" title="" />
 
 <p>Accounting equations can be represented in three forms:</p>
 <Itemize>
@@ -120,19 +132,20 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <SubSubSection title="Algebraic Accounting Equations" id="Algebraic Accounting Equations">
 <p>Algebraic accounting equations are generally applied to extensive properties within a defined system and time period. Algebraic equations can be applied when discrete quantities or “chunks” of extensive property are involved. They cannot be applied when rates or time dependent terms are involved.</p>
     
-<DisplayEquation title="Algebraic Accounting Equation." background="True" equation="\\Psi_{in} - \\Psi_{out}+ \\Psi_{gen} - \\Psi_{cons} = \\Psi^{sys}_{acc}"/>
+<DisplayEquation title="Algebraic Accounting Equation" background="True" equation="\\Psi_{in} - \\Psi_{out}+ \\Psi_{gen} - \\Psi_{cons} = \\Psi^{sys}_{acc}"/>
 
 </SubSubSection>
 <SubSubSection title="Differential Accounting Equations" id="Differential Accounting Equations">
 <p>Differential accounting equations are used when we have flow rates. A flow rate describes the transport of an extensive property over a period of time. We can represent the rate with a dot over the variable, <InlineEquation equation="\\dot{\\Psi}" />.</p>
 
-<DisplayEquation title="Differential Accounting Equation." background="True"  equation="\\dot{\\Psi}_{in}-\\dot{\\Psi}_{out}+\\dot{\\Psi}_{gen}-\\dot{\\Psi}_{cons}=\\dot{\\Psi}^{sys}_{acc}=\\frac{d\\Psi}{dt}" title="" />
+<DisplayEquation title="Differential Accounting Equation" background="True"  equation="\\dot{\\Psi}_{in}-\\dot{\\Psi}_{out}+\\dot{\\Psi}_{gen}-\\dot{\\Psi}_{cons}=\\dot{\\Psi}^{sys}_{acc}=\\frac{d\\Psi}{dt}" title="" />
 
 </SubSubSection>
 <SubSubSection title="Integral Accounting Equations" id="Integral Accounting Equations">
-<p>Integral balances are most useful when trying to evaluate conditions between two discrete time points. Integral accounting equations can be written to incorporate rates of change of an extensive property. When developing an integral balance, you can write the differential balance equation and integrate it between the initial and final times.</p>
+<p>Integral balances are most useful when trying to evaluate conditions between two discrete time points. Integral accounting equations can be written to incorporate rates of change of an extensive property. 
+When developing an integral balance, you can write the differential balance equation and integrate it between the initial and final times.</p>
 
-<DisplayEquation title="Integral Accounting Equation." background="True" equation="\\int_{t_f}^{t_0}{\\dot{\\Psi}_{in}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{out}dt}+ \\int_{t_f}^{t_0}{\\dot{\\Psi}_{gen}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{cons}dt}= \\int_{t_f}^{t_0}{\\dot{\\Psi}^{sys}_{acc}dt}" title="" />
+<DisplayEquation title="Integral Accounting Equation" background="True" equation="\\int_{t_f}^{t_0}{\\dot{\\Psi}_{in}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{out}dt}+ \\int_{t_f}^{t_0}{\\dot{\\Psi}_{gen}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{cons}dt}= \\int_{t_f}^{t_0}{\\dot{\\Psi}^{sys}_{acc}dt}" title="" />
 
 <p>Use the table below to ask yourself critical questions about the problem to identify what type of accounting equation is needed.</p>  
 <DisplayTable id="id" class_="mb-3">
@@ -175,8 +188,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 </SubSubSection>
 <SubSection title="Accumulation" id="Accumulation">
-<p>The Accumulation term describes the net gain or loss of an extensive property contained within a system. When an Accumulation term is present, the amount of extensive property in the system has changed during the time period of interest. There are two terms that describe the characteristics of the Accumulation term of a system: steady-state or dynamic. Steady-state is a condition in which the values of all the variables in a system (e.g., temperature, pressure, volume, and flow rate) do not change with time, although minor fluctuations about constant mean values may occur. Let us illustrate this by using a photography analogy. If you take</p>
-<p>multiple, imaginary “snapshots” of a steady-state system over a time period, each snapshot should look the same as the previous one. The initial and final conditions and all the intermediate snapshots of the system are identical or nearly so. The snapshots show that no quantity of the extensive property has accumulated in the system.</p>
+<p>The Accumulation term describes the net gain or loss of an extensive property contained within a system. When an Accumulation term is present, the amount of extensive property in the system has changed during the time period of interest. 
+There are two terms that describe the characteristics of the Accumulation term of a system: steady-state or dynamic. Steady-state is a condition in which the values of all the variables in a system (e.g., temperature, pressure, volume, and flow rate) do not change with time, although minor fluctuations about constant mean values may occur. 
+Let us illustrate this by using a photography analogy. If you take</p>
+multiple, imaginary “snapshots” of a steady-state system over a time period, each snapshot should look the same as the previous one. The initial and final conditions and all the intermediate snapshots of the system are identical or nearly so. The snapshots show that no quantity of the extensive property has accumulated in the system.</p>
 <p>A system is in steady-state when its internal conditions (temperature, pressure, etc.) remain constant over time. </p>
 <Itemize>
 
@@ -185,11 +200,18 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 </Itemize>
 
+<CalloutContainer slot="cards">
+<CalloutCard title="Heads up!">
+<p> <strong> <a href="/transfer/Conduction/#SteadyState"> Steady State </a> </strong> 
+and <strong><a href="/transfer/Conduction/#UnsteadyState"> Unsteady State </a> </strong> build on these concepts in <a href="/transfer">Heat & Mass Transfer.</a> 
+</p>
+</CalloutCard>
+</CalloutContainer>
 
 </SubSection>
-<SubSection title="Example Conservation Problem" id="Example Conservation Problem">
 
-    
+
+<SubSection title="Example Conservation Problem" id="Example Conservation Problem">    
 <Example title="Consider the chemical reaction for photosynthesis." solution="True">
 <div class="d-flex flex-row">
 <Row>
@@ -205,7 +227,8 @@ Given the chemical formula for photosynthesis, balance the moles of glucose and 
 </div>
 <div slot="solution">
 <p>
-The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.
+The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. 
+On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.
 </p>
 </div>
 </Example>
