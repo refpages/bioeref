@@ -27,7 +27,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#What is Transport?'>What is Transport?</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Similarities between Heat & Mass Transfer'>Similarities between Heat & Mass Transfer</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Similarities Between Heat & Mass Transfer'>Similarities between Heat & Mass Transfer</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#EnergyBalance'>Energy Balance</a></li>
 
 </li>
 </ul>
@@ -44,7 +45,7 @@ Unlike purely mechanical or chemical systems, biological systems involve additio
 </SubSection> 
 
 
-<SubSection title="Similarities between Heat & Mass Transfer" id="Similarities between Heat & Mass Transfer">
+<SubSection title="Similarities Between Heat & Mass Transfer" id="Similarities between Heat & Mass Transfer">
 <p> Heat and mass transfer are mathematically and conceptually analogous transport processes governed by gradients, material properties, conservation laws, and shared modes of diffusion and convection. 
 </p>
 <p> Both transport processes describe the movement of an extensive quantity driven by gradients and are governed by conservation laws (e.g., conservation of energy and conservation of mass). 
@@ -77,14 +78,29 @@ For example, Ohm's Law governs the flow of electrons (ie. current), driven by vo
 
 <p class="text-center"><em><b> Table 1</b>: A comparison of components in various types of flow. </em></p> 
 
-
-
 <CalloutContainer slot="cards">
-    <CalloutCard title="Need a review?">
-            <p> <b>Conservation principles</b> have also been covered in <a href="/cons/conservation_of_mass">Conservation of Mass</a> and <a href="/cons/conservation_of_energy">Conservation of Energy</a>.
-            </p>
-               </CalloutCard>
+<CalloutCard title="Need a review?">
+<p>These concepts have also been covered in <b><a href="/cons/conservation_of_mass">Conservation of Mass</a></b> and <b><a href="/cons/conservation_of_energy">Conservation of Energy</a></b>.
+</p>
+</CalloutCard>
 </CalloutContainer>
+
+</SubSection>
+
+
+
+<SubSection title="Energy Balance" id="EnergyBalance">
+
+<p> By the <a href="/transfer/Thermodynamic_laws/">First Law of Thermodynamics</a>, total energy of a system must be conserved. (It can, however, be converted between forms.)
+When this is applied to heat transport, for example, it is expressed as a balance within the boundaries of the system: 
+thermal energy entering the system, thermal energy leaving the system, generation (positive) or consumption (negative) of heat within the system, and thermal energy stored within the system.
+
+<DisplayEquation title="" background="True" equation="Input - Output + Generation = Accumulation"/>
+
+<Image src="/cons/systemboundary.png">
+  <span class="fw-bold">System Diagram</span>: A schematic representation of a system illustrating its key features, including system boundaries and depictions of energy and mass flows. 
+    (From <a href="/cons/conservation_and_accounting_laws">Conservation and Accounting Laws</a>.)
+</Image>
 
 </SubSection>
 
