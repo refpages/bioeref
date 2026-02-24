@@ -47,16 +47,14 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </CalloutContainer>
 
 
-<p> Conductive (or diffusive) heat transfer is the transport of thermal energy through a medium due to temperature gradients within the material. 
-Energy is transferred "down" the temperature gradient from high to low based on the <a href="/transfer/Thermodynamic_laws/#SecondLaw">Second Law of Thermodynamics</a>. 
-The net transfer of energy is due to random molecular motion. 
+<p> Conductive (or diffusive) heat transfer is the transport of thermal energy through direct contact. 
+Energy is transferred "down" a temperature gradient from high to low based on the <a href="/transfer/Thermodynamic_laws/#SecondLaw">Second Law of Thermodynamics</a>. 
+A higher temperature is correlated with higher molecular energy. 
 </p>
 
 <Image src="/transfer/Conduction.jpg" width="4">
-    <span class="fw-bold">Conduction</span>: A temperature gradient drives heat conduction through a material. 
-The material has constant thermal conductivity <InlineEquation equation="k"/>
-and cross-sectional area <InlineEquation equation="A"/> through which the heat flows from hot to cold 
-along a thickness <InlineEquation equation="d"/> 
+    <span class="fw-bold">Conduction</span>: A temperature gradient drives heat conduction through a material with constant thermal conductivity <InlineEquation equation="k"/>
+	and cross-sectional area <InlineEquation equation="A"/>. The heat flows from hot to cold along its thickness 
 (<a href="https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/01%3A_Temperature_and_Heat/1.07%3A_Mechanisms_of_Heat_Transfer">image source</a>).
 </Image>
 
@@ -77,7 +75,7 @@ along a thickness <InlineEquation equation="d"/>
 </SubSection> 
 
 <SubSection title="Steady State" id="SteadyState">
-<p> In steady state heat conduction, <b>temperature does not change with time</b>. However, temperature can change with position, and this gradient drives the transfer of heat. 
+<p> In steady state heat conduction, <b>temperature does not change over time</b>. However, temperature can change with position, and this gradient drives the transfer of heat. 
 We can consider three examples of steady state heat conduction. </p>
 
 
@@ -127,15 +125,15 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 
 <SubSection title="Unsteady State" id="UnsteadyState">
 <p> In unsteady state (also called nonsteady state or transient) heat conduction, <b>temperature changes over time</b>. There are three main examples of unsteady state heat conduction that will be examined here. </p>
+</SubSection>
 
-<SubSubSection title="No Spatial Variation in Temperature (Lumped Parameter Solution)" id="LumpedParameter">
-</SubSubSection>
+<SubSubSection title="Lumped Parameter Solution:" id="LumpedParameter"> </SubSubSection>
+<SubSubSection title="No Spatial Variation in Temperature"> </SubSubSection>
 
-<SubSubSection title="Spatial Variation in Temperature (Series Solution)" id="SeriesSolution">
-</SubSubSection>
+<SubSubSection title="Series Solution:" id="SeriesSolution"> </SubSubSection>
+<SubSubSection title="Spatial Variation in Temperature"> </SubSubSection>
 
-<SubSubSection title="Near the Surface of a Large Body (Semi-Infinite Region Solution)" id="SemiInfinite">
-</SubSubSection>
-
+<SubSubSection title="Semi-Infinite Region Solution:" id="SemiInfinite"> </SubSubSection>
+<SubSubSection title="Near the Surface of a Large Body"> </SubSubSection>
 
 </Layout>
