@@ -30,7 +30,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Boundary-and-Initial-Conditions'>Boundary and Initial Conditions</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-temperature-specified'>Surface Temperature Specified</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-heat-flux-is-specified'>Surface Heat Flux Specified</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection-at-the-surface'>Convection at the Surface</a></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection-at-the-surface'>Convection at the Surface</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#InitialCondition'>Initial Condition</a></ul>
 </li>
 </ul>
 </div>
@@ -39,10 +40,12 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <p> The governing heat equation is derived from an energy balance applied to a differential control volume and Fourier's Law. It includes all possible mechanisms that can contribute to heat
 transfer in a system, and encapsulates the combined effects of energy storage, conduction, convection, and internal heat generation, and allows the prediction of the temperature profile within the system. 
-It combines conservation of energy with <a href="/transfer/Conduction/#Conduction">Fourier's Law</a>.</p>
+It combines <a href="/transfer/foundations_of_Transport_&_Flow/#EnergyBalance">the energy balance over a system</a> with <a href="/transfer/Conduction/#Conduction">Fourier's Law</a>.</p>
 
-It can be used to describe the temperature in a material in any kind of heating or cooling situation. The result is a function that is valid at all points in a control volume, at all times (e.g., <InlineEquation equation="f(x,y,z,t)"/>).
-While heat transfer can occur in three dimensions, it is simplified here to be solved with heat flowing only in one direction (<i>x,r</i>). The governing heat equation can be written in Cartesian or radial coordinates. </p> 
+It can be used to describe the temperature in a material in any kind of heating or cooling situation. 
+The result is a function that is valid at all points in a control volume, at all times (e.g., <InlineEquation equation="f(x,y,z,t)"/>).
+While heat transfer can occur in three dimensions, it is simplified here to be solved with heat flowing only in one direction (<i>x,r</i>). 
+The governing heat equation can be written in Cartesian or radial coordinates. </p> 
 
 <b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" 
 title="Governing Heat Equation (Cartesian)" background="True"/></b>
@@ -72,7 +75,7 @@ The meaning of each term and the conditions under which it should be retained or
 
 <div style="height:20px"> </div>
 
- <p class="text-center"><em>Governing Equation Simplifications</em> id="GE-table"</p>
+ <!-- <p class="text-center"><em>Governing Equation Simplifications</em></p> -->
   <DisplayTable id="dim-table">
     <thead>
       <tr>
@@ -87,13 +90,16 @@ The meaning of each term and the conditions under which it should be retained or
         <th> <InlineEquation equation="u\\frac{\\partial T}{\\partial x}"/></th>  <td> <a href="/transfer/Convection">Bulk flow (Convection)</a> </td>  <td>Fluid flow</td><td>No flow (solid)</td>
        </tr>
       <tr>
-        <th><InlineEquation equation="\\frac{k}{\\rho c_p} \\frac{\\partial ^2 T}{\\partial x^2}"/></th>  <td><a href="/transfer/Conduction">Conduction</a></td><td>Almost always</td>   <td>No conduction (no temperature gradient)</td>
+        <th><InlineEquation equation="\\frac{k}{\\rho c_p} \\frac{\\partial ^2 T}{\\partial x^2}"/></th>  <td><a href="/transfer/Conduction">Conduction</a></td><td>Almost always</td>  <td>No conduction (no temperature gradient)</td>
       </tr>
       <tr>
         <th><InlineEquation equation="\\frac{Q}{\\rho c_p}"/></th><td>Generation</td><td>Conversion of energy in the system</td><td>No generation/heat source</td>
       </tr>
     </tbody>
   </DisplayTable>
+
+<span class="fw-bold">Governing Equation Simplifications</span>
+
 </SubSection>  
 
 
@@ -102,14 +108,14 @@ The meaning of each term and the conditions under which it should be retained or
 transfer at particular surfaces and interfaces) as well as initial conditions (ICs, for unsteady state or time-dependent problems).</p>
 </SubSection>
 
-<SubSubSection title="Surface Temperature Specified BC" id="Surface-temperature-specified">
+<SubSubSection title="Surface Temperature Specified (BC)" id="Surface-temperature-specified">
 <p> Temperature at the surface can be specified as a constant or a function of time. 
 <ul>
   <li><i>For example:</i> <InlineEquation equation="T(x=L)=100 K">.</li>
 </ul>
 </SubSubSection>
 
-<SubSubSection title="Surface Heat flux Specified BC" id="Surface-heat-flux-is-specified">
+<SubSubSection title="Surface Heat flux Specified (BC)" id="Surface-heat-flux-is-specified">
 <p> Heat flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: </p>
 <Itemize>
 <Item> <b>Insulated Condition:</b> the surface is highly insulated so the flux at the surface can be estimated as zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial T}{\\partial x}(x=L)=0"/>. </Item>
@@ -118,7 +124,7 @@ transfer at particular surfaces and interfaces) as well as initial conditions (I
 </SubSubSection>
 
 
-<SubSubSection title="Convection at the Surface BC" id="Convection-at-the-surface">
+<SubSubSection title="Convection at the Surface (BC)" id="Convection-at-the-surface">
 <p> When there is liquid at the surface, the flow of heat due to conduction can be set equal to the flow due to convection. There is one special case for this boundary condition: </p>
 <ul>
   <li>When <i>h</i> is large, the system looks like the boundary condition where the surface temperature can be specified as 0.</li>
@@ -126,8 +132,9 @@ transfer at particular surfaces and interfaces) as well as initial conditions (I
 </SubSubSection>
 
 
-<SubSubSection title="Initial Condition" id="Convection-at-the-surface">
-<p> An initial condition provides information about what is happening within the system (e.g., the temperature) at the start of our period of interest. </p>
+<SubSubSection title="Initial Condition" id="InitialCondition">
+<p> An initial condition provides information about what is happening within the system (e.g., the temperature) at the start of our period of interest. 
+This is necessary to solve a time-varying (i.e., unsteady state) problem.</p>
 <ul>
   <li><i>For example:</i> <InlineEquation equation="T(t=0)=T_i"> or <InlineEquation equation="T(t=0)=100 K">. </li>
 </ul>
