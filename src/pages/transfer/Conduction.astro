@@ -27,7 +27,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SteadyState'>Steady State</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#LumpedParameter'>Lumped Parameter</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SeriesSolution'>Series Solution</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SemiInfinite'>Semi-Infinite Region</a></ul>
+</li>
 </ul>
 </div>
 
@@ -120,13 +124,18 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 
 </SubSection>
 
+
 <SubSection title="Unsteady State" id="UnsteadyState">
-<p> In unsteady state (or transient) heat conduction, <b>temperature changes over time</b>. There are three main examples of unsteady state heat conduction: </p>
-<Itemize>
-<Item>With no spatial variation</Item>
-<Item>With semi-infinite geometry</Item>
-<Item>With finite geometry</Item>
-</Itemize>
-</SubSection>
+<p> In unsteady state (also called nonsteady state or transient) heat conduction, <b>temperature changes over time</b>. There are three main examples of unsteady state heat conduction that will be examined here. </p>
+
+<SubSubSection title="No Spatial Variation in Temperature (Lumped Parameter Solution)" id="LumpedParameter">
+</SubSubSection>
+
+<SubSubSection title="Spatial Variation in Temperature (Series Solution)" id="SeriesSolution">
+</SubSubSection>
+
+<SubSubSection title="Near the Surface of a Large Body (Semi-Infinite Region Solution)" id="SemiInfinite">
+</SubSubSection>
+
 
 </Layout>
