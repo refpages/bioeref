@@ -33,21 +33,41 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Section title="Fourier Transform and Frequency Domain" id="Fourier Transform and Frequency Domain"></Section>
 
 <SubSubSection title="Introduction" id="Introduction">
-<p>Though the time domain is an intuitive and useful way to study signals, it can be difficult to discern all characteristics of complicated signals this way. When signals increase in complexity and contain sine waves of multiple frequencies, amplitudes, and offsets, don’t seem to repeat regularly, and last for a long time, traditional time domain methods to analyse signals fail to fully describe the signal.</p>
-<p>This is when performing a fourier transform becomes very valuable. It allows us to break down complicated signals into its component sine waves with defined amplitudes and frequencies. This page will discuss the mathematics behind performing a fourier transform manually, and the information that we can get out of it.</p>
+  <p>Though the time domain is an intuitive and useful way to study signals, it can be difficult to discern all characteristics of complicated signals this way. When signals increase in complexity and contain sine waves of multiple frequencies, amplitudes, and offsets, don’t seem to repeat regularly, and last for a long time, traditional time domain methods to analyse signals fail to fully describe the signal.</p>
+  <p>This is when performing a fourier transform becomes very valuable. It allows us to break down complicated signals into its component sine waves with defined amplitudes and frequencies. This page will discuss the mathematics behind performing a fourier transform manually, and the information that we can get out of it.</p>
 </SubSubSection>
 
 <SubSubSection title="Fourier Transform" id="Fourier Transform">
-<p>Recall that we can approximate any signal as a combination sum of an infinite number of sinusoids. Using this as a basis, we can represent our signals as a series of sinusoids with various frequencies, amplitudes, and phase delays that constructively or destructively interfere to produce patterns that exist in the time domain signal. These are important, as they represent the characteristics of the initial signal, and will help us later in figuring out the output. </p>
-<p>We do so through the following equation:</p>
-<DisplayEquation title="Fourier Transform Equation" background="True" equation='H(\\omega) = \\int_{-\\infty}^\\infty + f(t)e^{-j2\\pi\\omega t} dt'/>
-<!-- <Example title='Fourier Transform Solve' solution='True'> -->
-<!-- </Example> -->
+  <p>Recall that we can approximate any signal as a combination sum of an infinite number of sinusoids. Using this as a basis, we can represent our signals as a series of sinusoids with various frequencies, amplitudes, and phase delays that constructively or destructively interfere to produce patterns that exist in the time domain signal. These are important, as they represent the characteristics of the initial signal, and will help us later in figuring out the output. </p>
+  <p>We do so through the following equation:</p>
+  <DisplayEquation title="Fourier Transform Equation" background="True" equation='H(\\omega) = \\int_{-\\infty}^\\infty + f(t)e^{-j2\\pi\\omega t} dt'/>
+<Example title="Solving for Fourier Series Coefficients" solution="True">
+  <div class="d-flex flex-row">
+    <Row>
+      <Col values="12 md-4">
+        <p>
+          Find the magnitude and frequency plot, the first four Coefficients, and C_0, C_m, and 0_m for these coefficients.
+        </p>
+      </Col>
+      <Col values="12 md-8">
+        <Image id="exfourier" src="/signals/exfourier.png" width='3'></Image>
+        <DisplayEquation title="" equation="x(t)= //begin(cases) &-t t<0.5  &0 0.5<t<1"/>
+      </Col>
+    </Row>
+  </div>
+  <div slot="solution">
+    <p>
+    The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. 
+    On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.
+    </p>
+  </div>
+</Example>
+
 </SubSubSection>
 
 <SubSubSection title="Frequency Domain" id="Frequency Domain">
-<p>Fourier transforms allow us to plot signals in the frequency domain. Frequency domain or Fourier plots show us the amplitude of every frequency of sinusoid that makes up a signal. </p>
-<p>PLACEHOLDER IMAGE EXAMPLES</p>
-<p>By breaking down a signal this way, we are able to identify frequencies with large amplitudes that influence the signal a lot, or components of noise that might be filtered out. This domain is the most useful for assessing what the impact of transformations from systems may have, and allow us to simplify math when we do convolutions. </p>
+  <p>Fourier transforms allow us to plot signals in the frequency domain. Frequency domain or Fourier plots show us the amplitude of every frequency of sinusoid that makes up a signal. </p>
+  <p>PLACEHOLDER IMAGE EXAMPLES</p>
+  <p>By breaking down a signal this way, we are able to identify frequencies with large amplitudes that influence the signal a lot, or components of noise that might be filtered out. This domain is the most useful for assessing what the impact of transformations from systems may have, and allow us to simplify math when we do convolutions. </p>
 </SubSubSection>
 </Layout>
