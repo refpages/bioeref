@@ -52,15 +52,15 @@ import Col from "../../components/Col.astro"
         </p>
       </Col>
       <Col values="12 md-8"> 
-        <Image id="exfourier" src="/signals/exfourier.png" width='3'></Image>
-        <InlineEquation title="" equation="x(t)= \\begin{cases} &-t  t<0.5\\\\  &0  0.5<t<1\\\\ \\end{cases}"/>
+        <Image id="exfourier" src="/signals/exfourier.png" width='4'></Image>
+        <InlineEquation title="" equation="x(t)= \\begin{cases} &-t, t<0.5\\\\  &0, 0.5<t<1\\\\ \\end{cases}"/>
       </Col>
     </Row>
   </div>
   <div slot="solution">
     <p>
-    The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. 
-    On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.
+      Begin with the equation for <InlineEquation title="" equation="b_m"/>:
+      <InlineEquation title="" equation="b_m = frac{2}{T}\\int_0^Tx(t)sin(2\\pimf_1t)dt"/>
     </p>
   </div>
 </Example>
