@@ -28,6 +28,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SteadyState'>Steady State</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#CharacteristicLength'>Characteristic Length</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#LumpedParameter'>Lumped Parameter</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SeriesSolution'>Series Solution</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SemiInfinite'>Semi-Infinite Region</a></ul>
@@ -126,6 +127,41 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 <SubSection title="Unsteady State" id="UnsteadyState">
 <p> In unsteady state (also called nonsteady state or transient) heat conduction, <b>temperature changes over time</b>. There are three main examples of unsteady state heat conduction that will be examined here. </p>
 </SubSection>
+
+<SubSubSection title="Characteristic Length" id="CharacteristicLength"> 
+<p> The Characteristic Length (L) of an object is its path of least resistance. In other words, it is the shortest distance the heat must travel to escape the object. 
+</p>
+<DisplayTable id="dim-table">
+	<thead>
+	<tr>
+		<th>Geometry</th>
+		<th>Characteristic Length</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<th>Infinite Slab</th> 
+		<td><InlineEquation equation="\\frac{1}{2})"/> thickness</td> 
+	</tr>
+	<tr>
+		<th>Tall Cylinder</th> 
+		<td>Radius</td> 
+	</tr>
+	<tr>
+		<th>Thin Cylinder</th> 
+		<td><InlineEquation equation="\\frac{1}{2})"/> thickness</td>
+	</tr>
+    <tr>
+		<th>Sphere</th> 
+		<td>Radius</td> 
+	</tr>
+	</tbody>
+  </DisplayTable>
+
+<p class="text-center"><em><b> Table 2</b>: Characteristic length for slab, cyclindrical, and spherical geometries. </em></p> 
+
+</SubSubSection>
 
 <SubSubSection title="No Spatial Variation in Temperature" id="LumpedParameter"> 
 <p> A <b>"Lumped parameter"</b> solution is used </p>
