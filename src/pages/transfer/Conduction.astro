@@ -29,6 +29,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SteadyState'>Steady State</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#CharacteristicLength'>Characteristic Length</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BiotNumber'>Biot Number</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#LumpedParameter'>Lumped Parameter</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SeriesSolution'>Series Solution</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SemiInfinite'>Semi-Infinite Region</a></ul>
@@ -135,7 +136,7 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 	<thead>
 	<tr>
 		<th>Geometry</th>
-		<th>Characteristic Length</th>
+		<th>Characteristic Length (L)</th>
 	</tr>
 	</thead>
 	
@@ -161,6 +162,23 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 
 <p class="text-center"><em><b> Table 2</b>: Characteristic length for slab, cyclindrical, and spherical geometries. </em></p> 
 
+</SubSubSection>
+
+<SubSubSection title="Biot Number" id="BiotNumber"> 
+<p>The Biot number is used to determine if the internal resistance within an object is negligible. If it is negligible, this means there is very little temperature variation within the solid.
+</p>
+<p>Biot Number:
+<DisplayEquation equation="Bi = \\frac{conductive resistance}{convective resistance} = \\frac{internal resistance}{external resistance} = \\frac{hL}{k}" title="" background="True"/>
+
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="h" /> = convective heat transfer coeffiecent</Item>
+<Item><InlineEquation equation="L" /> = characteristic length </Item>
+<Item><InlineEquation equation="k" /> = thermal conductivity of the medium</Item>
+</Itemize>
+
+<p>If Bi < 0.1, the internal resistance can be ignored and no spatial variation in temperature can be assumed </p>
+<p>If Bi > 0.1, the internal resistance cannot be ignored due to spatial variation in temperature </p>
 </SubSubSection>
 
 <SubSubSection title="No Spatial Variation in Temperature" id="LumpedParameter"> 
