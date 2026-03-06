@@ -27,32 +27,23 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Levels of Transport'>Levels of Transport</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Thermoregulation'>Thermoregulation</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Clinical and Biomedical Applications'>Clinical and Biomedical Applications</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#GenerationofHeat'>Generation of Heat</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Thermoregulation'>Thermoregulation</a></li>
 </ul>
 </div>
 
 <SubSection title="Levels of Transport" id="Levels of Transport">
- <p> Transport in biomedical context occurs at the sub-cellular, cellular, transcellular, tissue/organ, whole body, populations levels. 
-Some examples include thermoregulation, metabolism, bioheat transfer, blood as oxygen carrier, membrane transport, and liquid diffusion in tissue.    
+ <p> Transport in biomedical context occurs at the sub-cellular, cellular, transcellular, tissue/organ, whole body, and populations levels. 
+Some examples include thermoregulation, cellular metabolism, bioheat transfer, bulk flow of blood as an oxygen or thermal energy carrier, membrane transport, and drug diffusion through a tissue.    
 </p>
 </SubSection> 
 
-<SubSection title="Thermoregulation" id="Thermoregulation">
- <p> Thermoregulation is a homeostatic process that allows animals to maintain constant core temperature by balancing heat gain and loss in response to environmental changes. We can use heat transfer to understand how these processes occur.     
-</p>
-
-<CalloutCard title="Fun Fact!">
-<p>Elephants cannot sweat. Instead, their ears act as extended fins and to drive their thermoregulation process. This increases the rate of heat transfer due to the large surface area. An elephant’s blood flow also adapts as a response to external temperature. 
-</p>    
-    </CalloutCard>
-</SubSection> 
 
 <SubSection title="Clinical and Biomedical Applications" id="Clinical and Biomedical Applications">
- <p> Understanding transport at these levels can help with the design and analysis of a wide range of clinical and bioengineering applications, such as:
+ <p> Understanding transport at various levels can help with the design and analysis of a wide range of clinical and bioengineering applications, including but certainly not limited to:
 <Itemize>
-<Item> cryopreservation </Item>
+<Item> cryopreservation of cells and tissues </Item>
 <Item> laser ablation of tumors </Item>
 <Item> drug dosing and delivery </Item>
 <Item> dialysis machines </Item>
@@ -66,13 +57,45 @@ Some examples include thermoregulation, metabolism, bioheat transfer, blood as o
 <SubSection title="Generation of Heat" id="GenerationofHeat">
 <p> Generation of heat and energy is an important factor to include when analyzing heat transfer in biological contexts. Heat generation is denoted by Q. It can occur at all different levels starting from cellular.
 </p>
-<p> At the cellular level, the primary heat generation source is metabolism. Heat generation is a product of cellular respiration. After mitochondria converts nutrients in ATP, heat is released. 
+<p> At the cellular level, a major heat generation source is metabolism. Heat generation is a product of cellular respiration. After mitochondria convert nutrients in ATP, heat is released. 
 </p>
-<p> Heat generation can also be due to a heat source added to a system. An example of this is hemodialysis machines using resistive heat coils to warm up blood to room temperature before dialysis. 
+<p> Generation can also be due to a heat source added to a system. An example of this is hemodialysis machines, which use resistive heat coils to warm blood to room temperature before dialysis. 
 </p>
-<p> A biochemical example of heat generation is compost piles. Organic waste is converted by microbial degradation and releases heat in the process. Understanding the generation of heat by this process is essential to maintaining a compost so as to not kill off the microbes in the system. 
-</p>
+<p> A biochemical example of heat generation is a compost pile. Organic waste is converted by microbial degradation and releases heat in an exothermic process. 
 </SubSection>
+
+
+<SubSection title="Thermoregulation" id="Thermoregulation">
+ <p> Thermoregulation is a homeostatic process that allows animals to maintain constant core temperature by balancing heat gain and loss in response to environmental changes.      
+</p>
+
+<Image src="/transfer/Thermoregulation.jpg" width="4">
+    <span class="fw-bold">Thermoregulation</span> is managed by various mechanisms within the body
+(<a href="https://www.earthslab.com/physiology/thermoregulation-human-body/">image source</a>).
+</Image>
+
+<CalloutCard title="Fun Fact!">
+<p>Elephants cannot sweat. Instead, their ears act as extended fins and to drive their thermoregulation process. This increases the rate of heat transfer due to the large surface area. An elephant’s blood flow also adapts as a response to external temperature. 
+</p>    
+    </CalloutCard>
+</SubSection> 
+
+
+<DisplayTable id="dim-table">
+	<thead>
+	<tr>
+		<th>Test</th>
+		<th>Test</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<th><Image src="/transfer/Thermoregulation.jpg" width="2"></th> 
+		<td><Image src="/transfer/Thermoregulation.jpg" width="3"></td> 
+	</tr>
+	</tbody>
+  </DisplayTable>
+
 
 
 </Layout>
