@@ -182,7 +182,25 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 </SubSubSection>
 
 <SubSubSection title="No Spatial Variation in Temperature" id="LumpedParameter"> 
-<p> A <b>"Lumped parameter"</b> solution is used </p>
+<p> If temperature does not vary in all 3 spatial directions and only varies with time, a <b>“lumped parameter”</b> approximation can be used. When internal resistance is very low compared to the external resistance, the total resistance can be assumed to be external resistance and the temperature will not vary inside the object.
+</p>
+<p> To determine if there is no spatial variation in temperature, use the <b>Biot Number</b>!
+</p>
+<Itemize>
+<Item> If Bi < 0.1, the lumped parameter approximation can be used.</Item>
+</Itemize>
+<p> The Lumped Parameter Solution:</p>
+<DisplayEquation equation="\\frac{T-T_\\inf}{T_i - T_\\inf} = " title="" background="True"/>
+
+<p> where </p>
+<Itemize>
+<Item>T</Item>
+<Item>T_i</Item>
+<Item>T</Item>
+<Item><InlineEquation equation="T [K]" /> = temperature of the medium at <i>x</i></Item>
+<Item><InlineEquation equation="k [\\frac{W}{mK}]" /> = thermal conductivity of the medium</Item>
+</Itemize>
+
 </SubSubSection>
 
 <SubSubSection title="Spatial Variation in Temperature" id="SeriesSolution"> </SubSubSection>
