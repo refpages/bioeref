@@ -126,17 +126,19 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 
 
 <SubSection title="Unsteady State" id="UnsteadyState">
-<p> In unsteady state (also called nonsteady state or transient) heat conduction, <b>temperature changes over time</b>. There are three main examples of unsteady state heat conduction that will be examined here. </p>
+<p> In unsteady state (also called nonsteady state or transient) heat conduction, <b>temperature changes over time</b>. 
+There are three situations of unsteady state heat conduction that will be examined here. First, characteristic length and Biot will need to be defined. </p>
 </SubSection>
 
 <SubSubSection title="Characteristic Length" id="CharacteristicLength"> 
-<p> The Characteristic Length (L) of an object is its path of least resistance. In other words, it is the shortest distance the heat must travel to escape the object. 
+<p> The Characteristic Length (<InlineEquation equation="L"/>) of an object is its path of least resistance. 
+In other words, it is the shortest distance the heat must travel to escape the object. 
 </p>
 <DisplayTable id="dim-table">
 	<thead>
 	<tr>
 		<th>Geometry</th>
-		<th>Characteristic Length (L)</th>
+		<th>Characteristic Length (<InlineEquation equation="L"/>)</th>
 	</tr>
 	</thead>
 	
@@ -146,13 +148,14 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 		<td><InlineEquation equation="\\frac{1}{2}"/> thickness</td> 
 	</tr>
 	<tr>
+			<th>Thin Cylinder</th> 
+			<td><InlineEquation equation="\\frac{1}{2}"/> thickness</td>
+		</tr>	
+	<tr>
 		<th>Tall Cylinder</th> 
 		<td>Radius</td> 
 	</tr>
-	<tr>
-		<th>Thin Cylinder</th> 
-		<td><InlineEquation equation="\\frac{1}{2}"/> thickness</td>
-	</tr>
+	
     <tr>
 		<th>Sphere</th> 
 		<td>Radius</td> 
@@ -162,51 +165,37 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 
 <p class="text-center"><em><b> Table 2</b>: Characteristic length for slab, cyclindrical, and spherical geometries. </em></p> 
 
+<Image src="/transfer/CharLength.png" width="3">
+</Image>
+
+
 </SubSubSection>
 
 <SubSubSection title="Biot Number" id="BiotNumber"> 
-<p>The Biot number is used to determine if the internal resistance within an object is negligible. If it is negligible, this means there is very little temperature variation within the solid.
-</p>
-<p>The Biot Number is calculated as a fraction of internal and external resistance:
-<DisplayEquation equation="Bi = \\frac{internal}{external} = \\frac{conductive}{convective} = \\frac{hL}{k}" title="" background="True"/>
+<p>The Biot number (<InlineEquation equation="Bi"/>) is used to determine if the internal resistance within an object is negligible. 
+If it is negligible, this means there is very little temperature variation within the solid.
+It is is calculated as a fraction of internal and external resistance:
+<DisplayEquation equation="Bi = \\frac{R_{internal}}{R_{external}} = \\frac{conductive \\frac{k}{LA}}{convective \\frac{1}{hA}} = \\frac{hL}{k}" title="" background="True"/>
 
 <p> where </p>
 <Itemize>
-<Item><InlineEquation equation="h" /> = convective heat transfer coeffiecent</Item>
-<Item><InlineEquation equation="L" /> = characteristic length </Item>
-<Item><InlineEquation equation="k" /> = thermal conductivity of the medium</Item>
-</Itemize>
-
-<p>If <b>Bi < 0.1</b>, the internal resistance can be ignored and no spatial variation in temperature can be assumed </p>
-<p>If <b>Bi > 0.1</b>, the internal resistance cannot be ignored due to spatial variation in temperature </p>
-</SubSubSection>
-
-<SubSubSection title="No Spatial Variation in Temperature" id="LumpedParameter"> 
-<p> If temperature does not vary in all 3 spatial directions and only varies with time, a <b>“lumped parameter”</b> approximation can be used. When internal resistance is very low compared to the external resistance, the total resistance can be assumed to be external resistance and the temperature will not vary inside the object.
-</p>
-<p> To determine if there is no spatial variation in temperature, use the <b>Biot Number</b>!
-</p>
-<Itemize>
-<Item> If Bi < 0.1, the lumped parameter approximation can be used.</Item>
-</Itemize>
-<p> The Lumped Parameter Solution:</p>
-<DisplayEquation equation="\\frac{T-T_\\inf}{T_i - T_\\inf} = " title="" background="True"/>
-
-<p> where </p>
-<Itemize>
-<Item>T</Item>
-<Item>T_i</Item>
-<Item>T</Item>
-<Item><InlineEquation equation="T [K]" /> = temperature of the medium at <i>x</i></Item>
+<Item><InlineEquation equation="h [\\frac{W}{m^{2} K}]" /> = convective heat transfer coeffiecent</Item>
+<Item><InlineEquation equation="L [m]" /> = characteristic length </Item>
 <Item><InlineEquation equation="k [\\frac{W}{mK}]" /> = thermal conductivity of the medium</Item>
 </Itemize>
 
+<p>If <InlineEquation equation="Bi<0.1"/>, the internal resistance can be ignored, and no spatial variation in temperature can be assumed (i.e., temperature changes only as a function of time).
+If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignored due to spatial variation in temperature within the solid. </p>
+</SubSubSection>
+
+<SubSubSection title="No Spatial Variation in Temperature" id="LumpedParameter"> 
+<p> A <b>"lumped parameter"</b> solution is used... </p>
 </SubSubSection>
 
 <SubSubSection title="Spatial Variation in Temperature" id="SeriesSolution"> </SubSubSection>
-<p> A <b>"Series solution"</b> is used </p>
+<p> A <b>"series solution"</b> is used... </p>
 
 <SubSubSection title="Near the Surface of a Large Body"  id="SemiInfinite"> </SubSubSection>
-<p> A <b>"Semi-infinite"</b> region solution is used </p>
+<p> A <b>"semi-infinite"</b> region solution is used... </p>
 
 </Layout>
