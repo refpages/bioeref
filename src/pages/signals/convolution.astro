@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro"
+import PrairieDrawCanvas from "../../components/PrairieDrawCanvas.astro"
+import Center from "../../components/Center.astro"
+import CalloutCard from "../../components/CalloutCard.astro"
+import Warning from "../../components/Warning.astro"
+import Example from "../../components/Example.astro"
+import DisplayTable from "../../components/DisplayTable.astro"
+---
+<Layout title="Convolution">
+<div slot="navtree">
+    <ul class="list-group list-group-flush py-0">
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Why'>Why Is Convolution Important?</a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#What'>What Is Convolution?</a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Properties'>Properties of Convolution</a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Example'>Example Problem</a></li>
+    </ul>
+</div>
+
+<Section title="Convolution"/>
+<SubSection title="Why Is Convolution Important?" id="Why">
+  <p>text here</p>
+</SubSection>
+
+<SubSection title="What Is Convolution?" id="What">
+  <p>text here</p>
+  <DisplayEquation equation="y(\\tau)=\\int_{-\\infty}^\\infty x(\\tau)h(t-\\tau)d\\tau"/>
+</SubSection>
+
+<SubSection title="Properties of Convolution" id="Properties">
+  <p>text here</p>
+</SubSection>
+
+<SubSection title="Example Problem" id="Example">
+  <p>text here</p>
+</SubSection>
+</Layout>
