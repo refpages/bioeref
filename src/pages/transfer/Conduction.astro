@@ -209,8 +209,22 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 </Itemize>
 </SubSubSection>
 
-<SubSubSection title="Spatial Variation in Temperature" id="SeriesSolution"> </SubSubSection>
-<p> A <b>"series solution"</b> is used... </p>
+<SubSubSection title="Spatial Variation in Temperature" id="SeriesSolution"> 
+<p> If the internal resistance is significant, temperature variation inside cannot be ignored. There are a couple methods to analyze systems with spatial and time variation of temperature. For systems with finite geometry and a "long time" after initial, we can use the <b>series solution</b>.</p>
+<p> Use the Biot Number to determine if internal resistance is significant! </p>
+<Itemize>
+<Item> If <InlineEquation equation="Bi > 0.1" />, internal resistance is significant</Item>
+</Itemize>
+<p> The <b>Fourier Number</b> is used to determine “long times” after initial: </p>
+<DisplayEquation equation="F_{o} = \\frac{\\alpha t}{L^{2}}" title="" background="True"/>
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="\\alpha = \\frac{k}{\\rho c_{p}} [\\frac{m^{2}}{s}]" /> = thermal diffusivity</Item>
+<Item><InlineEquation equation="t [s]" /> = time</Item>
+<Item><InlineEquation equation="L [m]" /> = Characteristic Length</Item>
+</Itemize>
+<p> Series Solution: </p>
+</SubSubSection>
 
 <SubSubSection title="Near the Surface of a Large Body"  id="SemiInfinite"> </SubSubSection>
 <p> A <b>"semi-infinite"</b> region solution is used... </p>
