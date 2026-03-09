@@ -210,11 +210,15 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 </SubSubSection>
 
 <SubSubSection title="Spatial Variation in Temperature" id="SeriesSolution"> 
-<p> If the internal resistance is significant, temperature variation inside cannot be ignored. There are a couple methods to analyze systems with spatial and time variation of temperature. For systems with finite geometry and a "long time" after initial, we can use the <b>series solution</b>.</p>
+<p> If the internal resistance is significant, temperature variation inside cannot be ignored. There are a couple methods to analyze systems with spatial and time variation of temperature. For systems with finite geometry, we can use the <b>series solution</b>.</p>
 <p> Use the <b>Biot Number</b> to determine if internal resistance is significant! </p>
 <Itemize>
 <Item> If <InlineEquation equation="Bi > 0.1" />, internal resistance is significant</Item>
 </Itemize>
+<p> Series Solution: </p>
+<DisplayEquation equation="\\frac{T - T_{s}}{T_{i} - T_{s}} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{\\alpha t}{L^2}\\right]" title="" background="True"/>
+<p>You can solve the series solution two different ways: numerically or using a Heisler Chart.</p>
+<p> Heisler Charts are used to describe the relationship between the temperature, position, and time variables. It plots the 1st term of the series solution. The 1st term of the series solution is sufficient after “long times”.</p>
 <p> The <b>Fourier Number</b> is used to determine “long times” after initial: </p>
 <DisplayEquation equation="F_{o} = \\frac{\\alpha t}{L^{2}} > 0.2" title="" background="True"/>
 <p> where </p>
@@ -223,8 +227,17 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 <Item><InlineEquation equation="t [s]" /> = time</Item>
 <Item><InlineEquation equation="L [m]" /> = Characteristic Length</Item>
 </Itemize>
-<p> Series Solution: </p>
-<DisplayEquation equation="\\frac{T - T_{s}}{T_{i} - T_{s}} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{\\alpha t}{L^2}\\right]" title="" background="True"/>
+<p>In order to use the Heisler Chart your system must satisfy the following:</p>
+<Itemize>
+<Item>Uniform initial temperature, <InlineEquation equation="T_{i}" /></Item>
+<Item>Constant boundary fluid temperature, <InlineEquation equation="T_{\\infty}" /></Item>
+<Item>Perfect slab, cylinder, or sphere geometry</Item>
+<Item>Far from edges</Item>
+<Item>No heat generation <InlineEquation equation="(Q=0)" /></Item>
+<Item>Constant thermal properties <InlineEquation equation="(k, \\rho, c_{p})" /></Item>
+<Item>Long time after initial: <InlineEquation equation="F_{o} > 0.2" /></Item>
+</Itemize>
+<p>If the system does not satisfy the Heisler Chart conditions, the solution has to be found numerically.</p>
 </SubSubSection>
 
 <SubSubSection title="Near the Surface of a Large Body"  id="SemiInfinite"> </SubSubSection>
