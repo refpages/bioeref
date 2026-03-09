@@ -240,7 +240,7 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 <p>If the system does not satisfy the Heisler Chart conditions, the solution has to be found numerically.</p>
 
 <Image src="/transfer/Lumped_vs_Series_Soln.png">
-    An object with no spatial variation in temperature (A) and one with a non-negligable internal resistance (B).
+    An object with a homogeneous temperature (A), and one with a temperature profile that varies spatially (B). Object A would abide by the lumped parameter solution, while Object B would be solvable by the series solution.
 </Image>
 
 </SubSubSection>
@@ -283,13 +283,13 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 	<tr>
 		<th>Lumped</th> 
 		<td><InlineEquation equation="<0.1"/> </td> 
-		<td><InlineEquation equation="L \\Leq 4\\sqrt{\\alpha t}"/> </td> 
+		<td><InlineEquation equation="L \\leq 4\\sqrt{\\alpha t}"/> </td> 
 		<td><InlineEquation equation="\\frac{T-T_{\\infty}}{T_{i} - T_{\\infty}} = exp(- \\frac{t}{\\frac{mc_{p}}{hA}}) "/> </td>
 	</tr>
 	<tr>
 		<th>Series</th> 
 		<td><InlineEquation equation=">0.1"/></td> 
-		<td><InlineEquation equation="L \\Leq 4\\sqrt{\\alpha t}"/></td> 
+		<td><InlineEquation equation="L \\leq 4\\sqrt{\\alpha t}"/></td> 
 		<td><InlineEquation equation="\\frac{T - T_{s}}{T_{i} - T_{s}} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{\\alpha t}{L^2}\\right]"/></td>
 	</tr>
 	<tr>
@@ -300,6 +300,18 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 	</tr>
 	</tbody>
   </DisplayTable>
+<style>
+  #dim-table {
+    border-collapse: collapse;
+  }
+
+  #dim-table th,
+  #dim-table td {
+    border: 1px solid black;
+    padding: 0.5rem;
+  }
+</style>
+
 </SubSubSection>
 
 </Layout>
