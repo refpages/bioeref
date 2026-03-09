@@ -267,4 +267,39 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 <Item><InlineEquation equation="t [s]" /> = time</Item>
 </Itemize>
 </SubSubSection>
+
+<SubSubSection title="Solutions Summary Table" id="Summary">
+<DisplayTable id="dim-table">
+	<thead>
+	<tr>
+		<th>Situation</th>
+		<th>Biot Number</th>
+		<th>Thickness</th>
+		<th>Solution Equation</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<th>Lumped</th> 
+		<td><InlineEquation equation="<0.1"/> </td> 
+		<td><InlineEquation equation="L \\Leq 4\\sqrt{\\alpha t}"/> </td> 
+		<td><InlineEquation equation="\\frac{T-T_{\\infty}}{T_{i} - T_{\\infty}} = exp(- \\frac{t}{\\frac{mc_{p}}{hA}}) "/> </td>
+	</tr>
+	<tr>
+		<th>Series</th> 
+		<td><InlineEquation equation=">0.1"/></td> 
+		<td><InlineEquation equation="L \\Leq 4\\sqrt{\\alpha t}"/></td> 
+		<td><InlineEquation equation="\\frac{T - T_{s}}{T_{i} - T_{s}} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{\\alpha t}{L^2}\\right]"/></td>
+	</tr>
+	<tr>
+		<th>Semi-Infinite</th> 
+		<td><InlineEquation equation=">0.1"/> </td>
+		<td><InlineEquation equation="L \\geq 4\\sqrt{\\alpha t}"/></td>
+		<td><InlineEquation equation="\\frac{T-T_{i}}{T_{s} - T_{i}} = 1 - erf[\\frac{x}{2\\alpha t}]"/></td>
+	</tr>
+	</tbody>
+  </DisplayTable>
+</SubSubSection>
+
 </Layout>
