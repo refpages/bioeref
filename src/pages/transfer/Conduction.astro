@@ -243,15 +243,23 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 <SubSubSection title="Near the Surface of a Large Body"  id="SemiInfinite"> 
 <p>The second method to analyze systems with spatial and time variation of temperature <InlineEquation equation="(Bi > 0.1)"/> is for short time and/or thick material. This can be solved with the <b>semi-infinite region solution</b>. </p>
 <p>Material is considered thick if it extends to infinity in two directions and has a single identifiable surface. It can be calculated by:</p>
-<DisplayEquation equation="Thickness L \\geq 4\\sqrt{\\alpha t}" title="" background="True"/>
+<DisplayEquation equation="L \\geq 4\\sqrt{\\alpha t}" title="" background="True"/>
 <p> where </p>
 <Itemize>
-<Item><InlineEquation equation="Thickness L [m]" /> = Characteristic Length</Item>
+<Item><InlineEquation equation="L [m]" /> = Characteristic Length</Item>
 <Item><InlineEquation equation="t [s]" /> = time</Item>
 <Item><InlineEquation equation="\\alpha [\\frac{m^{2}}{s}]" /> = thermal diffusivity</Item>
 </Itemize>
 <p> Semi-infinite Region Solution:</p>
-<DisplayEquation equation=" \\frac{T-T_{i}}{T_{s}-T_{i}} = 1 - erf[\\frac{x}{2\\sqrt{\\alpha t}]" title="" background="True"/>
-<p>where</p>
+<DisplayEquation equation=" \\frac{T-T_{i}}{T_{s} - T_{i}} = 1 - erf[\\frac{x}{2\\alpha t}]" title="" background="True"/>
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="T [k]" /> = temperature at x</Item>
+<Item><InlineEquation equation="T_{i} [K]" /> = tempurature far from the surface</Item>
+<Item><InlineEquation equation="T_{s} [K]" /> = surface temperature</Item>
+<Item><InlineEquation equation="x [m]" /> = specified location</Item>
+<Item><InlineEquation equation="\\alpha [\\frac{m^{2}}{s}]" /> = thermal diffusivity</Item>
+<Item><InlineEquation equation="t [s]" /> = time</Item>
+</Itemize>
 </SubSubSection>
 </Layout>
