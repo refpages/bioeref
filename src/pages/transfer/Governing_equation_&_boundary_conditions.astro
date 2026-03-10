@@ -52,25 +52,25 @@ title="Governing Heat Equation (Cartesian)" background="True"/></b>
 
 where 
 <Itemize>
-<Item><InlineEquation equation="T [K]" /> = temperature</Item>
-<Item><InlineEquation equation="x [m]" /> = position (one-dimensional flow)</Item>
-<Item><InlineEquation equation="t [s]" /> = time</Item>
-<Item><InlineEquation equation="u [\\frac{m}{s}]"/> = fluid velocity</Item>
-<Item><InlineEquation equation="Q [\\frac{W}{m^3}]" /> = heat generated per volume</Item>
-<Item><InlineEquation equation="k [\\frac{W}{mK}]" /> = thermal conductivity</Item>
-<Item><InlineEquation equation="\\rho [\\frac{kg}{m^3}]"/> = density</Item>
-<Item><InlineEquation equation="c_p [\\frac{J}{kg*K}]" /> = specific heat</Item>
+<Item><InlineEquation equation="T" /> = temperature  <InlineEquation equation="[K]" /></Item>
+<Item><InlineEquation equation="x" /> = position (one-dimensional flow) <InlineEquation equation="[m]" /></Item>
+<Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
+<Item><InlineEquation equation="u "/> = fluid velocity <InlineEquation equation="[\\frac{m}{s}]" /></Item>
+<Item><InlineEquation equation="Q " /> = heat generated per volume <InlineEquation equation="[\\frac{W}{m^3}]" /></Item>
+<Item><InlineEquation equation="k " /> = thermal conductivity  <InlineEquation equation="[\\frac{W}{mK}]" /> </Item>
+<Item><InlineEquation equation="\\rho "/> = density  <InlineEquation equation="[\\frac{kg}{m^3}]" /> </Item>
+<Item><InlineEquation equation="c_p " /> = specific heat  <InlineEquation equation="[\\frac{J}{kg*K}]" /></Item>
 </Itemize>
 
 <b><DisplayEquation equation="\\rho c_p \\frac{\\partial T}{\\partial t} = k\\frac{1}{r} \\frac{\\partial}{\\partial r} (r\\frac{\\partial T}{\\partial r}) + Q" title="Governing Heat Equation (Cylindrical)" background="True"/></b>
 <b><DisplayEquation equation="\\rho c_p \\frac{\\partial T}{\\partial t} = k\\frac{1}{r^2} \\frac{\\partial}{\\partial r} (r^2\\frac{\\partial T}{\\partial r}) + Q" title="Governing Heat Equation (Spherical)" background="True"/></b>
 
 <div style="height:20px"> </div>
-In general terms, the <b>Governing Equation</b> for any coordinate system (without flow) can be written as: 
-<DisplayEquation equation="\\frac{k}{\\rho c_p} \\nabla^2 T + \\frac{Q}{\\rho c_p} = \\frac{\\partial T}{\\partial t}" title="" background="True" id="General Form"/>
+For any coordinate system, this can be written as: 
+<DisplayEquation equation="\\frac{k}{\\rho c_p} \\nabla^2 T + \\frac{Q}{\\rho c_p} = \\frac{\\partial T}{\\partial t}" title="Governing Equation without flow (General form)" background="True" id="General Form"/>
 
 <p> In practice, many problems involve simplifying assumptions (e.g., <a href="/transfer/Conduction/#SteadyState">system at steady state</a>, 
-no <a href="/transfer/Convection">bulk flow</a> in the system, or no internal heat generation), which allow certain terms to be removed. 
+no <a href="/transfer/Convection">bulk flow</a> in the system, or no <a href="/transfer/Transport_in_a_biomedical_context/#GenerationofHeat">internal heat generation</a>), which allow certain terms to be removed. 
 The meaning of each term and the conditions under which it should be retained or dropped are summarized below. </p>
 
 <div style="height:20px"> </div>
@@ -84,21 +84,21 @@ The meaning of each term and the conditions under which it should be retained or
     </thead>
     <tbody>
       <tr>
-        <th><InlineEquation equation="\\frac{\\partial T}{\\partial t}"/></th><td>    Stored energy    </td><td>Unsteady state, <i>T</i> changing with time (transient)</td><td>Steady state (constant <i>T</i>)</td>
+        <th><InlineEquation equation="\\frac{\\partial T}{\\partial t}"/></th><td>  Stored energy  </td><td>Unsteady state, <InlineEquation equation="T" /> changing with time (transient)</td><td>Steady state (constant <InlineEquation equation="T" />)</td>
       </tr>
       <tr>
-        <th> <InlineEquation equation="u\\frac{\\partial T}{\\partial x}"/></th>  <td> <a href="/transfer/Convection">Bulk flow (Convection)</a> </td>  <td>Fluid flow</td><td>No flow (solid)</td>
+        <th> <InlineEquation equation="u\\frac{\\partial T}{\\partial x}"/></th>  <td> Bulk flow (Convection) </td> <td>Fluid flow</td><td>No flow (solid)</td>
        </tr>
       <tr>
-        <th><InlineEquation equation="\\frac{k}{\\rho c_p} \\frac{\\partial ^2 T}{\\partial x^2}"/></th>  <td><a href="/transfer/Conduction">Conduction</a></td><td>Almost always</td>  <td>No conduction (no temperature gradient)</td>
+        <th><InlineEquation equation="\\frac{k}{\\rho c_p} \\frac{\\partial ^2 T}{\\partial x^2}"/></th>  <td> Conduction </td> <td>Almost always</td>  <td>No conduction (no temperature gradient)</td>
       </tr>
       <tr>
-        <th><InlineEquation equation="\\frac{Q}{\\rho c_p}"/></th> <td><a href="/transfer/Transport_in_a_biomedical_context/#GenerationofHeat">Generation</a>  </td><td>Conversion of energy in the system</td><td>No generation/heat source</td>
+        <th><InlineEquation equation="\\frac{Q}{\\rho c_p}"/></th> <td>Generation</td> <td>Conversion of energy in the system</td><td>No generation/heat source</td>
       </tr>
     </tbody>
   </DisplayTable>
 
-<p class="text-center"><em><b>Governing Equation Simplifications</b> </em></p> 
+<p class="text-center"><em><b> Table 1</b>: Governing equation terms and simplifications. </em></p> 
 
 </SubSection>  
 
