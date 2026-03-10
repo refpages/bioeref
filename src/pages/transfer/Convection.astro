@@ -28,10 +28,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection'>Convection</a><ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ConvectionBio'>Convective Heat Transfer in Biological Systems</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ConvectionBio'>In Biological Systems</a></li></ul>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BoundaryLayers'>Boundary Layers</a><ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Velocity'>Velocity Boundary Layer</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Thermal'>Thermal Boundary Layer</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Velocity'>Velocity</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Thermal'>Thermal</a></li></ul>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dimensionless'>Dimensionless Flow Parameters</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#TypesofFlow'>Types of Flow</a></li></ul>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HeatTransferCoeff'>Convective Heat Transfer Coefficient</a></li>
@@ -64,7 +64,7 @@ Note that it is not a material property, but depends on geometry, flow condition
 
 <CalloutContainer slot="cards">
     <CalloutCard title="Heads Up!">
-     <p> Learn more about how to calculate the <b><a href="/transfer/convection/HeatTransferCoeff">convective heat transfer coefficient</a></b> <InlineEquation equation="h"/> below. </p>
+     <p> Learn more about how to calculate the <b><a href="/transfer/convection/#HeatTransferCoeff">convective heat transfer coefficient</a></b> <InlineEquation equation="h"/> below. </p>
     </CalloutCard>
 </CalloutContainer>
 
@@ -95,7 +95,36 @@ Note that it is not a material property, but depends on geometry, flow condition
 </SubSection>
 
 <SubSubSection title="Types of Flow" id="TypesofFlow"> 
-<p>x. </p>
+
+
+<DisplayTable id="dim-table">
+	<thead>
+	<tr>
+		<th>Term (#)</th>	<th>Definition </th> <th>Physical significance </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<th>Reynolds</th>	<th> </th> <th></th>
+	</tr>
+	<tr>
+	<th>Biot</th>	<th> </th> <th> </th>
+	</tr>	
+	<tr>
+	<th>Nusselt</th>	<th> </th> <th> </th>
+	</tr>
+    <tr>
+	<th>Prandtl</th>	<th> </th> <th></th>
+	</tr>
+     <tr>
+	<th>Prandtl</th>	<th> </th> <th></th>
+	</tr>
+	</tbody>
+  </DisplayTable>
+
+<p class="text-center"><em><b> Table 1</b>: Dimensionless flow parameters and their definitions. <InlineEquation equation="L"/> is the characteristic length.</em></p> 
+
+
 </SubSubSection>
 
 <SubSection title="Convective Heat Transfer Coefficient" id="HeatTransferCoeff"> 
