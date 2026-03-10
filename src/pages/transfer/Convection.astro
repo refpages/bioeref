@@ -23,24 +23,94 @@ import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
-<Layout title="Convection">
-<SubSection title="Convection" id="Convection">
 
-<p>Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface, and is based on <b>Newton's Law of Cooling</b>:</p>
-<DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="" background="True"/>
+<Layout title="Convection">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection'>Convection</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ConvectionBio'>Convective Heat Transfer in Biological Systems</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BoundaryLayers'>Boundary Layers</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Velocity'>Velocity Boundary Layer</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Thermal'>Thermal Boundary Layer</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dimensionless'>Dimensionless Flow Parameters</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#TypesofFlow'>Types of Flow</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HeatTransferCoeff'>Convective Heat Transfer Coefficient</a></li>
+</li>
+</ul>
+</div>
+
+
+
+
+<SubSection title="Convection" id="Convection">
+<p>Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface. </p>
+
+<b><DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="Newton's Law of Cooling" background="True"/></b>
 
 where 
 <Itemize>
-<Item><InlineEquation equation="q_{1-2} [W]" /> = rate of heat flow from 1 (hotter) to 2 (colder) </Item>
-<Item><InlineEquation equation="A [m^2]" /> = surface area normal to the direction of heat flow</Item>
-<Item><InlineEquation equation="T_1 [K]" /> = temperature of 1 (e.g., system)</Item>
-<Item><InlineEquation equation="T_2 [K]" /> = temperature of 2 (e.g., surroundings)</Item>
-<Item><InlineEquation equation="h [\\frac{W}{m^2 K}]" /> = convective heat transfer coefficient (which always includes the effect of conduction in the fluid)</Item>
+<Item><InlineEquation equation="q_{1-2}" /> = rate of heat flow from 1 (hotter) to 2 (colder) <InlineEquation equation="[W]" /></Item>
+<Item><InlineEquation equation="A" /> = surface area normal to the direction of heat flow <InlineEquation equation="[m^2]" /></Item> 
+<Item><InlineEquation equation="T_1" /> = temperature of 1 (e.g., system) <InlineEquation equation="[K]" /></Item>
+<Item><InlineEquation equation="T_2" /> = temperature of 2 (e.g., surroundings) <InlineEquation equation="[K]" /></Item>
+<Item><InlineEquation equation="h" /> = convective heat transfer coefficient (which always includes the effect of conduction in the fluid) <InlineEquation equation="[\\frac{W}{m^2 K}]" /></Item>
 </Itemize>
 
-<p> The convective heat transfer coefficient <i>h</i> is a proportionality constant between the temperature difference and heat flux.
-Note that it is not a material property, but depends on geometry, flow conditions, and fluid properties, which can all be measured experimentally. </p>
+<p> The convective heat transfer coefficient <InlineEquation equation="h"/> is a proportionality constant between the temperature difference and heat flux.
+Note that it is not a material property, but depends on geometry, flow conditions, and fluid properties, which can all be measured experimentally. </p> 
 
 <p> Convection can be <b>free</b> (driven by differences in density) or <b>forced</b> (driven by external forces such as pumps and fans). </p>
+
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Heads Up!">
+     <p> Learn more about how to calculate the <b><a href="/transfer/convection/HeatTransferCoeff">convective heat transfer coefficient</a></b> <InlineEquation equation="h"/> below. </p>
+    </CalloutCard>
+</CalloutContainer>
+
+</SubSection>
+
+<SubSubSection title="Convective Heat Transfer in Biological Systems" id="ConvectionBio"> 
+<p>x. </p>
+</SubSubSection>
+
+
+
+<SubSection title="Boundary Layers" id="BoundaryLayers"> 
+</SubSection>
+
+<SubSubSection title="Velocity Boundary Layer" id="Velocity"> 
+<p>x. </p>
+</SubSubSection>
+
+
+<SubSubSection title="Thermal Boundary Layer" id="Thermal"> 
+<p>x. </p>
+</SubSubSection>
+
+
+
+<SubSection title="Dimensionless Flow Parameters" id="BoundaryLayers"> 
+<p> table here </p>
+</SubSection>
+
+<SubSubSection title="Types of Flow" id="TypesofFlow"> 
+<p>x. </p>
+</SubSubSection>
+
+<SubSection title="Convective Heat Transfer Coefficient" id="HeatTransferCoeff"> 
+<p>x. </p>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Heads Up!">
+     <p> Characteristic length... </p>
+    </CalloutCard>
+</CalloutContainer>
+
+
+</SubSection>
+
+
+
 
 </Layout>
