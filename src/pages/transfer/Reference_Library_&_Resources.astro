@@ -26,7 +26,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Reference Library & Resources">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Heisler Chart'>Using the Heisler Chart</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Heisler Chart'>The Heisler Chart</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dimensionless Numbers'>Dimensionless Numbers</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Differential Equations Review'>Differential Equations Review</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Reference Tables'>Reference Tables</a></li>
@@ -37,7 +37,52 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </ul>
 </div>
 
-<SubSection title="Using the Heisler Chart" id="Heisler Chart">
+<SubSection title="The Heisler Chart" id="Heisler Chart">
+<p> Heisler Charts are used to describe the relationship between the temperature, position, and time variables. The chart plots the 1st term of the series solution which is a sufficient approximation after “long times”. </p>
+<p>You can find the Heisler Charts here. Note there are different charts based on the geometry of your system (slab, cylinder, or sphere). </p>
+
+<SubSubSection title="How to Use the Heisler Chart" id="Use Heisler Chart">
+<p><b>Step 1. Calculate m</b></p>
+<p>m identifies which set of lines to use on the chart.</p>
+<DisplayEquation equation="m = \\frac{k}{hL}" title="" background="True"/>
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="h [\\frac{W}{m^{2} K}]" /> = convective heat transfer coeffiecent</Item>
+<Item><InlineEquation equation="L [m]" /> = characteristic length </Item>
+<Item><InlineEquation equation="k [\\frac{W}{mK}]" /> = thermal conductivity of the medium</Item>
+</Itemize>
+
+<p><b>Step 2. Calculate n</b></p>
+<p>n identifies which specific line to use within in your identified set of lines.</p>
+<DisplayEquation equation="n = \\frac{x}{L}" title="" background="True"/>
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="x [m]" /> = location of interest within the solid</Item>
+<Item><InlineEquation equation="L [m]" /> = characteristic length </Item>
+</Itemize>
+
+<p><b>Step 3. Calculate the Fourier Number</b></p>
+<p> The Fourier Number is at the bottom of the Heisler Chart </p>
+<DisplayEquation equation="F_{o} = \\frac{\\alpha t}{L^{2}} > 0.2" title="" background="True"/>
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="\\alpha = \\frac{k}{\\rho c_{p}} [\\frac{m^{2}}{s}]" /> = thermal diffusivity</Item>
+<Item><InlineEquation equation="t [s]" /> = time</Item>
+<Item><InlineEquation equation="L [m]" /> = Characteristic Length</Item>
+</Itemize>
+
+<p><b>Step 4. Find the point of intersection of those three variables and trace them to the fractional temperature change.</b></p>
+<p> The fractional temperature is on the left of the Heisler Chart. </p>
+<p> Fractional Temperature Change:</p>
+<DisplayEquation equation="\\frac{T-T_{\\infty}}{T_{i} - T_{\\infty}}" title="" background="True"/>
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="T [K]" /> = surface temperature of the solid</Item>
+<Item><InlineEquation equation="T_{i} [K]" /> = initial temperature of the solid</Item>
+<Item><InlineEquation equation="T_{\\infty} [K]" /> = temperature of bulk fluid or air</Item>
+</Itemize>
+<p>Once you find the value of the fractional temperature from the chart, you can find the missing temperature variable.</p>
+</SubSubSection>
 </SubSection>
 
 <!-- 
