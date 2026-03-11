@@ -32,7 +32,16 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <Section title="Convolution"/>
 <SubSection title="Why Is Convolution Important?" id="Why">
-  <p>text here</p>
+  <p>Imagine you are a doctor and to fight an infection you must give your patients 3 doses of medicine. 
+Doses = 3
+At the beginning of the week, you have 1 patient. This number increases throughout the week by 1 patient each day. By Friday, you have 5 patients. 
+Number of patients per day = [1 2 3 4 5]
+If you wanted to calculate the total number of doses you administer over the week, you would multiply the doses by the number of patients per day and sum this.
+Total doses = [3 6 9 12 15] = 45
+However, imagine the disease evolves. Now, you have to give each patient 3 doses on the first day, 2 doses on the second day, and 1 dose on the third day.
+Doses = [3 2 1]
+Now, how many total doses are administered each day? Each week? This suddenly became more complicated, but convolution is the key to solving this problem.
+</p>
 </SubSection>
 
 <SubSection title="What Is Convolution?" id="What">
