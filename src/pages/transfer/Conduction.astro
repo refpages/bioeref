@@ -215,10 +215,13 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 <Itemize>
 <Item> If <InlineEquation equation="Bi > 0.1" />, internal resistance is significant</Item>
 </Itemize>
+
 <p> Series Solution: </p>
 <DisplayEquation equation="\\frac{T - T_{s}}{T_{i} - T_{s}} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{\\alpha t}{L^2}\\right]" title="" background="True"/>
+
 <p>You can solve the series solution two different ways: numerically or using a Heisler Chart.</p>
 <p> Heisler Charts are used to describe the relationship between the temperature, position, and time variables. It plots the 1st term of the series solution. The 1st term of the series solution is sufficient after “long times”.</p>
+
 <p> The <b>Fourier Number</b> is used to determine “long times” after initial: </p>
 <DisplayEquation equation="F_{o} = \\frac{\\alpha t}{L^{2}} > 0.2" title="" background="True"/>
 <p> where </p>
@@ -227,6 +230,7 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 <Item><InlineEquation equation="t [s]" /> = time</Item>
 <Item><InlineEquation equation="L [m]" /> = Characteristic Length</Item>
 </Itemize>
+
 <p>In order to use the Heisler Chart your system must satisfy the following:</p>
 <Itemize>
 <Item>Uniform initial temperature, <InlineEquation equation="T_{i}" /></Item>
@@ -237,6 +241,14 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 <Item>Constant thermal properties <InlineEquation equation="(k, \\rho, c_{p})" /></Item>
 <Item>Long time after initial: <InlineEquation equation="F_{o} > 0.2" /></Item>
 </Itemize>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Learn More">
+            <p> To learn how to use the Heisler Chart, visit the <a href="/transfer/Reference_Library_&_Resources/">Reference Library & Resources Page</a>!
+            </p>
+    </CalloutCard>
+</CalloutContainer>
+
 <p>If the system does not satisfy the Heisler Chart conditions, the solution has to be found numerically.</p>
 
 <Image src="/transfer/Lumped_vs_Series_Soln.png">
