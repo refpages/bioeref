@@ -50,10 +50,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </SubSection>
 
 <SubSection title="The Heisler Chart" id="Heisler Chart">
-<p> Heisler Charts are used to describe the relationship between variables of temperature, position, and time in a transient system. 
-The chart plots the 1st term of the series solution, which is a sufficient approximation after “long times” (e.g., <a class href='#Fourier'> the Fourier number </a> is greater than 0.2). </p>
-<p>You can find images of the Heisler Charts <a href="/transfer/HeislerCharts.pdf" target="_blank">here</a>. Note there are different charts based on the geometry of your system (slab, cylinder, or sphere). 
-In order to use a Heisler chart to find fractional temperature change (y-axis), for example, follow these steps:
+<p> These charts describe the relationship between variables of temperature, position, and time in a transient or unsteady state system. 
+They plot the 1st term of a series solution for heat transfer, which is a sufficient approximation after “long times” (e.g., <a class href='#Fourier'> the Fourier number </a> is greater than 0.2). </p>
+<p>You can find images of the Heisler Charts <a href="/transfer/HeislerCharts.pdf" target="_blank">here</a> for slab, cylinder, or sphere geometries. 
+In order to determine find fractional temperature change (y-axis) in Cartesian coordinates, for example, follow these steps:
 </p>
 
 <CalloutContainer slot="cards">
@@ -72,7 +72,7 @@ In order to use a Heisler chart to find fractional temperature change (y-axis), 
 <Item><InlineEquation equation="k"/> = thermal conductivity of the medium <InlineEquation equation="[\\frac{W}{mK}]" /></Item>
 </Itemize>
 
-<p><b>Step 2. Calculate <InlineEquation equation="n"/></b> to identify which specific line to use within in the groupings of lines:</p>
+<p><b>Step 2. Calculate <InlineEquation equation="n"/>, the non-dimensional length variable</b>, to identify which specific line to use within in the groupings of lines:</p>
 <DisplayEquation equation="n = \\frac{x}{L}" title="" background="True"/>
 <p> where </p>
 <Itemize>
@@ -80,8 +80,7 @@ In order to use a Heisler chart to find fractional temperature change (y-axis), 
 <Item><InlineEquation equation="L"/> = characteristic length <InlineEquation equation="[m]" /> </Item>
 </Itemize>
 
-<p id="Fourier"><b>Step 3. Calculate the Fourier Number</b>, which is the non-dimensional time variable (x-axis):</p>
-<p> The Fourier Number is at the bottom of the Heisler Chart </p>
+<p id="Fourier"><b>Step 3. Calculate the Fourier Number, the non-dimensional time variable </b> (on the x-axis):</p>
 <DisplayEquation equation="F_{o} = \\frac{\\alpha t}{L^{2}}" title="" background="True"/>
 <p> where </p>
 <Itemize>
@@ -90,7 +89,7 @@ In order to use a Heisler chart to find fractional temperature change (y-axis), 
 <Item><InlineEquation equation="L" /> = characteristic length <InlineEquation equation="[m]" /></Item>
 </Itemize>
 
-<p><b>Step 4. Find the point of intersection of those three variables and trace them to the fractional temperature change:</b></p>
+<p><b>Step 4. Trace the intersection of those three variables to the fractional temperature change:</b></p>
 <DisplayEquation equation="\\frac{T-T_{\\infty}}{T_{i} - T_{\\infty}}" title="" background="True"/>
 <p> where </p>
 <Itemize>
