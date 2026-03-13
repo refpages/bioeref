@@ -145,7 +145,30 @@ Note that it is not a material property, but depends on geometry, flow condition
     </CalloutCard>
 </CalloutContainer>
 
+<p><b>Flat Plate, Forced Convection</b></p>
+<p>The Convective Heat Transfer Coefficient,  <InlineEquation equation="h"/>, varies with distance along the flow for both laminar and turbulent flow. To calculate <InlineEquation equation="h_{x}"/> at location x, use the Local Nusselt number. To calculate <InlineEquation equation="h_{L}"/> over the entire plate (L), use the Average Nusselt number.</p>
+<p> Local Nusselt number (<InlineEquation equation="Nu_{x}"/>): <p>
+<DisplayEquation equation="Nu_{x} = \\frac{h_{x}x}{k_{fluid}}" title="" background="True"/>
+<p><p> Average Nusselt number (<InlineEquation equation="Nu_{L}"/>): <p>
+<DisplayEquation equation="Nu_{L} = \\frac{h_{L}L}{k_{fluid}}" title="" background="True"/>
 
+<p><b>Flat Plate, Natural Convection</b></p>
+<p> In natural convection, fluid moves due to changes in density compared to its surroundings (such as changes in temperature). With no forced velocity, the Reynolds Number is not as useful. Instead, the Grashof Number can approximate the ratio of the buoyancy to viscous force on the fluid.</p>
+
+<p><b>Cylinder, Forced Convection</b></p>
+<Itemize>
+<Item> Flow over the cylinder: characteristic length = outside diameter D</Item>
+<Item> Flow through the cylinder: characteristic length = innder diameter D of tube</Item>
+</Itemize>
+
+<p><b>Cylinder, Natural Convection</b></p>
+<Itemize>
+<Item> Vertical cylinder: characteristic length = height L of cylinder</Item>
+<Item> Horizontal cylinder: characteristic length = outside diameter D of cylinder</Item>
+</Itemize>
+
+<p><b>Sphere</b></p>
+<p>Characteristic length for both forced and natural convection is the diameter D of the sphere.<p>
 </SubSection>
 
 
