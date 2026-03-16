@@ -135,24 +135,24 @@ Note that it is not a material property, but depends on geometry, flow condition
 
 
 <SubSection title="Convective Heat Transfer Coefficient" id="HeatTransferCoeff"> 
-<p>Too solve for the convective, heat transfer coefficient (h):</p>
+<p>Too solve for the convective, heat transfer coefficient (<InlineEquation equation="h"/>):</p>
 <Itemize>
 <Item> Identify the solid's geometry: flat plate, cylinder, or sphere.</Item>
-<Item> Find L (characteristic length) </Item>
+<Item> Find <InlineEquation equation="l"/> (characteristic length) </Item>
 <Item> Identify natural or forced convection</Item>
 <Item> Identify laminar or turbulent flow using the Reynold's Number</Item>
 <Item> Choose the appropriate equation</Item>
 </Itemize>
-
+<p> Find the different Nusselt Number equations based on geometry and type of convection <a href="https://volupe.com/support/empirical-correlations-for-convective-heat-transfer-coefficients/">here</a>!</p>
 <CalloutContainer slot="cards">
     <CalloutCard title="Heads Up!">
-     <p> When considering convection over a surface, the characteristic length (L) refers to how far the fluid must travel over/around the system. 
-		This differs from the characteristic length (L) described in <a href="/transfer/Conduction/#CharacteristicLength">conduction </a>, which is the path that heat must take to escape from a solid object. </p>
+     <p> When considering convection over a surface, the characteristic length (<InlineEquation equation="L"/>) refers to how far the fluid must travel over/around the system. 
+		This differs from the characteristic length (<InlineEquation equation="L"/>) described in <a href="/transfer/Conduction/#CharacteristicLength">conduction </a>, which is the path that heat must take to escape from a solid object. </p>
     </CalloutCard>
 </CalloutContainer>
 
 <p><b>Flat Plate, Forced Convection</b></p>
-<p>The Convective Heat Transfer Coefficient,  <InlineEquation equation="h"/>, varies with distance along the flow for both laminar and turbulent flow. To calculate <InlineEquation equation="h_{x}"/> at location x, use the Local Nusselt number. To calculate <InlineEquation equation="h_{L}"/> over the entire plate (L), use the Average Nusselt number.</p>
+<p>The Convective Heat Transfer Coefficient,  <InlineEquation equation="h"/>, varies with distance along the flow for both laminar and turbulent flow. To calculate <InlineEquation equation="h_{x}"/> at location <InlineEquation equation="x"/>, use the Local Nusselt number. To calculate <InlineEquation equation="h_{L}"/> over the entire plate (<InlineEquation equation="L"/>), use the Average Nusselt number.</p>
 <p> Local Nusselt number (<InlineEquation equation="Nu_{x}"/>): <p>
 <DisplayEquation equation="Nu_{x} = \\frac{h_{x}x}{k_{fluid}}" title="" background="True"/>
 <p><p> Average Nusselt number (<InlineEquation equation="Nu_{L}"/>): <p>
@@ -163,18 +163,18 @@ Note that it is not a material property, but depends on geometry, flow condition
 
 <p><b>Cylinder, Forced Convection</b></p>
 <Itemize>
-<Item> Flow over the cylinder: characteristic length = outside diameter D</Item>
-<Item> Flow through the cylinder: characteristic length = innder diameter D of tube</Item>
+<Item> Flow over the cylinder: characteristic length = outside diameter <InlineEquation equation="D"/></Item>
+<Item> Flow through the cylinder: characteristic length = inner diameter <InlineEquation equation="D"/> of tube</Item>
 </Itemize>
 
 <p><b>Cylinder, Natural Convection</b></p>
 <Itemize>
-<Item> Vertical cylinder: characteristic length = height L of cylinder</Item>
-<Item> Horizontal cylinder: characteristic length = outside diameter D of cylinder</Item>
+<Item> Vertical cylinder: characteristic length = height <InlineEquation equation="L"/> of cylinder</Item>
+<Item> Horizontal cylinder: characteristic length = outside diameter <InlineEquation equation="D"/> of cylinder</Item>
 </Itemize>
 
 <p><b>Sphere</b></p>
-<p>Characteristic length for both forced and natural convection is the diameter D of the sphere.<p>
+<p>Characteristic length for both forced and natural convection is the diameter <InlineEquation equation="D"/> of the sphere.<p>
 </SubSection>
 
 
