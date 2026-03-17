@@ -43,7 +43,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 
 <SubSection title="Convection" id="Convection">
-<p>Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (liquid or gas) over a surface. </p>
+<p>Convective heat transfer is the transport of thermal energy due to bulk motion of a fluid (a liquid or a gas) over a surface. </p>
 
 <b><DisplayEquation equation="q_{1-2} = hA(T_1 - T_2)" title="Newton's Law of Cooling" background="True"/></b>
 
@@ -113,12 +113,13 @@ Note that it is not a material property, but depends on geometry, flow condition
 	<th>Prandtl</th>	<th> </th> <th></th>
 	</tr>
      <tr>
-	<th>Prandtl</th>	<th> </th> <th></th>
+	<th>Grashof</th>	<th> </th> <th></th>
 	</tr>
 	</tbody>
   </DisplayTable>
 
-<p class="text-center"><em><b> Table 1</b>: Dimensionless flow parameters and their definitions. <InlineEquation equation="L"/> is the characteristic length.</em></p> 
+<p class="text-center"><em><b> Table 1</b>: Dimensionless flow parameters and their definitions. <InlineEquation equation="L"/> is the characteristic length 
+(or <InlineEquation equation="R"/> in radial coordinates).</em></p> 
 
 </SubSection>
 
@@ -135,36 +136,44 @@ Note that it is not a material property, but depends on geometry, flow condition
 
 
 <SubSection title="Convective Heat Transfer Coefficient" id="HeatTransferCoeff"> 
-<p>Too solve for the convective, heat transfer coefficient (<InlineEquation equation="h"/>):</p>
-<Itemize>
-<Item> Identify the solid's geometry: flat plate, cylinder, or sphere.</Item>
+<p>To solve for the convective, heat transfer coefficient (<InlineEquation equation="h"/>):</p>
+<Enumerate>
+<Item> Identify the solid's geometry: flat plate, cylinder, or sphere</Item>
 <Item> Find <InlineEquation equation="L"/> (characteristic length) </Item>
 <Item> Identify natural or forced convection</Item>
 <Item> Identify laminar or turbulent flow using the Reynold's Number</Item>
 <Item> Choose the appropriate equation</Item>
-</Itemize>
-<p> Find the different Nusselt Number equations based on geometry and type of convection <a href="https://volupe.com/support/empirical-correlations-for-convective-heat-transfer-coefficients/" target="_blank">here</a>!</p>
+</Enumerate>
+
+<p> To find the various Nusselt Number equations based on geometry and type of convection, 
+visit <i><a href="https://volupe.com/support/empirical-correlations-for-convective-heat-transfer-coefficients/" target="_blank">Empirical correlations for convective heat transfer coefficients</a></i>.</p>
+
 <CalloutContainer slot="cards">
     <CalloutCard title="Heads Up!">
-     <p> When considering convection over a surface, the characteristic length (<InlineEquation equation="L"/>) refers to how far the fluid must travel over/around the system. 
-		This differs from the characteristic length (<InlineEquation equation="L"/>) described in <a href="/transfer/Conduction/#CharacteristicLength">conduction </a>, which is the path that heat must take to escape from a solid object. </p>
+     <p> When considering convection over a surface, the characteristic length refers to <i>how far the fluid must travel over/around the system</i>. 
+		For example, fluid encountering a sphere would need to travel around its diameter <InlineEquation equation="D"/>.</p>
+	  <p> This differs from the characteristic length described in <a href="/transfer/Conduction/#CharacteristicLength">conduction</a>, which is the <i>path that heat must take to escape from a solid object</i>.
+			In this instance, heat would escape most quickly through the radius of the sphere <InlineEquation equation="R"/></p>
     </CalloutCard>
 </CalloutContainer>
 
 <p><b>Flat Plate, Forced Convection</b></p>
-<p>The Convective Heat Transfer Coefficient,  <InlineEquation equation="h"/>, varies with distance along the flow for both laminar and turbulent flow. To calculate <InlineEquation equation="h_{x}"/> at location <InlineEquation equation="x"/>, use the Local Nusselt number. To calculate <InlineEquation equation="h_{L}"/> over the entire plate (<InlineEquation equation="L"/>), use the Average Nusselt number.</p>
-<p> Local Nusselt number (<InlineEquation equation="Nu_{x}"/>): <p>
+<p>The convective heat transfer coefficient,  <InlineEquation equation="h"/>, varies with distance along the flow for both laminar and turbulent flow. </p>
+
+<p> To calculate <InlineEquation equation="h_{x}"/> at a specific location <InlineEquation equation="x"/>, use the local Nusselt number (<InlineEquation equation="Nu_{x}"/>): <p>
 <DisplayEquation equation="Nu_{x} = \\frac{h_{x}x}{k_{fluid}}" title="" background="True"/>
-<p><p> Average Nusselt number (<InlineEquation equation="Nu_{L}"/>): <p>
+
+<p><p>To calculate <InlineEquation equation="h_{L}"/> over the entire object (<InlineEquation equation="L"/>), use the average Nusselt number (<InlineEquation equation="Nu_{L}"/>): <p>
 <DisplayEquation equation="Nu_{L} = \\frac{h_{L}L}{k_{fluid}}" title="" background="True"/>
 
 <p><b>Flat Plate, Natural Convection</b></p>
-<p> In natural convection, fluid moves due to changes in density compared to its surroundings (such as changes in temperature). With no forced velocity, the Reynolds Number is not as useful. Instead, the Grashof Number can approximate the ratio of the buoyancy to viscous force on the fluid.</p>
+<p> In conditions of natural convection, fluid moves due to changes in density compared to its surroundings (such as changes in temperature). 
+With no forced convection, the Reynolds Number is not as useful. Instead, the Grashof Number can approximate the ratio of the buoyancy to viscous force on the fluid.</p>
 
 <p><b>Cylinder, Forced Convection</b></p>
 <Itemize>
-<Item> Flow over the cylinder: characteristic length = outside diameter <InlineEquation equation="D"/></Item>
-<Item> Flow through the cylinder: characteristic length = inner diameter <InlineEquation equation="D"/> of tube</Item>
+<Item> Flow over the cylinder: characteristic length = outside diameter <InlineEquation equation="D_o"/></Item>
+<Item> Flow through the cylinder: characteristic length = inner diameter <InlineEquation equation="D_i"/> of the tube</Item>
 </Itemize>
 
 <p><b>Cylinder, Natural Convection</b></p>
@@ -174,7 +183,7 @@ Note that it is not a material property, but depends on geometry, flow condition
 </Itemize>
 
 <p><b>Sphere</b></p>
-<p>Characteristic length for both forced and natural convection is the diameter <InlineEquation equation="D"/> of the sphere.<p>
+<p>The characteristic length for both forced and natural convection is the diameter <InlineEquation equation="D"/> of the sphere.<p>
 </SubSection>
 
 
