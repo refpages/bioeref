@@ -78,14 +78,38 @@ Note that it is not a material property, but depends on geometry, flow condition
 
 <SubSection title="Boundary Layers" id="BoundaryLayers"> 
 </SubSection>
+<p>
+A boundary layer is a thin region of fluid in contact with a solid surface where properties such as velocity or temperature rapidly change. 
+Outside this region, the fluid is affected significantly less by the surface, so gradients are relatively small. 
+In convection problems, it’s important we understand boundary layers because these are the regions where the largest gradients are present,
+which will heavily influence how heat is transferred between the surface and the fluid. 
+Two types of boundary layers we will look at are the velocity and thermal boundary layers. 
+</p>
 
 <SubSubSection title="Velocity Boundary Layer" id="Velocity"> 
-<p> </p>
+<p> When a fluid flows over a surface, the fluid far from the surface moves at the free-stream velocity, 
+whereas the fluid in close contact with the surface is stationary. This phenomenon is known as the no-slip condition, 
+which states that fluid at a solid boundary has zero velocity relative to the solid surface. 
+So the velocity boundary layer is the region near the surface where the fluid velocity transitions from zero at the solid surface 
+(result of no-slip condition) to the free-stream velocity of the bulk fluid far from the surface. 
+</p>
 </SubSubSection>
 
 
 <SubSubSection title="Thermal Boundary Layer" id="Thermal"> 
-<p> </p>
+<p> Due to the no-slip condition, the fluid close to the surface is at rest. 
+As a result, if the surface temperature differs from the fluid, then this stationary fluid layer will take on the surface temperature. 
+Consequently, a temperature gradient will develop in the fluid near the wall, resulting in a thermal boundary layer.
+</p>
+
+<p>The thermal boundary layer is therefore the region near the surface where fluid temperature changes from the surface temperature 
+to that of the bulk fluid temperature. Within this boundary region, thermal gradients are large. Outside this boundary region, 
+thermal gradients are small, meaning the fluid temperature will be relatively uniform.
+</p>
+
+<p> Note that unlike the velocity boundary layer, the thermal boundary layer does not always exist. 
+It is present only when there is a temperature difference between the surface and bulk fluid.
+</p>
 </SubSubSection>
 
 
