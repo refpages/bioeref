@@ -291,29 +291,29 @@ If <InlineEquation equation="Bi>0.1"/>, the internal resistance cannot be ignore
 	<thead>
 	<tr>
 		<th style="width:10%" class="table-shaded">Situation</th>
-		<th style="width:10%">Biot Number</th>
+		<th style="width:10%" class="table-shaded">Biot Number</th>
 		<th style="width:15%" class="table-shaded">Thickness</th>
-		<th style="width:65%">Solution Equation</th>
+		<th style="width:65%" class="table-shaded">Solution Equation</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<th>Lumped</th> 
+		<th class="table-shaded">Lumped</th> 
 		<td><InlineEquation equation="<0.1"/> </td> 
-		<td><InlineEquation equation="L \\leq 4\\sqrt{\\alpha t}"/> </td> 
+		<td class="table-shaded"><InlineEquation equation="L \\leq 4\\sqrt{\\alpha t}"/> </td> 
 		<td><InlineEquation equation="\\frac{T-T_{\\infty}}{T_{i} - T_{\\infty}} = exp(- \\frac{t}{\\frac{mc_{p}}{hA}}) "/> </td>
 	</tr>
 	<tr>
-		<th>Series</th> 
+		<th class="table-shaded">Series</th> 
 		<td><InlineEquation equation=">0.1"/></td> 
-		<td><InlineEquation equation="L \\leq 4\\sqrt{\\alpha t}"/></td> 
+		<td class="table-shaded"><InlineEquation equation="L \\leq 4\\sqrt{\\alpha t}"/></td> 
 		<td><InlineEquation equation="\\frac{T - T_{s}}{T_{i} - T_{s}} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{\\alpha t}{L^2}\\right]"/></td>
 	</tr>
 	<tr>
-		<th>Semi-Infinite</th> 
+		<th class="table-shaded">Semi-Infinite</th> 
 		<td><InlineEquation equation=">0.1"/> </td>
-		<td><InlineEquation equation="L \\geq 4\\sqrt{\\alpha t}"/></td>
+		<td class="table-shaded"><InlineEquation equation="L \\geq 4\\sqrt{\\alpha t}"/></td>
 		<td><InlineEquation equation="\\frac{T-T_{i}}{T_{s} - T_{i}} = 1 - erf[\\frac{x}{2\\alpha t}]"/></td>
 	</tr>
 	</tbody>
