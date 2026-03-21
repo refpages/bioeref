@@ -1,0 +1,49 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro"
+import PrairieDrawCanvas from "../../components/PrairieDrawCanvas.astro"
+import Center from "../../components/Center.astro"
+import CalloutCard from "../../components/CalloutCard.astro"
+import Warning from "../../components/Warning.astro"
+import Example from "../../components/Example.astro"
+import DisplayTable from "../../components/DisplayTable.astro"
+---
+<Layout title="Filters">
+<div slot="navtree">
+    <ul class="list-group list-group-flush py-0">
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Applications'>Why Is Filtering Important?</a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#How'>How Are Filters Applied?</a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Gain'>Gain and Decibels</a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types'>Types Of Filters</a></li>
+    </ul>
+</div>
+
+<Section title="Filters"/>
+<SubSection title="Why Is Filtering Important?" id="Applications">
+  <p>Filters can be found in almost any electronic device, and especially so in medical devices which handle lots of data and measurements. The primary goal of filtering in any system is to get rid of noise while preserving important data for use by physicians. This improves the signal to noise ration (SNR) and makes signals more useful and easier to interpret for both people and other machines.</p>
+  <p>For example, filters are very useful in ECG readings. While the goal of an ECG is to detect electrical impulses from the heart rhymth, many other electrical signals can interfere such as muscle movements, including breathing, and even 60Hz AC currents nearby. Noisy signals are more difficult to understand and may even prove fatal if a physician cannot quickly and accurately diagnose a patient in events such as a heart attack.</p>
+</SubSection>
+
+<SubSection title="What Are Filters And How Are They Applied?" id="How">
+  <p>Filters are applied to frequency domain signals by attenuating (reducing amplitude of) sine waves within that range of frequencies. Different types of filters such as low pass, high pass, band pass, and band stop filters determine the range of frequencies which are attenuated. Since filters are made from combinations of physical electrical components, they do not have perfect attenuation close to the cutoff frequency <InlineEquation equation="f_c"/>. The ability for a filter begin acting within its cutoff frequency, or its quality, is measured by its Q factor.</p>
+  
+</SubSection>
+
+<SubSection title="Gain and Decibels" id="Gain">
+  <p>How much the signal is attenuated is measured in gain or decibels where gain is a linear ratio of the amplitude of a signal before and after modification: <InlineEquation equation="\\frac{V_out}{V_in}"/> and decibels are: <InlineEquation equation="dB = 20log_{10}(\\frac{V_out}{V_in}"/> in relation to the gain.</p>
+  <p>When a signal is amplified it has a gain of greater than 1 and a positive decibel and when it is attenuated it has a gain between 0 and 1 and a negative decibel.</p>
+  <p>For example: a 16V signal is attenuated by a dB of -40. The resulting signal will have a voltage of 0.16V **EXPAND INTO EXAMPLE CARD**</p>
+</Subsection>
+</Layout>
