@@ -41,18 +41,40 @@ import DisplayTable from "../../components/DisplayTable.astro"
         <Item> <i> Elastic modulus decreases. </i> Typically, materials become more brittle at colder temperatures. </Item>
     </Itemize>
     
-    <p> As a material changes phase, so does the energy of the system. 
-The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
-    Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
+    <p> As a material changes phase, so does the energy of the system. The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
     
-    <Image src="/transfer/phase_diagram.png" width="3"> CAPTION
-        <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. 
-    At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
-    CAPTION </Image>
-
+    <Image src="/transfer/phase_diagram.png" width="3">
+        <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
+    </Image>
 
     <Image src="/transfer/enthalpy_diagram_water.png" width="4">
         <span class="fw-bold">Enthalpy Diagram</span>: Enthalpy changes in water, showing the latent heats of fusion and vaporization at melting and freezing point temperatures. 
     </Image>
+</SubSection>
+
+<SubSection title="Solutions and Biomaterials" id="Solutions and Biomaterials">
+
+<SubSubSection title="Freezing Pure Water" id="Freezing Pure Water">
+	<p> Pure water freezes through four sequential stages: </p>
+	<ol>
+		<li> <i>Supercooling:</i> dropping below 0°C before any ice forms — potentially to −40°C for ultra-pure water </li>
+		<li> <i>Nucleation:</i> the formation of crystalline seeds </li>
+		<li> <i>Crystal growth:</i> controlled by heat removal rate </li>
+		<li> <i>Maturation:</i> fewer but larger crystals over time</li>
+	</ol>
+	<p> For a pure liquid with convection at the surface, freezing time depends on geometry. The general form for a slab geometry is: </p>
+	<InlineEquation equation="t_{f} = \\frac{\\delta H_{f} \\rho}{T{m}-T{\\infty} } (\\frac{L^{2}}{2k} \\frac {L}{h})" />
+	<p> The two terms in parentheses represent conductive and convective resistances, respectively. Equivalent formulas exist for cylinders and spheres (with factors of 4 and 6 in the denominator of the conductive term). Key parameter relationships: freezing time <i>decreases</i> with higher thermal conductivity k (less resistance to heat flow), higher convective coefficient h (stronger surface cooling), and larger temperature difference ΔT (stronger driving force). It <i>increases</i> with larger characteristic length (more mass to freeze). The frozen layer thickness grows as <InlineEquation equation="x \\propto  \\sqrt{t}" />; freezing progressively slows as the frozen layer thickens because it adds thermal resistance. </p>
+	<p> For biomaterials with dissolved solutes, a more accurate numerical approach is needed, using the apparent specific heat <InlineEquation equation="c_{pa} = \\frac{\\delta H}{\\delta T}"/>, which spikes sharply at the phase transition due to latent heat release. </p>
+</SubSubSection>
+
+<SubSubSection title="Solution Freezing" id="Solution Freezing">
+	<p> Solutions behave differently than pure water. Because solutes are present, heterogeneous nuclei form more readily, so nucleation occurs earlier and less supercooling is required. </p>
+	<p> When solutes dissolve in water, they interfere with hydrogen bonding, depressing the freezing point below 0°C. The relationship is quantified as: </p>
+	<InlineEquation equation="\\frac{\\delta H_{f}}{R_{g}} [\\frac{1}{T{pure}} - \\frac{1}{T{soln}}] = ln(x_{A})" />
+	<p> where <InlineEquation equation="x_{A}"/> is the mole fraction of the solvent (water). As freezing proceeds, water crystallizes out of solution, leaving behind a progressively more concentrated liquid — which in turn depresses the freezing point further. This continues until all freezable water has solidified. Practically, this means biological solutions freeze gradually over a temperature range (roughly −2 to −35°C) rather than at a single sharp temperature. </p>
+</SubSubSection>
+
+</SubSection>
 
 </Layout>
