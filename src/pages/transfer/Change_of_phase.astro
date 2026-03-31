@@ -63,7 +63,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 		<li> <i>Maturation:</i> fewer but larger crystals over time</li>
 	</ol>
 	<p> For a pure liquid with convection at the surface, freezing time depends on geometry. The general form for a slab geometry is: </p>
-	<InlineEquation equation="t_{f} = \\frac{\\delta H_{f} \\rho}{T{m}-T{\\infty} } (\\frac{L^{2}}{2k} \\frac {L}{h})" />
+	<DisplayEquation equation="t_{f} = \\frac{\\delta H_{f} \\rho}{T{m}-T{\\infty} } (\\frac{L^{2}}{2k} \\frac {L}{h})" title="" background="True"/>
 	<p> The two terms in parentheses represent conductive and convective resistances, respectively. Equivalent formulas exist for cylinders and spheres (with factors of 4 and 6 in the denominator of the conductive term). Key parameter relationships: freezing time <i>decreases</i> with higher thermal conductivity k (less resistance to heat flow), higher convective coefficient h (stronger surface cooling), and larger temperature difference ΔT (stronger driving force). It <i>increases</i> with larger characteristic length (more mass to freeze). The frozen layer thickness grows as <InlineEquation equation="x \\propto  \\sqrt{t}" />; freezing progressively slows as the frozen layer thickens because it adds thermal resistance. </p>
 	<p> For biomaterials with dissolved solutes, a more accurate numerical approach is needed, using the apparent specific heat <InlineEquation equation="c_{pa} = \\frac{\\delta H}{\\delta T}"/>, which spikes sharply at the phase transition due to latent heat release. </p>
 </SubSubSection>
@@ -71,7 +71,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <SubSubSection title="Solution Freezing" id="Solution Freezing">
 	<p> Solutions behave differently than pure water. Because solutes are present, heterogeneous nuclei form more readily, so nucleation occurs earlier and less supercooling is required. </p>
 	<p> When solutes dissolve in water, they interfere with hydrogen bonding, depressing the freezing point below 0°C. The relationship is quantified as: </p>
-	<InlineEquation equation="\\frac{\\delta H_{f}}{R_{g}} [\\frac{1}{T{pure}} - \\frac{1}{T{soln}}] = ln(x_{A})" />
+	<DisplayEquation equation="\\frac{\\delta H_{f}}{R_{g}} [\\frac{1}{T{pure}} - \\frac{1}{T{soln}}] = ln(x_{A})" title="" background="True"/>
 	<p> where <InlineEquation equation="x_{A}"/> is the mole fraction of the solvent (water). As freezing proceeds, water crystallizes out of solution, leaving behind a progressively more concentrated liquid — which in turn depresses the freezing point further. This continues until all freezable water has solidified. Practically, this means biological solutions freeze gradually over a temperature range (roughly −2 to −35°C) rather than at a single sharp temperature. </p>
 </SubSubSection>
 
