@@ -68,8 +68,7 @@ For example, consider the following properties affected with the cooling of wate
 
 <CalloutContainer slot="cards">
     <CalloutCard title="Heads Up!">
-     <p> Equivalent formulas exist for cylinders and spheres (with factors of 4 and 6 in the denominator of the conductive term). 
-		Be sure to use the appropriate <a href="/transfer/Conduction/#CharacteristicLength">characteristic length</a> for the geometry! </p>
+     <p> Be sure to use the appropriate <a href="/transfer/Conduction/#CharacteristicLength">characteristic length</a> for the geometry! </p>
     </CalloutCard>
 </CalloutContainer>
 
@@ -81,8 +80,12 @@ For example, consider the following properties affected with the cooling of wate
 		<li> <i>Crystal growth:</i> ice crystals grow, controlled by the rate at which heat is removed from the system </li>
 		<li> <i>Maturation:</i> smaller ice crystals decrease in size, and larger crystals grow. The number of crystals may decrease, but average crystal size increases! </li>
 	</ol>
-	<p> For a pure liquid with convection at the surface, freezing time depends on geometry. The general form for a slab geometry is: </p>
-	<DisplayEquation equation="t_{f} = \\frac{\\Delta H_{f} \\rho}{T_{m}-T_{\\infty} } (\\frac{L^{2}}{2k} \\frac {L}{h})" title="" background="True"/>
+	
+	<p> If the object is frozen from the outside in, the freezing time depends on geometry:
+	
+	<b><DisplayEquation equation="t_{f} = \\frac{\\Delta H_{f} \\rho}{T_{m}-T_{\\infty} } (\\frac{L^{2}}{2k} \\frac {L}{h})" title="Slab Geometry" background="True"/></b>
+	<b><DisplayEquation equation="t_{f} = \\frac{\\Delta H_{f} \\rho}{T_{m}-T_{\\infty} } (\\frac{R^{2}}{4k} \\frac {R}{2h})" title="Cylindrical Geometry" background="True"/></b>
+	<b><DisplayEquation equation="t_{f} = \\frac{\\Delta H_{f} \\rho}{T_{m}-T_{\\infty} } (\\frac{R^{2}}{6k} \\frac {R}{3h})" title="Spherical Geometry" background="True"/></b>
 
 	where 
 	<Itemize>
@@ -92,7 +95,7 @@ For example, consider the following properties affected with the cooling of wate
 	<Item><InlineEquation equation="\\rho" /> = density <InlineEquation equation="[\\frac{kg}{m^3}]" /></Item>
 	<Item><InlineEquation equation="T_m" /> = melting or freezing temperature <InlineEquation equation="[K]" /></Item>
 	<Item><InlineEquation equation="T_{\\infty}" /> = surrounding fluid temperature <InlineEquation equation="[K]" /></Item>
-	<Item><InlineEquation equation="L" /> = characteristic length <InlineEquation equation="[m]" /></Item>
+	<Item><InlineEquation equation="L" /> or <InlineEquation equation="R" /> = characteristic length, depending on geometry <InlineEquation equation="[m]" /></Item>
 	<Item><InlineEquation equation="k" /> = thermal conductivity of the medium <InlineEquation equation="[\\frac{W}{mK}]" /></Item>
 	<Item><InlineEquation equation="h" /> = convective heat transfer coefficient <InlineEquation equation="[\\frac{W}{m^2 K}]" /></Item>
 	</Itemize>
