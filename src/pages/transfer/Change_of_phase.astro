@@ -39,33 +39,39 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <SubSection title="Change of Phase" id="ChangeofPhase">
 
+ <Image src="/transfer/phase_diagram.png" width="4">
+        <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
+    </Image>
+
 <p> Phase changes complicate heat transfer, as the process is energy intensive and causes changes in the properties of the material. 
-    Affected properties include volume, density, thermal conductivity, specific heat, dielectric properties (i.e. the interaction of a material with electromagnetic waves), and mechanical properties (i.e. elastic modulus) </p>
-    
-    <p> For example, consider the cooling of water from vapor to liquid to ice:
+For example, consider the following properties affected with the cooling of water from vapor to liquid to ice:
     
     <Itemize>
         <Item> <i> Density increases: </i> Solids have the highest density, since atoms are tightly packed together. </Item>
         <Item> <i> Volume decreases: </i>  As the density of a material increases, volume decreases. </Item>
         <Item> <i> Thermal conductivity increases: </i> The thermal conductivity of ice is nearly three times greater than water. </Item>
         <Item> <i> Specific heat slightly decreases: </i> Generally, <InlineEquation equation="C_{p, gas} < C_{p, solid} \\leq C_{p, liquid}" />. Intuitively, liquids buffer temperature best. </Item>
-        <Item> <i> Dielectric properties decrease: </i> For example, frozen food takes much longer to microwave, due to poor microwave absorption. </Item>
+        <Item> <i> Dielectric properties (i.e. the interaction of a material with electromagnetic waves) decrease: </i> For example, frozen food takes much longer to microwave, due to poor microwave absorption. </Item>
         <Item> <i> Elastic modulus decreases: </i> Typically, materials become more brittle at colder temperatures. </Item>
     </Itemize>
     
     <p> As a material changes phase, so does the energy of the system. The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/>) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
 	Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/>) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at the boiling temperature. </p>
     
-    <Image src="/transfer/phase_diagram.png" width="4">
-        <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
-    </Image>
-
+   
     <Image src="/transfer/enthalpy_diagram_water.png" width="5">
         <span class="fw-bold">Enthalpy Diagram</span>: Enthalpy changes in water, showing the latent heats of fusion and vaporization at melting and freezing point temperatures. 
     </Image>
 </SubSection>
 
 <SubSection title="Freezing and Thawing" id="FreezeThaw">
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Heads Up!">
+     <p> Equivalent formulas exist for cylinders and spheres (with factors of 4 and 6 in the denominator of the conductive term). 
+		Be sure to use the appropriate <a href="/transfer/Conduction/#CharacteristicLength">characteristic length</a> for the geometry! </p>
+    </CalloutCard>
+</CalloutContainer>
 
 <SubSubSection title="Pure Water" id="PureWater">
 	<p> Pure water freezes through four sequential stages: </p>
@@ -80,9 +86,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 	where 
 	<Itemize>
-	<Item><InlineEquation equation="t_{f}" /> = freezing time <InlineEquation equation="[s]" /></Item>
-	<Item><InlineEquation equation="Delta H_{f}" /> = latent heat of fusion of pure liquid <InlineEquation equation="[\\frac{J}{kg}]" /></Item>
-	<Item><InlineEquation equation="rho" /> = density <InlineEquation equation="[\\frac{kg}{m^3}]" /></Item>
+	<Item><InlineEquation equation="t_f" /> = freezing time <InlineEquation equation="[s]" /></Item>
+	<Item><InlineEquation equation="\\Delta H_f" /> = latent heat of fusion <InlineEquation equation="[\\frac{J}{kg}]" />. 
+		(<i> Note: for bioloigical tissue with a water component, the latent heat of fusion of water is multiplied by the the water content fraction in the tissue.</i>) </Item>
+	<Item><InlineEquation equation="\\rho" /> = density <InlineEquation equation="[\\frac{kg}{m^3}]" /></Item>
 	<Item><InlineEquation equation="T_m" /> = melting or freezing temperature <InlineEquation equation="[K]" /></Item>
 	<Item><InlineEquation equation="T_{\\infty}" /> = surrounding fluid temperature <InlineEquation equation="[K]" /></Item>
 	<Item><InlineEquation equation="L" /> = characteristic length <InlineEquation equation="[m]" /></Item>
@@ -92,18 +99,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 	<p> Looking at key parameter relationships, freezing time <i>decreases</i> with
     <Itemize>
-        <Item> <i> higher thermal conductivity <InlineEquation equation="k" /> (less resistance to heat flow) </Item>
-        <Item> <i> higher convective coefficient <InlineEquation equation="h" /> (stronger surface cooling) </Item>
-        <Item> <i> larger temperature difference <InlineEquation equation="Delta T" /> (stronger driving force) </Item>
-        <Item> <i> smaller characteristic length <InlineEquation equation="L" /> (there is more mass to freeze) </Item>
+        <Item> higher thermal conductivity <InlineEquation equation="k" /> (less resistance to heat flow) </Item>
+        <Item> higher convective coefficient <InlineEquation equation="h" /> (stronger surface cooling) </Item>
+        <Item> larger temperature difference <InlineEquation equation="Delta T" /> (stronger driving force) </Item>
+        <Item> smaller characteristic length <InlineEquation equation="L" /> (there is more mass to freeze) </Item>
     </Itemize>
-
-<CalloutContainer slot="cards">
-    <CalloutCard title="Heads Up!">
-     <p> Equivalent formulas exist for cylinders and spheres (with factors of 4 and 6 in the denominator of the conductive term). 
-		Be sure to use the appropriate <a href="/transfer/Conduction/#CharacteristicLength">characteristic length</a> for the geometry! </p>
-    </CalloutCard>
-</CalloutContainer>
 
 	<p> The frozen layer thickness grows as <InlineEquation equation="x \\propto \\sqrt{t}" />; freezing progressively slows as the frozen layer thickens because it adds thermal resistance. </p>
 </SubSubSection>
@@ -115,10 +115,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	
 where 
 <Itemize>
-<Item><InlineEquation equation="Delta H_{f}" /> = latent heat of fusion of pure liquid <InlineEquation equation="[\\frac{J}{kg}]" /></Item>
-<Item><InlineEquation equation="R_{g}" /> = ideal gas constant, <InlineEquation equation="8.314 \\frac{J}{mol K}" /></Item> 
+<Item><InlineEquation equation="\\Delta H_{f}" /> = latent heat of fusion of pure liquid <InlineEquation equation="[\\frac{J}{kg}]" /></Item>
+<Item><InlineEquation equation="R_{g}" /> = ideal gas constant, <InlineEquation equation="8.314 [\\frac{J}{mol K}]" /></Item> 
 <Item><InlineEquation equation="T_{pure}" /> = freezing point of pure liquid <InlineEquation equation="[K]" /></Item>
-<Item><InlineEquation equation="T_{soln}" /> = freezing point of solution <InlineEquation equation="[K]" /></Item>
+<Item><InlineEquation equation="T_{soln}" /> = freezing point of the solution <InlineEquation equation="[K]" /></Item>
 <Item><InlineEquation equation="x_{A}" /> = mole fraction of solvent A (e.g., water) in solution </Item>
 </Itemize>
 
