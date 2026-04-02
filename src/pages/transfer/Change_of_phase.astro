@@ -39,6 +39,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <SubSection title="Change of Phase" id="ChangeofPhase">
 
+<p> During a phase change, the additional or removal of thermal energy results in a transition between states (solid, liquid, gas). Phase changes occur at specific temperatures. </p>
+
  <Image src="/transfer/phase_diagram.png" width="4">
         <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
     </Image>
@@ -55,8 +57,10 @@ For example, consider the following properties affected with the cooling of wate
         <Item> <i> Elastic modulus decreases: </i> Typically, materials become more brittle at colder temperatures. </Item>
     </Itemize>
     
-    <p> As a material changes phase, so does the energy of the system. The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/>) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
-	Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/>) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at the boiling temperature. </p>
+    <p> As a material changes phase, so does the energy of the system. The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/>) </b> 
+	describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
+	Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/>) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, 
+	which occurs at the boiling temperature. </p>
     
    
     <Image src="/transfer/enthalpy_diagram_water.png" width="5">
@@ -71,6 +75,8 @@ For example, consider the following properties affected with the cooling of wate
      <p> Be sure to use the appropriate <a href="/transfer/Conduction/#CharacteristicLength">characteristic length</a> for the geometry! </p>
     </CalloutCard>
 </CalloutContainer>
+
+</SubSection>
 
 <SubSubSection title="Pure Water" id="PureWater">
 	<p> Pure water freezes through four sequential stages: </p>
@@ -91,7 +97,7 @@ For example, consider the following properties affected with the cooling of wate
 	<Itemize>
 	<Item><InlineEquation equation="t_f" /> = freezing time <InlineEquation equation="[s]" /></Item>
 	<Item><InlineEquation equation="\\Delta H_f" /> = latent heat of fusion <InlineEquation equation="[\\frac{J}{kg}]" />. 
-		(<i> Note: for bioloigical tissue with a water component, the latent heat of fusion of water is multiplied by the the water content fraction in the tissue.</i>) </Item>
+		(<i>Note: for biological tissue with a water component, the latent heat of fusion of water is multiplied by the the water content fraction in the tissue.</i>) </Item>
 	<Item><InlineEquation equation="\\rho" /> = density <InlineEquation equation="[\\frac{kg}{m^3}]" /></Item>
 	<Item><InlineEquation equation="T_m" /> = melting or freezing temperature <InlineEquation equation="[K]" /></Item>
 	<Item><InlineEquation equation="T_{\\infty}" /> = surrounding fluid temperature <InlineEquation equation="[K]" /></Item>
@@ -104,7 +110,7 @@ For example, consider the following properties affected with the cooling of wate
     <Itemize>
         <Item> higher thermal conductivity <InlineEquation equation="k" /> (less resistance to heat flow) </Item>
         <Item> higher convective coefficient <InlineEquation equation="h" /> (stronger surface cooling) </Item>
-        <Item> larger temperature difference <InlineEquation equation="Delta T" /> (stronger driving force) </Item>
+        <Item> larger temperature difference <InlineEquation equation="\\Delta T" /> (stronger driving force) </Item>
         <Item> smaller characteristic length <InlineEquation equation="L" /> (there is more mass to freeze) </Item>
     </Itemize>
 
@@ -137,8 +143,5 @@ where
 	<p> Freezing cells (speed of freezing & effects on cell size and membranes), thawing cells </p>
 	<p> Freezing biomaterials </p>
 </SubSubSection> -->
-
-
-</SubSection>
 
 </Layout>
