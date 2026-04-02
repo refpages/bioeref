@@ -23,9 +23,21 @@ import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
-<Layout title="Heat Transfer with Phase Change">
-<SubSection title="Change of Phase" id="Change of Phase">
 
+<Layout title="Heat Transfer with Phase Change">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ChangeofPhase'>Change of Phase</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#FreezeThaw'>Freezing and Thawing</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#PureWater'>Pure Water</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Solutions'>Heterogeneous Solutions</a></ul>
+</li>
+</ul>
+</div>
+
+
+
+<SubSection title="Change of Phase" id="ChangeofPhase">
 
 <p> Phase changes complicate heat transfer, as the process is energy intensive and causes changes in the properties of the material. 
     Affected properties include volume, density, thermal conductivity, specific heat, dielectric properties (i.e. the interaction of a material with electromagnetic waves), and mechanical properties (i.e. elastic modulus) </p>
@@ -33,28 +45,29 @@ import DisplayTable from "../../components/DisplayTable.astro"
     <p> For example, consider the cooling of water from vapor to liquid to ice:
     
     <Itemize>
-        <Item> <i> Density increases. </i> Solids have the highest density, since atoms are tightly packed together. </Item>
-        <Item> <i> Volume decreases. </i>  As the density of a material increases, volume decreases. </Item>
-        <Item> <i> Thermal conductivity increases. </i> The thermal conductivity of ice is nearly three times greater than water. </Item>
-        <Item> <i> Specific heat slightly decreases. </i> Generally, <InlineEquation equation="C_{p, gas} < C_{p, solid} \\leq C_{p, liquid}" /> Intuitively, liquids buffer temperature best. </Item>
-        <Item> <i> Dielectric properties decrease. </i> For example, frozen food takes much longer to microwave, due to poor microwave absorption. </Item>
-        <Item> <i> Elastic modulus decreases. </i> Typically, materials become more brittle at colder temperatures. </Item>
+        <Item> <i> Density increases: </i> Solids have the highest density, since atoms are tightly packed together. </Item>
+        <Item> <i> Volume decreases: </i>  As the density of a material increases, volume decreases. </Item>
+        <Item> <i> Thermal conductivity increases: </i> The thermal conductivity of ice is nearly three times greater than water. </Item>
+        <Item> <i> Specific heat slightly decreases: </i> Generally, <InlineEquation equation="C_{p, gas} < C_{p, solid} \\leq C_{p, liquid}" />. Intuitively, liquids buffer temperature best. </Item>
+        <Item> <i> Dielectric properties decrease: </i> For example, frozen food takes much longer to microwave, due to poor microwave absorption. </Item>
+        <Item> <i> Elastic modulus decreases: </i> Typically, materials become more brittle at colder temperatures. </Item>
     </Itemize>
     
-    <p> As a material changes phase, so does the energy of the system. The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/> ) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/> ) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at boiling temperature. </p>
+    <p> As a material changes phase, so does the energy of the system. The <b> latent heat of fusion (<InlineEquation equation="\\Delta H_{fus}"/>) </b> describes the enthalpy difference due to a change of phase from solid to liquid, which occurs at melting temperature. 
+	Conversely, the <b> latent heat of vaporization (<InlineEquation equation="\\Delta H_{vap}"/>) </b> describes the enthalpy difference due to a change of phase from liquid to vapor, which occurs at the boiling temperature. </p>
     
-    <Image src="/transfer/phase_diagram.png" width="3">
+    <Image src="/transfer/phase_diagram.png" width="4">
         <span class="fw-bold">Phase Diagram</span>: The three phases and phase transitions are dependent on temperature and pressure. At the middle is the triple point, where the three phases coexist in thermodynamic equilibrium.
     </Image>
 
-    <Image src="/transfer/enthalpy_diagram_water.png" width="4">
+    <Image src="/transfer/enthalpy_diagram_water.png" width="5">
         <span class="fw-bold">Enthalpy Diagram</span>: Enthalpy changes in water, showing the latent heats of fusion and vaporization at melting and freezing point temperatures. 
     </Image>
 </SubSection>
 
-<SubSection title="Freezing and Thawing" id="Freezing and Thawing">
+<SubSection title="Freezing and Thawing" id="FreezeThaw">
 
-<SubSubSection title="Pure Water" id="Pure Water">
+<SubSubSection title="Pure Water" id="PureWater">
 	<p> Pure water freezes through four sequential stages: </p>
 	<ol>
 		<li> <i>Supercooling:</i> water cools to less than 0°C before any ice forms. Ultra-pure water may not freeze until −40°C! </li>
@@ -63,22 +76,65 @@ import DisplayTable from "../../components/DisplayTable.astro"
 		<li> <i>Maturation:</i> smaller ice crystals decrease in size, and larger crystals grow. The number of crystals may decrease, but average crystal size increases! </li>
 	</ol>
 	<p> For a pure liquid with convection at the surface, freezing time depends on geometry. The general form for a slab geometry is: </p>
-	<DisplayEquation equation="t_{f} = \\frac{\\delta H_{f} \\rho}{T{m}-T{\\infty} } (\\frac{L^{2}}{2k} \\frac {L}{h})" title="" background="True"/>
-	<p> The two terms in parentheses represent conductive and convective resistances, respectively. Equivalent formulas exist for cylinders and spheres (with factors of 4 and 6 in the denominator of the conductive term). Key parameter relationships: freezing time <i>decreases</i> with higher thermal conductivity k (less resistance to heat flow), higher convective coefficient h (stronger surface cooling), and larger temperature difference ΔT (stronger driving force). It <i>increases</i> with larger characteristic length (more mass to freeze). The frozen layer thickness grows as <InlineEquation equation="x \\propto  \\sqrt{t}" />; freezing progressively slows as the frozen layer thickens because it adds thermal resistance. </p>
+	<DisplayEquation equation="t_{f} = \\frac{\\Delta H_{f} \\rho}{T_{m}-T_{\\infty} } (\\frac{L^{2}}{2k} \\frac {L}{h})" title="" background="True"/>
+
+	where 
+	<Itemize>
+	<Item><InlineEquation equation="t_{f}" /> = freezing time <InlineEquation equation="[s]" /></Item>
+	<Item><InlineEquation equation="Delta H_{f}" /> = latent heat of fusion of pure liquid <InlineEquation equation="[\\frac{J}{kg}]" /></Item>
+	<Item><InlineEquation equation="rho" /> = density <InlineEquation equation="[\\frac{kg}{m^3}]" /></Item>
+	<Item><InlineEquation equation="T_m" /> = melting or freezing temperature <InlineEquation equation="[K]" /></Item>
+	<Item><InlineEquation equation="T_{\\infty}" /> = surrounding fluid temperature <InlineEquation equation="[K]" /></Item>
+	<Item><InlineEquation equation="L" /> = characteristic length <InlineEquation equation="[m]" /></Item>
+	<Item><InlineEquation equation="k" /> = thermal conductivity of the medium <InlineEquation equation="[\\frac{W}{mK}]" /></Item>
+	<Item><InlineEquation equation="h" /> = convective heat transfer coefficient <InlineEquation equation="[\\frac{W}{m^2 K}]" /></Item>
+	</Itemize>
+
+	<p> Looking at key parameter relationships, freezing time <i>decreases</i> with
+    <Itemize>
+        <Item> <i> higher thermal conductivity <InlineEquation equation="k" /> (less resistance to heat flow) </Item>
+        <Item> <i> higher convective coefficient <InlineEquation equation="h" /> (stronger surface cooling) </Item>
+        <Item> <i> larger temperature difference <InlineEquation equation="Delta T" /> (stronger driving force) </Item>
+        <Item> <i> smaller characteristic length <InlineEquation equation="L" /> (there is more mass to freeze) </Item>
+    </Itemize>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Heads Up!">
+     <p> Equivalent formulas exist for cylinders and spheres (with factors of 4 and 6 in the denominator of the conductive term). 
+		Be sure to use the appropriate <a href="/transfer/Conduction/#CharacteristicLength">characteristic length</a> for the geometry! </p>
+    </CalloutCard>
+</CalloutContainer>
+
+	<p> The frozen layer thickness grows as <InlineEquation equation="x \\propto \\sqrt{t}" />; freezing progressively slows as the frozen layer thickens because it adds thermal resistance. </p>
 </SubSubSection>
 
-<SubSubSection title="Heterogeneous Solutions" id="Heterogeneous Solutions">
+<SubSubSection title="Heterogeneous Solutions" id="Solutions">
 	<p> Solutions behave differently than pure water. Because solutes are present, heterogeneous nuclei form more readily, so nucleation occurs earlier and less supercooling is required. </p>
 	<p> When solutes dissolve in water, they interfere with hydrogen bonding, depressing the freezing point below 0°C. The relationship is quantified as: </p>
-	<DisplayEquation equation="\\frac{\\delta H_{f}}{R_{g}} [\\frac{1}{T{pure}} - \\frac{1}{T{soln}}] = ln(x_{A})" title="" background="True"/>
-	<p> where <InlineEquation equation="x_{A}"/> is the mole fraction of the solvent (water). As freezing proceeds, water crystallizes out of solution, leaving behind a progressively more concentrated liquid — which in turn depresses the freezing point further. This continues until all freezable water has solidified. Practically, this means biological solutions freeze gradually over a temperature range (roughly −2 to −35°C) rather than at a single sharp temperature. </p>
+	<DisplayEquation equation="\\frac{\\Delta H_{f}}{R_{g}} [\\frac{1}{T_{pure}} - \\frac{1}{T_{soln}}] = ln(x_{A})" title="" background="True"/>
+	
+where 
+<Itemize>
+<Item><InlineEquation equation="Delta H_{f}" /> = latent heat of fusion of pure liquid <InlineEquation equation="[\\frac{J}{kg}]" /></Item>
+<Item><InlineEquation equation="R_{g}" /> = ideal gas constant, <InlineEquation equation="8.314 \\frac{J}{mol K}" /></Item> 
+<Item><InlineEquation equation="T_{pure}" /> = freezing point of pure liquid <InlineEquation equation="[K]" /></Item>
+<Item><InlineEquation equation="T_{soln}" /> = freezing point of solution <InlineEquation equation="[K]" /></Item>
+<Item><InlineEquation equation="x_{A}" /> = mole fraction of solvent A (e.g., water) in solution </Item>
+</Itemize>
+
+<p> As freezing proceeds, water crystallizes out of solution, leaving behind a progressively more concentrated liquid — which in turn depresses the freezing point further. 
+	This continues until all freezable water has solidified. 
+	Practically, this means biological solutions freeze gradually over a temperature range (roughly −2 to −35°C) rather than at a single sharp temperature. </p>
+
 </SubSubSection>
 
-<SubSubSection title="Biological Materials" id="Biological Materials">
+
+<!-- <SubSubSection title="Biological Materials" id="Biological Materials">
 	<p> This section is currently under construction. </p>
 	<p> Freezing cells (speed of freezing & effects on cell size and membranes), thawing cells </p>
 	<p> Freezing biomaterials </p>
-</SubSubSection>
+</SubSubSection> -->
+
 
 </SubSection>
 
