@@ -39,6 +39,29 @@ import DisplayTable from "../../components/DisplayTable.astro"
     </SubSection>
     
     <SubSection title="Quick Facts About Laplace Transforms" id="Facts">
+        <p>Laplace Transforms:
+        <ul>
+            <li>Are linear.</li>
+            <li>Uses the "s" as its variable, a complex numnber.</li>
+            <li>Require initial conditions.</li>
+            <li>Can be done forwards and backwards (or in inverse) without losing information</li>
+        </ul>
+        <DisplayTable id="shape-table">
+            <thead>
+                <tr>
+                    <th>Time Domain: f(t)</th><th>Fourier Domain: F(s)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><InlineEquation title="" equation="\\delta(t)"/></td>
+                    <td><InlineEquation title="" equation="1"</td>
+                </tr>
+                <tr>
+                    <td><InlineEquation title="" equation="1(t) t>=0"/></td>
+                    <td><InlineEquation title="" equation="\\frac{1}{s}"/></td>
+            </tbody>
+        </DisplayTable>
     </SubSection>
     
     <SubSection title="Common Signals In Laplace Domain" id="Common">
