@@ -64,7 +64,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
             </div>
             <div slot="solution">
                 <p>First convert the decibel gain into a voltage gain, this way it can be multiplied with the signal voltage directly. Using the equation:</p>
-                <DisplayEquation title="" equation="dB = 20log_{10}(\\frac{V_{out}}{V_{in}})"/>
+                <DisplayEquation title="" equation="dB = 20log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
                 <p>Plug in the values and solve:</p>
                 <DisplayEquation title="" equation="-40 = 20log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
                 <DisplayEquation title="" equation="-2 = log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
