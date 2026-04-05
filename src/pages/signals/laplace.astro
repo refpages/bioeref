@@ -54,13 +54,13 @@ import DisplayTable from "../../components/DisplayTable.astro"
             </thead>
             <tbody>
                 <tr>
-                    <td><InlineEquation title="Impulse" equation="\\delta(t)"/></td><td><InlineEquation title="" equation="1"/></td>
+                    <td>Impulse<br><InlineEquation title="Impulse" equation="\\delta(t)"/></td><td><InlineEquation title="" equation="1"/></td>
                 </tr>
                 <tr>
-                    <td><InlineEquation title="Step" equation="1(t)"/></td><td><InlineEquation title="" equation="\\frac{1}{s}"/></td>
+                    <td>Step<br><InlineEquation title="Step" equation="1(t)"/></td><td><InlineEquation title="" equation="\\frac{1}{s}"/></td>
                 </tr>
                 <tr>
-                    <td><InlineEquation title="Ramp" equation="t"/></td><td><InlineEquation title="" equation="\\frac{1}{s^{2}}"/></td>
+                    <td>Ramp<br><InlineEquation title="Ramp" equation="t"/></td><td><InlineEquation title="" equation="\\frac{1}{s^{2}}"/></td>
                 </tr>
                 <tr>
                     <td><InlineEquation title="" equation="t^{n}"/></td><td><InlineEquation title="" equation="\\frac{n!}{s^{n+1}}"/></td>
@@ -89,6 +89,18 @@ import DisplayTable from "../../components/DisplayTable.astro"
     </SubSection>
     
     <SubSection title="Common Signals In Laplace Domain" id="Common">
+        <DisplayTable id="plot_table">
+            <thead>
+                <tr>
+                    <th>Function</th><th>Plot</th><th>Time Domain: f(t)</th><th>Laplace Domain: F(s)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Step</td><td><img id="step" src="/signals/laplacestep.png" style="width:250px; height:110px;" alt="There is a graph showing the shape of a step function. The plot begins at 0 until shoots up vertically to a constant value K where it remains at that value."/></td><td><InlineEquation title="Step" equation="1(t)"/></td><td><InlineEquation title="" equation="\\frac{1}{s}"/></td>
+                </tr>
+            </tbody>
+        </DisplayTable>
     </Subsection>
 
     <SubSection title="Laplace Transform With Other Domains" id="Transform">
