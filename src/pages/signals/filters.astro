@@ -26,7 +26,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Applications'>Why Is Filtering Important?</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#How'>How Are Filters Applied?</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Gain'>Gain and Decibels</a></li>
-            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types'>Types Of Filters</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types'>Filter Design</a></li>
         </ul>
     </div>
     
@@ -77,5 +77,20 @@ import DisplayTable from "../../components/DisplayTable.astro"
                 <p>The voltage gain is 0.01V/V. Multiply the initial signal amplitude of 16V by 0.01V/V for a final amplitude of 0.16V</p>
             </div>
         </Example>
-    </Subsection>
+    </SubSection>
+    <SubSection title="Filter Design" id="Types">
+        <p>Below are diagrams of how different filters are constructed from different electrical components and shows how component values affect the behaviour of the filter.</p>
+        <DisplayTable id="filter-table">
+            <thead>
+                <tr>
+                    <th>Filter Type</th><th>Circuit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Passive Lowpass</td><td><img id="lowpass" src=""><p>TODO</p></td>
+                </tr>
+            </tbody>
+        </DisplayTable>
+    </SubSection>
 </Layout>
