@@ -46,12 +46,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
     <SubSection title="Gain and Decibels" id="Gain">
         <p>How much the signal is attenuated is measured in voltage gain or decibel gain where voltage gain is a linear ratio of the amplitude of a signal before and after attenuation/amplification: <InlineEquation equation="\\frac{V_out}{V_in}"/> with a unit of V/V and decibels are: <InlineEquation equation="dB = 20log_{10}(\\frac{V_out}{V_in})"/> in relation to the gain with a unit of dB.</p>
         <p>When a signal is amplified it has a voltage gain of greater than 1 and a positive decibel gain, and when it is attenuated it has a voltage gain between 0 and 1 and a negative decibel gain.</p>
-        <p>For example: a 16V signal is attenuated by a dB of -40. The resulting signal will have a voltage of 0.16V **EXPAND INTO EXAMPLE CARD**</p>
         <Example title="Find the signal voltage after a decibel gain is applied to it." solution="True">
             <div class="d-flex flex-row">
                 <p>A 16V signal is attenuated by a filter of -40dB, what is the voltage/amplitude of the signal afterwards?</p>
             </div>
-            <div class="solution">
+            <div slot="solution">
                 <p>First convert the decibel gain into a voltage gain, this way it can be multiplied with the signal voltage directly. Using the equation:</p>
                 <DisplayEquation title="" equation="dB = 20log_{10}(\\frac{V_out}{V_in})"/>
                 <p>Plug in the values and solve:</p>
@@ -59,7 +58,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
                 <DisplayEquation title="" equation="-2 = log_{10}(\\frac{V_out}{V_in})"/>
                 <DisplayEquation title="" equation="10^{-2} = \\frac{V_out}{V_in}"/>
                 <DisplayEquation title="" equation="0.01 = \\frac{V_out}{V_in}"/>
-                <p>With a voltage gain of 0.01V/V, multiply with the initial signal amplitude of 16V by 0.01 for a final amplitude of 0.16V</p>
+                <p>The voltage gain is 0.01V/V. Multiply the initial signal amplitude of 16V by 0.01V/V for a final amplitude of 0.16V</p>
             </div>
         </Example>
     </Subsection>
