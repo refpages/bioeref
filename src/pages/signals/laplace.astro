@@ -45,12 +45,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
             <li>Uses "s" as its variable, a complex numnber.</li>
             <li>Require initial conditions.</li>
             <li>Can be done forwards and backwards (or in inverse) without losing information</li>
-            <li>dim-table test</li>
         </ul>
-        <DisplayTable id="dim-table">
+        <DisplayTable id="lap-table">
             <thead>
                 <tr>
-                    <th>Time Domain: f(t)</th><th>Fourier Domain: F(s)</th>
+                    <th>Time Domain: f(t)</th><th>Laplace Domain: F(s)</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,10 +60,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
                     <td><InlineEquation title="" equation="1(t) t>=0"/></td><td><InlineEquation title="" equation="\\frac{1}{s}"/></td>
                 </tr>
                 <tr>
-                    <td><InlineEquation title="" equation="t t>=0"/></td><td><InlineEquation title="" equation="\\frac{1}{s^2}"/></td>
+                    <td><InlineEquation title="" equation="t t>=0"/></td><td><InlineEquation title="" equation="\\frac{1}{s^{2}}"/></td>
                 </tr>
                 <tr>
-                    <td><InlineEquation title="" equation="t^n"/></td><td><InlineEquation title="" equation="\\frac{n!}{s^{n+1}}"/></td>
+                    <td><InlineEquation title="" equation="t^{n}"/></td><td><InlineEquation title="" equation="\\frac{n!}{s^{n+1}}"/></td>
                 </tr>
                 <tr>
                     <td><InlineEquation title="" equation="e^{-at}"/></td><InlineEquation title="" equation="\\frac{1}{s+a}"/></td>
