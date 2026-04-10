@@ -26,12 +26,18 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 </Section>
 <SubSubSection title="Defining a Signal In Bioengineering" id="Defining a Signal In Bioengineering">
 <p>In a general sense, signals are sets of data points that vary over a domain, usually <a href="https://bioe.refpages.org/signals/time_domain/?origin=coursemenu">time</a> or <a href="https://bioe.refpages.org/signals/fourier_transform/?origin=coursemenu">frequency</a>, which encodes information about a system. In bioengineering, we will be envisioning biological processes and other points of interest as a set of information, which we call signals, that will then be sent as inputs to other objects, which we call systems, in which they can be transformed into outputs.</p>
-<img id="blockdia" src="/signals/BlockDiagramEx.png" style="width:500px; height:auto;"/>
+<Image src="/signals/BlockDiagramEx.png"/>
 <p>We can modify and interpret the information in signals using mathematical methods we already know to predict how an input will transform when put through defined systems, or allow us to design the system to modify signals in specific ways.</p>
 </SubSubSection>
 <SubSubSection title="Defining a System In Bioengineering" id="Defining a System In Bioengineering">
     <p>A system is anything that generates or modifies a signal. The most pertinent system in the bioengineering is the human body. The human body consists of multiple systems working together to produce emergent behaviours. These signals can consist of different types of information such as voltage in the Central Nervous System or pressure in the cardiovascular system. Signals can also be measured at different levels, for example, voltage throughout the entire body could be measured, while voltage across a single neuron could be measured instead.</p>
     <p>Systems outside of the human body can consist of devices that are used to measure these signals as they often modify signals by amplifying them and filtering out noise to produce results with better Signal To Noise Ratio which are more useful to us.</p>
     <p>Finally, systems can also consist of control systems which use data inputs and feedback to precisely maintain or adjust the state of something, whether it's keep a room at the right tempurature in an AC system, or the right concentration of drugs in a patient's body in a drug pump.</p>
+    <CalloutContainer slot="cards">
+        <CalloutCard title="Heads Up!">
+             <p> Read about these modes of heat transfer in more detail on the following pages: 
+            <b><a href="/transfer/Conduction">conduction</a></b>, <b><a href="/transfer/Convection">convection</a></b>, and <b><a href="/transfer/Radiation">radiation</a></b>. </p>
+        </CalloutCard>
+    </CalloutContainer>
 </SubSubSection>
 </Layout>
