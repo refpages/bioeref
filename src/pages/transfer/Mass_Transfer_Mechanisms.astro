@@ -26,6 +26,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Mass Transfer Mechanisms">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Molecular Diffusion'>Molecular Diffusion</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Porous Media Flow'>Porous Media Flow</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Diffusive Mass Transfer'>Diffusive Mass Transfer</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Steady State'>Steady State</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsteady State'>Unsteady State</a></ul>
@@ -39,7 +41,174 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </ul>
 </div>
 
-<i> Coming soon! </i>
+<SubSection title="Molecular Diffusion" id="Molecular Diffusion">
+	<p> Molecular diffusion is the transport of one mass component from a region of <i>higher</i> concentration to a region of <i>lower</i> concentration, making it a passive process. </p> 
+	<p> It equilibrates differences in concentration, due to random (Brownian) molecular movement. As temperature increases, molecular kinetic energ also increases, speeding up the process. </p>
+	<p> It is analogous to diffusive heat transfer (thermal conduction), but can be more complicated if numerous chemical species are involved. </p>
+	
+	<p>When concentration gradient is the driving force, the rate of mass transport per unit area (<i>diffusive flux</i>) is related to it via Fick's Law:</p> 
+	<b> <DisplayEquation equation="j_{A,x} = -D_{AB}\frac{dc_{A}}{dx}" title="Fick's Law" background="True"/> </b> 
+	where 
+	<Itemize> 
+		<Item><InlineEquation equation="j_{A,x}" /> = diffusive flux of A, in x-direction <InlineEquation equation="\left[\frac{kg}{m^2 s}, \frac{kmol}{m^2 s}\right]" /></Item> 
+		<Item><InlineEquation equation="D_{AB}" /> = mass diffusivity of A in B (diffusion coefficient) <InlineEquation equation="\left[\frac{m^2}{s}\right]" /></Item> 
+		<Item><InlineEquation equation="c_A" /> = concentration of A <InlineEquation equation="\left[\frac{kg}{m^3}, \frac{kmol}{m^3}\right]" /></Item> 
+		<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item> </Itemize>
+		
+	<p>Consider a 1D diffusion process along the <InlineEquation equation="x" /> direction. At any time, molecules have moved varying distances from the origin independently, with equal probability of moving left or right. <b>Mean-square displacement</b> <InlineEquation equation="\langle x^2 \rangle" /> is the average of the square of displacements, and serves as a measure of how much molecules have spread.</p>
+	
+	<p><b>Diffusivity</b> is defined as one half of the mean-square displacement per unit time in 1D:</p>
+	
+	<DisplayEquation equation="D = \frac{\langle x^2 \rangle}{2t}" title="Diffusivity (1D)" background="True"/>
+	
+	where
+	<Itemize>
+		<Item><InlineEquation equation="D" /> = diffusivity <InlineEquation equation="\left[\frac{m^2}{s}\right]" /></Item>
+		<Item><InlineEquation equation="\langle x^2 \rangle" /> = mean-square displacement <InlineEquation equation="[m^2]" /></Item>
+		<Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
+	</Itemize>
+	
+	<p>The average diffusion velocity is then:</p>
+	
+	<DisplayEquation equation="u_{diff} = \frac{\sqrt{\langle x^2 \rangle}}{t} = \frac{\sqrt{2Dt}}{t} = \sqrt{2D/t}" title="Average Diffusion Velocity" background="True"/>
+	
+	where
+	<Itemize>
+		<Item><InlineEquation equation="u_{diff}" /> = average diffusion velocity <InlineEquation equation="\left[\frac{m}{s}\right]" /></Item>
+	</Itemize>
+
+</SubSection>
+
+<SubSection title="Porous Media Flow" id="Porous Media Flow">
+<SubSubSection title="Darcy's Law" id="Darcy's Law">
+	<p> Porous mediums can be approximated as a bundle of tubes of varying diameter, embedded within a solid matrix. Movement of liquid in a porous material is described by Darcy's Law:</p>
+	
+	<DisplayEquation equation="n^v = -K\frac{d\mathcal{H}}{ds}" title="Darcy's Law" background="True"/>
+	
+	where
+	<Itemize>
+		<Item><InlineEquation equation="n^v" /> = volumetric flux (volume/area · time) <InlineEquation equation="\left[\frac{m^3}{m^2 s}\right] = \left[\frac{m}{s}\right]" /></Item>
+		<Item><InlineEquation equation="\mathcal{H}" /> = hydraulic potential <InlineEquation equation="[m]" /></Item>
+		<Item><InlineEquation equation="s" /> = distance along the flow path <InlineEquation equation="[m]" /></Item>
+		<Item><InlineEquation equation="K" /> = hydraulic conductivity <InlineEquation equation="\left[\frac{m}{s}\right]" /></Item>
+	</Itemize>
+	
+	<p>The hydraulic (water) potential <InlineEquation equation="\mathcal{H}" /> drives flow, and is defined as:</p>
+	
+	<DisplayEquation equation="\mathcal{H} = h + z" title="Hydraulic Potential" background="True"/>
+	
+	where
+	<Itemize>
+		<Item><InlineEquation equation="h" /> = <i>pressure</i> (hydrostatic or pneumatic) and <i>matric potential</i> — physical forces which bind water to the porous matrix; attractive force between liquid and solid phases</Item>
+		<Item><InlineEquation equation="z" /> = <i>gravitational potential</i> due to difference in depth in the vertical direction (i.e., from surface), in the direction of gravity</Item>
+	</Itemize>
+	
+	<p>Hydraulic conductivity <InlineEquation equation="K" /> describes the ease with which a fluid can be transported through a porous matrix — it is the ratio of volumetric flux to the hydraulic gradient causing the flow. It depends on properties of both the solid <i>matrix</i> (pore size distribution, shape of pores, porosity, tortuosity) and the <i>fluid</i> (density, viscosity):</p>
+	
+	<DisplayEquation equation="K = \frac{\rho g}{\mu} \frac{1}{8\tau} \sum_{i} \Delta\beta_i r_i^2" title="Hydraulic Conductivity" background="True"/>
+	
+	where
+	<Itemize>
+		<Item><InlineEquation equation="\rho" /> = fluid density</Item>
+		<Item><InlineEquation equation="\mu" /> = fluid viscosity</Item>
+		<Item><InlineEquation equation="\tau" /> = tortuosity — how twisted or complicated the flow path is (approximately 1–2 for soils)</Item>
+		<Item><InlineEquation equation="\Delta\beta_i" /> = volume fraction of pores with radius <InlineEquation equation="r_i" /> (area fraction, 0–1), defined as <InlineEquation equation="\Delta\beta_i = \frac{\omega_i \pi r_i^2}{A}" /> where <InlineEquation equation="\omega_i" /> is the number of pores in the <InlineEquation equation="i^\text{th}" /> pore size class with radius <InlineEquation equation="r_i" /></Item>
+		<Item><InlineEquation equation="r_i" /> = radius of pores in size class <InlineEquation equation="i" /> <InlineEquation equation="[m]" /></Item>
+	</Itemize>
+	
+	<p>The sole effect of the matrix properties can be isolated as the <i>permeability</i> <InlineEquation equation="k" />:</p>
+	
+	<DisplayEquation equation="k = \frac{1}{8\tau} \sum_{i} \Delta\beta_i r_i^2" title="Permeability" background="True"/>
+	
+	where <InlineEquation equation="k" /> has units of <InlineEquation equation="[m^2]" />. Hydraulic conductivity can then be written as:
+	
+	<DisplayEquation equation="K = \frac{k \rho g}{\mu}" title="Hydraulic Conductivity (from Permeability)" background="True"/>
+	
+	<p> separating the effect of the matrix (captured in <InlineEquation equation="k" />) from the effect of the fluid properties (<InlineEquation equation="\rho" />, <InlineEquation equation="\mu" />). <p> 
+</SubSubSection>
+
+<SubSubSection title="Porosity and Flux" id="Porosity and Flux">
+	<p>Retention of water in a porous medium results from attractive forces between the solid and liquid phases.</p>
+	
+	<p>Volumetric <b>porosity (<InlineEquation equation="\phi" />)<b> is the ratio of the volume of void space (pore volume) to the bulk volume of a porous medium. Average volumetric porosity is considered the same as average areal porosity at a cross section of the material:</p>
+	
+	<DisplayEquation equation="\phi = \frac{\text{pore volume}}{\text{total volume}} = \frac{\text{pore area}}{\text{total area}}" title="Porosity" background="True"/>
+	
+	<p><b>Volumetric flux (<InlineEquation equation="n^v" />)</b> is sometimes called "Darcy velocity", but it is <i>not</i> the true average velocity through the cross-sectional area. The true average velocity through the pores is much higher than that through the medium (solid matrix):</p>
+	
+	<DisplayEquation equation="v_{avg} = \frac{n^v}{\phi}" title="Average Pore Velocity" background="True"/>
+	
+	<p> The average velocity is a vector with direction and magnitude.</p>
+
+		
+</SubSubSection>
+
+<SubSubSection title="Capillary Flow" id="Capillary Flow">
+	<p> Capillary flow describes capillary action (flow of liquid through a narrow space) within a porous solid medium. It is the balance between the relative attraction of the molecules of the fluid for each other (liquid-liquid) and for those of the surface (liquid-solid). </p>
+	<p> When liquid-solid forces are stronger, the liquid "climbs" against gravity (and other forces). This phenomena, called <b>capillary rise</b>, equates hydrostatic pressure <InlineEquation equation="P = \rho g h" /> and capillary action pressure <InlineEquation equation="2\gamma/r" /> to yield: </p>
+	
+	<DisplayEquation equation="h = \frac{2\gamma}{\rho g r}" title="Capillary Rise" background="True"/>
+	
+	where
+	<Itemize>
+		<Item><InlineEquation equation="h" /> = height of the column or capillary<InlineEquation equation="[m]" /></Item>
+		<Item><InlineEquation equation="\gamma" /> = water surface tension <InlineEquation equation="\left[\frac{N}{m}\right]" /> (look up values)</Item>
+		<Item><InlineEquation equation="\rho" /> = fluid density <InlineEquation equation="\left[\frac{kg}{m^3}\right]" /></Item>
+		<Item><InlineEquation equation="g" /> = gravitational acceleration <InlineEquation equation="\left[\frac{m}{s^2}\right]" /></Item>
+		<Item><InlineEquation equation="r" /> = radius of tube <InlineEquation equation="[m]" /></Item>
+	</Itemize>
+	
+	<p>Capillary rise increases significantly as tube radius decreases. If the tube diameter is sufficiently narrow, liquid is "propelled" upward by the combination of surface tension and liquid-surface adhesive forces.</p>
+</SubSubSection>
+
+<SubSubSection title="Unsaturated Flow" id="Unsaturated Flow">
+</SubSubSection>
+
+<SubSubSection title="Osmotic Flow" id="Osmotic Flow">
+</SubSubSection>
+
+</SubSection>
+
+<SubSection title="Summary Table" id="Summary Table">
+<DisplayTable id="mass-transfer-modes-table">
+	<thead>
+	<tr>
+		<th>Mode</th>
+		<th>Description</th>
+		<th>Described by</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<th>Molecular diffusion</th>
+		<td>Spontaneous movement of mass (solid, liquid, gas) down a concentration gradient due to random molecular movement</td>
+		<td>Fick's Law: <InlineEquation equation="j_{A,x} = -D_{AB}\\frac{dc_{A}}{dx}"/></td>
+	</tr>
+	<tr>
+		<th>Capillary diffusion</th>
+		<td>Movement of mass due to capillary action in a porous medium</td>
+		<td><em>(mathematically similar to molecular diffusion)</em></td>
+	</tr>
+	<tr>
+		<th>Bulk flow through porous media</th>
+		<td>Bulk movement of a fluid in a porous media due to hydraulic forces (pressure, matric forces, gravity)</td>
+		<td>Darcy's Law: <InlineEquation equation="n^{v} = -K\\frac{\\partial \\mathcal{H}}{\\partial s}"/></td>
+	</tr>
+	<tr>
+		<th>Dispersion</th>
+		<td>Spreading of fluid from its bulk flow path <em>(similar effects to molecular diffusion, but different mechanisms; due to turbulence in fluid)</em></td>
+		<td><InlineEquation equation="j_{A,x} = -E_{x}\\frac{dc_{A}}{dx}"/></td>
+	</tr>
+	<tr>
+		<th>Convection</th>
+		<td>Addition of bulk flow to diffusion or dispersion</td>
+		<td><InlineEquation equation="N_{A_{1-2}} = h_{m}A(c_{1}-c_{2})"/></td>
+	</tr>
+	</tbody>
+</DisplayTable>
+
+</SubSection>
 
 <!-- 
 <SubSection title="Diffusive Mass Transfer" id="Diffusive Mass Transfer">
