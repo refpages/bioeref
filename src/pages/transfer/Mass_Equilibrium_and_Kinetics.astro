@@ -28,7 +28,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation of Mass'>Conservation of Mass</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Equilibrium'>Equilibrium</a><ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Mass/Molar Concentrations'>Mass/Molar Concentrations</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Liquid-Gas'>Liquid-Gas</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Gas-Solid'>Gas-Solid</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Solid-Liquid'>Solid-Liquid</a></ul>
@@ -92,5 +91,32 @@ import DisplayTable from "../../components/DisplayTable.astro"
     </CalloutCard>
 </CalloutContainer>
 </SubSection>
+
+<SubSubSection title="Liquid-Gas" id="Liquid-Gas">
+<p><b>Henry’s Law</b> describes the pressure dependence of the solubility of a gas in a solution. </p>
+<DisplayEquation title="Henry's Law" background="True" equation="p_{A} = H * x_{A}"/>
+<p>where</p>
+<Itemize>
+<Item><InlineEquation equation="H"/> = Henry's Constant</Item>
+<Item><InlineEquation equation="p_{A}"/> = partial pressure of A in gas (at equilibrium)</Item>
+<Item><InlineEquation equation="x_{A}"/> = concentration of A in liquid (at equilibrium)</Item>
+</Itemize>
+<p>The amount of gas dissolved in a liquid is proportional to the partial pressure of that gas above the liquid. </p>
+</SubSubSection>
+
+<SubSubSection title="Gas-Solid" id="Gas-Solid">
+<p>The <b>equilibrium moisture curve</b> describes the relationship between the concentration of moisture in air and the corresponding equilibrium moisture content of a solid. </p>
+<DisplayEquation title="Equilibrium Moisture Curve" background="True" equation="1 - RH = b_{1}\\exp{-b_{2}\\omega}"/>
+<p>where</p>
+<Itemize>
+<Item><InlineEquation equation="RH"/> = Relative Humidity. Amount of moisture in air compared to maximum capacity (fraction).</Item>
+<Item><InlineEquation equation="b_{1},b_{2}"/> = constants describing the curve</Item>
+<Item><InlineEquation equation="\\omega"/> = equilibrium moisture content [%]</Item>
+</Itemize>
+
+<p><b>Hydroscopic:</b> Attracts and holds water molecules from the surrounding environment and shrinks when drying. <i>Examples: biomaterials, wood, soil, etc.</i></p>
+<p><b>Non-Hydroscopic:</b> Does not hold onto water molecules. Water molecules behave as if the solid is not there. <i>Examples: sand, ceramics, polymer particles, etc.</i></p>
+</SubSubSection>
+
 
 </Layout>
