@@ -66,4 +66,31 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </CalloutContainer>
 </SubSection>
 
+<SubSection title="Equilibrium" id="Equilibrium">
+<p> Mass equilibrium is when the total mass entering a system is equal to the total mass leaving a system. In other words, the system is in a <b>steady state</b> where mass doesn’t change with time. Equilibrium does not mean equal concentrations. It depends on polarity, pH, and molecular crowding. The transfer of mass requires a departure from equilibrium. </p>
+
+<p> Equilibrium can occur between different phases:</p>
+
+<Itemize>
+<Item>Liquid-Gas</Item>
+<Item>Gas-Solid</Item>
+<Item>Solid-Liquid</Item>
+</Itemize>
+
+<p>These interphases are described below!</p>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Heads Up!">
+        <p>Mass concentration (<InlineEquation equation="\\rho_{A}"/>) and molecular concentration (<InlineEquation equation="c_{A}"/>) are related by molecular weight (<InlineEquation equation="M_{A}"/>):</p>
+        <DisplayEquation equation="\\rho_{A} = c_{A} * M_{A}" title="" />
+        <p>where</p>
+        <Itemize>
+        <Item><InlineEquation equation="\\rho_{A}=\\frac{kgA}{m^3}"/></Item>
+        <Item><InlineEquation equation="c_{A}=\\frac{molA}{m^3}"/></Item>
+        <Item><InlineEquation equation="M_{A}=\\frac{kgA}{molA}"/></Item>
+        </Itemize>
+    </CalloutCard>
+</CalloutContainer>
+</SubSection>
+
 </Layout>
