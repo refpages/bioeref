@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro"
+import PrairieDrawCanvas from "../../components/PrairieDrawCanvas.astro"
+import Center from "../../components/Center.astro"
+import CalloutCard from "../../components/CalloutCard.astro"
+import Warning from "../../components/Warning.astro"
+import Example from "../../components/Example.astro"
+import Row from "../../components/Row.astro"
+import Col from "../../components/Col.astro"
+import DisplayTable from "../../components/DisplayTable.astro"
+---
+<Layout title="Signal To Noise Ratio (SNR)">
+  <div slot="navtree">
+    <ul class="list-group list-group-flush py-0">
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#What'>What is SNR?</a></li>
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#How'>How To Calculate SNR</a></li>
+    </ul>
+  </div>
+  
+  <Section title="Signal To Noise Ratio (SNR)" id="Signal To Noise Ratio (SNR)"/>
+  <SubSection title="What is SNR?" id="What">
+      <p>Signal to Noise Ratio or SNR is the ratio between the power (or amplitude squared) of a signal and the power of the surrounding noise. This is often determined in the frequency domain in order to isolate the frequency of the target signal and determine its power compared to the power of unwanted frequencies which are defined as noise.
+  </SubSection>
+  
+  <SubSection title="How To Calculate SNR" id="How">
+    <p></p>
+  </SubSection>
+</Layout>
