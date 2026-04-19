@@ -29,6 +29,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
     
     <Section title="Transfer Functions"/>
     <SubSection title="What are Transfer Functions?" id="What">
-        <p>Transfer functions are the Laplace domain representation of signal modification in a system where the input = u(t) or U(s), output = y(t) or Y(s), and the transfer function = h(t) or H(s) where "s" indicates a function in the Laplace domain. The transfer function H(s) is defined as the ratio between the output and the input <InlineEquation equation="\\frac{Y(s)}{U(s)}"/></p>
+        <p>Transfer functions are the Laplace domain representation of signal modification in a system where the input = u(t) or U(s), output = y(t) or Y(s), and the transfer function = h(t) or H(s) where "s" indicates a function in the Laplace domain. The transfer function H(s) is defined as the ratio between the output and the input:</p>.
+        <DisplayEquation equation="H(s) = \\frac{Y(s)}{U(s)}"/>
+        <p>Essentially this means that the output is equal to the input multiplied by the transfer function:
+        <DisplayEquation equation="Y(s) = H(s)*U(s)"/>
     </SubSection>
 </Layout>
