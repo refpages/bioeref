@@ -45,7 +45,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<p> Molecular diffusion is the transport of one mass component from a region of <i>higher</i> concentration to a region of <i>lower</i> concentration, making it a passive process. </p> 
 	<p> It equilibrates differences in concentration, due to random (Brownian) molecular movement. As temperature increases, molecular kinetic energ also increases, speeding up the process. </p>
 	<p> It is analogous to diffusive heat transfer (thermal conduction), but can be more complicated if numerous chemical species are involved. </p>
-	
 	<p>When concentration gradient is the driving force, the rate of mass transport per unit area (<i>diffusive flux</i>) is related to it via Fick's Law:</p> 
 	<b> <DisplayEquation equation="j_{A,x} = -D_{AB} \\frac{dc_{A}}{dx}" title="Fick's Law" background="True"/> </b> 
 	where 
@@ -83,7 +82,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <SubSubSection title="Darcy's Law" id="Darcy's Law">
 	<p> Porous mediums can be approximated as a bundle of tubes of varying diameter, embedded within a solid matrix. Movement of liquid in a porous material is described by Darcy's Law:</p>
 	
-	<DisplayEquation equation="n^v = -K\\frac{d\\mathcal{H}}{ds}" title="Darcy's Law" background="True"/>
+	<DisplayEquation equation="n^v = -K\\frac{d \\mathcal{H} }{ds}" title="Darcy's Law" background="True"/>
 	
 	where
 	<Itemize>
@@ -95,7 +94,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	
 	<p>The hydraulic (water) potential <InlineEquation equation="\\mathcal{H}" /> drives flow, and is defined as:</p>
 	
-	<DisplayEquation equation="\\mathcal{H} = h + z" title="Hydraulic Potential" background="True"/>
+	<DisplayEquation equation="H = h + z" title="Hydraulic Potential" background="True"/>
 	
 	where
 	<Itemize>
@@ -104,7 +103,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	</Itemize>
 	
 	<p>Hydraulic conductivity <InlineEquation equation="K" /> describes the ease with which a fluid can be transported through a porous matrix — it is the ratio of volumetric flux to the hydraulic gradient causing the flow. It depends on properties of both the solid <i>matrix</i> (pore size distribution, shape of pores, porosity, tortuosity) and the <i>fluid</i> (density, viscosity):</p>
-	
 	<DisplayEquation equation="K = \\frac{\\rho g}{\\mu} \\frac{1}{8\\tau} \\sum_{i} \\Delta\\beta_i r_{i}^{2}" title="Hydraulic Conductivity" background="True"/>
 	
 	where
@@ -117,11 +115,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	</Itemize>
 	
 	<p>The sole effect of the matrix properties can be isolated as the <i>permeability</i> <InlineEquation equation="k" />:</p>
-	
 	<DisplayEquation equation="k = \\frac{1}{8\\tau} \\sum_{i} \\Delta\\beta_i r_i^2" title="Permeability" background="True"/>
 	
 	where <InlineEquation equation="k" /> has units of <InlineEquation equation="[m^2]" />. Hydraulic conductivity can then be written as:
-	
 	<DisplayEquation equation="K = \\frac{k \\rho g}{\\mu}" title="Hydraulic Conductivity (from Permeability)" background="True"/>
 	
 	<p> separating the effect of the matrix (captured in <InlineEquation equation="k" />) from the effect of the fluid properties (<InlineEquation equation="\\rho" />, <InlineEquation equation="\\mu" />). <p> 
