@@ -83,19 +83,19 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <SubSubSection title="Darcy's Law" id="Darcy's Law">
 	<p> Porous mediums can be approximated as a bundle of tubes of varying diameter, embedded within a solid matrix. Movement of liquid in a porous material is described by Darcy's Law:</p>
 	
-	<DisplayEquation equation="n^v = -K\\frac{dH}{ds}" title="Darcy's Law" background="True"/>
+	<DisplayEquation equation="n^v = -K\\frac{d\\mathcal{H}}{ds}" title="Darcy's Law" background="True"/>
 	
 	where
 	<Itemize>
 		<Item><InlineEquation equation="n^v" /> = volumetric flux (volume/area · time) <InlineEquation equation="\\left[\\frac{m^{3}}{m^{2} s}\\right] = \\left[\\frac{m}{s}\\right]" /></Item>
-		<Item><InlineEquation equation="H" /> = hydraulic potential <InlineEquation equation="[m]" /></Item>
+		<Item><InlineEquation equation="\\mathcal{H}" /> = hydraulic potential <InlineEquation equation="[m]" /></Item>
 		<Item><InlineEquation equation="s" /> = distance along the flow path <InlineEquation equation="[m]" /></Item>
 		<Item><InlineEquation equation="K" /> = hydraulic conductivity <InlineEquation equation="\\left[\\frac{m}{s}\\right]" /></Item>
 	</Itemize>
 	
-	<p>The hydraulic (water) potential <InlineEquation equation="H" /> drives flow, and is defined as:</p>
+	<p>The hydraulic (water) potential <InlineEquation equation="\\mathcal{H}" /> drives flow, and is defined as:</p>
 	
-	<DisplayEquation equation="H = h + z" title="Hydraulic Potential" background="True"/>
+	<DisplayEquation equation="\\mathcal{H} = h + z" title="Hydraulic Potential" background="True"/>
 	
 	where
 	<Itemize>
@@ -129,18 +129,13 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <SubSubSection title="Porosity and Flux" id="Porosity and Flux">
 	<p>Retention of water in a porous medium results from attractive forces between the solid and liquid phases.</p>
-	
 	<p>Volumetric <b>porosity (<InlineEquation equation="\\phi" />)</b> is the ratio of the volume of void space (pore volume) to the bulk volume of a porous medium. Average volumetric porosity is considered the same as average areal porosity at a cross section of the material:</p>
-	
-	<DisplayEquation equation="\\phi = \\frac{\\text{pore volume}}{\\text{total volume}} = \\frac{\\text{pore area}}{\\text{total area}}" title="Porosity" background="True"/>
+	DisplayEquation equation="\\phi = \\frac{\\text{pore volume}}{\\text{total volume}} = \\frac{\\text{pore area}}{\\text{total area}}" title="Porosity" background="True"/>
 	
 	<p><b>Volumetric flux (<InlineEquation equation="n^v" />)</b> is sometimes called "Darcy velocity", but it is <i>not</i> the true average velocity through the cross-sectional area. The true average velocity through the pores is much higher than that through the medium (solid matrix):</p>
-	
 	<DisplayEquation equation="v_{avg} = \\frac{n^v}{\\phi}" title="Average Pore Velocity" background="True"/>
 	
-	<p> The average velocity is a vector with direction and magnitude.</p>
-
-		
+	<p> The average velocity is a vector with direction and magnitude.</p>	
 </SubSubSection>
 
 <SubSubSection title="Capillary Flow" id="Capillary Flow">
@@ -151,7 +146,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	
 	where
 	<Itemize>
-		<Item><InlineEquation equation="h" /> = height of the column or capillary<InlineEquation equation="[m]" /></Item>
+		<Item><InlineEquation equation="h" /> = height of the column or capillary <InlineEquation equation="[m]" /></Item>
 		<Item><InlineEquation equation="\\gamma" /> = water surface tension <InlineEquation equation="\\left[\\frac{N}{m}\\right]" /> (look up values)</Item>
 		<Item><InlineEquation equation="\\rho" /> = fluid density <InlineEquation equation="\\left[\\frac{kg}{m^3}\\right]" /></Item>
 		<Item><InlineEquation equation="g" /> = gravitational acceleration <InlineEquation equation="\\left[\\frac{m}{s^2}\\right]" /></Item>
