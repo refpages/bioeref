@@ -31,37 +31,10 @@ import Col from "../../components/Col.astro"
     
     <Section title="Transfer Functions"/>
     <SubSection title="What are Transfer Functions?" id="What">
-        <p>Transfer functions are the Laplace domain representation of signal modification in a system where the input = u(t) or U(s), output = y(t) or Y(s), and the transfer function = h(t) or H(s) where "s" indicates a function in the Laplace domain. The transfer function H(s) is defined as the ratio between the output and the input:</p>.
+        <p>Transfer functions are the Laplace domain representation of signal modification in a system where the input = u(t) or U(s), output = y(t) or Y(s), and the transfer function = h(t) or H(s) where "s" indicates a function in the Laplace domain. The transfer function H(s) is defined as the ratio between the output and the input: </p>
         <DisplayEquation equation="H(s) = \\frac{Y(s)}{U(s)}"/>
-        <p>Essentially this means that the output is equal to the input multiplied by the transfer function:
+        <p>Essentially this means that the output is equal to the input multiplied by the transfer function: </p>
         <DisplayEquation equation="Y(s) = H(s)*U(s)"/>
         <p>For example, if you have a simple block diagram like this:</p>
-        <Example title="Find the Laplace equation of the output from this system." solution="false">
-            <div class="d-flex flex-row">
-                <Row>
-                    <Col values="12 md-6">
-                        <Image src="/signals/simpleTFex.png"/>
-                    </Col>
-                    <Col>
-                        <p> The output is <InlineEquation equation="\\frac{4}{(s+3)(s+4)}"/>
-                    </Col>
-                </Row>
-            </div>
-        </Example>
-        <p>Pretty easy since it's just a multiplication of two fractions.</p>
-        <p>Another consideration of transfer functions is that they can be combined and simplified, sort of like the components of an electrical circuit. Transfer functions in series are multipled together while those that are in "parallel" are added or subtracted.</p>
-        <Example title="Find the single block representation of this system." solution="false">
-            <div class="d-flex flex-row">
-                <Row>
-                    <Col values="12 md-6">
-                        <Image src=""/>
-                    </Col>
-                    <Col values="12 md-6">
-                        <Image src=""/>
-                    </Col>
-                </Row>
-            </div>
-        </Example>
-        <p>Now try an example problem that combines these aspects and use the table of common Laplace transforms (<a href="https://bioe.refpages.org/signals/laplace/#Facts">here</a>) to convert your answer to the time domain.</p>
-    </SubSection>
+
 </Layout>
