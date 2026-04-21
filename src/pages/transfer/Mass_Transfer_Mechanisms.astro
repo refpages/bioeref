@@ -45,7 +45,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<p> Molecular diffusion is the transport of one mass component from a region of <i>higher</i> concentration to a region of <i>lower</i> concentration, making it a passive process. </p> 
 	<p> It equilibrates differences in concentration, due to random (Brownian) molecular movement. As temperature increases, molecular kinetic energ also increases, speeding up the process. </p>
 	<p> It is analogous to diffusive heat transfer (thermal conduction), but can be more complicated if numerous chemical species are involved. </p>
-	<p>When concentration gradient is the driving force, the rate of mass transport per unit area (<i>diffusive flux</i>) is related to it via Fick's Law:</p> 
+	<p> When concentration gradient is the driving force, the rate of mass transport per unit area (<i>diffusive flux</i>) is related to it via Fick's Law:</p> 
 	<b> <DisplayEquation equation="j_{A,x} = -D_{AB} \\frac{dc_{A}}{dx}" title="Fick's Law" background="True"/> </b> 
 	where 
 	<Itemize> 
@@ -94,11 +94,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	
 	<p>The hydraulic (water) potential <InlineEquation equation="\\mathcal{H}" /> drives flow, and is defined as:</p>
 	
-	<DisplayEquation equation="H = h + z" title="Hydraulic Potential" background="True"/>
+	<DisplayEquation equation="\\mathcal{H} = h + z" title="Hydraulic Potential" background="True"/>
 	
 	where
 	<Itemize>
-		<Item><InlineEquation equation="h" /> = <i>pressure</i> (hydrostatic or pneumatic) and <i>matric potential</i> — physical forces which bind water to the porous matrix; attractive force between liquid and solid phases</Item>
+		<Item><InlineEquation equation="h" /> = <i>pressure</i> (hydrostatic or pneumatic) and <i>matrix potential</i> — physical forces which bind water to the porous matrix; attractive force between liquid and solid phases</Item>
 		<Item><InlineEquation equation="z" /> = <i>gravitational potential</i> due to difference in depth in the vertical direction (i.e., from surface), in the direction of gravity</Item>
 	</Itemize>
 	
