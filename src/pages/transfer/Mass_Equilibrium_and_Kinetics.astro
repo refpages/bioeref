@@ -97,9 +97,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="p_{A} = H x_{A}"/>
 <p>where</p>
 <Itemize>
-<Item><InlineEquation equation="H"/> = Henry's Constant</Item>
-<Item><InlineEquation equation="p_{A}"/> = partial pressure of A in gas (at equilibrium)</Item>
-<Item><InlineEquation equation="x_{A}"/> = concentration of A in liquid (at equilibrium)</Item>
+<Item><InlineEquation equation="H"/> = Henry's Constant <InlineEquation equation="[\\frac{M}{atm}]"/></Item>
+<Item><InlineEquation equation="p_{A}"/> = partial pressure of A in gas (at equilibrium) <InlineEquation equation="[atm]"/></Item>
+<Item><InlineEquation equation="x_{A}"/> = concentration of A in liquid (at equilibrium) <InlineEquation equation="[M]"/></Item>
 </Itemize>
 <p>The amount of gas dissolved in a liquid is proportional to the partial pressure of that gas above the liquid. </p>
 </SubSubSection>
@@ -109,9 +109,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="1 - RH = b_{1}e^{(-b_{2}\\omega)}"/>
 <p>where</p>
 <Itemize>
-<Item><InlineEquation equation="RH"/> = Relative Humidity. Amount of moisture in air compared to maximum capacity (fraction).</Item>
+<Item><InlineEquation equation="RH"/> = Relative Humidity. Amount of moisture in air compared to maximum capacity <InlineEquation equation="[%]"/></Item>
 <Item><InlineEquation equation="b_{1},b_{2}"/> = constants describing the curve</Item>
-<Item><InlineEquation equation="\\omega"/> = equilibrium moisture content [%]</Item>
+<Item><InlineEquation equation="\\omega"/> = equilibrium moisture content <InlineEquation equation="[%]"/></Item>
 </Itemize>
 
 <p><b>Hydroscopic:</b> Attracts and holds water molecules from the surrounding environment and shrinks when drying. <i>Examples: biomaterials, wood, soil, etc.</i></p>
@@ -123,8 +123,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="c_{A,adsorbed} = K^{*} c_{A}^{n}"/>
 <p>where</p>
 <Itemize>
-<Item><InlineEquation equation="c_{A,adsorbed}"/> = concentration of adsorbed solute A</Item>
-<Item><InlineEquation equation="c_{A}"/> = concentration of solute A in solution</Item>
+<Item><InlineEquation equation="c_{A,adsorbed}"/> = concentration of adsorbed solute A <InlineEquation equation="[\\frac{mol}{kg}]"/></Item>
+<Item><InlineEquation equation="c_{A}"/> = concentration of solute A in solution <InlineEquation equation="[M]"/></Item>
 <Item><InlineEquation equation="K^{*},n"/> = empirical constants</Item>
 </Itemize>
 </SubSubSection>
@@ -140,10 +140,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="c = c_{o}e^{(-k^{''}t)}"/>
 <p>where</p>
 <Itemize>
-<Item><InlineEquation equation="c"/> = concentration</Item>
-<Item><InlineEquation equation="c_{o}"/> = initial concentration</Item>
-<Item><InlineEquation equation="t"/> = time</Item>
-<Item><InlineEquation equation="k^{''}"/> = reaction rate constant</Item>
+<Item><InlineEquation equation="c"/> = concentration <InlineEquation equation="[M]"/></Item>
+<Item><InlineEquation equation="c_{o}"/> = initial concentration <InlineEquation equation="[M]"/></Item>
+<Item><InlineEquation equation="t"/> = time <InlineEquation equation="[s]"/></Item>
+<Item><InlineEquation equation="k^{''}"/> = reaction rate constant <InlineEquation equation="[\\frac{1}{s}]"/></Item>
 </Itemize>
 </SubSubSection>
 
@@ -152,9 +152,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="c = c_{o}e^{-(\\frac{0.693}{t_{\\frac{1}{2}}})}"/>
 <p>where</p>
 <Itemize>
-<Item><InlineEquation equation="c"/> = concentration</Item>
-<Item><InlineEquation equation="c_{o}"/> = initial concentration</Item>
-<Item><InlineEquation equation="t_{\\frac{1}{2}}"/> = half life</Item>
+<Item><InlineEquation equation="c"/> = concentration <InlineEquation equation="[M]"/></Item>
+<Item><InlineEquation equation="c_{o}"/> = initial concentration <InlineEquation equation="[M]"/></Item>
+<Item><InlineEquation equation="t_{\\frac{1}{2}}"/> = half life <InlineEquation equation="[s]"/></Item>
 </Itemize>
 <p>In pharmacokinetics, half life is used to…</p>
 <Itemize>
@@ -171,9 +171,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Itemize>
 <Item><InlineEquation equation="k^{''}"/> = reaction rate constant</Item>
 <Item><InlineEquation equation="k^{''}_{o}"/> = initial reaction rate constant</Item>
-<Item><InlineEquation equation="E_{a}"/> = activation energy</Item>
-<Item><InlineEquation equation="R_{g}"/> = ideal gas constant</Item>
-<Item><InlineEquation equation="T"/> = temperature</Item>
+<Item><InlineEquation equation="E_{a}"/> = activation energy <InlineEquation equation="[\\frac{J}{mol}]"/></Item>
+<Item><InlineEquation equation="R_{g}"/> = ideal gas constant <InlineEquation equation="[\\frac{J}{molK}]"/></Item>
+<Item><InlineEquation equation="T"/> = temperature <InlineEquation equation="[K]"/></Item>
 </Itemize>
 <p>An everyday example of Arrhenius’s Law is cooking eggs. A hotter pan speeds up the chemical reaction that denatures the proteins in the egg white and yolk. If you cook it at a low temperature, it takes several minutes to solidify. Increasing the pan's temperature will decrease the time it takes to cook the eggs. </p>
 </SubSubSection>
