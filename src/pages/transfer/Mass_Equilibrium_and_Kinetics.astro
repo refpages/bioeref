@@ -97,7 +97,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="p_{A} = H x_{A}"/>
 <p>where</p>
 <Itemize>
-<Item><InlineEquation equation="H"/> = Henry's Constant <InlineEquation equation="[\\frac{M}{atm}]"/></Item>
+<Item><InlineEquation equation="H"/> = Henry's Constant <InlineEquation equation="[\\frac{atm}{M}]"/></Item>
 <Item><InlineEquation equation="p_{A}"/> = partial pressure of A in gas (at equilibrium) <InlineEquation equation="[atm]"/></Item>
 <Item><InlineEquation equation="x_{A}"/> = concentration of A in liquid (at equilibrium) <InlineEquation equation="[M]"/></Item>
 </Itemize>
@@ -109,9 +109,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="1 - RH = b_{1}e^{(-b_{2}\\omega)}"/>
 <p>where</p>
 <Itemize>
-<Item><InlineEquation equation="RH"/> = Relative Humidity. Amount of moisture in air compared to maximum capacity <InlineEquation equation="[%]"/></Item>
+<Item><InlineEquation equation="RH"/> = Relative Humidity. Amount of moisture in air compared to maximum capacity [%]</Item>
 <Item><InlineEquation equation="b_{1},b_{2}"/> = constants describing the curve</Item>
-<Item><InlineEquation equation="\\omega"/> = equilibrium moisture content <InlineEquation equation="[%]"/></Item>
+<Item><InlineEquation equation="\\omega"/> = equilibrium moisture content [%]</Item>
 </Itemize>
 
 <p><b>Hydroscopic:</b> Attracts and holds water molecules from the surrounding environment and shrinks when drying. <i>Examples: biomaterials, wood, soil, etc.</i></p>
@@ -143,8 +143,18 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Item><InlineEquation equation="c"/> = concentration <InlineEquation equation="[M]"/></Item>
 <Item><InlineEquation equation="c_{o}"/> = initial concentration <InlineEquation equation="[M]"/></Item>
 <Item><InlineEquation equation="t"/> = time <InlineEquation equation="[s]"/></Item>
-<Item><InlineEquation equation="k^{''}"/> = reaction rate constant <InlineEquation equation="[\\frac{1}{s}]"/></Item>
+<Item><InlineEquation equation="k^{''}"/> = reaction rate constant</Item>
 </Itemize>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Heads Up!">
+        <p>The units for the reaction rate constant (<InlineEquation equation="k^{''}"/>) depend on the order of the reaction:</p>
+        <p><b>First Order:</b></p>
+        <p><InlineEquation equation="k^{''} = \\frac{M}{s}"/></p>
+        <p><b>Second Order:</b></p>
+        <p><InlineEquation equation="k^{''} = \\frac{1}{s}"/></p>
+    </CalloutCard>
+</CalloutContainer>
 </SubSubSection>
 
 <SubSubSection title="Half Life" id="Half Life">
