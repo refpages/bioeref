@@ -45,7 +45,22 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Item><InlineEquation equation="c_{A}(x)"/></Item>
 <Item><InlineEquation equation="c_{A1}"/></Item>
 <Item><InlineEquation equation="c_{A2}"/></Item>
-<Item><InlineEquation equation="L"/></Item>
+<Item><InlineEquation equation="L"/> = length of slab <InlineEquation equation="[m]"/</Item>
+</Itemize>
+
+<p><b>Steady State Diffusion in a Composite Slab</b></p>
+<p>With a composite slab, convection occurs on either side of the slab while diffusion occurs within the slab. This means mass transfer is occuring between two phases at the surface. The concentrations at the interface are not equal. For example, the surface concentration is different in liquid vs in the solid.</p>
+<p>Mass flow can be calculated by concentration differences and mass transfer resistances:</p>
+<DisplayEquation equation="N_{A,x} = \\frac{\\triangle c}{\\frac{1}{h_{m1}A}+\\frac{\\triangle L}{KD_{AB}A}+\\frac{1}{h_{m2}A}}" title="" background="True"/>
+<Itemize>
+<Item><InlineEquation equation="N_{A,x}"/></Item>
+<Item><InlineEquation equation="\\triangle c"/></Item>
+<Item><InlineEquation equation="\\triangle L"/></Item>
+<Item><InlineEquation equation="h_{m1}"/></Item>
+<Item><InlineEquation equation="h_{m2}"/></Item>
+<Item><InlineEquation equation="A"/></Item>
+<Item><InlineEquation equation="D_{AB}"/></Item>
+<Item><InlineEquation equation="K"/></Item>
 </Itemize>
 
 </SubSection>
