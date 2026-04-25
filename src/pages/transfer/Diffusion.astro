@@ -66,6 +66,18 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </Itemize>
 
 <p><b>Steady State Diffusion in a Slab with a Chemical Reaction</b></p>
+<p>Chemical reactions can occur during diffusion. This produces a decay with time. Consequently, the surface flux increases while the concentration gradient gets higher. </p>
+<p>Concentration Profile:</p>
+<DisplayEquation equation="\\frac{c_{A}}{c_{A,0}} = \\frac{-e^{-mL}}{e^{-mL}-e^{-mL}} (e^{mx}-e^{-mx})+e^{-mx}" title="" background="True"/>
+<p>For thick material (semi-infinite), the limit as L approaches \\infinity is taken:</p>
+<DisplayEquation equation="\\frac{c_{A}}{c_{A,0}} = e^{-mx}" title="" background="True"/>
+<Itemize>
+<Item><InlineEquation equation="m = \\sqrt{\\frac{k^{''}}{D_{AB}}}"/></Item>
+<Item><InlineEquation equation="x"/> = position <InlineEquation equation="[m]"/></Item>
+<Item><InlineEquation equation="c_{A}"/> = concentration <InlineEquation equation="[\\frac{kg}{m^2}]"/></Item>
+<Item><InlineEquation equation="c_{A,0}"/> = initial concentration <InlineEquation equation="[\\frac{kg}{m^2}]"/></Item>
+<Item><InlineEquation equation="L"/> = length of slab <InlineEquation equation="[m]"/></Item>
+</Itemize>
 
 </SubSection>
 
