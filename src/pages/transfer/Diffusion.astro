@@ -42,9 +42,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <p> where </p>
 <Itemize>
-<Item><InlineEquation equation="c_{A}(x)"/></Item>
-<Item><InlineEquation equation="c_{A1}"/></Item>
-<Item><InlineEquation equation="c_{A2}"/></Item>
+<Item><InlineEquation equation="c_{A}(x)"/> = concentration profile <InlineEquation equation="[\\frac{kg}{m^2}]"/></Item>
+<Item><InlineEquation equation="x"/> = position <InlineEquation equation="[m]"/></Item>
+<Item><InlineEquation equation="c_{A1}"/> = concentration at position <InlineEquation equation="x = 0"/><InlineEquation equation="[\\frac{kg}{m^2}]"/></Item>
+<Item><InlineEquation equation="c_{A2}"/> = concentration at position <InlineEquation equation="x = L"/><InlineEquation equation="[\\frac{kg}{m^2}]"/></Item>
 <Item><InlineEquation equation="L"/> = length of slab <InlineEquation equation="[m]"/></Item>
 </Itemize>
 
@@ -54,14 +55,14 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p>Mass flow can be calculated by concentration differences and mass transfer resistances:</p>
 <DisplayEquation equation="N_{A,x} = \\frac{\\triangle c}{\\frac{1}{h_{m1}A}+\\frac{\\triangle L}{KD_{AB}A}+\\frac{1}{h_{m2}A}}" title="" background="True"/>
 <Itemize>
-<Item><InlineEquation equation="N_{A,x}"/></Item>
-<Item><InlineEquation equation="\\triangle c"/></Item>
-<Item><InlineEquation equation="\\triangle L"/></Item>
-<Item><InlineEquation equation="h_{m1}"/></Item>
-<Item><InlineEquation equation="h_{m2}"/></Item>
-<Item><InlineEquation equation="A"/></Item>
-<Item><InlineEquation equation="D_{AB}"/></Item>
-<Item><InlineEquation equation="K"/></Item>
+<Item><InlineEquation equation="N_{A,x}"/> = mass flow <InlineEquation equation="[\\frac{m}{s}]"/></Item>
+<Item><InlineEquation equation="\\triangle c"/> = change in concentration <InlineEquation equation="[\\frac{kg}{m^2}]"/></Item>
+<Item><InlineEquation equation="\\triangle L"/> = length of slab <InlineEquation equation="[m]"/></Item>
+<Item><InlineEquation equation="h_{m1}"/> = mass transfer coefficient of side 1 <InlineEquation equation="[\\frac{m}{s}]"/></Item>
+<Item><InlineEquation equation="h_{m2}"/> = mass transfer coefficient of side 2 <InlineEquation equation="[\\frac{m}{s}]"/></Item>
+<Item><InlineEquation equation="A"/> = cross sectional area of slab <InlineEquation equation="[m^2]"/></Item>
+<Item><InlineEquation equation="D_{AB}"/> = diffusivity of slab <InlineEquation equation="[\\frac{m^2}{s}]"/></Item>
+<Item><InlineEquation equation="K*"/> = distribution coefficient</Item>
 </Itemize>
 
 <p><b>Steady State Diffusion in a Slab with a Chemical Reaction</b></p>
