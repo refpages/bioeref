@@ -1,1 +1,157 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro"
+import PrairieDrawCanvas from "../../components/PrairieDrawCanvas.astro"
+import Center from "../../components/Center.astro"
+import CalloutContainer from "../../components/CalloutContainer.astro"
+import CalloutCard from "../../components/CalloutCard.astro"
+import Warning from "../../components/Warning.astro"
+import Example from "../../components/Example.astro"
+import Row from "../../components/Row.astro"
+import Col from "../../components/Col.astro"
+import DisplayTable from "../../components/DisplayTable.astro"
+---
+<Layout title="Governing Equation & Boundary Conditions">
+<div slot="navtree">
+<ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#General-Heat-Transfer-Governing-Equation'>General Heat Transfer Governing Equation</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Boundary-and-Initial-Conditions'>Boundary and Initial Conditions</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-temperature-specified'>Surface Temperature Specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-heat-flux-is-specified'>Surface Heat Flux Specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection-at-the-surface'>Convection at the Surface</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#InitialCondition'>Initial Condition</a></ul>
+</li>
+</ul>
+</div>
 
+<SubSection title="General Heat Transfer Governing Equation" id="General-Heat-Transfer-Governing-Equation">
+
+<p> The governing heat equation is derived from an energy balance applied to a differential control volume and Fourier's Law. It includes all possible mechanisms that can contribute to heat
+transfer in a system, and encapsulates the combined effects of energy storage, conduction, convection, and internal heat generation, and allows the prediction of the temperature profile within the system. 
+It combines <a href="/transfer/foundations_of_Transport_&_Flow/#EnergyBalance">the energy balance over a system</a> with <a href="/transfer/Conduction/#Conduction">Fourier's Law</a>.</p>
+
+It can be used to describe the temperature in a material in any kind of heating or cooling situation. 
+The result is a function that is valid at all points in a control volume, at all times (e.g., <InlineEquation equation="f(x,y,z,t)"/>).
+While heat transfer can occur in three dimensions, it is simplified here to be solved with heat flowing only in one direction (<i>x,r</i>). 
+The governing heat equation can be written in Cartesian or radial coordinates. </p> 
+
+<b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" 
+title="Governing Heat Equation (Cartesian)" background="True"/></b>
+
+where 
+<Itemize>
+<Item><InlineEquation equation="T" /> = temperature  <InlineEquation equation="[K]" /></Item>
+<Item><InlineEquation equation="x" /> = position (one-dimensional flow) <InlineEquation equation="[m]" /></Item>
+<Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
+<Item><InlineEquation equation="u "/> = fluid velocity <InlineEquation equation="[\\frac{m}{s}]" /></Item>
+<Item><InlineEquation equation="Q " /> = heat generated per volume <InlineEquation equation="[\\frac{W}{m^3}]" /></Item>
+<Item><InlineEquation equation="k " /> = thermal conductivity  <InlineEquation equation="[\\frac{W}{mK}]" /> </Item>
+<Item><InlineEquation equation="\\rho "/> = density  <InlineEquation equation="[\\frac{kg}{m^3}]" /> </Item>
+<Item><InlineEquation equation="c_p " /> = specific heat  <InlineEquation equation="[\\frac{J}{kg*K}]" /></Item>
+</Itemize>
+
+<b><DisplayEquation equation="\\rho c_p \\frac{\\partial T}{\\partial t} = k\\frac{1}{r} \\frac{\\partial}{\\partial r} (r\\frac{\\partial T}{\\partial r}) + Q" title="Governing Heat Equation (Cylindrical)" background="True"/></b>
+<b><DisplayEquation equation="\\rho c_p \\frac{\\partial T}{\\partial t} = k\\frac{1}{r^2} \\frac{\\partial}{\\partial r} (r^2\\frac{\\partial T}{\\partial r}) + Q" title="Governing Heat Equation (Spherical)" background="True"/></b>
+
+<div style="height:20px"> </div>
+For any coordinate system, this can be written as: 
+<DisplayEquation equation="\\frac{k}{\\rho c_p} \\nabla^2 T + \\frac{Q}{\\rho c_p} = \\frac{\\partial T}{\\partial t}" title="Governing Equation without flow (General form)" background="True" id="General Form"/>
+
+<p> In practice, many problems involve simplifying assumptions (e.g., <a href="/transfer/Conduction/#SteadyState">system at steady state</a>, 
+no <a href="/transfer/Convection">bulk flow</a> in the system, or no <a href="/transfer/Transport_in_a_biomedical_context/#GenerationofHeat">internal heat generation</a>), which allow certain terms to be removed. 
+The meaning of each term and the conditions under which it should be retained or dropped are summarized below. </p>
+
+<div style="height:20px"> </div>
+
+
+  <DisplayTable id="dim-table">
+    <thead>
+      <tr>
+        <th>Term</th><th>What is it?</th><th>When do I keep it?</th><th>When can I drop it?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><InlineEquation equation="\\frac{\\partial T}{\\partial t}"/></th><td>  Stored energy  </td><td>Unsteady state, <InlineEquation equation="T" /> changing with time (transient)</td><td>Steady state (constant <InlineEquation equation="T" />)</td>
+      </tr>
+      <tr>
+        <th> <InlineEquation equation="u\\frac{\\partial T}{\\partial x}"/></th>  <td> Bulk flow (Convection) </td> <td>Fluid flow</td><td>No flow (solid)</td>
+       </tr>
+      <tr>
+        <th><InlineEquation equation="\\frac{k}{\\rho c_p} \\frac{\\partial ^2 T}{\\partial x^2}"/></th>  <td> Conduction </td> <td>Almost always</td>  <td>No conduction (no temperature gradient)</td>
+      </tr>
+      <tr>
+        <th><InlineEquation equation="\\frac{Q}{\\rho c_p}"/></th> <td>Generation</td> <td>Conversion of energy in the system</td><td>No generation/heat source</td>
+      </tr>
+    </tbody>
+  </DisplayTable>
+
+<p class="text-center"><em><b> Table 1</b>: Governing equation terms and simplifications. </em></p> 
+
+</SubSection>  
+
+
+<SubSection title="Boundary and Initial Conditions" id="Boundary-and-Initial-Conditions">
+<p>To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (BCs, which describe heat 
+transfer at particular surfaces and interfaces) as well as initial conditions (ICs, for unsteady state or time-dependent problems).</p>
+</SubSection>
+
+<SubSubSection title="Surface Temperature Specified (BC)" id="Surface-temperature-specified">
+<p> Temperature at the surface can be specified as a constant or a function of time. 
+<ul>
+  <li><i>For example:</i> <InlineEquation equation="T(x=L)=100 K">.</li>
+
+  <li> Example of BC in Problem 4.11: The leg is often cooled in a refrigerant prior to
+surgery to reduce the blood flow even further and numb the nerve endings to make
+surgery and recovery easier for the patient. 
+
+<i> Assume the skin temperature is equal to the refrigerant temperature, which is unchanged by the cooling
+process. </i></li>
+</ul>
+</SubSubSection>
+
+<SubSubSection title="Surface Heat flux Specified (BC)" id="Surface-heat-flux-is-specified">
+<p> Heat flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: </p>
+<Itemize>
+<Item> <b>Insulated Condition:</b> the surface is highly insulated so the flux at the surface can be estimated as zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial T}{\\partial x}(x=L)=0"/>. </Item>
+<Item> <b>Symmetric Condition:</b> the system has symmetric geometry making the flux at the centerline equal to zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial T}{\\partial x}(x=0)=0"/>. </Item>
+ <li> Example of BC in Problem 4.11: The leg is often cooled in a refrigerant prior to
+surgery to reduce the blood flow even further and numb the nerve endings to make
+surgery and recovery easier for the patient. 
+
+<i> The leg can be modeled as a cylinder with constant thermal properties in the
+radial direction. The metabolic heat generation is slowed by the cooling, but is still present
+uniformly throughout the leg. </i></li>
+</Itemize>
+</SubSubSection>
+
+
+<SubSubSection title="Convection at the Surface (BC)" id="Convection-at-the-surface">
+<p> When there is a fluid at the surface, the flow of heat due to conduction can be set equal to the flow due to convection. There is one special case for this boundary condition: </p>
+<ul>
+  <li>When <i>h</i> is large, the system looks like the boundary condition where the surface temperature can be specified as 0.</li>
+</ul>
+</SubSubSection>
+
+
+<SubSubSection title="Initial Condition" id="InitialCondition">
+<p> An initial condition provides information about what is happening within the system (e.g., the temperature) at the start of our period of interest. 
+This is necessary to solve a time-varying (i.e., unsteady state) problem.</p>
+<ul>
+  <li><i>For example:</i> <InlineEquation equation="T(t=0)=T_i"> or <InlineEquation equation="T(t=0)=100 K">. </li>
+</ul>
+</SubSubSection>
+
+</Layout>
