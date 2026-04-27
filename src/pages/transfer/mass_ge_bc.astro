@@ -23,54 +23,52 @@ import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
-<Layout title="Governing Equation & Boundary Conditions">
+<Layout title="Governing Equation & Boundary Conditions of Mass Transfer">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#General-Heat-Transfer-Governing-Equation'>General Heat Transfer Governing Equation</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#General-Mass-Transfer-Governing-Equation'>General Mass Transfer Governing Equation</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Boundary-and-Initial-Conditions'>Boundary and Initial Conditions</a><ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-temperature-specified'>Surface Temperature Specified</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-heat-flux-is-specified'>Surface Heat Flux Specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-concentration-specified'>Surface Concentration Specified</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Surface-mass-flux-is-specified'>Surface Mass Flux Specified</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection-at-the-surface'>Convection at the Surface</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#InitialCondition'>Initial Condition</a></ul>
 </li>
 </ul>
 </div>
 
-<SubSection title="General Heat Transfer Governing Equation" id="General-Heat-Transfer-Governing-Equation">
+<SubSection title="General Mass Transfer Governing Equation" id="General-Mass-Transfer-Governing-Equation">
 
-<p> The governing heat equation is derived from an energy balance applied to a differential control volume and Fourier's Law. It includes all possible mechanisms that can contribute to heat
-transfer in a system, and encapsulates the combined effects of energy storage, conduction, convection, and internal heat generation, and allows the prediction of the temperature profile within the system. 
-It combines <a href="/transfer/foundations_of_Transport_&_Flow/#EnergyBalance">the energy balance over a system</a> with <a href="/transfer/Conduction/#Conduction">Fourier's Law</a>.</p>
+<p> The governing mass transfer equation is derived from a mass balance applied to a differential control volume and Fick's Law. It includes all possible mechanisms that can contribute to mass
+transfer in a system, and encapsulates the combined effects of mass storage, diffusion, convection, and generation or disappearance of a species, and allows the prediction of the concentration profile within the system. 
+It combines <a href="/transfer/foundations_of_Transport_&_Flow/#MassBalance">the mass balance over a system</a> with <a href="/transfer/Diffusion/#FicksLaw">Fick's Law</a>.</p>
 
-It can be used to describe the temperature in a material in any kind of heating or cooling situation. 
-The result is a function that is valid at all points in a control volume, at all times (e.g., <InlineEquation equation="f(x,y,z,t)"/>).
-While heat transfer can occur in three dimensions, it is simplified here to be solved with heat flowing only in one direction (<i>x,r</i>). 
-The governing heat equation can be written in Cartesian or radial coordinates. </p> 
+It can be used to describe the concentration of a species in any kind of mass transfer situation. 
+The result is a function that is valid at all points in a control volume, at all times (e.g., <InlineEquation equation="c_A(x,y,z,t)"/>).
+While mass transfer can occur in three dimensions, it is simplified here to be solved with mass moving only in one direction (<i>x,r</i>). 
+The governing mass transfer equation can be written in Cartesian or radial coordinates. </p> 
 
-<b><DisplayEquation equation="\\frac{\\partial T}{\\partial t} + u\\frac{\\partial T}{\\partial x} = \\frac{k}{\\rho c_p}\\frac{\\partial^2 T}{\\partial x^2} + \\frac{Q}{\\rho c_p}" 
-title="Governing Heat Equation (Cartesian)" background="True"/></b>
+<b><DisplayEquation equation="\\frac{\\partial c_A}{\\partial t} + u\\frac{\\partial c_A}{\\partial x} = D_{AB}\\frac{\\partial^2 c_A}{\\partial x^2} + r_A" 
+title="Governing Mass Transfer Equation (Cartesian)" background="True"/></b>
 
 where 
 <Itemize>
-<Item><InlineEquation equation="T" /> = temperature  <InlineEquation equation="[K]" /></Item>
+<Item><InlineEquation equation="c_A" /> = concentration of species A <InlineEquation equation="[\\frac{kg}{m^3}]" /></Item>
 <Item><InlineEquation equation="x" /> = position (one-dimensional flow) <InlineEquation equation="[m]" /></Item>
 <Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
 <Item><InlineEquation equation="u "/> = fluid velocity <InlineEquation equation="[\\frac{m}{s}]" /></Item>
-<Item><InlineEquation equation="Q " /> = heat generated per volume <InlineEquation equation="[\\frac{W}{m^3}]" /></Item>
-<Item><InlineEquation equation="k " /> = thermal conductivity  <InlineEquation equation="[\\frac{W}{mK}]" /> </Item>
-<Item><InlineEquation equation="\\rho "/> = density  <InlineEquation equation="[\\frac{kg}{m^3}]" /> </Item>
-<Item><InlineEquation equation="c_p " /> = specific heat  <InlineEquation equation="[\\frac{J}{kg*K}]" /></Item>
+<Item><InlineEquation equation="D_{AB} " /> = diffusivity of species A in species B <InlineEquation equation="[\\frac{m^2}{s}]" /></Item>
+<Item><InlineEquation equation="r_A " /> = rate of generation or disappearance of species A per volume <InlineEquation equation="[\\frac{kg}{m^3s}]" /> </Item>
 </Itemize>
 
-<b><DisplayEquation equation="\\rho c_p \\frac{\\partial T}{\\partial t} = k\\frac{1}{r} \\frac{\\partial}{\\partial r} (r\\frac{\\partial T}{\\partial r}) + Q" title="Governing Heat Equation (Cylindrical)" background="True"/></b>
-<b><DisplayEquation equation="\\rho c_p \\frac{\\partial T}{\\partial t} = k\\frac{1}{r^2} \\frac{\\partial}{\\partial r} (r^2\\frac{\\partial T}{\\partial r}) + Q" title="Governing Heat Equation (Spherical)" background="True"/></b>
+<b><DisplayEquation equation="D_{AB}\\frac{1}{r} \\frac{\\partial}{\\partial r} (r\\frac{\\partial c_A}{\\partial r}) + r_A = \\frac{\\partial c_A}{\\partial t}" title="Governing Mass Transfer Equation (Cylindrical)" background="True"/></b>
+<b><DisplayEquation equation="D_{AB}\\frac{1}{r^2} \\frac{\\partial}{\\partial r} (r^2\\frac{\\partial c_A}{\\partial r}) + r_A = \\frac{\\partial c_A}{\\partial t}" title="Governing Mass Transfer Equation (Spherical)" background="True"/></b>
 
 <div style="height:20px"> </div>
 For any coordinate system, this can be written as: 
-<DisplayEquation equation="\\frac{k}{\\rho c_p} \\nabla^2 T + \\frac{Q}{\\rho c_p} = \\frac{\\partial T}{\\partial t}" title="Governing Equation without flow (General form)" background="True" id="General Form"/>
+<DisplayEquation equation="D_{AB} \\nabla^2 c_A + r_A = \\frac{\\partial c_A}{\\partial t}" title="Governing Equation without flow (General form)" background="True" id="General Form"/>
 
 <p> In practice, many problems involve simplifying assumptions (e.g., <a href="/transfer/Conduction/#SteadyState">system at steady state</a>, 
-no <a href="/transfer/Convection">bulk flow</a> in the system, or no <a href="/transfer/Transport_in_a_biomedical_context/#GenerationofHeat">internal heat generation</a>), which allow certain terms to be removed. 
+no <a href="/transfer/Convection">bulk flow</a> in the system, or no generation or disappearance of species A), which allow certain terms to be removed. 
 The meaning of each term and the conditions under which it should be retained or dropped are summarized below. </p>
 
 <div style="height:20px"> </div>
@@ -84,16 +82,16 @@ The meaning of each term and the conditions under which it should be retained or
     </thead>
     <tbody>
       <tr>
-        <th><InlineEquation equation="\\frac{\\partial T}{\\partial t}"/></th><td>  Stored energy  </td><td>Unsteady state, <InlineEquation equation="T" /> changing with time (transient)</td><td>Steady state (constant <InlineEquation equation="T" />)</td>
+        <th><InlineEquation equation="\\frac{\\partial c_A}{\\partial t}"/></th><td>  Stored mass  </td><td>Unsteady state, <InlineEquation equation="c_A" /> changing with time (transient)</td><td>Steady state (constant <InlineEquation equation="c_A" />)</td>
       </tr>
       <tr>
-        <th> <InlineEquation equation="u\\frac{\\partial T}{\\partial x}"/></th>  <td> Bulk flow (Convection) </td> <td>Fluid flow</td><td>No flow (solid)</td>
+        <th> <InlineEquation equation="u\\frac{\\partial c_A}{\\partial x}"/></th>  <td> Bulk flow (Convection) </td> <td>Fluid flow or bulk movement through the system</td><td>No flow, typically in a solid</td>
        </tr>
       <tr>
-        <th><InlineEquation equation="\\frac{k}{\\rho c_p} \\frac{\\partial ^2 T}{\\partial x^2}"/></th>  <td> Conduction </td> <td>Almost always</td>  <td>No conduction (no temperature gradient)</td>
+        <th><InlineEquation equation="D_{AB} \\frac{\\partial ^2 c_A}{\\partial x^2}"/></th>  <td> Diffusion </td> <td>Almost always in diffusion mass transfer problems</td>  <td>Slow diffusion in relation to generation or convection</td>
       </tr>
       <tr>
-        <th><InlineEquation equation="\\frac{Q}{\\rho c_p}"/></th> <td>Generation</td> <td>Conversion of energy in the system</td><td>No generation/heat source</td>
+        <th><InlineEquation equation="r_A"/></th> <td>Generation</td> <td>Chemical reaction or conversion from/to species A</td><td>No chemical reaction or mass source</td>
       </tr>
     </tbody>
   </DisplayTable>
@@ -104,53 +102,50 @@ The meaning of each term and the conditions under which it should be retained or
 
 
 <SubSection title="Boundary and Initial Conditions" id="Boundary-and-Initial-Conditions">
-<p>To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (BCs, which describe heat 
+<p>To obtain a particular solution, we must solve the general governing equation utilizing known quantities called boundary conditions (BCs, which describe mass 
 transfer at particular surfaces and interfaces) as well as initial conditions (ICs, for unsteady state or time-dependent problems).</p>
 </SubSection>
 
-<SubSubSection title="Surface Temperature Specified (BC)" id="Surface-temperature-specified">
-<p> Temperature at the surface can be specified as a constant or a function of time. 
+<SubSubSection title="Surface Concentration Specified (BC)" id="Surface-concentration-specified">
+<p> Concentration at the surface can be specified as a constant or a function of time. 
 <ul>
-  <li><i>For example:</i> <InlineEquation equation="T(x=L)=100 K">.</li>
+  <li><i>For example:</i> <InlineEquation equation="c_A(x=0)=c_{A,s}"/>.</li>
 
-  <li> Example of BC in Problem 4.11: The leg is often cooled in a refrigerant prior to
-surgery to reduce the blood flow even further and numb the nerve endings to make
-surgery and recovery easier for the patient. 
+  <li> Example of BC in mass transfer: At the surface of a material, the concentration of species A may be known because the surface is exposed to a surrounding phase or because equilibrium conditions determine the concentration at the interface. 
 
-<i> Assume the skin temperature is equal to the refrigerant temperature, which is unchanged by the cooling
-process. </i></li>
+<i> For mass transfer at a solid-fluid interface, the concentration needed depends on the domain being modeled. If the problem is set up for the solid, the surface concentration in the solid is needed. If the problem is set up for the fluid, the concentration on the fluid side is used. </i></li>
 </ul>
 </SubSubSection>
 
-<SubSubSection title="Surface Heat flux Specified (BC)" id="Surface-heat-flux-is-specified">
-<p> Heat flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: </p>
+<SubSubSection title="Surface Mass Flux Specified (BC)" id="Surface-mass-flux-is-specified">
+<p> Mass flux at the surface is specified as a constant or a function of time. There are two special cases for this boundary condition: </p>
 <Itemize>
-<Item> <b>Insulated Condition:</b> the surface is highly insulated so the flux at the surface can be estimated as zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial T}{\\partial x}(x=L)=0"/>. </Item>
-<Item> <b>Symmetric Condition:</b> the system has symmetric geometry making the flux at the centerline equal to zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial T}{\\partial x}(x=0)=0"/>. </Item>
- <li> Example of BC in Problem 4.11: The leg is often cooled in a refrigerant prior to
-surgery to reduce the blood flow even further and numb the nerve endings to make
-surgery and recovery easier for the patient. 
-
-<i> The leg can be modeled as a cylinder with constant thermal properties in the
-radial direction. The metabolic heat generation is slowed by the cooling, but is still present
-uniformly throughout the leg. </i></li>
+<Item> <b>Impermeable Condition:</b> the surface is impermeable to the species, so the flux at the surface can be estimated as zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial c_A}{\\partial x}(x=0)=0"/>. </Item>
+<Item> <b>Symmetric Condition:</b> the system has symmetric geometry and boundary conditions, making the flux at the centerline equal to zero. <i>For example:</i> <InlineEquation equation="\\frac{\\partial c_A}{\\partial x}(x=L)=0"/>. </Item>
+ <li> Example of BC in mass transfer: If a boundary does not allow species A to pass through it, the surface can be treated as impermeable. If the geometry and concentration profile are symmetric about a centerline, the concentration gradient at that centerline is zero. </li>
 </Itemize>
 </SubSubSection>
 
 
 <SubSubSection title="Convection at the Surface (BC)" id="Convection-at-the-surface">
-<p> When there is a fluid at the surface, the flow of heat due to conduction can be set equal to the flow due to convection. There is one special case for this boundary condition: </p>
+<p> When there is a fluid at the surface, the flow of mass due to diffusion can be set equal to the flow due to convection. There is one special case for this boundary condition: </p>
 <ul>
-  <li>When <i>h</i> is large, the system looks like the boundary condition where the surface temperature can be specified as 0.</li>
+  <li>When <i>h<sub>m</sub></i> is large, the system looks like the boundary condition where the surface concentration can be specified.</li>
 </ul>
+
+<p>At the surface, the amount of mass diffused through the solid or liquid is equal to the amount of mass convected away by the fluid:</p>
+
+<DisplayEquation equation="-D_{AB}\\frac{\\partial c_A}{\\partial x}\\bigg|_{x=0} = h_m\\left(c_A^{fluid}\\bigg|_{x=0} - c_{A,\\infty}^{fluid}\\right)" title="Convection at the Surface" background="True"/>
+
+<p>The left side represents diffusion in the solid or liquid, while the right side represents convection in the fluid.</p>
 </SubSubSection>
 
 
 <SubSubSection title="Initial Condition" id="InitialCondition">
-<p> An initial condition provides information about what is happening within the system (e.g., the temperature) at the start of our period of interest. 
+<p> An initial condition provides information about what is happening within the system (e.g., the concentration) at the start of our period of interest. 
 This is necessary to solve a time-varying (i.e., unsteady state) problem.</p>
 <ul>
-  <li><i>For example:</i> <InlineEquation equation="T(t=0)=T_i"> or <InlineEquation equation="T(t=0)=100 K">. </li>
+  <li><i>For example:</i> <InlineEquation equation="c_A(t=0)=c_{A,i}"/> or <InlineEquation equation="c_A(t=0)=100 \\frac{kg}{m^3}"/>. </li>
 </ul>
 </SubSubSection>
 
