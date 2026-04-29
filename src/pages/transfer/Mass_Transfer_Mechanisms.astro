@@ -114,7 +114,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 		<Item><InlineEquation equation="r_i" /> = radius of pores in size class <InlineEquation equation="i" /> <InlineEquation equation="[m]" /></Item>
 	</Itemize>
 	
-	<p>The sole effect of the matrix properties can be isolated as the <i>permeability</i> <InlineEquation equation="k" />:</p>
+	<p>The sole effect of the matrix properties can be isolated as the <i>permeability</i> (<InlineEquation equation="k" />):</p>
 	<DisplayEquation equation="k = \\frac{1}{8\\tau} \\sum_{i} \\Delta\\beta_i r_i^2" title="Permeability" background="True"/>
 	
 	where <InlineEquation equation="k" /> has units of <InlineEquation equation="[m^2]" />. Hydraulic conductivity can then be written as:
@@ -153,6 +153,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </SubSubSection>
 
 <SubSubSection title="Unsaturated Flow" id="Unsaturated Flow">
+	<p> Recall that in a porous solid, capillarity causes liquid to be attracted more strongly when there is less of it (i.e., at lower concentration); causing liquid to flow across its concentration gradient. In unsaturated environments, the difference in negative pressures (matric potential) drives flow instead. </p>
+	<p> Unsaturated flow is mathematically similarly to molecular diffusion, and can be modeled as: </p>
+	<DisplayEquation equation="n = -D_{cap}\\frac{dc}{ds}" title="Unsaturated Flow" background="True"/>
+	<p>where <InlineEquation equation="D_{cap}" is capillary diffusivity; material-specific, which is derived experimentally. </p>
 </SubSubSection>
 
 <SubSubSection title="Osmotic Flow" id="Osmotic Flow">
