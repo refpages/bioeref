@@ -36,16 +36,12 @@ import Col from "../../components/Col.astro"
         <p>Essentially this means that the output is equal to the input multiplied by the transfer function:</p>
         <DisplayEquation equation="Y(s) = H(s)*U(s)"/>
         <p>For example, if you have a simple block diagram like this:</p>
-        <Example title="Find the Laplace equation of the output from this system." solution="False">
+        <Example title="Find the Laplace equation of the output from this system." solution="True">
             <div class="d-flex flex-row">
-                <Row>
-                    <Col values="12 md-8">
-                        <Image src="/signals/simpleTFex.png"></Image>
-                    </Col>
-                    <Col values="12 md-4">
-                        <p> The output is <InlineEquation equation="\\frac{4}{(s+3)(s+4)}"/>
-                    </Col>
-                </Row>
+                <Image src="/signals/simpleTFex.png"></Image>
+            </div>
+            <div slot="solution">
+                <p> The output is <InlineEquation equation="\\frac{4}{(s+3)(s+4)}"/></p>
             </div>
         </Example>
         <p>Pretty easy since it's just a multiplication of two fractions.</p>
@@ -55,6 +51,7 @@ import Col from "../../components/Col.astro"
                 <Image src="/signals/combinedTFex.png"></Image>
             </div>
             <div slot="solution">
+                <p>The simplified transfer function is <InlineEquation equation="H(s) = G_{1}G_{2}(G_{4}G_{5}-G_{3})"/></p>
             </div>
         </Example>
         <p>Now try an example problem that combines these aspects and use the table of common Laplace transforms (<a href="https://bioe.refpages.org/signals/laplace/#Facts">here</a>) to convert your answer to the time domain.</p>
