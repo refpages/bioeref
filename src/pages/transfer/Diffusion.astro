@@ -27,7 +27,15 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SteadyState'>Steady State</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#CharacteristicLength'>Characteristic Length</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BiotNumber'>Biot Number</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#LumpedParameter'>Lumped Parameter</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SeriesSolution'>Series Solution</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SemiInfinite'>Semi-Infinite Region</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Summary'>Solutions Summary Table</a></li>
+</ul>
+</li>
 </ul>
 </div>
 
@@ -82,4 +90,216 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </SubSection>
 
 <SubSection title="Unsteady State" id="UnsteadyState">
+<p> In unsteady state diffusion, also called nonsteady state or transient diffusion, <b>concentration changes over time</b>. 
+There are three situations of unsteady state diffusion that will be examined here. First, characteristic length and the mass transfer Biot number will need to be defined. </p>
 </SubSection>
+
+<SubSubSection title="Characteristic Length" id="CharacteristicLength"> 
+<p> The Characteristic Length (<InlineEquation equation="L"/>) of an object is its path of least resistance. 
+In other words, it is the shortest distance mass must travel to leave the object. 
+</p>
+
+<DisplayTable id="dim-table">
+	<thead>
+	<tr>
+		<th>Geometry</th>
+		<th>Characteristic Length (<InlineEquation equation="L"/>)</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<th>Infinite Slab</th> 
+		<td><InlineEquation equation="\\frac{1}{2}"/> thickness</td> 
+	</tr>
+	<tr>
+		<th>Thin Cylinder</th> 
+		<td><InlineEquation equation="\\frac{1}{2}"/> thickness</td>
+	</tr>	
+	<tr>
+		<th>Tall Cylinder</th> 
+		<td>Radius</td> 
+	</tr>
+    <tr>
+		<th>Sphere</th> 
+		<td>Radius</td> 
+	</tr>
+	</tbody>
+  </DisplayTable>
+
+<p class="text-center"><em><b> Table 2</b>: Characteristic length for slab, cylindrical, and spherical geometries. </em></p> 
+
+</SubSubSection>
+
+<SubSubSection title="Biot Number" id="BiotNumber"> 
+<p>The mass transfer Biot number (<InlineEquation equation="Bi_m"/>) is used to determine if the internal resistance within an object is negligible. 
+If it is negligible, this means there is very little concentration variation within the solid.
+It is calculated as a fraction of internal and external resistance:</p>
+
+<DisplayEquation equation="Bi_m = \\frac{R_{internal}}{R_{external}} = \\frac{\\frac{L}{D_{AB}A}}{\\frac{1}{h_mK^*A}} = \\frac{h_mK^*L}{D_{AB}}" title="" background="True"/>
+
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="h_m" /> = convective mass transfer coefficient <InlineEquation equation="[\\frac{m}{s}]" /></Item>
+<Item><InlineEquation equation="L" /> = characteristic length <InlineEquation equation="[m]" /></Item>
+<Item><InlineEquation equation="D_{AB}" /> = diffusivity of the species in the solid <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
+<Item><InlineEquation equation="K^*" /> = distribution coefficient</Item>
+</Itemize>
+
+<p>If <InlineEquation equation="Bi_m < 0.1"/>, the internal resistance can be ignored, and no spatial variation in concentration can be assumed. In other words, concentration changes only as a function of time.
+If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ignored due to spatial variation in concentration within the solid. </p>
+</SubSubSection>
+
+<SubSubSection title="No Spatial Variation in Concentration" id="LumpedParameter"> 
+<p> If concentration does not vary in all 3 spatial directions and only varies with time, a <b>lumped parameter</b> approximation can be used. When internal resistance is very low compared to the external resistance, the total resistance can be assumed to be external resistance and the concentration will not vary inside the object.</p>
+
+<p> To determine if there is no spatial variation in concentration, use the <b>mass transfer Biot Number</b>!</p>
+<Itemize>
+<Item> If <InlineEquation equation="Bi_m < 0.1" />, the lumped parameter approximation can be used </Item>
+</Itemize>
+
+<p>For mass transfer, the lumped parameter approach is commonly used to describe drying. For example, moisture can evaporate from the surface of a wet solid and be removed by air flowing over it. If water diffuses quickly inside the solid, the moisture concentration inside the solid can be treated as spatially uniform.</p>
+
+<p>A mass balance on the water content in the solid gives:</p>
+
+<DisplayEquation equation="\\frac{dw}{dt} = -\\frac{h_mA}{m_s}(c_s-c_{\\infty})" title="" background="True"/>
+
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="w" /> = moisture content of the solid</Item>
+<Item><InlineEquation equation="m_s" /> = dry mass of the solid <InlineEquation equation="[kg]" /></Item>
+<Item><InlineEquation equation="A" /> = surface area of the solid <InlineEquation equation="[m^{2}]" /></Item>
+<Item><InlineEquation equation="c_s" /> = water vapor concentration next to the solid surface <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
+<Item><InlineEquation equation="c_{\\infty}" /> = water vapor concentration in the bulk air <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
+<Item><InlineEquation equation="h_m" /> = convective mass transfer coefficient <InlineEquation equation="[\\frac{m}{s}]" /></Item>
+</Itemize>
+
+<p>When the solid surface has free water, the surface concentration is constant. In this case, moisture changes linearly with time:</p>
+
+<DisplayEquation equation="w-w_i = -\\frac{h_mA}{m_s}(c_s-c_{\\infty})t" title="" background="True"/>
+
+<p>When the solid surface does not have free water, the surface concentration is no longer constant. In this case, the drying rate decreases over time, and the moisture content follows an exponential decay.</p>
+
+</SubSubSection>
+
+<SubSubSection title="Spatial Variation in Concentration" id="SeriesSolution"> 
+<p> If the internal resistance is significant, concentration variation inside cannot be ignored. There are a couple methods to analyze systems with spatial and time variation of concentration. For systems with finite geometry, we can use the <b>series solution</b>.</p>
+
+<p> Use the <b>mass transfer Biot Number</b> to determine if internal resistance is significant! </p>
+<Itemize>
+<Item> If <InlineEquation equation="Bi_m > 0.1" />, internal resistance is significant</Item>
+</Itemize>
+
+<p>For a slab with concentration varying along its thickness, the governing equation is:</p>
+
+<DisplayEquation equation="\\frac{\\partial c_A}{\\partial t} = D_{AB}\\frac{\\partial^2 c_A}{\\partial x^2}" title="" background="True"/>
+
+<p>This applies when there is no bulk flow and no chemical reaction.</p>
+
+<p> Series Solution: </p>
+<DisplayEquation equation="\\frac{c-c_s}{c_i-c_s} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{D_{AB}t}{L^2}\\right]" title="" background="True"/>
+
+<p>You can solve the series solution two different ways: numerically or using a Heisler Chart.</p>
+<p> Heisler Charts are used to describe the relationship between the concentration, position, and time variables. It plots the 1st term of the series solution. The 1st term of the series solution is sufficient after “long times”.</p>
+
+<p> The <b>Fourier Number</b> is used to determine “long times” after initial: </p>
+<DisplayEquation equation="F_{o} = \\frac{D_{AB}t}{L^{2}} > 0.2" title="" background="True"/>
+
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="D_{AB}" /> = diffusivity <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
+<Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
+<Item><InlineEquation equation="L" /> = Characteristic Length <InlineEquation equation="[m]" /></Item>
+</Itemize>
+
+<p>In order to use the Heisler Chart your system must satisfy the following:</p>
+<Itemize>
+<Item>Uniform initial concentration, <InlineEquation equation="c_i" /></Item>
+<Item>Constant boundary fluid concentration</Item>
+<Item>Perfect slab, cylinder, or sphere geometry</Item>
+<Item>Far from edges</Item>
+<Item>No chemical reaction <InlineEquation equation="(r_A=0)" /></Item>
+<Item>Constant diffusivity <InlineEquation equation="(D_{AB})" /></Item>
+<Item>Long time after initial: <InlineEquation equation="F_{o} > 0.2" /></Item>
+</Itemize>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Learn More!">
+            <p> To learn how to use the Heisler Chart, visit the <a href="/transfer/Reference_Library_&_Resources/">Reference Library & Resources Page</a>!
+            </p>
+    </CalloutCard>
+</CalloutContainer>
+
+<p>If the system does not satisfy the Heisler Chart conditions, the solution has to be found numerically.</p>
+
+</SubSubSection>
+
+<SubSubSection title="Near the Surface of a Large Body"  id="SemiInfinite"> 
+<p>The second method to analyze systems with spatial and time variation of concentration <InlineEquation equation="(Bi_m > 0.1)"/> is for short time and/or thick material. This can be solved with the <b>semi-infinite region solution</b>. </p>
+
+<p>Material is considered thick if it extends to infinity in two directions and has a single identifiable surface. It can be calculated by:</p>
+
+<DisplayEquation equation="L \\geq 4\\sqrt{D_{AB}t}" title="" background="True"/>
+
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="L" /> = Characteristic Length <InlineEquation equation="[m]" /></Item>
+<Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
+<Item><InlineEquation equation="D_{AB}" /> = diffusivity <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
+</Itemize>
+
+<p> Semi-infinite Region Solution:</p>
+<DisplayEquation equation="\\frac{c-c_i}{c_s-c_i} = 1 - erf\\left[\\frac{x}{2\\sqrt{D_{AB}t}}\\right]" title="" background="True"/>
+
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="c" /> = concentration at <i>x</i> <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
+<Item><InlineEquation equation="c_i" /> = concentration far from the surface <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
+<Item><InlineEquation equation="c_s" /> = surface concentration <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
+<Item><InlineEquation equation="x" /> = specified location <InlineEquation equation="[m]" /></Item>
+<Item><InlineEquation equation="D_{AB}" /> = diffusivity <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
+<Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
+</Itemize>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="For Reference!">
+            <p>A chart with the error function (erf) is provided on the formula sheet found on the <a href="/transfer/Reference_Library_&_Resources/">Reference Library & Resources Page</a>!
+            </p>
+    </CalloutCard>
+</CalloutContainer>
+</SubSubSection>
+
+<SubSubSection title="Solutions Summary Table" id="Summary">
+<DisplayTable id="dim-table">
+	<thead>
+	<tr>
+		<th style="width:10%" class="table-shaded">Situation</th>
+		<th style="width:10%" class="table-shaded">Biot Number</th>
+		<th style="width:15%" class="table-shaded">Thickness</th>
+		<th style="width:65%" class="table-shaded">Solution Equation</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<th>Lumped</th> 
+		<td><InlineEquation equation="<0.1"/> </td> 
+		<td><InlineEquation equation="L \\leq 4\\sqrt{D_{AB}t}"/> </td> 
+		<td><InlineEquation equation="w-w_i = -\\frac{h_mA}{m_s}(c_s-c_{\\infty})t"/> </td>
+	</tr>
+	<tr>
+		<th class="table-shaded">Series</th> 
+		<td class="table-shaded"><InlineEquation equation=">0.1"/></td> 
+		<td class="table-shaded"><InlineEquation equation="L \\leq 4\\sqrt{D_{AB}t}"/></td> 
+		<td class="table-shaded"><InlineEquation equation="\\frac{c-c_s}{c_i-c_s} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{D_{AB}t}{L^2}\\right]"/></td>
+	</tr>
+	<tr>
+		<th>Semi-Infinite</th> 
+		<td><InlineEquation equation=">0.1"/> </td>
+		<td><InlineEquation equation="L \\geq 4\\sqrt{D_{AB}t}"/></td>
+		<td><InlineEquation equation="\\frac{c-c_i}{c_s-c_i} = 1 - erf\\left[\\frac{x}{2\\sqrt{D_{AB}t}}\\right]"/></td>
+	</tr>
+	</tbody>
+  </DisplayTable>
+
+</SubSubSection>
