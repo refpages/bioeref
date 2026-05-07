@@ -90,13 +90,13 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </SubSection>
 
 <SubSection title="Unsteady State" id="UnsteadyState">
-<p> In unsteady state diffusion, also called nonsteady state or transient diffusion, <b>concentration changes over time</b>. 
+<p> In unsteady state diffusion, also called transient diffusion, <b>concentration changes over time</b>. 
 There are three situations of unsteady state diffusion that will be examined here. First, characteristic length and the mass transfer Biot number will need to be defined. </p>
 </SubSection>
 
 <SubSubSection title="Characteristic Length" id="CharacteristicLength"> 
 <p> The Characteristic Length (<InlineEquation equation="L"/>) of an object is its path of least resistance. 
-In other words, it is the shortest distance mass must travel to leave the object. 
+In other words, it is the shortest distance heat or mass must move through the object. 
 </p>
 
 <DisplayTable id="dim-table">
@@ -113,11 +113,7 @@ In other words, it is the shortest distance mass must travel to leave the object
 		<td><InlineEquation equation="\\frac{1}{2}"/> thickness</td> 
 	</tr>
 	<tr>
-		<th>Thin Cylinder</th> 
-		<td><InlineEquation equation="\\frac{1}{2}"/> thickness</td>
-	</tr>	
-	<tr>
-		<th>Tall Cylinder</th> 
+		<th>Long Cylinder</th> 
 		<td>Radius</td> 
 	</tr>
     <tr>
@@ -142,8 +138,8 @@ It is calculated as a fraction of internal and external resistance:</p>
 <Itemize>
 <Item><InlineEquation equation="h_m" /> = convective mass transfer coefficient <InlineEquation equation="[\\frac{m}{s}]" /></Item>
 <Item><InlineEquation equation="L" /> = characteristic length <InlineEquation equation="[m]" /></Item>
-<Item><InlineEquation equation="D_{AB}" /> = diffusivity of the species in the solid <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
-<Item><InlineEquation equation="K^*" /> = distribution coefficient</Item>
+<Item><InlineEquation equation="D_{AB}" /> = diffusivity <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
+<Item><InlineEquation equation="K^*" /> = partition coefficient for mass transfer between the internal solid phase and the external fluid phase</Item>
 </Itemize>
 
 <p>If <InlineEquation equation="Bi_m < 0.1"/>, the internal resistance can be ignored, and no spatial variation in concentration can be assumed. In other words, concentration changes only as a function of time.
@@ -151,7 +147,7 @@ If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ig
 </SubSubSection>
 
 <SubSubSection title="No Spatial Variation in Concentration" id="LumpedParameter"> 
-<p> If concentration does not vary in all 3 spatial directions and only varies with time, a <b>lumped parameter</b> approximation can be used. When internal resistance is very low compared to the external resistance, the total resistance can be assumed to be external resistance and the concentration will not vary inside the object.</p>
+<p> If concentration does not change with position and only changes with time, a <b>lumped parameter</b> approximation can be used. When internal resistance is very low compared to the external resistance, the total resistance can be assumed to be external resistance and the concentration will not vary inside the object.</p>
 
 <p> To determine if there is no spatial variation in concentration, use the <b>mass transfer Biot Number</b>!</p>
 <Itemize>
@@ -183,7 +179,7 @@ If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ig
 </SubSubSection>
 
 <SubSubSection title="Spatial Variation in Concentration" id="SeriesSolution"> 
-<p> If the internal resistance is significant, concentration variation inside cannot be ignored. There are a couple methods to analyze systems with spatial and time variation of concentration. For systems with finite geometry, we can use the <b>series solution</b>.</p>
+<p> If the internal resistance is significant, concentration variation inside cannot be ignored. There are multiple cases for unsteady diffusion when concentration changes with both position and time. For a simple slab geometry where concentration changes with position, a <b>series solution</b> can be used.</p>
 
 <p> Use the <b>mass transfer Biot Number</b> to determine if internal resistance is significant! </p>
 <Itemize>
@@ -199,17 +195,17 @@ If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ig
 <p> Series Solution: </p>
 <DisplayEquation equation="\\frac{c-c_s}{c_i-c_s} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{D_{AB}t}{L^2}\\right]" title="" background="True"/>
 
-<p>You can solve the series solution two different ways: numerically or using a Heisler Chart.</p>
-<p> Heisler Charts are used to describe the relationship between the concentration, position, and time variables. It plots the 1st term of the series solution. The 1st term of the series solution is sufficient after “long times”.</p>
+<p>You can solve the series solution two different ways: using more than one term of the series solution or using a Heisler Chart.</p>
+<p> Heisler Charts are used to describe the relationship between the concentration, position, and time variables. They plot the 1st term of the series solution and are used for the long-time approximation.</p>
 
-<p> The <b>Fourier Number</b> is used to determine “long times” after initial: </p>
+<p> The <b>Fourier Number</b> is used to determine long times: </p>
 <DisplayEquation equation="F_{o} = \\frac{D_{AB}t}{L^{2}} > 0.2" title="" background="True"/>
 
 <p> where </p>
 <Itemize>
 <Item><InlineEquation equation="D_{AB}" /> = diffusivity <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
 <Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
-<Item><InlineEquation equation="L" /> = Characteristic Length <InlineEquation equation="[m]" /></Item>
+<Item><InlineEquation equation="L" /> = characteristic length <InlineEquation equation="[m]" /></Item>
 </Itemize>
 
 <p>In order to use the Heisler Chart your system must satisfy the following:</p>
@@ -220,7 +216,7 @@ If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ig
 <Item>Far from edges</Item>
 <Item>No chemical reaction <InlineEquation equation="(r_A=0)" /></Item>
 <Item>Constant diffusivity <InlineEquation equation="(D_{AB})" /></Item>
-<Item>Long time after initial: <InlineEquation equation="F_{o} > 0.2" /></Item>
+<Item>Long time approximation: <InlineEquation equation="F_{o} > 0.2" /></Item>
 </Itemize>
 
 <CalloutContainer slot="cards">
@@ -230,20 +226,22 @@ If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ig
     </CalloutCard>
 </CalloutContainer>
 
-<p>If the system does not satisfy the Heisler Chart conditions, the solution has to be found numerically.</p>
+<p>If <InlineEquation equation="F_o < 0.2" />, more than one term of the series solution may be needed.</p>
 
 </SubSubSection>
 
 <SubSubSection title="Near the Surface of a Large Body"  id="SemiInfinite"> 
 <p>The second method to analyze systems with spatial and time variation of concentration <InlineEquation equation="(Bi_m > 0.1)"/> is for short time and/or thick material. This can be solved with the <b>semi-infinite region solution</b>. </p>
 
-<p>Material is considered thick if it extends to infinity in two directions and has a single identifiable surface. It can be calculated by:</p>
+<p>A semi-infinite region is an idealized geometry that extends to infinity in two directions and has a single identifiable surface in the other direction. This approximation is useful for practical situations of mass transfer in thin materials over shorter time or thick materials over longer time.</p>
+
+<p>The material can be approximated as semi-infinite when:</p>
 
 <DisplayEquation equation="L \\geq 4\\sqrt{D_{AB}t}" title="" background="True"/>
 
 <p> where </p>
 <Itemize>
-<Item><InlineEquation equation="L" /> = Characteristic Length <InlineEquation equation="[m]" /></Item>
+<Item><InlineEquation equation="L" /> = characteristic length <InlineEquation equation="[m]" /></Item>
 <Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
 <Item><InlineEquation equation="D_{AB}" /> = diffusivity <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
 </Itemize>
@@ -254,7 +252,7 @@ If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ig
 <p> where </p>
 <Itemize>
 <Item><InlineEquation equation="c" /> = concentration at <i>x</i> <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
-<Item><InlineEquation equation="c_i" /> = concentration far from the surface <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
+<Item><InlineEquation equation="c_i" /> = initial concentration at <InlineEquation equation="t=0" /> and far from the surface <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
 <Item><InlineEquation equation="c_s" /> = surface concentration <InlineEquation equation="[\\frac{kg}{m^{3}}]" /></Item>
 <Item><InlineEquation equation="x" /> = specified location <InlineEquation equation="[m]" /></Item>
 <Item><InlineEquation equation="D_{AB}" /> = diffusivity <InlineEquation equation="[\\frac{m^{2}}{s}]" /></Item>
@@ -275,7 +273,7 @@ If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ig
 	<tr>
 		<th style="width:10%" class="table-shaded">Situation</th>
 		<th style="width:10%" class="table-shaded">Biot Number</th>
-		<th style="width:15%" class="table-shaded">Thickness</th>
+		<th style="width:15%" class="table-shaded">Thickness / Time Condition</th>
 		<th style="width:65%" class="table-shaded">Solution Equation</th>
 	</tr>
 	</thead>
@@ -283,19 +281,19 @@ If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ig
 	<tbody>
 	<tr>
 		<th>Lumped</th> 
-		<td><InlineEquation equation="<0.1"/> </td> 
-		<td><InlineEquation equation="L \\leq 4\\sqrt{D_{AB}t}"/> </td> 
+		<td><InlineEquation equation="Bi_m < 0.1"/> </td> 
+		<td>N/A</td> 
 		<td><InlineEquation equation="w-w_i = -\\frac{h_mA}{m_s}(c_s-c_{\\infty})t"/> </td>
 	</tr>
 	<tr>
 		<th class="table-shaded">Series</th> 
-		<td class="table-shaded"><InlineEquation equation=">0.1"/></td> 
-		<td class="table-shaded"><InlineEquation equation="L \\leq 4\\sqrt{D_{AB}t}"/></td> 
+		<td class="table-shaded"><InlineEquation equation="Bi_m > 0.1"/></td> 
+		<td class="table-shaded">Finite geometry; <InlineEquation equation="F_o > 0.2"/> for Heisler Chart</td> 
 		<td class="table-shaded"><InlineEquation equation="\\frac{c-c_s}{c_i-c_s} =\\sum_{n=0}^{\\infty} \\frac{4(-1)^n}{(2n+1)\\pi} \\cos\\left(\\frac{(2n+1)\\pi x}{2L}\\right)\\exp\\left[-\\left(\\frac{(2n+1)\\pi}{2}\\right)^2 \\frac{D_{AB}t}{L^2}\\right]"/></td>
 	</tr>
 	<tr>
 		<th>Semi-Infinite</th> 
-		<td><InlineEquation equation=">0.1"/> </td>
+		<td><InlineEquation equation="Bi_m > 0.1"/> </td>
 		<td><InlineEquation equation="L \\geq 4\\sqrt{D_{AB}t}"/></td>
 		<td><InlineEquation equation="\\frac{c-c_i}{c_s-c_i} = 1 - erf\\left[\\frac{x}{2\\sqrt{D_{AB}t}}\\right]"/></td>
 	</tr>
