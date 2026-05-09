@@ -33,6 +33,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Capillary Flow'>Capillary Flow</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsaturated Flow'>Unsaturated Flow</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Osmotic Flow'>Osmotic Flow</a></li> </ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dispersive Mass Transfer'>Dispersive Mass Transfer</a>
 
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Summary Table'>Summary Table</a></li>
 </li>
@@ -176,6 +177,27 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 </SubSection>
 
+<SubSection title="Dispersive Mass Transfer" id="Dispersive Mass Transfer">
+<p> Dispersive mass transfer is desribed as a random mixing component in addition to molecular diffusion (which spreads a mass component/species from higher to lower concentrations). There are two types of dispersive mass transfer:</p> 
+<Itemize>
+	<Item><i>Hydrodynamic </i> (fluid systems): spreading of liquid or gas from path it would follow, due to the bulk flow or the convective hydraulics of the system. </Item>
+	<Item><i>Mechanical </i> (porous media): caused by differences in pore velocity distribution, individual pore sizes and paths, and tortuosity or branching. </Item>
+</Itemize>
+<p> If dispersion present, its effect is generally much higher than diffusion, because of flow (usually turbulent). </p>
+
+<p> Dispersive mass flux is written analogously to Fick's Law:</p>
+<DisplayEquation equation="j_{A,x} = -E_{x}\\frac{dc_{A}}{dx}" title="Dispersive Mass Flux" background="True"/>
+where
+<Itemize>
+<Item><InlineEquation equation="j_{A,x}" /> = dispersive flux of A at x <InlineEquation equation="\\left[\\frac{kg}{m^{2}s}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{2}s}\\right]" /> (mass or molar flux)</Item>
+<Item><InlineEquation equation="E_{x}" /> = dispersion coefficient <InlineEquation equation="\\left[\\frac{m^{2}}{s}\\right]" /></Item>
+<Item><InlineEquation equation="c_{A}" /> = concentration of A <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{3}}\\right]" /></Item>
+<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item>
+</Itemize>
+
+<p>The dispersion coefficient <InlineEquation equation="E_{x}" /> is a strong function of position <InlineEquation equation="x" />. It is measured experimentally and is not a function of chemistry. It accounts for both dispersion and diffusion, and is therefore higher than mass diffusivity (<InlineEquation equation="D_{AB}" />).</p>
+</SubSection>
+
 <SubSection title="Summary Table" id="Summary Table">
 <DisplayTable id="mass-transfer-modes-table">
 	<thead>
@@ -214,13 +236,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	</tr>
 	</tbody>
 </DisplayTable>
-
 </SubSection>
+
 
 <!-- 
-<SubSection title="Diffusive Mass Transfer" id="Diffusive Mass Transfer">
-<p> Insert here </p> 
-</SubSection>
+
 
 <SubSubSection title="Steady State" id="Steady State">
 <p> Insert here </p> 
