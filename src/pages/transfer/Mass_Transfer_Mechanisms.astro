@@ -34,7 +34,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsaturated Flow'>Unsaturated Flow</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Osmotic Flow'>Osmotic Flow</a></li> </ul>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dispersive Mass Transfer'>Dispersive Mass Transfer</a>
-
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convective Mass Transfer'>Convective Mass Transfer Flow</a>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Summary Table'>Summary Table</a></li>
 </li>
 </ul>
@@ -186,16 +186,37 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p> If dispersion present, its effect is generally much higher than diffusion, because of flow (usually turbulent). </p>
 
 <p> Dispersive mass flux is written analogously to Fick's Law:</p>
-<DisplayEquation equation="j_{A,x} = -E_{x}\\frac{dc_{A}}{dx}" title="Dispersive Mass Flux" background="True"/>
+	<DisplayEquation equation="j_{A,x} = -E_{x}\\frac{dc_{A}}{dx}" title="Dispersive Mass Flux" background="True"/>
 where
 <Itemize>
-<Item><InlineEquation equation="j_{A,x}" /> = dispersive flux of A at x <InlineEquation equation="\\left[\\frac{kg}{m^{2}s}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{2}s}\\right]" /> (mass or molar flux)</Item>
-<Item><InlineEquation equation="E_{x}" /> = dispersion coefficient <InlineEquation equation="\\left[\\frac{m^{2}}{s}\\right]" /></Item>
-<Item><InlineEquation equation="c_{A}" /> = concentration of A <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{3}}\\right]" /></Item>
-<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item>
+	<Item><InlineEquation equation="j_{A,x}" /> = dispersive flux of A at x <InlineEquation equation="\\left[\\frac{kg}{m^{2}s}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{2}s}\\right]" /> (mass or molar flux)</Item>
+	<Item><InlineEquation equation="E_{x}" /> = dispersion coefficient <InlineEquation equation="\\left[\\frac{m^{2}}{s}\\right]" /></Item>
+	<Item><InlineEquation equation="c_{A}" /> = concentration of A <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{3}}\\right]" /></Item>
+	<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item>
 </Itemize>
 
 <p>The dispersion coefficient <InlineEquation equation="E_{x}" /> is a strong function of position <InlineEquation equation="x" />. It is measured experimentally and is not a function of chemistry. It accounts for both dispersion and diffusion, and is therefore higher than mass diffusivity (<InlineEquation equation="D_{AB}" />).</p>
+</SubSection>
+
+<SubSection title="Convective Mass Transfer" id="Chemical Reactions & Kinetics">
+<p> Convective mass transfer refers to the movement of mass through a medium as a result of the net motion of a material in the medium. It is an added effect of bulk flow on top of diffusion or dispersion, and is studied the same way as convective heat transfer. </p>
+
+<p>Convection-diffusion mass transfer over a surface is analogous to convective heat transfer. The mass flow rate from 1 to 2 is:</p>
+	<DisplayEquation equation="N_{A_{1-2}} = h_{m} A (c_{1} - c_{2})" title="Convective Mass Transfer" background="True"/>
+where
+<Itemize>
+	<Item><InlineEquation equation="N_{A_{1-2}}" /> = mass flow rate from 1 to 2 <InlineEquation equation="\\left[\\frac{kg}{s}\\right]" /></Item>
+	<Item><InlineEquation equation="h_{m}" /> = convective mass transfer coefficient <InlineEquation equation="\\left[\\frac{m}{s}\\right]" /></Item>
+	<Item><InlineEquation equation="A" /> = area normal to flow <InlineEquation equation="[m^{2}]" /></Item>
+	<Item><InlineEquation equation="c_{1}" /> = concentration of A in the fluid at the surface (not solid) <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /></Item>
+	<Item><InlineEquation equation="c_{2}" /> = concentration of A in the bulk fluid <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /></Item>
+</Itemize>
+
+<p>The convective mass transfer coefficient <InlineEquation equation="h_{m}" /> <i>includes the effect of both diffusion and bulk flow</i>, and depends on geometry, fluid properties, flow, and concentrations. There are two types of convection:</p>
+<Itemize>
+	<Item><i>Free</i> convection: driven by a density difference in the fluid due to differences in concentration or temperature</Item>
+	<Item><i>Forced</i> convection: driven by an external force such as a fan</Item>
+</Itemize>
 </SubSection>
 
 <SubSection title="Summary Table" id="Summary Table">
@@ -237,42 +258,5 @@ where
 	</tbody>
 </DisplayTable>
 </SubSection>
-
-
-<!-- 
-
-
-<SubSubSection title="Steady State" id="Steady State">
-<p> Insert here </p> 
-</SubSubSection>
-
-<SubSubSection title="Unsteady State" id="Unsteady State">
-<p> Insert here </p> 
-</SubSubSection>
-
-<SubSection title="Convective Mass Transfer" id="Convective Mass Transfer">
-<p> Insert here </p> 
-</SubSection>
-
-<SubSection title="Governing Equations & Boundary Conditions of Mass Transfer" id="Governing Equations & Boundary Conditions of Mass Transfer">
-<p> Insert here </p>
-</SubSection>
-
-<SubSubSection title="General Mass Transfer Equation" id="General Mass Transfer Equation">
-<p> Insert here </p> 
-</SubSubSection>
-
-<SubSubSection title="Boundary Conditions" id="Boundary Conditions">
-<p> Insert here </p> 
-</SubSubSection>
-
-<SubSubSection title="Dimensionless Analysis" id="Dimensionless Analysis">
-<p> Insert here </p> 
-</SubSubSection>
-
-<SubSection title="Chemical Reactions & Kinetics" id="Chemical Reactions & Kinetics">
-<p> Insert here </p>
-</SubSection>
--->
 
 </Layout>
