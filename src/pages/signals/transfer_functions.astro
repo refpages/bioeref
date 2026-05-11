@@ -36,14 +36,19 @@ import Col from "../../components/Col.astro"
         <p>Essentially this means that the output is equal to the input multiplied by the transfer function:</p>
         <DisplayEquation equation="Y(s) = H(s)*U(s)"/>
         <p>For example, if you have a simple block diagram like this:</p>
-        <!-- <Example title="Find the Laplace equation of the output from this system." solution="True">
-            <div>
-                <Image src="/signals/simpleTFex.png"></Image>
+        <p>Testing row/col</p>
+        <Example title="Find the Laplace equation of the output from this system." solution="True">
+            <div class="d-flex flex-row">
+                <Row>
+                    <Col values="12 md-12">
+                        <Image src="/signals/simpleTFex.png"></Image>
+                    </Col>
+                </Row>
             </div>
             <div slot="solution">
                 <p> The output is <InlineEquation equation="\\frac{4}{(s+3)(s+4)}"/></p>
             </div>
-        </Example> -->
+        </Example>
         <p>Pretty easy since it's just a multiplication of two fractions.</p>
         <p>Another consideration of transfer functions is that they can be combined and simplified, like the components of an electrical circuit. Transfer functions in series are multipled together while those that are in "parallel" are added or subtracted.</p>
         <!-- <Example title="Find the single block representation of this system." solution="True">
