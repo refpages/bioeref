@@ -38,15 +38,8 @@ import Col from "../../components/Col.astro"
         <p>For example, if you have a simple block diagram like this:</p>
         <p>Testing row/col</p>
         <Example title="Find the Laplace equation of the output from this system." solution="True">
-            <div class="d-flex flex-row">
-                <Row>
-                    <Col values="12 md-4">
-                        <Image src="/signals/simpleTFex.png"></Image>
-                    </Col>
-                    <Col values="12 md-8">
-                        <p>Testing</p>
-                    </Col>
-                </Row>
+            <div>
+                <Image src="/signals/simpleTFex.png">Caption Placeholder</Image>
             </div>
             <div slot="solution">
                 <p> The output is <InlineEquation equation="\\frac{4}{(s+3)(s+4)}"/></p>
