@@ -54,27 +54,27 @@ import Col from "../../components/Col.astro"
                 <p>The simplified transfer function is <InlineEquation equation="H(s) = G_{1}G_{2}(G_{4}G_{5}-G_{3})"/></p>
             </div>
         </Example> -->
-<p>This is a test: Reformat of copied example block</p>
-<Example title="Consider the chemical reaction for photosynthesis." solution="True">
-    <div class="d-flex flex-row">
-        <Row>
-            <Col values="12 md-4">
+        <p>This is a test: Reformat of copied example block</p>
+        <Example title="Consider the chemical reaction for photosynthesis." solution="True">
+            <div class="d-flex flex-row">
+                <Row>
+                    <Col values="12 md-4">
+                        <p>
+                        Given the chemical formula for photosynthesis, balance the moles of glucose and oxygen. Does this system follow the rules of conservation?
+                        </p>
+                    </Col>
+                    <Col values="12 md-8">
+                        <DisplayEquation equation="6 CO_2 + 6 H_2O + light \\rightarrow C_6H_{12}O_6 + 6O_2" title="" />
+                    </Col>
+                </Row>
+            </div>
+            <div slot="solution">
                 <p>
-                Given the chemical formula for photosynthesis, balance the moles of glucose and oxygen. Does this system follow the rules of conservation?
+                The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. 
+                On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.
                 </p>
-            </Col>
-            <Col values="12 md-8">
-                <DisplayEquation equation="6 CO_2 + 6 H_2O + light \\rightarrow C_6H_{12}O_6 + 6O_2" title="" />
-            </Col>
-        </Row>
-    </div>
-    <div slot="solution">
-        <p>
-        The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. 
-        On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.
-        </p>
-    </div>
-</Example>
+            </div>
+        </Example>
         <p>Now try an example problem that combines these aspects and use the table of common Laplace transforms (<a href="https://bioe.refpages.org/signals/laplace/#Facts">here</a>) to convert your answer to the time domain.</p>
     </SubSection>
 </Layout>
