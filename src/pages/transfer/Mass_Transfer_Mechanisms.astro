@@ -44,36 +44,12 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<p> Molecular diffusion is the transport of one mass component from a region of <i>higher</i> concentration to a region of <i>lower</i> concentration, making it a passive process. </p> 
 	<p> It equilibrates differences in concentration, due to random (Brownian) molecular movement. As temperature increases, molecular kinetic energ also increases, speeding up the process. </p>
 	<p> It is analogous to diffusive heat transfer (thermal conduction), but can be more complicated if numerous chemical species are involved. </p>
-	<p> When concentration gradient is the driving force, the rate of mass transport per unit area (<i>diffusive flux</i>) is related to it via Fick's Law:</p> 
-	<b> <DisplayEquation equation="j_{A,x} = -D_{AB} \\frac{dc_{A}}{dx}" title="Fick's Law" background="True"/> </b> 
-	where 
-	<Itemize> 
-		<Item><InlineEquation equation="j_{A,x}" /> = diffusive flux of A, in x-direction <InlineEquation equation="\\left [ \\frac{kg}{m^{2} s}, \\frac{kmol}{m^{2} s} \\right]" /></Item> 
-		<Item><InlineEquation equation="D_{AB}" /> = mass diffusivity of A in B (diffusion coefficient) <InlineEquation equation="\\left[\\frac{m^{2}}{s}\\right]" /></Item> 
-		<Item><InlineEquation equation="c_A" /> = concentration of A <InlineEquation equation="\\left[\\frac{kg}{m^{3}}, \\frac{kmol}{m^{3}}\\right]" /></Item> 
-		<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item> </Itemize>
-		
-	<p>Consider a 1D diffusion process along the <InlineEquation equation="x" /> direction. At any time, molecules have moved varying distances from the origin independently, with equal probability of moving left or right. <b>Mean-square displacement</b> <InlineEquation equation="\\langle x^2 \\rangle" /> is the average of the square of displacements, and serves as a measure of how much molecules have spread.</p>
-	
-	<p><b>Diffusivity</b> is defined as one half of the mean-square displacement per unit time in 1D:</p>
-	
-	<DisplayEquation equation="D = \\frac{\\langle x^{2} \\rangle}{2t}" title="Diffusivity (1D)" background="True"/>
-	
-	where
-	<Itemize>
-		<Item><InlineEquation equation="D" /> = diffusivity <InlineEquation equation="\\left[\\frac{m^{2}}{s}\\right]" /></Item>
-		<Item><InlineEquation equation="\\langle x^{2} \\rangle" /> = mean-square displacement <InlineEquation equation="[m^{2}]" /></Item>
-		<Item><InlineEquation equation="t" /> = time <InlineEquation equation="[s]" /></Item>
-	</Itemize>
-	
-	<p>The average diffusion velocity is then:</p>
-	
-	<DisplayEquation equation="u_{diff} = \\frac{\\sqrt{\\langle x^{2} \\rangle}}{t} = \\frac{\\sqrt{2Dt}}{t} = \\sqrt{2D/t}" title="Average Diffusion Velocity" background="True"/>
-	
-	<p>where</p>
-	<Itemize>
-		<Item><InlineEquation equation="u_{diff}" /> = average diffusion velocity <InlineEquation equation="\\left[\\frac{m}{s}\\right]" /></Item>
-	</Itemize>
+<CalloutContainer slot="cards">
+    <CalloutCard title="Learn More">
+            <p> To learn more about molecular diffusion, visit the <a href="/transfer/Diffusion">Diffusion</a> page.</p>
+            </p>
+    </CalloutCard>
+</CalloutContainer>
 </SubSection>
 
 <SubSection title="Porous Media Flow" id="Porous Media Flow">
