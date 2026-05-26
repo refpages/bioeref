@@ -27,10 +27,16 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Modes of Heat & Mass Transfer'>Modes of Heat & Mass Transfer</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HeatTransfer'>Heat Transfer</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conduction'>Conduction</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection'>Convection</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Radiation'>Radiation</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HeatConvection'>Convective Heat Transfer</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Radiation'>Radiation</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#MassTransfer'>Mass Transfer</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Diffusion'>Diffusion</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#PorousMediaFlow'>Porous Media Flow</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dispersion'>Dispersion</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#MassConvection'>Convective Mass Transfer</a></li></ul>
+</li>
 </ul>
 </div>
 
@@ -43,52 +49,108 @@ For example, the fluid flow through a blood vessel, <InlineEquation equation="q 
  </p>
 <p> These Reference Pages will focus primarily on <a href="/transfer/#HeatTransfer">heat transport</a> (the transfer of thermal energy) 
 and <a href="/transfer/#MassTransfer">mass transfer</a> (the movement of chemical species). On this page, primary mechanisms of their transport are introduced.  </p>
-
-<Image src="/transfer/heat_transfer_modes.png">   <span class="fw-bold">Figure 1</span>: Heat can be transferred via conduction, convection, and radiation 
-(<a href="https://www.engr.colostate.edu/CBE101/topics/heat_transfer.html">image source</a>).</Image>
-
 </SubSection> 
 
+<SubSection title="Heat Transfer" id="HeatTransfer">
+<Image src="/transfer/heat_transfer_modes.png">   <span class="fw-bold">Figure 1</span>: Heat can be transferred via conduction, convection, and radiation 
+(<a href="https://www.engr.colostate.edu/CBE101/topics/heat_transfer.html">image source</a>).</Image>
+</Subsection>
 
-<SubSection title="Conduction" id="Conduction">
+<SubSubSection title="Conduction" id="Conduction">
 <p> Conduction occurs through direct molecular motion within a material, without any bulk motion of the material itself. 
 When a temperature gradient exists within a solid, thermal energy is transferred from regions of high temperature to regions of lower temperature as molecules randomly collide. 
 When two solids at different temperatures are placed in contact, thermal energy is transferred from the hotter material to the cooler object 
-until thermal equilibrium is reached (i.e., the objects are at the same temperature).
- </p> 
-
+until thermal equilibrium is reached (i.e., the objects are at the same temperature).</p> 
 <CalloutContainer slot="cards">
     <CalloutCard title="Heads Up!">
      <p> Read about these modes of heat transfer in more detail on the following pages: 
     <b><a href="/transfer/Conduction">conduction</a></b>, <b><a href="/transfer/Convection">convection</a></b>, and <b><a href="/transfer/Radiation">radiation</a></b>. </p>
     </CalloutCard>
 </CalloutContainer>
+</SubSubSection>
 
-</SubSection>
-
-
-<SubSection title="Convection" id="Convection">
+<SubSubSection title="Convective Heat Transfer" id="HeatConvection">
  <p> Convection occurs due to the bulk motion of a fluid. 
 A fluid is any substance that can flow, including both liquids and gases such as air, water, or blood. As it flows with some velocity, it carries heat by virtue of its motion. </p>
+</SubSubSection>
 
-</SubSection>
-
-
-<SubSection title="Radiation" id="Radiation">
+<SubSubSection title="Radiation" id="Radiation">
  <p> Radiation occurs due to the emission and absorption of electromagnetic waves. It does not require direct contact or fluid motion.
 A familiar example of radiative heat transfer is feeling warmth from the sun. 
-In biological systems, radiation contributes to bidirectional heat exchange between the system and its surroundings, as the body can continuously emit and absorb infrared radiation. 
- </p> 
+In biological systems, radiation contributes to bidirectional heat exchange between the system and its surroundings, as the body can continuously emit and absorb infrared radiation. </p> 
+</SubSubSection>
+
+<SubSection title="Mass Transfer" id="MassTransfer">
+<DisplayTable id="mass-transfer-modes-table">
+	<thead>
+	<tr>
+		<th>Mode</th>
+		<th>Description</th>
+		<th>Described by</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<th>Molecular diffusion</th>
+		<td>Spontaneous movement of mass (solid, liquid, gas) down a concentration gradient due to random molecular movement</td>
+		<td>Fick's Law: <InlineEquation equation="j_{A,x} = -D_{AB}\\frac{dc_{A}}{dx}"/></td>
+	</tr>
+	<tr>
+		<th>Capillary diffusion</th>
+		<td>Movement of mass due to capillary action in a porous medium</td>
+		<td><em>(mathematically similar to molecular diffusion)</em></td>
+	</tr>
+	<tr>
+		<th>Bulk flow through porous media</th>
+		<td>Bulk movement of a fluid in a porous media due to hydraulic forces (pressure, matric forces, gravity)</td>
+		<td>Darcy's Law: <InlineEquation equation="n^{v} = -K\\frac{\\partial \\mathcal{H}}{\\partial s}"/></td>
+	</tr>
+	<tr>
+		<th>Dispersion</th>
+		<td>Spreading of fluid from its bulk flow path <em>(similar effects to molecular diffusion, but different mechanisms; due to turbulence in fluid)</em></td>
+		<td><InlineEquation equation="j_{A,x} = -E_{x}\\frac{dc_{A}}{dx}"/></td>
+	</tr>
+	<tr>
+		<th>Convection</th>
+		<td>Addition of bulk flow to diffusion or dispersion</td>
+		<td><InlineEquation equation="N_{A_{1-2}} = h_{m}A(c_{1}-c_{2})"/></td>
+	</tr>
+	</tbody>
+</DisplayTable>
+<CalloutContainer slot="cards">
+    <CalloutCard title="Learn More!">
+            <p> To learn more about the types of Mass Tranfer, visit their respective pages:</p>
+               <Itemize>
+               <Item> <a href="/transfer/Diffusion">Diffusion</a> </Item>
+               <Item> <a href="/transfer/Convective_Mass_Transfer">Convective Mass Transfer</a> </Item>
+               </Itemize>
+            </p>
+    </CalloutCard>
+</CalloutContainer>
 </SubSection>
 
-<SubSection title="Diffusion" id="Diffusion">
+<SubSubSection title="Diffusion" id="Diffusion">
 <p> Diffusion is a mode of mass transfer driven by the random motion of molecules. 
 When a concentration gradient exists, molecules move randomly, but on average, there will be a net movement of species from regions of higher concentration to lower concentration. 
-Diffusion doesn’t require bulk fluid motion. 
+Diffusion doesn’t require bulk fluid motion. </p> 
+</SubSubSection>
 
- </p> 
+<SubSubSection title="PorousMediaFlow" id="Porous Media Flow">
+<p> Porous media flow can be describes as the bulk movement of a fluid in a porous media due to hydraulic forces. Porous mediums can be approximated as a bundle of tubes of varying diameter, embedded within a solid matrix, and can be described by Darcy's Law. Three common types of porous media flow are capillary flow, unsaturated flow, and osmotic flow.</p> 
+</SubSubSection>
 
-</SubSection>
+<SubSubSection title="Dispersion" id="Dispersion">
+<p> Dispersive mass transfer is desribed as a random mixing component in addition to molecular diffusion (which spreads a mass component/species from higher to lower concentrations). There are two types of dispersive mass transfer:</p> 
+<Itemize>
+	<Item><i>Hydrodynamic </i> (fluid systems): spreading of liquid or gas from path it would follow, due to the bulk flow or the convective hydraulics of the system. </Item>
+	<Item><i>Mechanical </i> (porous media): caused by differences in pore velocity distribution, individual pore sizes and paths, and tortuosity or branching. </Item>
+</Itemize>
+<p> If dispersion present, its effect is generally much higher than diffusion, because of flow (usually turbulent). </p>
+</SubSubSection>
+
+<SubSubSection title="Convective Mass Transfer" id="MassConvection">
+<p> Convective mass transfer refers to the movement of mass through a medium as a result of the net motion of a material in the medium. It is an added effect of bulk flow on top of diffusion or dispersion, and is studied the same way as convective heat transfer.</p>
+</SubSubSection
 
 </Layout>
-
