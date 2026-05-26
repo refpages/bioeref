@@ -26,14 +26,22 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Convection">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convection'>Convection</a></li><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ConvectionDiffusion'>Convection-Diffusion</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ConvectionDispersion'>Convection-Dispersion</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ConvectionDiffusiom'>Convection-Diffusion</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BiologicalSystems'>Convective Mass Transfer in Biological Systems</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BoundaryLayers'>Boundary Layers</a></li><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ConcentrationBoundaryLayer'>Concentration Boundary Layer</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#DimensionlessFlowParameters'>Dimensionless Flow Parameters</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ConvectiveMassTransferCoefficient'>Convective Mass Transfer Coefficient</a></li>
 </ul>
 </div>
 
 <SubSection title="Convection" id="Convection">
 <p> Convective mass transfer refers to the movement of mass through a medium as a result of the net motion of a material in the medium. It is an added effect of bulk flow on top of diffusion or dispersion, and is studied the same way as convective heat transfer. </p>
+</SubSection>
 
+<SubSubSection title="Convection-Diffusion Over a Surface" id="ConvectionDiffusion">
 <p>Convection-diffusion mass transfer over a surface is analogous to convective heat transfer. The mass flow rate from 1 to 2 is:</p>
 	<DisplayEquation equation="N_{A_{1-2}} = h_{m} A (c_{1} - c_{2})" title="Convective Mass Transfer" background="True"/>
 where
@@ -44,10 +52,30 @@ where
 	<Item><InlineEquation equation="c_{1}" /> = concentration of A in the fluid at the surface (not solid) <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /></Item>
 	<Item><InlineEquation equation="c_{2}" /> = concentration of A in the bulk fluid <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /></Item>
 </Itemize>
+</SubSubSection>
 
+<SubSubSection title="Convection-Dispersion in an Infinite Fluid" id="ConvectionDispersion">
+</SubSubSection>
+
+<SubSubSection title="Convective Mass Transfer in Biological Systems" id="BiologicalSystems">
+</SubSubSection>
+
+<SubSection title="Boundary Layers" id="BoundaryLayers">
+</SubSection>
+
+<SubSubSection title="Concentration Boundary Layer" id="ConcentrationBoundaryLayer">
+</SubSubSection>
+
+<SubSection title="Dimensionless Flow Parameters" id="DimensionlessFlowParameters">
+</SubSection>
+
+<SubSection title="Convective Mass Transfer Coefficient" id="ConvectiveMassTransferCoefficient">
 <p>The convective mass transfer coefficient <InlineEquation equation="h_{m}" /> <i>includes the effect of both diffusion and bulk flow</i>, and depends on geometry, fluid properties, flow, and concentrations. There are two types of convection:</p>
 <Itemize>
 	<Item><i>Free</i> convection: driven by a density difference in the fluid due to differences in concentration or temperature</Item>
 	<Item><i>Forced</i> convection: driven by an external force such as a fan</Item>
 </Itemize>
 </SubSection>
+
+
+</Layout>
