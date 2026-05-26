@@ -40,8 +40,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <CalloutContainer slot="cards">
     <CalloutCard title="Heads Up!">
-      <p> When considering a system with dispersion, the diffusivity (<InlineEquation equation="D_{AB} " />) can be replaced with the dispersion coefficient (<InlineEquation equation="E_{x}" />)</p>
-			<p>The dispersion coefficient (<InlineEquation equation="E_{x}" />) is a strong function of position <InlineEquation equation="x" />. It is measured experimentally and is not a function of chemistry. It accounts for both dispersion and diffusion, and is therefore higher than mass diffusivity (<InlineEquation equation="D_{AB}" />).</p>
+      <p> When considering a system with <b>dispersion</b>, diffusivity (<InlineEquation equation="D_{AB} " />) can be replaced with the dispersion coefficient (<InlineEquation equation="E_{x}" />) in the governing equation.</p>
+      <b><DisplayEquation equation="\\frac{\\partial c_A}{\\partial t} + u\\frac{\\partial c_A}{\\partial x} = E_{x}\\frac{\\partial^2 c_A}{\\partial x^2} + r_A" title="" background=""/></b>
+	  <p>The dispersion coefficient (<InlineEquation equation="E_{x}" />) is a strong function of position <InlineEquation equation="x" />. It is measured experimentally and is not a function of chemistry. It accounts for both dispersion and diffusion, and is therefore higher than mass diffusivity (<InlineEquation equation="D_{AB}" />).</p>
     </CalloutCard>
 </CalloutContainer>
 
