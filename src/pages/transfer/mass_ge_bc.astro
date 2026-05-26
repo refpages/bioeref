@@ -38,6 +38,13 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <SubSection title="General Mass Transfer Governing Equation" id="General-Mass-Transfer-Governing-Equation">
 
+<CalloutContainer slot="cards">
+    <CalloutCard title="Heads Up!">
+      <p> When considering a system with dispersion, the diffusivity (<InlineEquation equation="D_{AB} " />) can be replaced with the dispersion coefficient (<InlineEquation equation="E_{x}" />)</p>
+			<p>The dispersion coefficient (<InlineEquation equation="E_{x}" />) is a strong function of position <InlineEquation equation="x" />. It is measured experimentally and is not a function of chemistry. It accounts for both dispersion and diffusion, and is therefore higher than mass diffusivity (<InlineEquation equation="D_{AB}" />).</p>
+    </CalloutCard>
+</CalloutContainer>
+
 <p> The governing mass transfer equation is derived from a mass balance applied to a differential control volume and Fick's Law. It includes all possible mechanisms that can contribute to mass
 transfer in a system, and encapsulates the combined effects of mass storage, diffusion, convection, and generation or disappearance of a species, and allows the prediction of the concentration profile within the system. 
 It combines <a href="/transfer/foundations_of_Transport_&_Flow/#MassBalance">the mass balance over a system</a> with <a href="/transfer/Diffusion/#FicksLaw">Fick's Law</a>.</p>
