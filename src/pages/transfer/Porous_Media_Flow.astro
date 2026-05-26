@@ -41,7 +41,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <SubSection title="Darcy's Law" id="Darcy's Law">
 	<p> Porous mediums can be approximated as a bundle of tubes of varying diameter, embedded within a solid matrix. Movement of liquid in a porous material is described by Darcy's Law:</p>
 	
-	<DisplayEquation equation="n^v = -K\\frac{d \\mathcal{H} }{ds}" title="Darcy's Law" background="True"/>
+	<b><DisplayEquation equation="n^v = -K\\frac{d \\mathcal{H} }{ds}" title="Darcy's Law" background="True"/></b>
 	
 	where
 	<Itemize>
@@ -53,7 +53,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	
 	<p>The hydraulic (water) potential <InlineEquation equation="\\mathcal{H}" /> drives flow, and is defined as:</p>
 	
-	<DisplayEquation equation="\\mathcal{H} = h + z" title="Hydraulic Potential" background="True"/>
+	<b><DisplayEquation equation="\\mathcal{H} = h + z" title="Hydraulic Potential" background="True"/></b>
 	
 	where
 	<Itemize>
@@ -62,7 +62,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	</Itemize>
 	
 	<p>Hydraulic conductivity <InlineEquation equation="K" /> describes the ease with which a fluid can be transported through a porous matrix — it is the ratio of volumetric flux to the hydraulic gradient causing the flow. It depends on properties of both the solid <i>matrix</i> (pore size distribution, shape of pores, porosity, tortuosity) and the <i>fluid</i> (density, viscosity):</p>
-	<DisplayEquation equation="K = \\frac{\\rho g}{\\mu} \\frac{1}{8\\tau} \\sum_{i} \\Delta\\beta_i r_{i}^{2}" title="Hydraulic Conductivity" background="True"/>
+	<b><DisplayEquation equation="K = \\frac{\\rho g}{\\mu} \\frac{1}{8\\tau} \\sum_{i} \\Delta\\beta_i r_{i}^{2}" title="Hydraulic Conductivity" background="True"/></b>
 	
 	where
 	<Itemize>
@@ -74,10 +74,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	</Itemize>
 	
 	<p>The sole effect of the matrix properties can be isolated as the <i>permeability</i> (<InlineEquation equation="k" />):</p>
-	<DisplayEquation equation="k = \\frac{1}{8\\tau} \\sum_{i} \\Delta\\beta_i r_i^2" title="Permeability" background="True"/>
+	<b><DisplayEquation equation="k = \\frac{1}{8\\tau} \\sum_{i} \\Delta\\beta_i r_i^2" title="Permeability" background="True"/></b>
 	
 	where <InlineEquation equation="k" /> has units of <InlineEquation equation="[m^2]" />. Hydraulic conductivity can then be written as:
-	<DisplayEquation equation="K = \\frac{k \\rho g}{\\mu}" title="Hydraulic Conductivity (from Permeability)" background="True"/>
+	<b><DisplayEquation equation="K = \\frac{k \\rho g}{\\mu}" title="Hydraulic Conductivity (from Permeability)" background="True"/></b>
 	
 	<p> separating the effect of the matrix (captured in <InlineEquation equation="k" />) from the effect of the fluid properties (<InlineEquation equation="\\rho" />, <InlineEquation equation="\\mu" />). </p> 
 </SubSection>
@@ -88,7 +88,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<DisplayEquation equation="\\phi = \\frac{\\text{pore volume}}{\\text{total volume}} = \\frac{\\text{pore area}}{\\text{total area}}" title="Porosity" background="True"/>
 	
 	<p><b>Volumetric flux (<InlineEquation equation="n^v" />)</b> is sometimes called "Darcy velocity", but it is <i>not</i> the true average velocity through the cross-sectional area. The true average velocity through the pores is much higher than that through the medium (solid matrix):</p>
-	<DisplayEquation equation="v_{avg} = \\frac{n^v}{\\phi}" title="Average Pore Velocity" background="True"/>
+	<b><DisplayEquation equation="v_{avg} = \\frac{n^v}{\\phi}" title="Average Pore Velocity" background="True"/></b>
 	
 	<p> The average velocity is a vector with direction and magnitude.</p>	
 </SubSection>
@@ -97,7 +97,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<p> Capillary flow describes capillary action (flow of liquid through a narrow space) within a porous solid medium. It is the balance between the relative attraction of the molecules of the fluid for each other (liquid-liquid) and for those of the surface (liquid-solid). </p>
 	<p> When liquid-solid forces are stronger, the liquid "climbs" against gravity (and other forces). This phenomena, called <b>capillary rise</b>, equates hydrostatic pressure <InlineEquation equation="P = \\rho g h" /> and capillary action pressure <InlineEquation equation="\\frac{2\\gamma}{r}" /> to yield: </p>
 	
-	<DisplayEquation equation="h = \\frac{2\\gamma}{\\rho g r}" title="Capillary Rise" background="True"/>
+	<b><DisplayEquation equation="h = \\frac{2\\gamma}{\\rho g r}" title="Capillary Rise" background="True"/></b>
 	
 	where
 	<Itemize>
@@ -114,14 +114,14 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <SubSection title="Unsaturated Flow" id="Unsaturated Flow">
 	<p> Recall that in a porous solid, capillarity causes liquid to be attracted more strongly when there is less of it (i.e., at lower concentration); causing liquid to flow across its concentration gradient. In unsaturated environments, the difference in negative pressures (matric potential) drives flow instead. </p>
 	<p> Unsaturated flow is mathematically similarly to molecular diffusion, and can be modeled as: </p>
-	<DisplayEquation equation="n = -D_{cap}\\frac{dc}{ds}" title="Unsaturated Flow" background="True"/>
+	<b><DisplayEquation equation="n = -D_{cap}\\frac{dc}{ds}" title="Unsaturated Flow" background="True"/></b>
 	<p>where <InlineEquation equation="D_{cap}" /> is capillary diffusivity; material-specific, which is derived experimentally. </p>
 </SubSection>
 
 <SubSection title="Osmotic Flow" id="Osmotic Flow">
 	<p>Osmosis is the transport of a solvent from low to high solute concentration through a semi-permeable membrane. The porous structure allows passage of solvent but not the solute/medium, until a hydraulic pressure (<InlineEquation equation="\\Pi" />) develops to oppose the osmotic flow. Osmosis occurs in the direction of reducing the solute concentration gradient (i.e., equalizing concentration) — for example, water flowing across cell membranes.</p>
 	<p>The relationship between hydraulic pressure and solute concentration is described by Van't Hoff law:</p>
-	<DisplayEquation equation="\\Pi = cRT" title="Van't Hoff Law" background="True"/>
+	<b><DisplayEquation equation="\\Pi = cRT" title="Van't Hoff Law" background="True"/></b>
 	where
 	<Itemize>
 		<Item><InlineEquation equation="\\Pi" /> = hydraulic or osmotic pressure</Item>
