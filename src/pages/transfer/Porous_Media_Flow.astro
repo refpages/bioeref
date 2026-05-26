@@ -23,38 +23,22 @@ import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 ---
-<Layout title="Mass Transfer Mechanisms">
+<Layout title="Porous Media Flow">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Molecular Diffusion'>Molecular Diffusion</a>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Porous Media Flow'>Porous Media Flow</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Darcy's Law'>Darcy's Law</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Porosity and Flux'>Porosity and Flux</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Capillary Flow'>Capillary Flow</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsaturated Flow'>Unsaturated Flow</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Osmotic Flow'>Osmotic Flow</a></li> </ul>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Dispersive Mass Transfer'>Dispersive Mass Transfer</a>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Convective Mass Transfer'>Convective Mass Transfer Flow</a>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Summary Table'>Summary Table</a></li>
-</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Osmotic Flow'>Osmotic Flow</a></li>
 </ul>
 </div>
 
-<SubSection title="Molecular Diffusion" id="Molecular Diffusion">
-	<p> Molecular diffusion is the transport of one mass component from a region of <i>higher</i> concentration to a region of <i>lower</i> concentration, making it a passive process. </p> 
-	<p> It equilibrates differences in concentration, due to random (Brownian) molecular movement. As temperature increases, molecular kinetic energ also increases, speeding up the process. </p>
-	<p> It is analogous to diffusive heat transfer (thermal conduction), but can be more complicated if numerous chemical species are involved. </p>
-<CalloutContainer slot="cards">
-    <CalloutCard title="Learn More">
-            <p> To learn more about molecular diffusion, visit the <a href="/transfer/Diffusion">Diffusion</a> page.</p>
-            </p>
-    </CalloutCard>
-</CalloutContainer>
+<SubSection title="Porous Media Flow" id="Porous Media Flow">
+<p>Porous media flow can be describes as the bulk movement of a fluid in a porous media due to hydraulic forces. </p>
 </SubSection>
 
-<SubSection title="Porous Media Flow" id="Porous Media Flow">
-</SubSection>
-<SubSubSection title="Darcy's Law" id="Darcy's Law">
+<SubSection title="Darcy's Law" id="Darcy's Law">
 	<p> Porous mediums can be approximated as a bundle of tubes of varying diameter, embedded within a solid matrix. Movement of liquid in a porous material is described by Darcy's Law:</p>
 	
 	<DisplayEquation equation="n^v = -K\\frac{d \\mathcal{H} }{ds}" title="Darcy's Law" background="True"/>
@@ -96,9 +80,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<DisplayEquation equation="K = \\frac{k \\rho g}{\\mu}" title="Hydraulic Conductivity (from Permeability)" background="True"/>
 	
 	<p> separating the effect of the matrix (captured in <InlineEquation equation="k" />) from the effect of the fluid properties (<InlineEquation equation="\\rho" />, <InlineEquation equation="\\mu" />). </p> 
-</SubSubSection>
+</SubSection>
 
-<SubSubSection title="Porosity and Flux" id="Porosity and Flux">
+<SubSection title="Porosity and Flux" id="Porosity and Flux">
 	<p>Retention of water in a porous medium results from attractive forces between the solid and liquid phases.</p>
 	<p>Volumetric <b>porosity (<InlineEquation equation="\\phi" />)</b> is the ratio of the volume of void space (pore volume) to the bulk volume of a porous medium. Average volumetric porosity is considered the same as average areal porosity at a cross section of the material:</p>
 	<DisplayEquation equation="\\phi = \\frac{\\text{pore volume}}{\\text{total volume}} = \\frac{\\text{pore area}}{\\text{total area}}" title="Porosity" background="True"/>
@@ -107,9 +91,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<DisplayEquation equation="v_{avg} = \\frac{n^v}{\\phi}" title="Average Pore Velocity" background="True"/>
 	
 	<p> The average velocity is a vector with direction and magnitude.</p>	
-</SubSubSection>
+</SubSection>
 
-<SubSubSection title="Capillary Flow" id="Capillary Flow">
+<SubSection title="Capillary Flow" id="Capillary Flow">
 	<p> Capillary flow describes capillary action (flow of liquid through a narrow space) within a porous solid medium. It is the balance between the relative attraction of the molecules of the fluid for each other (liquid-liquid) and for those of the surface (liquid-solid). </p>
 	<p> When liquid-solid forces are stronger, the liquid "climbs" against gravity (and other forces). This phenomena, called <b>capillary rise</b>, equates hydrostatic pressure <InlineEquation equation="P = \\rho g h" /> and capillary action pressure <InlineEquation equation="\\frac{2\\gamma}{r}" /> to yield: </p>
 	
@@ -125,16 +109,16 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	</Itemize>
 	
 	<p>Capillary rise increases significantly as tube radius decreases. If the tube diameter is sufficiently narrow, liquid is "propelled" upward by the combination of surface tension and liquid-surface adhesive forces.</p>
-</SubSubSection>
+</SubSection>
 
-<SubSubSection title="Unsaturated Flow" id="Unsaturated Flow">
+<SubSection title="Unsaturated Flow" id="Unsaturated Flow">
 	<p> Recall that in a porous solid, capillarity causes liquid to be attracted more strongly when there is less of it (i.e., at lower concentration); causing liquid to flow across its concentration gradient. In unsaturated environments, the difference in negative pressures (matric potential) drives flow instead. </p>
 	<p> Unsaturated flow is mathematically similarly to molecular diffusion, and can be modeled as: </p>
 	<DisplayEquation equation="n = -D_{cap}\\frac{dc}{ds}" title="Unsaturated Flow" background="True"/>
 	<p>where <InlineEquation equation="D_{cap}" /> is capillary diffusivity; material-specific, which is derived experimentally. </p>
-</SubSubSection>
+</SubSection>
 
-<SubSubSection title="Osmotic Flow" id="Osmotic Flow">
+<SubSection title="Osmotic Flow" id="Osmotic Flow">
 	<p>Osmosis is the transport of a solvent from low to high solute concentration through a semi-permeable membrane. The porous structure allows passage of solvent but not the solute/medium, until a hydraulic pressure (<InlineEquation equation="\\Pi" />) develops to oppose the osmotic flow. Osmosis occurs in the direction of reducing the solute concentration gradient (i.e., equalizing concentration) — for example, water flowing across cell membranes.</p>
 	<p>The relationship between hydraulic pressure and solute concentration is described by Van't Hoff law:</p>
 	<DisplayEquation equation="\\Pi = cRT" title="Van't Hoff Law" background="True"/>
@@ -149,77 +133,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<Image src="/transfer/osmosis_gummy_bears.png" width="[3]">
     	<span class="fw-bold">Gummy bear osmosis experiment</span>: water travels against the solute concentration gradient through the gelatin, swelling the candy. (<a href="[https://www.thoughtco.com/simple-candy-osmosis-experiment-609190]">Martin Leigh, Getty Images</a>)
 	</Image>
-</SubSubSection>
-
-<SubSection title="Dispersive Mass Transfer" id="Dispersive Mass Transfer">
-<p> Dispersive mass transfer is desribed as a random mixing component in addition to molecular diffusion (which spreads a mass component/species from higher to lower concentrations). There are two types of dispersive mass transfer:</p> 
-<Itemize>
-	<Item><i>Hydrodynamic </i> (fluid systems): spreading of liquid or gas from path it would follow, due to the bulk flow or the convective hydraulics of the system. </Item>
-	<Item><i>Mechanical </i> (porous media): caused by differences in pore velocity distribution, individual pore sizes and paths, and tortuosity or branching. </Item>
-</Itemize>
-<p> If dispersion present, its effect is generally much higher than diffusion, because of flow (usually turbulent). </p>
-
-<p> Dispersive mass flux is written analogously to Fick's Law:</p>
-	<DisplayEquation equation="j_{A,x} = -E_{x}\\frac{dc_{A}}{dx}" title="Dispersive Mass Flux" background="True"/>
-where
-<Itemize>
-	<Item><InlineEquation equation="j_{A,x}" /> = dispersive flux of A at x <InlineEquation equation="\\left[\\frac{kg}{m^{2}s}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{2}s}\\right]" /> (mass or molar flux)</Item>
-	<Item><InlineEquation equation="E_{x}" /> = dispersion coefficient <InlineEquation equation="\\left[\\frac{m^{2}}{s}\\right]" /></Item>
-	<Item><InlineEquation equation="c_{A}" /> = concentration of A <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{3}}\\right]" /></Item>
-	<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item>
-</Itemize>
-
-<p>The dispersion coefficient <InlineEquation equation="E_{x}" /> is a strong function of position <InlineEquation equation="x" />. It is measured experimentally and is not a function of chemistry. It accounts for both dispersion and diffusion, and is therefore higher than mass diffusivity (<InlineEquation equation="D_{AB}" />).</p>
-</SubSection>
-
-<SubSection title="Convective Mass Transfer" id="Chemical Reactions & Kinetics">
-<p> Convective mass transfer refers to the movement of mass through a medium as a result of the net motion of a material in the medium. It is an added effect of bulk flow on top of diffusion or dispersion, and is studied the same way as convective heat transfer.</p>
-<CalloutContainer slot="cards">
-    <CalloutCard title="Learn More">
-            <p> To learn more about convective mass transfer, visit the <a href="/transfer/Convective_Mass_Transfer">Convection</a> page.</p>
-            </p>
-    </CalloutCard>
-</CalloutContainer>
-</SubSection>
-
-<SubSection title="Summary Table" id="Summary Table">
-<DisplayTable id="mass-transfer-modes-table">
-	<thead>
-	<tr>
-		<th>Mode</th>
-		<th>Description</th>
-		<th>Described by</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	<tr>
-		<th>Molecular diffusion</th>
-		<td>Spontaneous movement of mass (solid, liquid, gas) down a concentration gradient due to random molecular movement</td>
-		<td>Fick's Law: <InlineEquation equation="j_{A,x} = -D_{AB}\\frac{dc_{A}}{dx}"/></td>
-	</tr>
-	<tr>
-		<th>Capillary diffusion</th>
-		<td>Movement of mass due to capillary action in a porous medium</td>
-		<td><em>(mathematically similar to molecular diffusion)</em></td>
-	</tr>
-	<tr>
-		<th>Bulk flow through porous media</th>
-		<td>Bulk movement of a fluid in a porous media due to hydraulic forces (pressure, matric forces, gravity)</td>
-		<td>Darcy's Law: <InlineEquation equation="n^{v} = -K\\frac{\\partial \\mathcal{H}}{\\partial s}"/></td>
-	</tr>
-	<tr>
-		<th>Dispersion</th>
-		<td>Spreading of fluid from its bulk flow path <em>(similar effects to molecular diffusion, but different mechanisms; due to turbulence in fluid)</em></td>
-		<td><InlineEquation equation="j_{A,x} = -E_{x}\\frac{dc_{A}}{dx}"/></td>
-	</tr>
-	<tr>
-		<th>Convection</th>
-		<td>Addition of bulk flow to diffusion or dispersion</td>
-		<td><InlineEquation equation="N_{A_{1-2}} = h_{m}A(c_{1}-c_{2})"/></td>
-	</tr>
-	</tbody>
-</DisplayTable>
 </SubSection>
 
 </Layout>
