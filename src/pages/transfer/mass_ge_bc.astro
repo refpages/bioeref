@@ -143,6 +143,28 @@ This is necessary to solve a time-varying (i.e., unsteady state) problem.</p>
 <ul>
   <li><i>For example:</i> <InlineEquation equation="c_A(t=0)=c_{A,i}"/> or <InlineEquation equation="c_A(t=0)=100 \\frac{kg}{m^3}"/>. </li>
 </ul>
+
+<Example title="Determining governing equation modifications and boundary conditions." solution="True">
+<div class="d-flex flex-row">
+<p>
+Nicotine patches are an example of transdermal drug delivery and are sold with different doses as smokers wean themselves from nicotine addiction (measured by the dose delivered in 24 hours of wear). Starting with the governing equation for mass transfer, modify the equation to the form that you would use to model nicotine concentrations in the skin. Assume the skin and the blood vessels perfused through it are one layer that is semi-infinite. Assume that after 24 hours no nicotine is left in the patch, and that nicotine is removed from the skin to the bloodstream at a rate of r_A. Next, state what boundary conditions and initial conditions you would use to solve the problem and explain why they are appropriate. 
+</p>
+</div>
+<div slot="solution">
+<b><DisplayEquation equation="\\frac{\\partial c_A}{\\partial t} = D_{AB}\\frac{\\partial^2 c_A}{\\partial x^2} - r_A" title="Modified Governing Equation:" background="True"/></b>
+
+<b><DisplayEquation equation="c(x=0) = c_{A}(t)" title="Boundary Condition 1:" background="True"/></b>
+<p> Concentration of drug <i>into</i> the skin; depends on concentration <i>out</i> of the patch. </p>
+
+<b><DisplayEquation equation="c_{A}(x //arrow //infty) = 0" title="Boundary Condition 2:" background="True"/></b>
+<p> All nicotine has decayed (been removed). </p>
+
+<b><DisplayEquation equation="c_{A}(t=0) = 0" title="Initial Condition:" background="True"/></b>
+<p> Initially, there is no nicotine in the skin. </p>
+
+</div>
+</Example>
 </SubSubSection>
+
 
 </Layout>
