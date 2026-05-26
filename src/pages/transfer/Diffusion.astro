@@ -50,7 +50,22 @@ import DisplayTable from "../../components/DisplayTable.astro"
 		<Item><InlineEquation equation="j_{A,x}" /> = diffusive flux of A, in x-direction <InlineEquation equation="\\left [ \\frac{kg}{m^{2} s}, \\frac{kmol}{m^{2} s} \\right]" /></Item> 
 		<Item><InlineEquation equation="D_{AB}" /> = mass diffusivity of A in B (diffusion coefficient) <InlineEquation equation="\\left[\\frac{m^{2}}{s}\\right]" /></Item> 
 		<Item><InlineEquation equation="c_A" /> = concentration of A <InlineEquation equation="\\left[\\frac{kg}{m^{3}}, \\frac{kmol}{m^{3}}\\right]" /></Item> 
-		<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item> </Itemize>
+		<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item> 
+    </Itemize>
+<CalloutContainer slot="cards">
+    <CalloutCard title="Heads Up!">
+            <p> Dispersive mass flux is written analogously to Fick's Law:</p>
+			<DisplayEquation equation="j_{A,x} = -E_{x}\\frac{dc_{A}}{dx}" title="Dispersive Mass Flux" background="True"/>
+			<p>where</p>
+			<Itemize>
+			<Item><InlineEquation equation="j_{A,x}" /> = dispersive flux of A at x <InlineEquation equation="\\left[\\frac{kg}{m^{2}s}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{2}s}\\right]" /> (mass or molar flux)</Item>
+			<Item><InlineEquation equation="E_{x}" /> = dispersion coefficient <InlineEquation equation="\\left[\\frac{m^{2}}{s}\\right]" /></Item>
+			<Item><InlineEquation equation="c_{A}" /> = concentration of A <InlineEquation equation="\\left[\\frac{kg}{m^{3}}\\right]" /> or <InlineEquation equation="\\left[\\frac{kmol}{m^{3}}\\right]" /></Item>
+			<Item><InlineEquation equation="x" /> = distance <InlineEquation equation="[m]" /></Item>
+			</Itemize>
+			<p>The dispersion coefficient <InlineEquation equation="E_{x}" /> is a strong function of position <InlineEquation equation="x" />. It is measured experimentally and is not a function of chemistry. It accounts for both dispersion and diffusion, and is therefore higher than mass diffusivity (<InlineEquation equation="D_{AB}" />).</p>
+    </CalloutCard>
+</CalloutContainer>
 		
 	<p>Consider a 1D diffusion process along the <InlineEquation equation="x" /> direction. At any time, molecules have moved varying distances from the origin independently, with equal probability of moving left or right. <b>Mean-square displacement</b> <InlineEquation equation="\\langle x^2 \\rangle" /> is the average of the square of displacements, and serves as a measure of how much molecules have spread.</p>
 	
