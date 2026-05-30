@@ -72,10 +72,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	
 	where
 	<Itemize>
-		<Item><InlineEquation equation="\\rho" /> = fluid density</Item>
-		<Item><InlineEquation equation="\\mu" /> = fluid viscosity</Item>
-		<Item><InlineEquation equation="\\tau" /> = tortuosity — how twisted or complicated the flow path is (approximately 1–2 for soils)</Item>
-		<Item><InlineEquation equation="\\Delta\\beta_i" /> = volume fraction of pores with radius <InlineEquation equation="r_i" /> (area fraction, 0–1), defined as <InlineEquation equation="\\Delta\\beta_i = \\frac{\\omega_i \\pi r_i^2}{A}" /> where <InlineEquation equation="\\omega_i" /> is the number of pores in the <InlineEquation equation="i^\\text{th}" /> pore size class with radius <InlineEquation equation="r_i" /></Item>
+		<Item><InlineEquation equation="\\rho" /> = fluid density <InlineEquation equation="[\\frac{kg}{m^3}]" /></Item>
+		<Item><InlineEquation equation="g" /> = acceleration due to gravity <InlineEquation equation="[\\frac{m}{s^2}]" /></Item>
+		<Item><InlineEquation equation="\\mu" /> = fluid viscosity <InlineEquation equation="[\\frac{kg}{m s}]" /></Item>
+		<Item><InlineEquation equation="\\tau" /> = tortuosity — how twisted or complicated the flow path is (approximately 1–2 for soils) <i><InlineEquation equation="[Dimensionless]" /></i></Item>
+		<Item><InlineEquation equation="\\Delta\\beta_i" /> = volume fraction of pores with radius <InlineEquation equation="r_i" /> (area fraction, 0–1), defined as <InlineEquation equation="\\Delta\\beta_i = \\frac{\\omega_i \\pi r_i^2}{A}" /> where <InlineEquation equation="\\omega_i" /> is the number of pores in the <InlineEquation equation="i^\\text{th}" /> pore size class with radius <InlineEquation equation="r_i" /> <i><InlineEquation equation="[Dimensionless]" /></i></Item>
 		<Item><InlineEquation equation="r_i" /> = radius of pores in size class <InlineEquation equation="i" /> <InlineEquation equation="[m]" /></Item>
 	</Itemize>
 	
@@ -137,7 +138,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 		<Item><InlineEquation equation="R" /> = gas constant <InlineEquation equation="\\left[\\frac{J}{mol \\cdot K}\\right]" /></Item>
 	</Itemize>
 
-	<Image src="/transfer/osmosis_gummy_bears.png" width="[2]">
+	<Image src="/transfer/osmosis_gummy_bears.png" width="3">
     	<span class="fw-bold">Gummy bear osmosis experiment</span>: water travels against the solute concentration gradient through the gelatin, swelling the candy. (<a href="[https://www.thoughtco.com/simple-candy-osmosis-experiment-609190]">Martin Leigh, Getty Images</a>)
 	</Image>
 </SubSection>
