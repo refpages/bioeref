@@ -26,8 +26,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Porous Media Flow">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#DarcysLaw'>Darcy's Law</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Porosity and Flux'>Porosity and Flux</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#DarcysLaw'>Darcy's Law</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HydraulicPotential'>Hydraulic Potential</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HydraulicConductivity'>Hydraulic Conductivity</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Porosity and Flux'>Porosity and Flux</a></li></ul>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Capillary Flow'>Capillary Flow</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Unsaturated Flow'>Unsaturated Flow</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Osmotic Flow'>Osmotic Flow</a></li>
@@ -50,7 +52,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 		<Item><InlineEquation equation="s" /> = distance along the flow path <InlineEquation equation="[m]" /></Item>
 		<Item><InlineEquation equation="K" /> = hydraulic conductivity <InlineEquation equation="\\left[\\frac{m}{s}\\right]" /></Item>
 	</Itemize>
-	
+</SubSection>
+
+<SubSubSection title="Hydraulic Potential" id="HydraulicPotential">
 	<p>The hydraulic (water) potential <InlineEquation equation="\\mathcal{H}" /> drives flow, and is defined as:</p>
 	
 	<b><DisplayEquation equation="\\mathcal{H} = h + z" title="Hydraulic Potential" background="True"/></b>
@@ -60,7 +64,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 		<Item><InlineEquation equation="h" /> = <i>pressure</i> (hydrostatic or pneumatic) and <i>matrix potential</i> — physical forces which bind water to the porous matrix; attractive force between liquid and solid phases</Item>
 		<Item><InlineEquation equation="z" /> = <i>gravitational potential</i> due to difference in depth in the vertical direction (i.e., from surface), in the direction of gravity</Item>
 	</Itemize>
-	
+</SubSubSection>
+
+<SubSubSection title="Hydraulic Conductivity" id="HydraulicConductivity">
 	<p>Hydraulic conductivity <InlineEquation equation="K" /> describes the ease with which a fluid can be transported through a porous matrix — it is the ratio of volumetric flux to the hydraulic gradient causing the flow. It depends on properties of both the solid <i>matrix</i> (pore size distribution, shape of pores, porosity, tortuosity) and the <i>fluid</i> (density, viscosity):</p>
 	<b><DisplayEquation equation="K = \\frac{\\rho g}{\\mu} \\frac{1}{8\\tau} \\sum_{i} \\Delta\\beta_i r_{i}^{2}" title="Hydraulic Conductivity" background="True"/></b>
 	
@@ -80,9 +86,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<b><DisplayEquation equation="K = \\frac{k \\rho g}{\\mu}" title="Hydraulic Conductivity (from Permeability)" background="True"/></b>
 	
 	<p> separating the effect of the matrix (captured in <InlineEquation equation="k" />) from the effect of the fluid properties (<InlineEquation equation="\\rho" />, <InlineEquation equation="\\mu" />). </p> 
-</SubSection>
+</SubSubSection>
 
-<SubSection title="Porosity and Flux" id="Porosity and Flux">
+
+<SubSubSection title="Porosity and Flux" id="Porosity and Flux">
 	<p>Retention of water in a porous medium results from attractive forces between the solid and liquid phases.</p>
 	<p>Volumetric <b>porosity (<InlineEquation equation="\\phi" />)</b> is the ratio of the volume of void space (pore volume) to the bulk volume of a porous medium. Average volumetric porosity is considered the same as average areal porosity at a cross section of the material:</p>
 	<DisplayEquation equation="\\phi = \\frac{\\text{pore volume}}{\\text{total volume}} = \\frac{\\text{pore area}}{\\text{total area}}" title="Porosity" background="True"/>
@@ -91,7 +98,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<b><DisplayEquation equation="v_{avg} = \\frac{n^v}{\\phi}" title="Average Pore Velocity" background="True"/></b>
 	
 	<p> The average velocity is a vector with direction and magnitude.</p>	
-</SubSection>
+</SubSubSection>
 
 <SubSection title="Capillary Flow" id="Capillary Flow">
 	<p> Capillary flow describes capillary action (flow of liquid through a narrow space) within a porous solid medium. It is the balance between the relative attraction of the molecules of the fluid for each other (liquid-liquid) and for those of the surface (liquid-solid). </p>
