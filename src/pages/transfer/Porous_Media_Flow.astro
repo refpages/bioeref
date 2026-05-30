@@ -61,8 +61,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	
 	where
 	<Itemize>
-		<Item><InlineEquation equation="h" /> = <i>pressure</i> (hydrostatic or pneumatic) and <i>matrix potential</i> — physical forces which bind water to the porous matrix; attractive force between liquid and solid phases</Item>
-		<Item><InlineEquation equation="z" /> = <i>gravitational potential</i> due to difference in depth in the vertical direction (i.e., from surface), in the direction of gravity</Item>
+		<Item><InlineEquation equation="h" /> = <i>pressure</i> (hydrostatic or pneumatic) and <i>matrix potential</i> — physical forces which bind water to the porous matrix; attractive force between liquid and solid phases <InlineEquation equation="[m]" /></Item>
+		<Item><InlineEquation equation="z" /> = <i>gravitational potential</i> due to difference in depth in the vertical direction (i.e., from surface), in the direction of gravity <InlineEquation equation="[m]" /></Item>
 	</Itemize>
 </SubSubSection>
 
@@ -123,7 +123,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<p> Recall that in a porous solid, capillarity causes liquid to be attracted more strongly when there is less of it (i.e., at lower concentration); causing liquid to flow across its concentration gradient. In unsaturated environments, the difference in negative pressures (matric potential) drives flow instead. </p>
 	<p> Unsaturated flow is mathematically similarly to molecular diffusion, and can be modeled as: </p>
 	<b><DisplayEquation equation="n = -D_{cap}\\frac{dc}{ds}" title="Unsaturated Flow" background="True"/></b>
-	<p>where <InlineEquation equation="D_{cap}" /> is capillary diffusivity; material-specific, which is derived experimentally. </p>
+	<p>where</p>
+	<Itemize>
+	<Item><InlineEquation equation="D_{cap}" /> = capillary diffusivity; material-specific <InlineEquation equation="[\\frac{m^2}{s}]" /></Item>
+	<Item><InlineEquation equation="c" /> = water concentration <InlineEquation equation="[dimensionless]" /></Item>
+	<Item><InlineEquation equation="s" /> = flow path <InlineEquation equation="[m]" /></Item>
 </SubSection>
 
 <SubSection title="Osmotic Flow" id="Osmotic Flow">
@@ -132,13 +136,13 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<b><DisplayEquation equation="\\Pi = cRT" title="Van't Hoff Law" background="True"/></b>
 	where
 	<Itemize>
-		<Item><InlineEquation equation="\\Pi" /> = hydraulic or osmotic pressure</Item>
-		<Item><InlineEquation equation="c" /> = total concentration of the solute</Item>
+		<Item><InlineEquation equation="\\Pi" /> = hydraulic or osmotic pressure <InlineEquation equation="[\\frac{kg}{ms^2}]" /></Item>
+		<Item><InlineEquation equation="c" /> = total concentration of the solute <InlineEquation equation="[\\frac{mol}{m^3}]" /></Item>
 		<Item><InlineEquation equation="T" /> = absolute temperature <InlineEquation equation="[K]" /></Item>
 		<Item><InlineEquation equation="R" /> = gas constant <InlineEquation equation="\\left[\\frac{J}{mol \\cdot K}\\right]" /></Item>
 	</Itemize>
 
-	<Image src="/transfer/osmosis_gummy_bears.png" width="3">
+	<Image src="/transfer/osmosis_gummy_bears.png" width="4">
     	<span class="fw-bold">Gummy bear osmosis experiment</span>: water travels against the solute concentration gradient through the gelatin, swelling the candy. (<a href="[https://www.thoughtco.com/simple-candy-osmosis-experiment-609190]">Martin Leigh, Getty Images</a>)
 	</Image>
 </SubSection>
