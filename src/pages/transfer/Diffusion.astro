@@ -28,7 +28,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SteadyState'>Steady State</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a><ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#CharacteristicLength'>Characteristic Length</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BiotNumber'>Biot Number</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#LumpedParameter'>Lumped Parameter</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SeriesSolution'>Series Solution</a></li>
@@ -142,39 +141,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 There are three situations of unsteady state diffusion that will be examined here. First, characteristic length and the mass transfer Biot number will need to be defined. </p>
 </SubSection>
 
-<SubSubSection title="Characteristic Length" id="CharacteristicLength"> 
-<p> The Characteristic Length (<InlineEquation equation="L"/>) of an object is its path of least resistance. 
-In other words, it is the shortest distance heat or mass must move through the object. 
-</p>
-
-<DisplayTable id="dim-table">
-	<thead>
-	<tr>
-		<th>Geometry</th>
-		<th>Characteristic Length (<InlineEquation equation="L"/>)</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	<tr>
-		<th>Infinite Slab</th> 
-		<td><InlineEquation equation="\\frac{1}{2}"/> thickness</td> 
-	</tr>
-	<tr>
-		<th>Long Cylinder</th> 
-		<td>Radius</td> 
-	</tr>
-    <tr>
-		<th>Sphere</th> 
-		<td>Radius</td> 
-	</tr>
-	</tbody>
-  </DisplayTable>
-
-<p class="text-center"><em><b> Table 2</b>: Characteristic length for slab, cylindrical, and spherical geometries. </em></p> 
-
-</SubSubSection>
-
 <SubSubSection title="Biot Number" id="BiotNumber"> 
 <p>The mass transfer Biot number (<InlineEquation equation="Bi_m"/>) is used to determine if the internal resistance within an object is negligible. 
 If it is negligible, this means there is very little concentration variation within the solid.
@@ -192,6 +158,13 @@ It is calculated as a fraction of internal and external resistance:</p>
 
 <p>If <InlineEquation equation="Bi_m < 0.1"/>, the internal resistance can be ignored, and no spatial variation in concentration can be assumed. In other words, concentration changes only as a function of time.
 If <InlineEquation equation="Bi_m > 0.1"/>, the internal resistance cannot be ignored due to spatial variation in concentration within the solid. </p>
+
+<CalloutContainer slot="cards">
+    <CalloutCard title="Need a Review?">
+            <p> Review Characteristic Length on the <a href="/transfer/Conduction/#CharacteristicLength">Conduction</a> page!</p>
+    </CalloutCard>
+</CalloutContainer>
+
 </SubSubSection>
 
 <SubSubSection title="No Spatial Variation in Concentration" id="LumpedParameter"> 
