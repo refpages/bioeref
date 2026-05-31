@@ -122,6 +122,32 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 
 <p class="text-center"><em><b> Table 1</b>: Steady-state temperature, flow, and thermal resistance in slab (Cartesian), cylindrical, and spherical geometries. </em></p> 
 
+<p>With a composite slab, convection occurs on either side of the slab while conduction occurs within the layers of the slab.</p>
+<p>Heat flow can be calculated by temperature differences and thermal resistances:</p>
+<DisplayEquation equation="q_{x} = \\frac{T_L - T_R}{\\frac{1}{h_{L}A}+\\frac{L_1}{k_{1}A}+\\frac{L_2}{k_{2}A}+\\frac{L_3}{k_{3}A}+\\frac{1}{h_{R}A}}" title="" background="True"/>
+<p> where </p>
+<Itemize>
+<Item><InlineEquation equation="q_{x}"/> = heat flow <InlineEquation equation="[W]"/></Item>
+<Item><InlineEquation equation="T_L"/> = temperature on the left side of the slab <InlineEquation equation="[K]"/></Item>
+<Item><InlineEquation equation="T_R"/> = temperature on the right side of the slab <InlineEquation equation="[K]"/></Item>
+<Item><InlineEquation equation="L"/> = length of respective slab layers (1, 2, and 3) <InlineEquation equation="[m]"/></Item>
+<Item><InlineEquation equation="h"/> = convective heat transfer coefficient of the respective sides of the slab <InlineEquation equation="[\\frac{W}{m^2 K}]"/></Item>
+<Item><InlineEquation equation="A"/> = cross sectional area of slab <InlineEquation equation="[m^2]"/></Item>
+<Item><InlineEquation equation="k"/> = thermal conductivity of respective slab layers (1, 2, and 3) <InlineEquation equation="[\\frac{W}{mK}]"/></Item>
+</Itemize>
+<p><b>When the resistances are in series:</b></p>
+<Itemize>
+<Item> The slab layers are vertical and heat flows through each slab layer one after the other. </Item>
+<Item> The rate of heat flow is the same through each resistance layer. </Item>
+<Item> Thermal resistance of each layer can be added up into one effective resistance.</Item>
+</Itemize>
+<p><b>When the resistances are in parallel:</b></p>
+<Itemize>
+<Item> The slab layers are horizontal and heat divides and flows through each slab layer all at once. </Item>
+<Item> The total rate of heat flow is the rate of heat flow of each layer added together.</Item>
+<Item> Thermal resistance of each layer adds like electrical resistances in parallel.</Item>
+</Itemize>
+
 </SubSection>
 
 
