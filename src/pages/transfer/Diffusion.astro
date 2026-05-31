@@ -26,6 +26,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Layout title="Diffusion">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Diffusion'>Diffusion</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#FicksLaw'>Fick's Law</a></li></ul>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SteadyState'>Steady State</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BiotNumber'>Biot Number</a></li>
@@ -42,7 +44,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p> Molecular diffusion is the transport of one mass component from a region of <i>higher</i> concentration to a region of <i>lower</i> concentration, making it a passive process. </p> 
 	<p> It equilibrates differences in concentration, due to random (Brownian) molecular movement. As temperature increases, molecular kinetic energ also increases, speeding up the process. </p>
 	<p> It is analogous to diffusive heat transfer (thermal conduction), but can be more complicated if numerous chemical species are involved. </p>
-	<p> When concentration gradient is the driving force, the rate of mass transport per unit area (<i>diffusive flux</i>) is related to it via Fick's Law:</p> 
+</SubSection>
+
+<SubSubSection title="Fick's Law" id="FicksLaw">
+<p> When concentration gradient is the driving force, the rate of mass transport per unit area (<i>diffusive flux</i>) is related to it via Fick's Law:</p> 
 	<b> <DisplayEquation equation="j_{A,x} = -D_{AB} \\frac{dc_{A}}{dx}" title="Fick's Law" background="True"/> </b> 
 	where 
 	<Itemize> 
@@ -87,7 +92,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	<Itemize>
 		<Item><InlineEquation equation="u_{diff}" /> = average diffusion velocity <InlineEquation equation="\\left[\\frac{m}{s}\\right]" /></Item>
 	</Itemize>
-</SubSection>
+</SubSubSection>
 
 <SubSection title="Steady State" id="SteadyState">
 <p>In steady state diffusion, <b>concentration of mass does not change over time</b>. However, concentration can change with position, and this gradient drives the transfer of mass. We can consider a few different situations of steady-state diffusion: <i>in a slab, in a composite slab, and in the presence of a chemical reaction.</i></p> 
