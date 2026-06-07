@@ -124,6 +124,38 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Item><InlineEquation equation="K^*"/> = distribution coefficient</Item>
 </Itemize>
 
+<DisplayTable id="dim-table">
+	<thead>
+	<tr>
+		<th>Geometry</th>
+		<th>Temperature Profile</th>
+		<th>Mass Flow</th>
+		<th>Diffusion Resistance</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<th>Slab</th> 
+		<td><InlineEquation equation="c(x) = c_1 + \\frac{c_2 - c_1}{L} x"/> </td> 
+		<td><InlineEquation equation="N_{A,x} = \\frac{c_1 - c_2}{\\frac{L}{D_{AB}A}}"/> </td> 
+		<td><InlineEquation equation="\\frac{L}{D_{AB}A}"/> </td>
+	</tr>
+	<tr>
+		<th>Hollow Cylinder</th> 
+		<td><InlineEquation equation="c(r) = c_{i}-\\frac{c_{i}-c_{0}}{ln(r_{0}/r_{i}}ln(\\frac{r}{r_{i}})"/></td> 
+		<td><InlineEquation equation="N_{A,r} = \\frac{c_{i}-c_{0}}{\\frac{ln(r_{0}/r_{i})}{2 \\pi D_{AB} L}}"/></td> 
+		<td><InlineEquation equation="\\frac{ln(r_{0}/r_{i})}{2 \\pi D_{AB} L}"/></td>
+	</tr>
+	<tr>
+		<th>Hollow Sphere</th> 
+		<td><InlineEquation equation="c(r) = c_{i}-(c_{i}-c_{0}) \\frac{r-r_{i}}{r_{0}-r_{i}} \\frac{r_{0}}{r}"/> </td>
+		<td><InlineEquation equation="N_{A,r} = \\frac{T_{i}-T_{0}}{(r_{0}-r_{i})(4 \\pi r_{0} r_{i} D_{AB})} "/></td>
+		<td><InlineEquation equation="\\frac{r_{0}-r_{i}}{4 \\pi r_{0} r_{i} D_{AB}}"/></td>
+	</tr>
+	</tbody>
+  </DisplayTable>
+
 <p><b>Steady State Diffusion in a Slab with a Chemical Reaction</b></p>
 <p>Chemical reactions can occur during diffusion. This produces a decay with time. Consequently, the surface flux increases while the concentration gradient gets higher. </p>
 <p>Concentration Profile:</p>
