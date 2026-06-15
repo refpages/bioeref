@@ -121,8 +121,9 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
   </DisplayTable>
 
 <p class="text-center"><em><b> Table 1</b>: Steady-state temperature, flow, and thermal resistance in slab (Cartesian), cylindrical, and spherical geometries. </em></p> 
+</SubSection>
 
-<p><b>Conduction with a composite slab:</b></p>
+<SubSubSection title="Composite Materials" id="CompositeMaterials">
 <p>With a composite slab, convection occurs on either side of the slab while conduction occurs within the layers of the slab.</p>
 <p>Heat flow can be calculated by temperature differences and thermal resistances:</p>
 <DisplayEquation equation="q_{x} = \\frac{T_L - T_R}{\\frac{1}{h_{L}A}+\\frac{L_1}{k_{1}A}+\\frac{L_2}{k_{2}A}+\\frac{L_3}{k_{3}A}+\\frac{1}{h_{R}A}}" title="" background="True"/>
@@ -138,18 +139,29 @@ Cylindrical and spherical geometries have nonlinear temperature profiles, as the
 </Itemize>
 <p><b>When the resistances are in series:</b></p>
 <Itemize>
-<Item> The slab layers are vertical and heat flows through each slab layer one after the other. </Item>
+<Item> Heat flows through each slab layer sequentially. </Item>
 <Item> The rate of heat flow is the same through each resistance layer. </Item>
 <Item> Thermal resistance of each layer can be added up into one effective resistance.</Item>
 </Itemize>
 <p><b>When the resistances are in parallel:</b></p>
 <Itemize>
-<Item> The slab layers are horizontal and heat divides and flows through each slab layer all at once. </Item>
+<Item> Heat divides and flows through each slab layer simultaneously. </Item>
 <Item> The total rate of heat flow is the rate of heat flow of each layer added together.</Item>
 <Item> Thermal resistance of each layer adds like electrical resistances in parallel.</Item>
 </Itemize>
 
-</SubSection>
+<CalloutContainer slot="cards">
+    <CalloutCard title="Review">
+            <p> Thermal resistance can be added in series and parallel like electrical resistance: </p>
+            <p><b>Series:</b></p>
+            <DisplayEquation equation="R_{eff} = R_{1} + R_{2} + ... + R_{n}" title="" />
+            <p><b>Parallel:</b></p>
+            <DisplayEquation equation="\\frac{1}{R_{eff}} = \\frac{1}{R_{1}} + \\frac{1}{R_{2}} + ... + \\frac{1}{R_{n}}" title="" />
+            <p>or</p>
+            <DisplayEquation equation="R_{eff} = \\frac{R_{1}R_{2}}{R_{1}+R_{2}}" title="" />
+    </CalloutCard>
+</CalloutContainer>
+</SubSubSection>
 
 
 <SubSection title="Unsteady State" id="UnsteadyState">
