@@ -28,7 +28,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Diffusion'>Diffusion</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#FicksLaw'>Fick's Law</a></li></ul>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SteadyState'>Steady State</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SteadyState'>Steady State</a><ul class="list-group list-group-flush py-0">
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Slab'>In a Slab</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#CompositeSlab'>In a Composite Slab</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ChemicalReaction'>In a Slab with Chemical Reaction</a></li></ul>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#UnsteadyState'>Unsteady State</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BiotNumber'>Biot Number</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#LumpedParameter'>Lumped Parameter</a></li>
@@ -96,7 +99,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <SubSection title="Steady State" id="SteadyState">
 <p>In steady state diffusion, <b>concentration of mass does not change over time</b>. However, concentration can change with position, and this gradient drives the transfer of mass. We can consider a few different situations of steady-state diffusion: <i>in a slab, in a composite slab, and in the presence of a chemical reaction.</i></p> 
-<p><b>Steady State Diffusion in a Slab</b></p>
+</SubSection>
+
+<SubSubSection title="Steady State Diffusion in a Slab" id="Slab">
 <p>Concentration Profile:</p>
 <DisplayEquation equation="c_{A}(x) = \\frac{c_{A2} - c_{A1}}{L} x + c_{A1}" title="" background="True"/>
 <p> where </p>
@@ -107,8 +112,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Item><InlineEquation equation="c_{A2}"/> = concentration at position <InlineEquation equation="x = L"/><InlineEquation equation="[\\frac{kg}{m^2}]"/></Item>
 <Item><InlineEquation equation="L"/> = length of slab <InlineEquation equation="[m]"/></Item>
 </Itemize>
+</SubSubSection>
 
-<p><b>Steady State Diffusion in a Composite Slab</b></p>
+<SubSubSection title="Steady State Diffusion in a Composite Slab" id="CompositeSlab">
 <p>With a composite slab, convection occurs on either side of the slab while diffusion occurs within the slab. This means mass transfer is occuring between two phases at the surface. The concentrations at the interface are not equal. For example, the surface concentration is different in liquid vs in the solid.</p>
 <p>Mass flow can be calculated by concentration differences and mass transfer resistances:</p>
 <DisplayEquation equation="N_{A,x} = \\frac{\\triangle c}{\\frac{1}{h_{m1}A}+\\frac{\\triangle L}{KD_{AB}A}+\\frac{1}{h_{m2}A}}" title="" background="True"/>
@@ -156,8 +162,9 @@ import DisplayTable from "../../components/DisplayTable.astro"
 	</tbody>
   </DisplayTable>
 <p class="text-center"><em><b> Table 1</b>: Steady-state concentration, flow, and diffusive resistance in slab (Cartesian), cylindrical, and spherical geometries. </em></p> 
+</SubSubSection>
 
-<p><b>Steady State Diffusion in a Slab with a Chemical Reaction</b></p>
+<SubSubSection title="Steady State Diffusion in a Slab with a Chemical Reaction" id="ChemicalReaction">
 <p>Chemical reactions can occur during diffusion. This produces a decay with time. Consequently, the surface flux increases while the concentration gradient gets higher. </p>
 <p>Concentration Profile:</p>
 <DisplayEquation equation="\\frac{c_{A}}{c_{A,0}} = \\frac{-e^{-mL}}{e^{-mL}-e^{-mL}} (e^{mx}-e^{-mx})+e^{-mx}" title="" background="True"/>
@@ -171,8 +178,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Item><InlineEquation equation="c_{A,0}"/> = initial concentration <InlineEquation equation="[\\frac{kg}{m^2}]"/></Item>
 <Item><InlineEquation equation="L"/> = length of slab <InlineEquation equation="[m]"/></Item>
 </Itemize>
-
-</SubSection>
+</SubSubSection>
 
 <SubSection title="Unsteady State" id="UnsteadyState">
 <p> In unsteady state diffusion, also called transient diffusion, <b>concentration changes over time</b>. 
