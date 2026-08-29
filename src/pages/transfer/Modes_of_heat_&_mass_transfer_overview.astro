@@ -30,7 +30,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HeatTransfer'>Heat Transfer</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conduction'>Conduction</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HeatConvection'>Convective Heat Transfer</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Radiation'>Radiation</a></li></ul>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Radiation'>Radiation</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#HeatSummary'>Summary of Heat Transfer Modes</a></li></ul>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#MassTransfer'>Mass Transfer</a><ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Diffusion'>Diffusion</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#PorousMediaFlow'>Porous Media Flow</a></li>
@@ -79,6 +80,37 @@ A fluid is any substance that can flow, including both liquids and gases such as
  <p> Radiation occurs due to the emission and absorption of electromagnetic waves. It does not require direct contact or fluid motion.
 A familiar example of radiative heat transfer is feeling warmth from the sun. 
 In biological systems, radiation contributes to bidirectional heat exchange between the system and its surroundings, as the body can continuously emit and absorb infrared radiation. </p> 
+</SubSubSection>
+
+<SubSubSection title="Summary of Heat Transfer Modes" id="HeatSummary">
+<p class="text-center"><em><b> Table 1</b>: Summary of heat transfer modes. </em></p> 
+<DisplayTable id="mass-transfer-modes-table">
+	<thead>
+	<tr>
+		<th>Mode</th>
+		<th>Description</th>
+		<th>Described by</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<th>Conduction</th>
+		<td>Spontaneous movement of thermal energy down a temperature gradient due to random molecular movement</td>
+		<td>Fourier's Law: <InlineEquation equation="q^{''}_x = \\frac{q_x}{A} = -k \\frac{dT}{dx}"/></td>
+	</tr>
+	<tr>
+		<th>Convection</th>
+		<td>Transport of thermal energy due to bulk motion of a fluid (a liquid or a gas) over a surface</td>
+		<td>Newtion's Law of Cooling: <InlineEquation equation="q_{1-2} = hA(T_1 - T_2)"/></td>
+	</tr>
+	<tr>
+		<th>Radiation</th>
+		<td>Transport of thermal energy emitted as electromagnetic waves</td>
+		<td>Stefan-Boltzmann Law: <InlineEquation equation="q^{''} = \\frac{q}{A} = \\sigma T^4"/></td>
+	</tr>
+	</tbody>
+</DisplayTable>
 </SubSubSection>
 
 <SubSection title="Mass Transfer" id="MassTransfer">              
