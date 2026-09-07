@@ -184,7 +184,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p> Then, it travels through either:</p>
 <Itemize>
 <Item> <b>Path 1 (Healthy Skin):</b> polymer <InlineEquation equation="\\rightarrow"/> stratum corneum <InlineEquation equation="\\rightarrow"/> viable epidermis </Item>
-<Item> <b>Path 2 (Wound):</b> polymer <InlineEquation equation="\\rightarrow"/>w wound </Item>
+<Item> <b>Path 2 (Wound):</b> polymer <InlineEquation equation="\\rightarrow"/> wound </Item>
 </Itemize>
 <p> Finally, the drug enters the bloodstream by convection beneath the tissue. The drug partitions between the polymer and biological tissue according to a distribution coefficient (K). </p>
 <p> Refer to the image below to find the diffusivity and thickness of each layer, convective coefficient for the convection layers, and the initial and final concentrations. </p>
@@ -198,6 +198,31 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <div slot="solution">
 <p><b>(A) Draw the analogous circuit diagram.</b></p>
+<Image src="/transfer/Diffusion_EX_2.jpeg" width="6">
+</Image>
+
+<p><b>(B) Resistances and Equivalent Resistance </b></p>
+<p><b>Calculating resistances: </b></p>
+<p> Convection resistances:
+<InlineEquation equation="R = \\frac{1}{hA}"/>
+<InlineEquation equation="R_{c1} = \\frac{1}{(0.0003)(8)} = 416.7"/>
+<InlineEquation equation="R_{c2} = \\frac{1}{(0.005)(8)} = 25"/> </p>
+<p>Diffusion resistances:
+<InlineEquation equation="R = \\frac{L}{DA}"/>
+<InlineEquation equation="R_{pm} = \\frac{0.02}{(0.00002)(8)} = 125"/>
+<InlineEquation equation="R_{sc} = \\frac{0.002}{(0.000002)(6)} = 166.7"/>
+<InlineEquation equation="R_{ve} = \\frac{0.015}{(0.0001)(6)} = 25"/>
+<InlineEquation equation="R_{w} = \\frac{0.017}{(0.0004)(2)} = 21.25"/> </p>
+<p> Partition resistance:
+<InlineEquation equation="R = \\frac{1}{KA}"/>
+<InlineEquation equation="R_{K} = \\frac{1}{(0.6)(8)} = 0.208"/> </p>
+<p><b>Calculating effective resistance: </b></p>
+<Image src="/transfer/Diffusion_EX_3.jpeg" width="6">
+</Image>
+
+<p><b>(C) Drug Transfer Rate: </b></p>
+
+<p><b>(D) Drug Percentage Through Healthy Skin vs Wound </b></p>
 
 </div>
 </Example>
