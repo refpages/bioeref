@@ -180,7 +180,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Example title="Diffusion Through a Composite Material" solution="True">
 <div class="d-flex flex-column">
 <p> A medicated patch delivers drugs into underlying tissue. The patch covers both <b>healthy skin</b> and a <b>small wound</b>, creating two parallel diffusion pathways.</p>
-<p> First, the drug <i>diffuses through</i> the polymer membrane of the patch. </p>
+<p> First, the drug <i>diffuses</i> through the polymer membrane of the patch. </p>
 <p> Then, it travels through either:</p>
 <Itemize>
 <Item> <b>Path 1 (Healthy Skin):</b> polymer <InlineEquation equation="\\rightarrow"/> stratum corneum (sc) <InlineEquation equation="\\rightarrow"/> viable epidermis (ve) </Item>
@@ -198,20 +198,20 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </Image>
 <p><b>(A) Identify the boundary/initial conditions.</b></p>
 <p><b>(B) Draw the analogous circuit diagram.</b></p>
-<p><b>(C) Calculate each resistance, and find the equivalent resistance. </b></p>
+<p><b>(C) Calculate each resistance and find the equivalent resistance. </b></p>
 <p><b>(D) Calculate the overall drug transfer rate. </b></p>
 <p><b>(E) Find the conductance of Path 1 vs Path 2.</b></p>
 <p>Hint: Conductance is the inverse of resistance. For this problem, conductance is a measure of how easily the drug can diffuse through each pathway.<p>
 <p><b>(F) Calculate the drug percentage through the healthy skin vs wound. </b></p>
-<p>Hint: The fraction of drug traveling through a pathway is proportional to the fraction of the pathway's conductance over the total conductance.<p>
-<p><b>(G) Does it make sense that the drug is flowing stronger through one pathway than the other? </b></p>
+<p>Hint: The fraction of drug traveling through a path is proportional to the fraction of the path's conductance over the total conductance.<p>
+<p><b>(G) Does it make sense that the drug is flowing stronger through one path than the other? </b></p>
 </div>
 <div slot="solution">
 <p><b>(A) Identify the boundary/initial conditions.</b></p>
 <Itemize>
 <Item><InlineEquation equation="C_{patch}(t=0) = 15 \\frac{mg}{cm^3}"/> - Initial concentration of drug in the patch </Item>
 <Item><InlineEquation equation="C_{blood}(t=0) = 0 \\frac{mg}{cm^3}"/> - Initial concentration of drug in the bloodstream </Item>
-<Item><InlineEquation equation="\\frac{\\delta C}{\\delat x}|_{x=0} = 0"/> - No drug intake from the atmosphere </Item>
+<Item><InlineEquation equation="\\frac{\\delta C}{\\delta x}|_{x=0} = 0 \\frac{mg}{cm^{2}*s"/> - No drug intake from the atmosphere </Item>
 </Itemize>
 
 <p><b>(B) Draw the analogous circuit diagram.</b></p>
@@ -221,12 +221,12 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p><b>(C) Resistances and Equivalent Resistance </b></p>
 <p><b>Calculating resistances: </b></p>
 <p><i>Diffusion resistances:</i> <InlineEquation equation="R = \\frac{L}{DA}"/> </p>
-<p><InlineEquation equation="R_{pm} = \\frac{0.02}{(0.00002)(8)} = 125 \\Omega s"/> </p>
-<p><InlineEquation equation="R_{sc} = \\frac{0.0024}{(0.000002)(6)} = 200 \\Omega s"/></p>
-<p><InlineEquation equation="R_{ve} = \\frac{0.015}{(0.0001)(6)} = 25 \\Omega s"/></p>
-<p><InlineEquation equation="R_{w} = \\frac{0.017}{(0.0004)(2)} = 21.75 \\Omega s"/> </p>
-<p><i>Convection resistances:</i> <InlineEquation equation="R = \\frac{1}{hA}"/> </p>
-<p><InlineEquation equation="R_{c} = \\frac{1}{(0.005)(8)} = 25 \\Omega s"/> </p>
+<p><InlineEquation equation="R_{pm} = \\frac{0.02}{(0.00002)(8)} = 125 \\Omega"/> </p>
+<p><InlineEquation equation="R_{sc} = \\frac{0.0024}{(0.000002)(6)} = 200 \\Omega"/></p>
+<p><InlineEquation equation="R_{ve} = \\frac{0.015}{(0.0001)(6)} = 25 \\Omega"/></p>
+<p><InlineEquation equation="R_{w} = \\frac{0.017}{(0.0004)(2)} = 21.75 \\Omega"/> </p>
+<p><i>Convection resistance:</i> <InlineEquation equation="R = \\frac{1}{hA}"/> </p>
+<p><InlineEquation equation="R_{c} = \\frac{1}{(0.005)(8)} = 25 \\Omega"/> </p>
 <p><b>Calculating effective resistance: </b></p>
 <Image src="/transfer/Diffusion_EX_3.jpeg" width="7">
 </Image>
@@ -242,11 +242,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <p><b>(F) Calculate the drug percentage through the healthy skin vs wound. </b></p>
 <p><b>Total Conductance:</b></p>
-<p><InlineEquation equation="G_total = G_{1} + G_{2} = 0.0044 + 0.0046 = 0.0504"/> </p>
+<p><InlineEquation equation="G_{total} = G_{1} + G_{2} = 0.0044 + 0.046 = 0.0504"/> </p>
 <p><b>Healthy Skin Percentage:</b></p>
-<p><InlineEquation equation="\\frac{G_1}{G_total} = \\frac{0.0044}{0.0504} = 0.09 = 9 \\%"/> </p>
+<p><InlineEquation equation="\\frac{G_1}{G_{total}} = \\frac{0.0044}{0.0504} = 0.09 = 9 \\%"/> </p>
 <p><b>Wounded Skin Percentage:</b></p>
-<p><InlineEquation equation="\\frac{G_2}{G_total} + \\frac{0.046}{0.0504} = 0.91 = 91 \\%"/> </p>
+<p><InlineEquation equation="\\frac{G_2}{G_{total}} = \\frac{0.046}{0.0504} = 0.91 = 91 \\%"/> </p>
 
 <p><b>(G) Does it make sense that the drug is flowing stronger through one pathway than the other? </b></p>
 <p> Yes, it makes sense that the drug flows stronger through Path 2 (wounded skin), because Path 1 had a much higher resistance than Path 2. </p>
