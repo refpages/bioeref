@@ -147,6 +147,44 @@ When developing an integral balance, you can write the differential balance equa
 
 <DisplayEquation title="Integral Accounting Equation" background="True" equation="\\int_{t_f}^{t_0}{\\dot{\\Psi}_{in}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{out}dt}+ \\int_{t_f}^{t_0}{\\dot{\\Psi}_{gen}dt}-\\int_{t_f}^{t_0}{\\dot{\\Psi}_{cons}dt}= \\int_{t_f}^{t_0}{\\dot{\\Psi}^{sys}_{acc}dt}" title="" />
 
+<p>Use the table below to ask yourself critical questions about the problem to identify what type of accounting equation is needed.</p>  
+<DisplayTable id="id" class_="mb-3">
+<thead>
+<tr>
+<th class="table-shaded" noborder> </th>
+<th class="table-shaded">Algebraic</th>
+<th class="table-shaded">Differential</th>
+<th class="table-shaded">Integral</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Can it incorporate discrete transfer of extensive property?</td>
+<td>Yes</td>
+<td>No</td>
+<td>Sometimes</td>
+</tr>
+<tr>
+<td>Does it involve a time interval?</td>
+<td>Finite</td>
+<td>Ongoing</td>
+<td>Finite</td>
+</tr>
+<tr>
+<td>Can it incorporate rates?</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>What is the dimension of the equation?</td>
+<td>Extensive Property</td>
+<td>Extensive Property/time</td>
+<td>Extensive Property</td>
+</tr>
+</tbody>
+</DisplayTable>
+
 <Example title="Identifying When to Use Types of Accounting Equations" solution="True">
 <div class="d-flex flex-column">
 
@@ -223,47 +261,8 @@ rather than a process occurring over a time period.
 
 </div>
 </Example>
-
-<p>Use the table below to ask yourself critical questions about the problem to identify what type of accounting equation is needed.</p>  
-<DisplayTable id="id" class_="mb-3">
-<thead>
-<tr>
-<th class="table-shaded" noborder> </th>
-<th class="table-shaded">Algebraic</th>
-<th class="table-shaded">Differential</th>
-<th class="table-shaded">Integral</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Can it incorporate discrete transfer of extensive property?</td>
-<td>Yes</td>
-<td>No</td>
-<td>Sometimes</td>
-</tr>
-<tr>
-<td>Does it involve a time interval?</td>
-<td>Finite</td>
-<td>Ongoing</td>
-<td>Finite</td>
-</tr>
-<tr>
-<td>Can it incorporate rates?</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>What is the dimension of the equation?</td>
-<td>Extensive Property</td>
-<td>Extensive Property/time</td>
-<td>Extensive Property</td>
-</tr>
-</tbody>
-</DisplayTable>
-
-
 </SubSubSection>
+
 <SubSection title="Accumulation" id="Accumulation">
 <p>The Accumulation term describes the net gain or loss of an extensive property contained within a system. When an Accumulation term is present, the amount of extensive property in the system has changed during the time period of interest. 
 There are two terms that describe the characteristics of the Accumulation term of a system: steady-state or dynamic. Steady-state is a condition in which the values of all the variables in a system (e.g., temperature, pressure, volume, and flow rate) do not change with time, although minor fluctuations about constant mean values may occur. 
