@@ -19,11 +19,7 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types of Mass'>Types of Mass</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation Statements'>Conservation Statements</a><ul class='list-group list-group-flush py-0'>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Algebraic Equation'>Algebraic Equation</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Differential Equation'>Differential Equation</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Integral Equations'>Integral Equations</a></li></ul>
-</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation Statements'>Conservation Statements</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#OpenNonreacting'>Open, Nonreacting, and Steady State Systems</a><ul class='list-group list-group-flush py-0'>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#MultipleInletsOutlets'>Multiple Inlets and Outlets</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Multicomponent Mixtures'>Multicomponent Mixtures</a></li>
@@ -63,21 +59,11 @@ For example, a single molecule of <InlineEquation equation="O_2" /> has an atomi
 
 <SubSection title="Conservation Statements" id="Conservation Statements">
 <p>The following equations can be written for any unit of mass including total mass, species mass, element mass, total moles, element moles, species moles. If the system is a non-compressible gas, then volume can be used.</p>
+
+<b><DisplayEquation title="Algebraic Mass Accounting Equation." background="True"  equation="\\sum{m_{in}}-\\sum{m_{out}}+\\sum{m_{gen}}-\\sum{m_{cons}} = m_{acc}"/></b>
+<b><DisplayEquation title="Differential Mass Accounting Equation." background="True"  equation="\\sum{\\dot{m}_{in}}-\\sum{\\dot{m}_{out}}+\\sum{\\dot{m}_{gen}}-\\sum{\\dot{m}_{cons}} = \\frac{m^{sys}}{dt}"/></b>
+<b><DisplayEquation title="Integral Mass Accounting Equation." background="True"  equation="\\int^{t_f}_{t_0}\\sum{\\dot{m}_{in}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{out}}+\\int^{t_f}_{t_0}\\sum{\\dot{m}_{gen}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{cons}} =\\int^{t_f}_{t_0} \\frac{m^{sys}}{dt}"/></b>
 </SubSection>
-<SubSubSection title="Algebraic Equation" id="Algebraic Equation">
-
-<DisplayEquation title="Algebraic Mass Accounting Equation." background="True"  equation="\\sum{m_{in}}-\\sum{m_{out}}+\\sum{m_{gen}}-\\sum{m_{cons}} = m_{acc}" title="" />
-
-</SubSubSection>
-<SubSubSection title="Differential Equation" id="Differential Equation">
-
-<DisplayEquation title="Differential Mass Accounting Equation." background="True"  equation="\\sum{\\dot{m}_{in}}-\\sum{\\dot{m}_{out}}+\\sum{\\dot{m}_{gen}}-\\sum{\\dot{m}_{cons}} = \\frac{m^{sys}}{dt}" title="" />
-
-</SubSubSection>
-
-<SubSubSection title="Integral Equations" id="Integral Equations">
-<DisplayEquation title="Integral Mass Accounting Equation." background="True"  equation="\\int^{t_f}_{t_0}\\sum{\\dot{m}_{in}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{out}}+\\int^{t_f}_{t_0}\\sum{\\dot{m}_{gen}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{cons}} =\\int^{t_f}_{t_0} \\frac{m^{sys}}{dt}" title="" />
-</SubSubSection>
 
 <SubSection title="Open, Nonreacting, and Steady State Systems" id="OpenNonreacting">
 </SubSection>
