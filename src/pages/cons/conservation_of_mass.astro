@@ -18,7 +18,7 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 <Layout title="Conservation of Mass">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Overview: Types of Mass'>Overview: Types of Mass</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types of Mass'>Types of Mass</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation Statements'>Conservation Statements</a><ul class='list-group list-group-flush py-0'>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Algebraic Equation'>Algebraic Equation</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Differential Equation'>Differential Equation</a></li>
@@ -34,13 +34,17 @@ import DisplayEquation from "../../components/DisplayEquation.astro"
 </div>
 
 
-<SubSection title="Overview: Types of Mass" id="Overview: Types of Mass">
+<SubSection title="Types of Mass" id="Types of Mass">
 
 <p>The amount of a material is expressed through the base physical variables of mass or mole. Mass <InlineEquation equation="m" /> is a quantity of matter that has weight in a gravitational field. Common units are grams <InlineEquation equation="g" />, kilograms <InlineEquation equation="kg" />, pounds <InlineEquation equation="lb_m" />, etc.</p>
-    <CalloutCard title="Attention!">
+
+<CalloutContainer slot="cards">
+<CalloutCard title="Attention!">
         <u class="m-0"></u>
 <p>Note the <InlineEquation equation="m" /> on <InlineEquation equation="lb_m" />! This indicates that it represents the mass in Imperial Units within Earth's gravitational field. Later on, we will define <InlineEquation equation="lb_f" /> a force unit in Imperial Units, so it's important to include the <InlineEquation equation="m" /> when using this unit.</p>
-    </CalloutCard>
+</CalloutCard>
+</CalloutContainer>
+
 <p>The mole <InlineEquation equation="n" /> is a base unit describing an amount of any substance containing Avogadro’s number of molecules of that substance.  One mole contains <InlineEquation equation="6.02x10^{23}" /> atoms of that element and has a mass, in grams, equal to the atomic weight of the element. 
 For example, a single molecule of <InlineEquation equation="O_2" /> has an atomic weight of 32.0 amu; in one mole of <InlineEquation equation="O_2" />, there are <InlineEquation equation="6.02x10^{23}" />molecules of <InlineEquation equation="O_2" />, having a mass of 32.0 g collectively.</p>
 <p>The molecular weight, <InlineEquation equation="M" />, of component A is related to the mass, <InlineEquation equation="m" />, and the number of moles, <InlineEquation equation="n" />, of that component:</p>
