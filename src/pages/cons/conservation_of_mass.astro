@@ -60,15 +60,22 @@ For example, a single molecule of <InlineEquation equation="O_2" /> has an atomi
 <SubSection title="Conservation Statements" id="Conservation Statements">
 <p>The following equations can be written for any unit of mass including total mass, species mass, element mass, total moles, element moles, species moles. If the system is a non-compressible gas, then volume can be used.</p>
 
-<b><DisplayEquation title="Algebraic Mass Accounting Equation." background="True"  equation="\\sum{m_{in}}-\\sum{m_{out}}+\\sum{m_{gen}}-\\sum{m_{cons}} = m_{acc}"/></b>
-<b><DisplayEquation title="Differential Mass Accounting Equation." background="True"  equation="\\sum{\\dot{m}_{in}}-\\sum{\\dot{m}_{out}}+\\sum{\\dot{m}_{gen}}-\\sum{\\dot{m}_{cons}} = \\frac{m^{sys}}{dt}"/></b>
-<b><DisplayEquation title="Integral Mass Accounting Equation." background="True"  equation="\\int^{t_f}_{t_0}\\sum{\\dot{m}_{in}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{out}}+\\int^{t_f}_{t_0}\\sum{\\dot{m}_{gen}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{cons}} =\\int^{t_f}_{t_0} \\frac{m^{sys}}{dt}"/></b>
+<b><DisplayEquation title="Algebraic Mass Accounting Equation" background="True"  equation="\\sum{m_{in}}-\\sum{m_{out}}+\\sum{m_{gen}}-\\sum{m_{cons}} = m_{acc}"/></b>
+<b><DisplayEquation title="Differential Mass Accounting Equation" background="True"  equation="\\sum{\\dot{m}_{in}}-\\sum{\\dot{m}_{out}}+\\sum{\\dot{m}_{gen}}-\\sum{\\dot{m}_{cons}} = \\frac{m^{sys}}{dt}"/></b>
+<b><DisplayEquation title="Integral Mass Accounting Equation" background="True"  equation="\\int^{t_f}_{t_0}\\sum{\\dot{m}_{in}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{out}}+\\int^{t_f}_{t_0}\\sum{\\dot{m}_{gen}}-\\int^{t_f}_{t_0}\\sum{\\dot{m}_{cons}} =\\int^{t_f}_{t_0} \\frac{m^{sys}}{dt}"/></b>
 </SubSection>
 
 <SubSection title="Open, Nonreacting, and Steady State Systems" id="OpenNonreacting">
 </SubSection>
 
 <SubSubSection title="Multiple Inlets and Outlets" id="MultipleInletsOutlets">
+<p> Biological systems often have multiple inlets and outlets (e.g. heart illustrated above). In an open, nonreacting, steady state system with multiple inlets and outlets, the total mass flow rate of every inlet must equal the total mass flow rate of every outlet:</p>
+<DisplayEquation equation="\\sum_{i}^{n} \\dot{m_{i}} - \\sum_{j}^{n} \\dot{m_{j}} = 0"/>
+<p>where</p>
+<Itemize>
+<Item> <InlineEquation equation="\\dot{m_{i}}"> = Mass flow rate of inlet stream i </Item>
+<Item> <InlineEquation equation="\\dot{m_{j}}" = Mass flow rate of outlet stream j </Item>
+</Itemize>
 </SubSubSection>
 
 <SubSubSection title="Multicomponent Mixtures" id="Multicomponent Mixtures">
