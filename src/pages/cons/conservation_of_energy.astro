@@ -46,7 +46,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <SubSubSection title="Potential Energy" id="Potential Energy">
 <p>Potential energy (<InlineEquation equation="E_P" />) is the stored energy an object or system has based on its position or arrangement. To consider the change in potential energy of a mass between two different positions or heights:</p> 
-
 <DisplayEquation title="" background="True" equation="\\Delta E_P = E_{P,2}-E_{P,1}= \\dot{m}g (h_2-h_1)" />
 <p>Where</p>
 <Itemize>
@@ -55,11 +54,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Item> g = gravitational acceleration constant [<InlineEquation equation="\\frac{kg}{s^2}" />] </Item>
 <Item> h = height relative to a reference plane [<InlineEquation equation="m" />] </Item>
 </Itemize>
-
 </SubSubSection>
+
 <SubSubSection title="Kinetic Energy" id="Kinetic Energy">
 <p>Kinetic energy (<InlineEquation equation="E_K" />) is the energy an object has because it is in motion. The <InlineEquation equation="E_K" /> of a system is calculated using the mass of a body and the velocity at which it is moving. Since kinetic energy is a scalar quantity, a direction for the velocity does not need to be denoted. Kinetic energy can also move into and out of a system with a flow rate described by <InlineEquation equation="\\dot{m}" />. The rate of kinetic energy is calculated as:</p>
-
 <DisplayEquation title="" background="True" equation="E_K = \\frac{1}{2}\\dot{m}v^2" />
 <p>Where</p>
 <Itemize>
@@ -67,20 +65,26 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <Item> <InlineEquation equation="\\dot{m}" /> = mass flow rate [<InlineEquation equation="\\frac{kg}{s}" />] </Item>
 <Item> v = velocity of object [<InlineEquation equation="\\frac{m}{s}" />] </Item>
 </Itemize>
-
 </SubSubSection>
+
 <SubSubSection title="Heat and Work" id="Heat_and_Work">
 <p>Heat and work only exist when a system, and hence a system boundary, has been established. Heat and work can only be understood as the movement of energy through direct and non-direct contacts—not bulk material transfer.</p>
-<Image src="/cons/heatandwork.png">
+<Image src="/cons/heatandwork.png" width="5">
   <span class="fw-bold">System Diagram</span>: A schematic representation of a system illustrating its key features, including system boundaries and depictions of energy flow.
 </Image>
-<p><b>Heat (Q)</b> is energy that flows due to a difference in temperature. The direction of heat flow is always from a region of higher temperature to one of lower temperature. It is impossible for any system to transfer energy by heat from a cooler to a hotter body.</p>
+
+<p><b>Heat (<InlineEquation equation="\\dot{Q}" />)</b> is energy that flows due to a difference in temperature. The direction of heat flow is always from a region of higher temperature to one of lower temperature. It is impossible for any system to transfer energy by heat from a cooler to a hotter body.</p>
 <Image src="/cons/heatflow.png" width="3">
   <span class="fw-bold">Heat Flow</span>: Schematic illustration of the Clausius Statement of the Second Law.
 </Image>
-<p>Heat, <InlineEquation equation="\\dot{Q}" />, is calculated based on the effective surface area over which the transfer occurs, A, and the temperature gradient: where h is the heat transfer coefficient (per unit area), <InlineEquation equation="T^{surr}" />, is the temperature of the surroundings, and <InlineEquation equation="T^{sys}" /> is the temperature of the system.</p>
-
-<DisplayEquation title="Heat Transfer Across a Surface" background="True" equation="\\dot{Q}=hA(T^{surr}-T^{sys})" title="" />
+<p>Heat transfer is calculated by:  based on the effective surface area over which the transfer occurs, A, and the temperature gradient: where h is the heat transfer coefficient (per unit area), <InlineEquation equation="T^{surr}" />, is the temperature of the surroundings, and <InlineEquation equation="T^{sys}" /> is the temperature of the system.</p>
+<DisplayEquation title="" background="True" equation="\\dot{Q}=hA(T^{surr}-T^{sys})" />
+<p>Where</p>
+<Itemize>
+<Item><InlineEquation equation="\\dot{Q}" /> = heat flow</Item>
+<Item>h = heat transfer coefficient </Item>
+<Item>A = effective surface area over which the transfer occurs</Item>
+<Item>T = temperature</Item>
 
 <p>Work (W) is energy that flows across a system boundary as a result of a driving force other than temperature. Work is a path-dependent function because it requires knowledge on how the final state of the system was reached from the initial state. Work done by a fluid flowing into the system can be calcualted using the pressure, P, area, A, and velocity, v.</p>
 
