@@ -15,7 +15,6 @@ import InlineEquation from "../../components/InlineEquation.astro"
 import DisplayEquation from "../../components/DisplayEquation.astro"
 import PrairieDrawCanvas from "../../components/PrairieDrawCanvas.astro"
 import Center from "../../components/Center.astro"
-import CalloutContainer from "../../components/CalloutContainer.astro"
 import CalloutCard from "../../components/CalloutCard.astro"
 import Warning from "../../components/Warning.astro"
 import Example from "../../components/Example.astro"
@@ -35,8 +34,8 @@ import Col from "../../components/Col.astro"
   <Section title="Fourier Transform and Frequency Domain" id="Fourier Transform and Frequency Domain"/>
   
   <SubSection title="Introduction" id="Introduction">
-    <p>Though the time domain is an intuitive and useful way to study signals, it can be difficult to discern all characteristics of complicated signals this way. When signals increase in complexity and contain sine waves of multiple frequencies, amplitudes, and offsets, don’t seem to repeat regularly, and last for a long time, traditional time domain methods to analyse signals fail to fully describe the signal.</p>
-    <p>This is when performing a fourier transform becomes very valuable. It allows us to break down complicated signals into its component sine waves with defined amplitudes and frequencies. This page will discuss the mathematics behind performing a fourier transform manually, and the information that we can get out of it.</p>
+    <p>Though the time domain is an intuitive and useful way to study signals, it can be difficult to discern all characteristics of complicated signals this way. When signals increase in complexity and contain sine waves of multiple frequencies, amplitudes, and offsets, don’t seem to repeat regularly, and last for a long time, traditional time domain methods to analyze signals fail to fully describe the signal.</p>
+    <p>This is when performing a Fourier transform becomes very valuable. It allows us to break down complicated signals into their component sine waves with defined amplitudes and frequencies. This page will discuss the mathematics behind performing a Fourier transform manually, and the information that we can get out of it.</p>
   </SubSection>
   
   <SubSection title="Fourier Transform" id="Fourier Transform">
@@ -48,7 +47,7 @@ import Col from "../../components/Col.astro"
         <Row>
           <Col values="12 md-4">
             <p>
-              Find the magnitude and frequency plot, the first four Coefficients, and <InlineEquation title="" equation="C_0"/>, <InlineEquation title="" equation="C_m"/>, and <InlineEquation title="" equation="0_m"/> for these coefficients.
+              Find the magnitude and frequency plot, the first four coefficients, and <InlineEquation title="" equation="C_0"/>, <InlineEquation title="" equation="C_m"/>, and <InlineEquation title="" equation="0_m"/> for these coefficients.
             </p>
           </Col>
           <Col values="12 md-8"> 
@@ -70,11 +69,11 @@ import Col from "../../components/Col.astro"
   
   <SubSection title="Frequency Domain" id="Frequency Domain">
     <p>Fourier transforms allow us to plot signals in the frequency domain. Frequency domain or Fourier plots show us the amplitude of every frequency of sinusoid that makes up a signal. </p>
-    <Image src="/signals/timeexample.png"><scan class="fw-bold">Figure 1.</scan> A time domain plot. The blue signal has a frequency of 0.2Hz and an amplitude of 5V. The red signal has a frequency of 0.5Hz and an amplitude of 1.5V. The green signal has a frequency of 1Hz and an aplitude of 2V.</Image>
-    <Image src="/signals/combinedtimeexample.png"><scan class="fw-bold">Figure 2.</scan> The linear combination of the three signals above. Many biological signals overlap like this.</Image>
+    <Image src="/signals/timeexample.png"><span class="fw-bold">Figure 1.</span> A time domain plot. The blue signal has a frequency of 0.2Hz and an amplitude of 5V. The red signal has a frequency of 0.5Hz and an amplitude of 1.5V. The green signal has a frequency of 1Hz and an amplitude of 2V.</Image>
+    <Image src="/signals/combinedtimeexample.png"><span class="fw-bold">Figure 2.</span> The linear combination of the three signals above. Many biological signals overlap like this.</Image>
     <p>As multiple frequencies overlap within one signal, it becomes more and more difficult to discern the individual characteristics of each frequency. The signal looks messy now and its attributes cannot be easily determined by eye.</p>
-    <Image src="/signals/frequencyexample.png"><scan class="fw-bold">Figure 3.</scan> A frequency domain plot of the time domain signal above, the x-axis now represents frequency in Hz.</Image>
-    <p>Notice that the three peaks still describe the amplitude and frequency of the signals in Figure 1. There are only three straight lines because no noise and no other frequencies are present. No matter how messy a signal looks in the time domain, the frequency domain plot easily decomposes the signal into its component parts. When noise and non-discrete frequencies are added, frequency domain plots can look messy too, but more tools exist to interpret frequency plots such as power spectrum, bode plots, and <a href="https://bioe.refpages.org/signals/filters/">filters</a>.</p>
-    <p>By breaking down a signal this way, we are able to identify frequencies with large amplitudes that influence the signal a lot, or components of noise that might be filtered out. This domain is the most useful for assessing what the impact of transformations from systems may have, and allow us to simplify math when we do <a href="https://bioe.refpages.org/signals/convolution/">convolutions</a>.</p>
+    <Image src="/signals/frequencyexample.png"><span class="fw-bold">Figure 3.</span> A frequency domain plot of the time domain signal above, the x-axis now represents frequency in Hz.</Image>
+    <p>Notice that the three peaks still describe the amplitude and frequency of the signals in Figure 1. There are only three straight lines because no noise and no other frequencies are present. No matter how messy a signal looks in the time domain, the frequency domain plot easily decomposes the signal into its component parts. When noise and non-discrete frequencies are added, frequency domain plots can look messy too, but more tools exist to interpret frequency plots such as power spectrum, Bode plots, and <a href="/signals/filters">filters</a>.</p>
+    <p>By breaking down a signal this way, we are able to identify frequencies with large amplitudes that influence the signal a lot, or components of noise that might be filtered out. This domain is the most useful for assessing what the impact of transformations from systems may have, and allows us to simplify math when we do <a href="/signals/convolution">convolutions</a>.</p>
 </SubSection>
 </Layout>

@@ -30,51 +30,40 @@ import Col from "../../components/Col.astro"
     </div>
     
     <Section title="Transfer Functions"/>
-    <SubSection title="What are Transfer Functions?" id="What">
+    <SubSection title="What Are Transfer Functions?" id="What">
         <p>Transfer functions are the Laplace domain representation of signal modification in a system where the input = u(t) or U(s), output = y(t) or Y(s), and the transfer function = h(t) or H(s) where "s" indicates a function in the Laplace domain. The transfer function H(s) is defined as the ratio between the output and the input:</p>
         <DisplayEquation equation="H(s) = \\frac{Y(s)}{U(s)}"/>
         <p>Essentially this means that the output is equal to the input multiplied by the transfer function:</p>
         <DisplayEquation equation="Y(s) = H(s)*U(s)"/>
-        <p>For example, if you have a simple block diagram like this:</p>
-        <!--<Example title="Find the Laplace equation of the output from this system." solution="True">
+        <Example id="tf_simple" title="Finding System Output from a Block Diagram" solution="True">
             <div>
-                <Image src="/signals/simpleTFex.png">Caption Placeholder</Image>
+                <Image src="/signals/simpleTFex.png"><span class="fw-bold">Figure 1.</span> A single-block system with an input and transfer function.</Image>
             </div>
             <div slot="solution">
-                <p> The output is <InlineEquation equation="\\frac{4}{(s+3)(s+4)}"/></p>
-            </div>
-        </Example>-->
-        <p>Pretty easy since it's just a multiplication of two fractions.</p>
-        <p>Another consideration of transfer functions is that they can be combined and simplified, like the components of an electrical circuit. Transfer functions in series are multipled together while those that are in "parallel" are added or subtracted.</p>
-        <!-- <Example title="Find the single block representation of this system." solution="True">
-            <div>
-                <Image src="/signals/combinedTFex.png"></Image>
-            </div>
-            <div slot="solution">
-                <p>The simplified transfer function is <InlineEquation equation="H(s) = G_{1}G_{2}(G_{4}G_{5}-G_{3})"/></p>
-            </div>
-        </Example> -->
-        <p>This is a test: Reformat of copied example block</p>
-        <Example title="Consider the chemical reaction for photosynthesis." solution="True">
-            <div class="d-flex flex-row">
-                <Row>
-                    <Col values="12 md-4">
-                        <p>
-                        Given the chemical formula for photosynthesis, balance the moles of glucose and oxygen. Does this system follow the rules of conservation?
-                        </p>
-                    </Col>
-                    <Col values="12 md-8">
-                        <DisplayEquation equation="6 CO_2 + 6 H_2O + light \\rightarrow C_6H_{12}O_6 + 6O_2" title="" />
-                    </Col>
-                </Row>
-            </div>
-            <div slot="solution">
-                <p>
-                The product chemical species—1 mole of glucose and 6 moles of oxygen—are counted as generated. The total amount of glucose and oxygen gas has increased in the system and the universe. 
-                On the other hand, the reactant chemical species—6 moles of carbon dioxide and 6 moles of water—have been consumed simultaneously, because the total amount of carbon dioxide and water has decreased in the system and in the universe.
-                </p>
+                <p>Using the relationship <InlineEquation equation="Y(s) = H(s) \cdot U(s)"/>:</p>
+                <DisplayEquation equation="Y(s) = \\frac{4}{(s+3)(s+4)}"/>
             </div>
         </Example>
-        <p>Now try an example problem that combines these aspects and use the table of common Laplace transforms (<a href="https://bioe.refpages.org/signals/laplace/#Facts">here</a>) to convert your answer to the time domain.</p>
+
+        <p class="mt-3">Another important consideration of transfer functions is that they can be combined and simplified, similar to the components of an electrical circuit. Transfer functions in series are multiplied together, while branches that are in parallel are added or subtracted depending on the summing junction signs.</p>
+
+        <Example id="tf_combined" title="Single Block Representation of Combined Systems" solution="True">
+            <div>
+                <Image src="/signals/combinedTFex.png"><span class="fw-bold">Figure 2.</span> Multiple transfer function blocks arranged in series and parallel branches.</Image>
+            </div>
+            <div slot="solution">
+                <p>Combining the series cascade and parallel difference gives the overall transfer function:</p>
+                <DisplayEquation equation="H(s) = G_{1}G_{2}(G_{4}G_{5}-G_{3})"/>
+            </div>
+        </Example>
+
+        <p class="mt-3">Try practicing with systems that combine these aspects, and use the table of common Laplace transforms (<a href="/signals/laplace#Facts">here</a>) to convert your frequency-domain outputs back to the time domain.</p>
     </SubSection>
+
+    <div class="d-flex justify-content-end mt-4 pt-3 border-top">
+        <a href="/signals/stability?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+            <span>Next: System Stability</span>
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
 </Layout>

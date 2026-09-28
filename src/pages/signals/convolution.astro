@@ -44,56 +44,82 @@ import DisplayTable from "../../components/DisplayTable.astro"
     </SubSection>
     
     <SubSection title="What Is Convolution?" id="What">
-      <p>This is a way to take two functions and apply them to each other. You would take the first function and map the second function to it. Simplistically, you are taking both functions and doing a fancy multiplication and sum of them. Here is the total equation. 
-    Sometimes, we do not know the output of a system, y(t), but we do know the input, x(t) and the impulse response, h(t). The convolution function allows us to use x(t) and h(t) to solve for y(t). 
-    y(t) = x(t) * h(t)
-    Important: the asterisk (*) is the symbol used for convolution. It does not mean multiplication.
-    This also can be expressed analytically with an integral.</p>
-      <DisplayEquation equation="y(\\tau)=\\int_{-\\infty}^\\infty x(\\tau)h(t-\\tau)d\\tau"/>
+      <p>This is a way to take two functions and apply them to each other. You take the first function and map the second function to it. Simplistically, you are taking both functions and performing a sliding multiplication and sum of them.</p>
+      <p>Often, we do not know the output of a system, <InlineEquation equation="y(t)"/>, but we do know the input, <InlineEquation equation="x(t)"/>, and the impulse response, <InlineEquation equation="h(t)"/>. The convolution operation allows us to use <InlineEquation equation="x(t)"/> and <InlineEquation equation="h(t)"/> to solve for <InlineEquation equation="y(t)"/>:</p>
+      <DisplayEquation equation="y(t) = x(t) * h(t)"/>
+      <p><span class="fw-bold">Important:</span> The asterisk (<InlineEquation equation="*"/>) is the symbol used for convolution; it does not mean standard multiplication. In continuous time, this is expressed analytically with an integral:</p>
+      <DisplayEquation equation="y(t)=\\int_{-\\infty}^\\infty x(\\tau)h(t-\\tau)d\\tau"/>
     </SubSection>
     
     <SubSection title="Properties of Convolution" id="Properties">
-        <p>The communicative property:</p><DisplayEquation equation="x_{1}(t)*x_{2}(t) = x_{2}(t)*x_{1}(t)"/>
+        <p>The commutative property:</p><DisplayEquation equation="x_{1}(t)*x_{2}(t) = x_{2}(t)*x_{1}(t)"/>
         <p>The distributive property:</p> <DisplayEquation equation="x_{1}(t)*[x_{2}(t)+x_{3}(t)] = x_{1}(t)*x_{2}(t)+x_{1}(t)*x_{3}(t)"/>
         <p>The associative property:</p><DisplayEquation equation="x_{1}(t)*[x_{2}(t)*x_{3}(t)] = [x_{1}(t)*x_{2}(t)]*x_{3}(t)"/>
     </SubSection>
     
     <SubSection title="Example Problem" id="Example">
-      <p>Returning to the doctor administering doses scenario from earlier, we will determine the total number of doses per day and per week.</p>
-        <p>First, flip the number of patients per day.</p>
-        <p>New number of patients per day = [5 4 3 2 1]</p>
-        <p>The doses remain the same. You have to give each patient 3 doses on the first day, 2 doses on the second day, and 1 dose on the third day.</p>
-        <p>Doses = [3 2 1]</p>
-        <p>Line the two arrays so that the doses start at the end of the number of patients per day as shown below.</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3 2 1]</p>
-        <p>[5 4 3 2 1]</p>
-        <p>Multiply the numbers that are aligned vertically, so 3*1=3. There are 3 doses administered on the first day.</p>
-        <p>Slide the doses array one number to the left as shown below.</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3 2 1]</p>
-        <p>[5 4 3 2 1]</p>
-        <p>Again, multiply the numbers that are aligned vertically, so (3*2)+(2*1)=8. There are 8 doses administered on the second day. We repeat this process until the end of the doses (1) is aligned with the beginning of the number of patients per day array (5).</p>
-        <p>Slide the doses array one number to the left as shown below.</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3 2 1]</p>
-        <p>[5 4 3 2 1]</p>
-        <p>Multiply the numbers that are aligned vertically, so (3*3)+(2*2)+(1*1)=14. There are 14 doses administered on the third day.</p>
-        <p>Slide the doses array one number to the left as shown below.</p>
-        <p>&nbsp;&nbsp;&nbsp;[3 2 1]</p>
-        <p>[5 4 3 2 1]</p>
-        <p>Multiply the numbers that are aligned vertically, so (3*4)+(2*3)+(1*2)=20. There are 20 doses administered on the fourth day.</p>
-        <p>Slide the doses array one number to the left as shown below.</p>
-        <p>[3 2 1]</p>
-        <p>[5 4 3 2 1]</p>
-        <p>Multiply the numbers that are aligned vertically, so (3*5)+(2*4)+(1*3)=26. There are 26 doses administered on the fifth day.</p>
-        <p>Slide the doses array one number to the left as shown below.</p>
-        <p>[3 2 1]</p>
-        <p>&nbsp;&nbsp;&nbsp;[5 4 3 2 1]</p>
-        <p>Multiply the numbers that are aligned vertically, so (3*0)+(2*5)+(1*4)=14. There are 14 doses administered on the sixth day.</p>
-        <p>Slide the doses array one number to the left as shown below.</p>
-        <p>[3 2 1]</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5 4 3 2 1]</p>
-        <p>Multiply the numbers that are aligned vertically, so (3*0)+(2*0)+(1*5)=5. There are 5 doses administered on the seventh day.</p>
-        <p>We can make a new array of total doses.</p>
-        <p>New total doses = [3 8 14 20 26 14 5]</p>
-        <p>Summing this array, the total doses administered over the week is 90.</p>
+      <Example id="doctor_doses" title="Medication Dosing via Discrete Convolution" solution="True">
+        <div>
+          <p>Returning to the scenario described earlier:</p>
+          <ul>
+            <li><strong>Patients per day:</strong> Increases from 1 on Monday to 5 on Friday &rarr; <InlineEquation equation="x = [1, 2, 3, 4, 5]"/></li>
+            <li><strong>Dosing regimen:</strong> 3 doses on day 1, 2 doses on day 2, 1 dose on day 3 &rarr; <InlineEquation equation="h = [3, 2, 1]"/></li>
+          </ul>
+          <p>Determine the total number of doses administered each day and over the entire week using discrete convolution (<InlineEquation equation="y = x * h"/>).</p>
+        </div>
+
+        <div slot="solution">
+          <p><strong>Step 1:</strong> Reverse ("flip") the patient array: <InlineEquation equation="[5, 4, 3, 2, 1]"/>.</p>
+          <p><strong>Step 2:</strong> Slide the dosing array <InlineEquation equation="[3, 2, 1]"/> across the reversed patient array from right to left, multiplying aligned pairs and summing the products for each day:</p>
+
+          <div class="my-3">
+            <p class="mb-1"><strong>Day 1:</strong></p>
+<pre class="bg-light p-2 rounded text-dark font-monospace mb-2">
+            [3 2 1]
+[5 4 3 2 1]
+Product: 3 &times; 1 = 3 doses</pre>
+
+            <p class="mb-1"><strong>Day 2:</strong></p>
+<pre class="bg-light p-2 rounded text-dark font-monospace mb-2">
+         [3 2 1]
+[5 4 3 2 1]
+Product: (3 &times; 2) + (2 &times; 1) = 8 doses</pre>
+
+            <p class="mb-1"><strong>Day 3:</strong></p>
+<pre class="bg-light p-2 rounded text-dark font-monospace mb-2">
+      [3 2 1]
+[5 4 3 2 1]
+Product: (3 &times; 3) + (2 &times; 2) + (1 &times; 1) = 14 doses</pre>
+
+            <p class="mb-1"><strong>Day 4:</strong></p>
+<pre class="bg-light p-2 rounded text-dark font-monospace mb-2">
+   [3 2 1]
+[5 4 3 2 1]
+Product: (3 &times; 4) + (2 &times; 3) + (1 &times; 2) = 20 doses</pre>
+
+            <p class="mb-1"><strong>Day 5:</strong></p>
+<pre class="bg-light p-2 rounded text-dark font-monospace mb-2">
+[3 2 1]
+[5 4 3 2 1]
+Product: (3 &times; 5) + (2 &times; 4) + (1 &times; 3) = 26 doses</pre>
+
+            <p class="mb-1"><strong>Day 6:</strong></p>
+<pre class="bg-light p-2 rounded text-dark font-monospace mb-2">
+[3 2 1]
+   [5 4 3 2 1]
+Product: (3 &times; 0) + (2 &times; 5) + (1 &times; 4) = 14 doses</pre>
+
+            <p class="mb-1"><strong>Day 7:</strong></p>
+<pre class="bg-light p-2 rounded text-dark font-monospace mb-2">
+[3 2 1]
+      [5 4 3 2 1]
+Product: (3 &times; 0) + (2 &times; 0) + (1 &times; 5) = 5 doses</pre>
+          </div>
+
+          <p><strong>Resulting Doses Array:</strong></p>
+          <DisplayEquation equation="y = [3, 8, 14, 20, 26, 14, 5]"/>
+          <p>Summing all daily doses, the total number of doses administered across all 7 days is <strong>90 doses</strong>.</p>
+        </div>
+      </Example>
     </SubSection>
 </Layout>
