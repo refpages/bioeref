@@ -120,15 +120,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p>Reference state(s) are arbitrarily chosen phase, temperature, and pressure which we know a specific enthalpy of. Specific enthalpy does not depend on path, so a series of hypothetical steps from one condition to the next that are convenient for calculation can be chosen.</p> 
 
 <DisplayEquation title="Approximating Enthalpy" background="True" equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out}) "/>
-
-<Example title="Enthalpy Derivation" solution="True" id="Derivation">
-
+<Example title="Enthalpy Derivation" solution="False" id="Derivation">
     <div class="d-flex flex-column">
-        <Image src="/cons/Enthalpy.png" />
-    </div>
-
-    <div slot="solution">
-        <DisplayEquation equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P,in}+\\hat{E}_{K,in}+\\hat{H}_{in}) - \\sum_{out} \\dot{m}_{out} (\\hat{E}_{P,out}+\\hat{E}_{K,out}+\\hat{H}_{out})" />
+        <Image src="/cons/Enthalpy.png">
+        </Image>
+ <DisplayEquation equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P,in}+\\hat{E}_{K,in}+\\hat{H}_{in}) - \\sum_{out} \\dot{m}_{out} (\\hat{E}_{P,out}+\\hat{E}_{K,out}+\\hat{H}_{out})" />
 
         <DisplayEquation equation="\\dot{m}_{in} (\\hat{H}_{ref} - \\hat{H}_{in}) + \\dot{m}_{out} (\\hat{H}_{out} - \\hat{H}_{ref})" />
 
@@ -140,8 +136,8 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
         <DisplayEquation equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out})" />
     </div>
-
 </Example>
+
 </SubSection>
 
 <SubSection title="Systems with Chemical Reactions" id="Systems with Chemical Reactions">
