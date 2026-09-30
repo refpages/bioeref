@@ -111,13 +111,31 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <p>Note the hat on the energy terms. The hat means that they are intensive because they haven't been multiplied by mass yet. For example, <InlineEquation equation="\\hat{E}_{P, in}=gh_{in}" /> and <InlineEquation equation="\\hat{E}_{K, in} = \\frac{1}{2}v^2" />.</p>
     </CalloutCard>
 </SubSection>
+
 <SubSection title="Enthalpy" id="Enthalpy">
 <p>Enthalpy is a state function (an intrinsic property) where only the current state matters it is the total sum of heat energy in a system. The path to convert a system from one state to another can be accomplished using the most convenient path.</p>
 <Image src="/cons/enthalpy_state.png">
   <span class="fw-bold">Enthalpy state changes</span>: Schematic illustration enthalpy changes.
 </Image>
 <p>Reference state(s) are arbitrarily chosen phase, temperature, and pressure which we know a specific enthalpy of. Specific enthalpy does not depend on path, so a series of hypothetical steps from one condition to the next that are convenient for calculation can be chosen.</p> 
+
+<DisplayEquation title="Approximating Enthalpy" background="True" equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out}) "/>
+<Example title="Enthalpy Derivation" solution="True" id="Derivation">
+<div class="d-flex flex-column">
+<Image src="/cons/Enthalpy.png">
+</Image>
+</div>
+<div slot="solution">
+<DisplayEquation equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P, in}+\\hat{E}_{K, in}+\\hat{H}_{in}) - \\sum_{in} \\dot{m}_{out} (\\hat{E}_{P, out}+\\hat{E}_{K, out}+\\hat{H}_{out}) "/>
+<DisplayEquation equation="\\dot{m}_{in} (\\hat{H}_{ref} - \\hat{H}_{in}) + \\dot{m}_{out} (\\hat{H}_{out} - \\hat{H}_{ref}) "/>
+<DisplayEquation equation="\\dot{m}_{in} (- \\hat{H}_{in}) + \\dot{m}_{out} (\\hat{H}_{out}) "/>
+<p> If <InlineEquation equation="m_{in} = m_{out}" ...</p>
+<DisplayEquation equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out}) "/>
+</div>
+</Example>
+
 </SubSection>
+
 <SubSection title="Systems with Chemical Reactions" id="Systems with Chemical Reactions">
 <p>During chemical reactions, rearranging the bonds between the atoms of reactants and products causes changes in the internal energy of a system. In reactions, energy is required to break the existing bonds of the reactants, and energy is released during bond formation to create the products. The difference between the final and initial energy states of the products and reactants is known as the heat of reaction.</p>
 <p>The heat of reaction or enthalpy of reaction <InlineEquation equation="\\Delta \\hat{H}_r" /> is the enthalpy change for a single process reacting at a specific constant temperature and pressure in which stoichiometric quantities of reactants react completely to form products. The standard heat of reaction <InlineEquation equation="\\Delta \\hat{H}^{\\circ}_r" /> is designated with a degree symbol and is the heat of reaction when both the reactants and products are at a specified reference temperature and pressure, usually 25°C and 1 atm. The heat of reaction is always given on a per-mole basis.</p>
