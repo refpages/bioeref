@@ -121,10 +121,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 <DisplayEquation title="Approximating Enthalpy" background="True" equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out}) "/>
 
-<Example title="Determining governing equation modifications and boundary conditions." solution="True">
+<Example title="Enthalpy Derivation." solution="True" id="Derivation">
 <div class="d-flex flex-row">
 <Image src="/cons/Enthalpy.png">
         </Image>
+<p>Derivation based off of this image</p>
 </div>
 <div slot="solution">
  <DisplayEquation equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P,in}+\\hat{E}_{K,in}+\\hat{H}_{in}) - \\sum_{out} \\dot{m}_{out} (\\hat{E}_{P,out}+\\hat{E}_{K,out}+\\hat{H}_{out})" />
