@@ -30,14 +30,16 @@ const { id, title, solution="True" } = Astro.props;
                 <slot />
             </div>
              
-           { solution == 'True' && 
+           { solution == 'True' && (
+            <>
             <button class="btn btn-secondary fw-bold" id={'solution_btn_'+id}>Solution +</button>
             <div id={'solution_menu_'+id}>
                 <div class="background-green p-2">
                     <slot name="solution"/>
                 </div>
             </div> 
-            }
+            </>
+            )}
         </div>
     </div>
 </div>
