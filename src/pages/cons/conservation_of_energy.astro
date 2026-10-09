@@ -82,10 +82,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="\\dot{Q}=hA(T^{surr}-T^{sys})" />
 <p>Where</p>
 <Itemize>
-<Item><InlineEquation equation="\\dot{Q}" /> = heat flow</Item>
-<Item>h = heat transfer coefficient </Item>
-<Item>A = effective surface area over which the transfer occurs</Item>
-<Item>T = temperature</Item>
+<Item><InlineEquation equation="\\dot{Q}" /> = heat flow [<InlineEquation equation="W"/>]</Item>
+<Item>h = heat transfer coefficient  [<InlineEquation equation="\\frac{W}{m^2 K}"/>]</Item>
+<Item>A = effective surface area over which the transfer occurs  [<InlineEquation equation="m^2"/>]</Item>
+<Item>T = temperature  [<InlineEquation equation="K"/>]</Item>
 </Itemize>
 
 <p><b>Work (W)</b> is energy that flows across a system boundary as a result of a driving force other than temperature. Work is a path-dependent function because it requires knowledge on how the final state of the system was reached from the initial state. Work can be done by a fluid flowing into the system. Work can also be added to a system by mixing, stirring, etc. This nonflow work is referred to as shaft work. <InlineEquation equation="\\dot{W}_{shaft} > 0" /> becasue it is added to the system.</p>
@@ -96,10 +96,10 @@ import DisplayTable from "../../components/DisplayTable.astro"
 <DisplayEquation title="" background="True" equation="\\dot{W}=PAv" />
 <p>Where</p>
 <Itemize>
-<Item><InlineEquation equation="\\dot{W}" /> = work</Item>
-<Item>P = pressure </Item>
-<Item>A = area</Item>
-<Item>v = velocity of fluid</Item>
+<Item><InlineEquation equation="\\dot{W}" /> = work [<InlineEquation equation="W"/>]</Item>
+<Item>P = pressure [<InlineEquation equation="Pa"/>]</Item>
+<Item>A = area [<InlineEquation equation="m^2"/>]</Item>
+<Item>v = velocity of fluid [<InlineEquation equation="\\frac{m}{s}"/>]</Item>
 </Itemize>
 
 </SubSubSection>
