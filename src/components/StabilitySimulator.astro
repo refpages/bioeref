@@ -1,0 +1,161 @@
+---
+// StabilitySimulator.astro
+// Interactive Pole-Zero s-Plane and Time-Domain Impulse Response Simulator
+---
+
+<div class="stability-simulator-container card shadow-sm border my-4">
+    <div class="card-header bg-white border-bottom py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div>
+            <h4 class="mb-1 text-primary fw-bold d-flex align-items-center gap-2">
+                <i class="bi bi-cpu-fill text-warning"></i>
+                Interactive System Stability Lab
+            </h4>
+            <p class="text-muted small mb-0">
+                Drag the pole <span class="badge bg-danger">✕</span> on the complex <em>s</em>-plane or use the sliders to watch how pole locations control real-time stability and impulse response.
+            </p>
+        </div>
+        <div id="stability-status-badge" class="badge fs-6 px-3 py-2 rounded-pill bg-success-subtle text-success border border-success">
+            <i class="bi bi-check-circle-fill me-1"></i> STABLE (LHP)
+        </div>
+    </div>
+
+    <div class="card-body p-3 p-md-4">
+        <div class="mb-3">
+            <span class="fw-semibold text-secondary small d-block mb-2">Preset Scenarios:</span>
+            <div class="d-flex flex-wrap gap-2" role="group" aria-label="Stability Presets">
+                <button type="button" class="btn btn-sm btn-outline-success preset-btn active" data-sigma="-1.2" data-omega="2.5" data-type="conjugate">
+                    <i class="bi bi-arrow-down-right-circle me-1"></i> Stable: Damped Oscillation
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-success preset-btn" data-sigma="-2.0" data-omega="0.0" data-type="real">
+                    <i class="bi bi-graph-down-arrow me-1"></i> Stable: Pure Exponential Decay
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-warning text-dark preset-btn" data-sigma="0.0" data-omega="3.0" data-type="conjugate">
+                    <i class="bi bi-activity me-1"></i> Marginally Stable: Sustained Oscillation
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger preset-btn" data-sigma="0.8" data-omega="2.5" data-type="conjugate">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i> Unstable: Growing Flutter
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger preset-btn" data-sigma="1.2" data-omega="0.0" data-type="real">
+                    <i class="bi bi-graph-up-arrow me-1"></i> Unstable: Exploding Exponential
+                </button>
+            </div>
+        </div>
+
+        <div class="row g-3 g-lg-4">
+            <div class="col-lg-6">
+                <div class="plot-card p-3 rounded-3 border bg-light h-100 d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="fw-bold text-dark small">
+                            <i class="bi bi-crosshair me-1 text-primary"></i> Complex <em>s</em>-Plane
+                        </span>
+                        <span class="badge bg-secondary-subtle text-secondary small font-monospace" id="pole-coords-readout">
+                            s = -1.20 &plusmn; 2.50j
+                        </span>
+                    </div>
+
+                    <div class="canvas-wrapper flex-grow-1 position-relative">
+                        <canvas id="splane-canvas" class="w-100 rounded border bg-white" style="min-height: 290px; height: 290px; touch-action: none; cursor: grab;"></canvas>
+                        <div class="plane-legend-overlay position-absolute bottom-0 start-0 m-2 px-2 py-1 bg-white bg-opacity-75 rounded small border" style="pointer-events: none; font-size: 0.72rem;">
+                            <span class="text-success fw-bold">◀ Stable (LHP)</span> |
+                            <span class="text-warning fw-bold">j&omega;</span> |
+                            <span class="text-danger fw-bold">Unstable ▶</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 pt-2 border-top">
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label for="sigma-slider" class="form-label small fw-semibold mb-0">Real Part (&sigma;):</label>
+                                <span class="badge bg-white text-dark border font-monospace px-2 py-0" id="sigma-val">-1.20</span>
+                            </div>
+                            <input type="range" class="form-range" id="sigma-slider" min="-3.5" max="3.5" step="0.05" value="-1.2">
+                        </div>
+
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label for="omega-slider" class="form-label small fw-semibold mb-0">Imag Part (&omega;):</label>
+                                <span class="badge bg-white text-dark border font-monospace px-2 py-0" id="omega-val">2.50</span>
+                            </div>
+                            <input type="range" class="form-range" id="omega-slider" min="0" max="4.5" step="0.05" value="2.5">
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center pt-1">
+                            <div class="form-check form-switch mb-0">
+                                <input class="form-check-input" type="checkbox" role="switch" id="pair-switch" checked>
+                                <label class="form-check-label small" for="pair-switch">Conjugate Pair (&plusmn;<em>j</em>&omega;)</label>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-link text-decoration-none py-0" id="reset-origin-btn">
+                                <i class="bi bi-arrow-counterclockwise"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="plot-card p-3 rounded-3 border bg-light h-100 d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="fw-bold text-dark small">
+                            <i class="bi bi-graph-up me-1 text-primary"></i> Impulse Response <em>y</em>(<em>t</em>)
+                        </span>
+                        <span class="badge bg-secondary-subtle text-secondary small font-monospace" id="equation-readout">
+                            y(t) = e<sup>-1.2t</sup> &middot; cos(2.5t)
+                        </span>
+                    </div>
+
+                    <div class="canvas-wrapper flex-grow-1 position-relative">
+                        <canvas id="response-canvas" class="w-100 rounded border bg-white" style="min-height: 290px; height: 290px;"></canvas>
+                    </div>
+
+                    <div class="mt-3 p-3 bg-white rounded border flex-grow-0" id="analysis-box">
+                        <div class="d-flex align-items-start gap-2">
+                            <i class="bi bi-info-circle-fill text-primary fs-5 mt-0" id="analysis-icon"></i>
+                            <div>
+                                <strong id="analysis-title" class="d-block text-dark small">Damped Oscillatory Response</strong>
+                                <p id="analysis-desc" class="small text-muted mb-0" style="font-size: 0.82rem; line-height: 1.4;">
+                                    The pole has a negative real part (&sigma; &lt; 0), causing exponential decay (e<sup>&sigma;t</sup> &rarr; 0). Nonzero imaginary components (&omega; &ne; 0) create oscillations. The system reaches steady state and is <strong>Stable</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .stability-simulator-container {
+        border-radius: 12px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .plot-card {
+        background-color: #f8f9fa;
+        border-color: #e9ecef !important;
+        transition: box-shadow 0.2s ease;
+    }
+
+    .preset-btn {
+        transition: all 0.2s ease;
+        font-size: 0.82rem;
+    }
+
+    .preset-btn.active {
+        box-shadow: 0 0 0 2px rgba(19, 41, 75, 0.3);
+        font-weight: 600;
+    }
+
+    .form-range::-webkit-slider-thumb {
+        background: #ff5f05;
+    }
+    .form-range::-moz-range-thumb {
+        background: #ff5f05;
+    }
+    .form-range:focus::-webkit-slider-thumb {
+        box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(255, 95, 5, 0.25);
+    }
+</style>
+
+<script is:inline src="/static/js/stability_simulator.js"></script>

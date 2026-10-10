@@ -76,4 +76,15 @@ import Col from "../../components/Col.astro"
     <p>Notice that the three peaks still describe the amplitude and frequency of the signals in Figure 1. There are only three straight lines because no noise and no other frequencies are present. No matter how messy a signal looks in the time domain, the frequency domain plot easily decomposes the signal into its component parts. When noise and non-discrete frequencies are added, frequency domain plots can look messy too, but more tools exist to interpret frequency plots such as power spectrum, Bode plots, and <a href="/signals/filters">filters</a>.</p>
     <p>By breaking down a signal this way, we are able to identify frequencies with large amplitudes that influence the signal a lot, or components of noise that might be filtered out. This domain is the most useful for assessing what the impact of transformations from systems may have, and allows us to simplify math when we do <a href="/signals/convolution">convolutions</a>.</p>
 </SubSection>
+
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+        <a href="/signals/time_domain?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+            <i class="bi bi-arrow-left"></i>
+            <span>Previous: Time Domain</span>
+        </a>
+        <a href="/signals/filters?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+            <span>Next: Filtering</span>
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
 </Layout>

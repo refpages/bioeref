@@ -4,15 +4,17 @@ import Footer from '../components/Footer.astro';
 import SidebarContainer from '../components/SidebarContainer.astro';
 import Searchbar from '../components/Searchbar.astro';
 import NavtreeContainer from '../components/NavtreeContainer.astro';
+import CourseNavContainer from '../components/CourseNavContainer.astro';
 
 const { title } = Astro.props;
 
 const current_path = Astro.url;
-const split_ = current_path.pathname.split('/')
-const cleaned = split_.slice(1, split_.length)
+const pathSegments = current_path.pathname.split('/').filter(Boolean);
 
-const course = cleaned[0]
-const pagename = cleaned[1]
+const course = pathSegments[0];
+const pagename = pathSegments[1];
+
+const hasCourseNav = Boolean(course && pagename);
 ---
 
 <!doctype html>
@@ -72,14 +74,16 @@ const pagename = cleaned[1]
 	</head>
 	<body style="width: 100%;">
 		<Navbar />
-		<div class="container-xxl content mb-5">
+		<div class={`container-xxl content ${hasCourseNav ? 'has-course-nav' : ''} mb-5`}>
 			<NavtreeContainer page={pagename} course={course}>
 				<slot name="navtree" />
 			</NavtreeContainer>
-			<div class="w-100 pt-0 pt-xl-3"> 
+			<div class="w-100 pt-0 pt-xl-3 px-xl-2"> 
 				<slot />
 			</div>
-			
+			{hasCourseNav && (
+				<CourseNavContainer page={pagename} course={course} />
+			)}
 		</div>
 		<Footer />
 	</body>
@@ -187,6 +191,10 @@ const pagename = cleaned[1]
 	@media (min-width: 1200px){
 		.content{
 			grid-template-columns: 1fr 5fr;
+		}
+		.content.has-course-nav{
+			grid-template-columns: 210px minmax(0, 1fr) 230px;
+			column-gap: 1.5rem;
 		}
 	}
 

@@ -1,0 +1,228 @@
+---
+const { course, page } = Astro.props;
+
+const currentUrl = Astro.url;
+const topicParam = currentUrl.searchParams.get("topic");
+
+const courseMap = {
+    signals: {
+        title: "Signals and Systems",
+        pages: [
+            { id: "introduction_to_signals_and_systems", title: "Introduction to Signals and Systems", href: "/signals/introduction_to_signals_and_systems?origin=coursemenu" },
+            { id: "time_domain", title: "Time Domain", href: "/signals/time_domain?origin=coursemenu" },
+            { id: "fourier_transform", title: "Fourier Transform and Frequency Domain", href: "/signals/fourier_transform?origin=coursemenu" },
+            { id: "filters", title: "Filtering", href: "/signals/filters?origin=coursemenu" },
+            { id: "snr", title: "Signal to Noise Ratio (SNR)", href: "/signals/underconstruction_page?origin=coursemenu&topic=snr" },
+            { id: "convolution", title: "Convolution", href: "/signals/convolution?origin=coursemenu" },
+            { id: "laplace", title: "Laplace Transform", href: "/signals/laplace?origin=coursemenu" },
+            { id: "transfer_functions", title: "Transfer Functions and System Response", href: "/signals/transfer_functions?origin=coursemenu" },
+            { id: "stability", title: "System Stability", href: "/signals/stability?origin=coursemenu" },
+            { id: "eigenvalues", title: "Eigenvalues", href: "/signals/eigenvalues?origin=coursemenu" },
+            { id: "circuits", title: "Circuits", href: "/signals/circuits?origin=coursemenu" },
+        ]
+    },
+    soro: {
+        title: "Soft Robotics",
+        pages: [
+            { id: "history", title: "Background", href: "/soro/history?origin=coursemenu" },
+            { id: "mech_prop", title: "Mechanical Properties", href: "/soro/mech_prop?origin=coursemenu" },
+            { id: "mech_prog", title: "Mechanical Programming", href: "/soro/mech_prog?origin=coursemenu" },
+            { id: "actuators", title: "Actuators", href: "/soro/actuators?origin=coursemenu" },
+            { id: "sensors", title: "Sensors", href: "/soro/sensors?origin=coursemenu" },
+            { id: "controls", title: "Control Systems", href: "/soro/controls?origin=coursemenu" },
+            { id: "applications", title: "Applications", href: "/soro/applications?origin=coursemenu" },
+            { id: "design_process", title: "Design Processes", href: "/soro/design_process?origin=coursemenu" },
+            { id: "prototyping", title: "Prototyping", href: "/soro/prototyping?origin=coursemenu" },
+        ]
+    },
+    cons: {
+        title: "Conservation",
+        pages: [
+            { id: "introduction_to_variables_and_properties", title: "Variables and Properties", href: "/cons/introduction_to_variables_and_properties?origin=coursemenu" },
+            { id: "conservation_and_accounting_laws", title: "Conservation Laws", href: "/cons/conservation_and_accounting_laws?origin=coursemenu" },
+            { id: "problem_solving_approaches", title: "Problem Solving Approaches", href: "/cons/problem_solving_approaches?origin=coursemenu" },
+            { id: "conservation_of_mass", title: "Conservation of Mass", href: "/cons/conservation_of_mass?origin=coursemenu" },
+            { id: "conservation_of_energy", title: "Conservation of Energy", href: "/cons/conservation_of_energy?origin=coursemenu" },
+            { id: "conservation_of_momentum", title: "Conservation of Momentum", href: "/cons/conservation_of_momentum?origin=coursemenu" },
+        ]
+    },
+    transfer: {
+        title: "Heat & Mass Transfer",
+        pages: [
+            { id: "foundations_of_Transport_&_Flow", title: "Foundations of Transport", href: "/transfer/foundations_of_Transport_&_Flow?origin=coursemenu" },
+            { id: "Modes_of_heat_&_mass_transfer_overview", title: "Modes Overview", href: "/transfer/Modes_of_heat_&_mass_transfer_overview?origin=coursemenu" },
+            { id: "Transport_in_a_biomedical_context", title: "Biomedical Context", href: "/transfer/Transport_in_a_biomedical_context?origin=coursemenu" },
+            { id: "Reference_Library_&_Resources", title: "Reference Library", href: "/transfer/Reference_Library_&_Resources?origin=coursemenu" },
+            { id: "Thermodynamic_laws", title: "Thermodynamic Laws", href: "/transfer/Thermodynamic_laws?origin=coursemenu" },
+            { id: "Governing_equation_&_boundary_conditions", title: "Governing Equation & BCs", href: "/transfer/Governing_equation_&_boundary_conditions?origin=coursemenu" },
+            { id: "Conduction", title: "Conduction", href: "/transfer/Conduction?origin=coursemenu" },
+            { id: "Convection", title: "Convection (Heat)", href: "/transfer/Convection?origin=coursemenu" },
+            { id: "Radiation", title: "Radiation", href: "/transfer/Radiation?origin=coursemenu" },
+            { id: "Change_of_phase", title: "Change of Phase", href: "/transfer/Change_of_phase?origin=coursemenu" },
+            { id: "Mass_Equilibrium_and_Kinetics", title: "Mass Equilibrium", href: "/transfer/Mass_Equilibrium_and_Kinetics?origin=coursemenu" },
+            { id: "mass_ge_bc", title: "Governing Equation (Mass)", href: "/transfer/mass_ge_bc?origin=coursemenu" },
+            { id: "Diffusion", title: "Diffusion", href: "/transfer/Diffusion?origin=coursemenu" },
+            { id: "Porous_Media_Flow", title: "Porous Media Flow", href: "/transfer/Porous_Media_Flow?origin=coursemenu" },
+            { id: "Convective_Mass_Transfer", title: "Convection (Mass)", href: "/transfer/Convective_Mass_Transfer?origin=coursemenu" },
+            { id: "Momentum_&_Biofluids", title: "Momentum & Biofluids", href: "/transfer/Momentum_&_Biofluids?origin=coursemenu" },
+        ]
+    },
+    design: {
+        title: "Bioengineering Design",
+        pages: [
+            { id: "biodesign", title: "Biodesign", href: "/design/biodesign?origin=coursemenu" },
+            { id: "hcd", title: "Human Centered Design", href: "/design/hcd?origin=coursemenu" },
+            { id: "icorps", title: "I-Corps", href: "/design/icorps?origin=coursemenu" },
+            { id: "team", title: "Team Resources", href: "/design/team?origin=coursemenu" },
+            { id: "client", title: "Client Interactions", href: "/design/client?origin=coursemenu" },
+            { id: "interviews", title: "Stakeholder Interviews", href: "/design/interviews?origin=coursemenu" },
+            { id: "research", title: "Background Research", href: "/design/research?origin=coursemenu" },
+            { id: "documentation", title: "Documentation", href: "/design/documentation?origin=coursemenu" },
+            { id: "cad", title: "CAD", href: "/design/cad?origin=coursemenu" },
+            { id: "printing", title: "3D Printing", href: "/design/printing?origin=coursemenu" },
+            { id: "laser", title: "Laser Cutting", href: "/design/laser?origin=coursemenu" },
+            { id: "soldering", title: "Soldering", href: "/design/soldering?origin=coursemenu" },
+        ]
+    }
+};
+
+const currentCourseData = course ? courseMap[course] : null;
+---
+
+<style>
+    #course_nav_container {
+        align-self: start;
+        position: sticky;
+        top: 53px;
+        overflow-y: auto;
+        max-height: 100vh;
+    }
+
+    @media (max-width: 1200px) {
+        #course_nav_container {
+            position: relative;
+            top: 0px;
+        }
+    }
+
+    .course-page-link {
+        font-size: 0.95rem;
+        display: block;
+        padding: 4px 8px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        color: var(--text-main, #333);
+    }
+
+    .course-page-link:hover {
+        background-color: rgba(255, 95, 5, 0.08);
+        color: var(--illini-orange, #ff5f05) !important;
+        transform: translateX(4px);
+    }
+
+    .active-course-page {
+        font-weight: 700 !important;
+        color: var(--illini-orange, #ff5f05) !important;
+        background-color: rgba(255, 95, 5, 0.12) !important;
+        border-left: 3px solid var(--illini-orange, #ff5f05);
+        padding-left: 8px !important;
+        box-shadow: 0 1px 3px rgba(255, 95, 5, 0.15);
+    }
+</style>
+
+{currentCourseData && (
+    <div id="course_nav_container" class="d-flex flex-column">
+        <div class="d-flex flex-column align-items-left mb-0 mb-xl-4 pe-2 ps-2 mt-3 w-100">
+            <p class="mb-2 fw-bold h5 text-decoration-underline themed-text">Table of Contents:</p>
+            <button
+                class="btn d-inline-flex align-items-center rounded sidebar-btn p-0 mb-1"
+                data-bs-toggle="collapse"
+                data-bs-target="#coursenav-collapse"
+                aria-expanded="true"
+            >
+                <p class="text-start themed-text my-0 h5 fw-bold text-wrap">{currentCourseData.title}</p>
+            </button>
+            <div id="coursenav-collapse" class="collapse">
+                <ol class="list-group list-group-flush py-0 mb-3" style="list-style-type: none; padding-left: 0;">
+                    {currentCourseData.pages.map((cp, idx) => {
+                        let isActive = false;
+                        if (cp.id === page) {
+                            isActive = true;
+                        } else if (page === "circuits" && cp.id === "circuits") {
+                            isActive = true;
+                        } else if (page === "underconstruction_page" && (cp.id === "snr" || cp.id === "underconstruction_page")) {
+                            isActive = true;
+                        }
+
+                        return (
+                            <li class="list-group-item py-1 px-1 border-0 bg-transparent">
+                                <a
+                                    class={`course-page-link ${isActive ? 'active-course-page' : 'subsection'}`}
+                                    href={cp.href}
+                                    title={cp.title}
+                                >
+                                    {idx + 1}. {cp.title}
+                                </a>
+                            </li>
+                        );
+                    })}
+                </ol>
+            </div>
+        </div>
+    </div>
+)}
+
+<script is:inline>
+    let untouchedRight = true;
+
+    if ($('body').width() >= 1200) {
+        const rightCollapse = document.querySelector('#coursenav-collapse');
+        if (rightCollapse) rightCollapse.classList.add('show');
+    } else {
+        const rightCollapse = document.querySelector('#coursenav-collapse');
+        if (rightCollapse) rightCollapse.classList.remove('show');
+    }
+
+    $(window).on('resize', function () {
+        if (untouchedRight) {
+            const rightCollapse = document.querySelector('#coursenav-collapse');
+            if (rightCollapse) {
+                if ($('body').width() >= 1200) {
+                    rightCollapse.classList.add('show');
+                } else {
+                    rightCollapse.classList.remove('show');
+                }
+            }
+        }
+    });
+
+    $('#coursenav-collapse').prev('button').on('click', function () {
+        untouchedRight = false;
+    });
+
+    // Client-side URL matching to guarantee the current page lights up accurately
+    try {
+        const currentPath = window.location.pathname.replace(/\/$/, '');
+        const links = document.querySelectorAll('.course-page-link');
+        let matched = false;
+        links.forEach(link => {
+            const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
+            if (linkPath === currentPath) {
+                matched = true;
+            }
+        });
+        if (matched) {
+            links.forEach(link => {
+                const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
+                if (linkPath === currentPath) {
+                    link.classList.add('active-course-page');
+                } else {
+                    link.classList.remove('active-course-page');
+                }
+            });
+        }
+    } catch (e) {
+        // Fallback to server-rendered classes
+    }
+</script>

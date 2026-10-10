@@ -20,11 +20,47 @@ import "../../public/static/css/course_home_pages.css"
               border: 6px solid #C84113;
        }
        .border-blue {
-
                border: 6px solid #13294B;
-
        }
 
+       .course-topics-list {
+              padding-left: 1.5rem;
+       }
+       .course-topics-list li {
+              margin-bottom: 0.5rem;
+              font-size: 1.18rem;
+              transition: transform 0.2s ease;
+       }
+       .course-topics-list li a {
+              color: var(--bs-body-color, #212529);
+              text-decoration: none;
+              padding: 4px 10px;
+              border-radius: 6px;
+              display: inline-block;
+              transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+       }
+       .course-topics-list li:hover {
+              transform: translateX(6px);
+       }
+       .course-topics-list li::marker {
+              font-weight: 700;
+              color: var(--bs-body-color, #212529);
+              transition: color 0.2s ease;
+       }
+       .course-topics-list li:hover::marker {
+              color: var(--illini-orange, #ff5f05);
+       }
+       .course-topics-list li:hover a {
+              color: var(--illini-orange, #ff5f05) !important;
+              background-color: rgba(255, 95, 5, 0.08);
+              font-weight: 600;
+              box-shadow: 0 2px 6px rgba(255, 95, 5, 0.15);
+       }
+       .course-topics-list li a:focus-visible {
+              outline: 2px solid var(--illini-orange, #ff5f05);
+              outline-offset: 3px;
+              color: var(--illini-orange, #ff5f05) !important;
+       }
 </style>
 
 <Layout title="Signals and Systems">
@@ -33,18 +69,18 @@ import "../../public/static/css/course_home_pages.css"
     <strong>Signals and Systems</strong>
   </h1>
   <section class="mt-sm-4 mt-2">
-    <ol>
+    <ol class="course-topics-list">
      <li><a href="/signals/introduction_to_signals_and_systems?origin=coursemenu">Introduction to Signals and Systems</a></li>
      <li><a href="/signals/time_domain?origin=coursemenu">Time Domain</a></li>
      <li><a href="/signals/fourier_transform?origin=coursemenu">Fourier Transform and Frequency Domain</a></li> 
      <li><a href="/signals/filters?origin=coursemenu">Filtering</a></li> 
-     <li><a href="/signals/underconstruction_page?origin=coursemenu">Signal to Noise Ratio (SNR)</a></li>
+     <li><a href="/signals/underconstruction_page?origin=coursemenu&topic=snr">Signal to Noise Ratio (SNR)</a></li>
      <li><a href="/signals/convolution?origin=coursemenu">Convolution</a></li> 
      <li><a href="/signals/laplace?origin=coursemenu">Laplace Transform</a></li>
      <li><a href="/signals/transfer_functions?origin=coursemenu">Transfer Functions and System Response</a></li>
      <li><a href="/signals/stability?origin=coursemenu">System Stability</a></li>
      <li><a href="/signals/eigenvalues?origin=coursemenu">Eigenvalues</a></li>
-     <li><a href="/signals/underconstruction_page?origin=coursemenu">Circuits</a></li>
+     <li><a href="/signals/circuits?origin=coursemenu">Circuits</a></li>
     </ol>
   </section>
 

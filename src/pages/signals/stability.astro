@@ -19,12 +19,14 @@ import CalloutCard from "../../components/CalloutCard.astro"
 import Warning from "../../components/Warning.astro"
 import Example from "../../components/Example.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
+import StabilitySimulator from "../../components/StabilitySimulator.astro"
 ---
 <Layout title="Stability">
     <div slot="navtree">
         <ul class="list-group list-group-flush py-0">
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#What'>What Is Stability?</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Graphs'>Determining System Stability From Graphs</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive Stability Simulator</a></li>
         </ul>
     </div>
     
@@ -45,4 +47,20 @@ import DisplayTable from "../../components/DisplayTable.astro"
         <p>If any of the poles lie on the imaginary axis (with a real value of 0) and are not repeated, the system is marginally stable, as shown in the graph below:</p>
         <Image src="/signals/margin.png" alt="a graph with real x-axis and imaginary y-axis. There are two Xes along the imaginary y-axis, indicating two poles along the y-axis."/>
     </SubSection>
+
+    <SubSection title="Interactive Stability Simulator" id="Simulator">
+        <p>Experiment with the interactive MATLAB-style simulator below. Drag the pole <span class="badge bg-danger">✕</span> across the complex plane, adjust the sliders, or select presets to observe how the real component <InlineEquation equation="\\sigma"/> and imaginary component <InlineEquation equation="\\omega"/> directly dictate the stability and time-domain response <InlineEquation equation="y(t)"/>.</p>
+        <StabilitySimulator />
+    </SubSection>
+
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+        <a href="/signals/transfer_functions?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+            <i class="bi bi-arrow-left"></i>
+            <span>Previous: Transfer Functions</span>
+        </a>
+        <a href="/signals/eigenvalues?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+            <span>Next: Eigenvalues</span>
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
 </Layout>

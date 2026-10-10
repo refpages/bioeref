@@ -1,4 +1,3 @@
-
 ---
 import Layout from "../../layouts/Layout.astro" 
 import Image from "../../components/Image.astro" 
@@ -31,4 +30,15 @@ import DisplayTable from "../../components/DisplayTable.astro"
     <Section title="Eigenvalues"/>
     <SubSection title="Placeholder" id="Placeholder">
     </SubSection>
+
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+        <a href="/signals/stability?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+            <i class="bi bi-arrow-left"></i>
+            <span>Previous: System Stability</span>
+        </a>
+        <a href="/signals/circuits?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+            <span>Next: Circuits</span>
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
 </Layout>

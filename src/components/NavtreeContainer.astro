@@ -4,9 +4,12 @@
     let name;
 
     if (page != undefined){
-        const underscore_to_spaces = page.replaceAll("_", " ").toLowerCase()
-
-        name = underscore_to_spaces.charAt(0).toUpperCase() + underscore_to_spaces.slice(1)
+        if (page === "underconstruction_page") {
+            name = "Signal to Noise Ratio (SNR)";
+        } else {
+            const underscore_to_spaces = page.replaceAll("_", " ").toLowerCase();
+            name = underscore_to_spaces.charAt(0).toUpperCase() + underscore_to_spaces.slice(1);
+        }
     } 
 
     console.log(page, course)
