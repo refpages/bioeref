@@ -20,73 +20,10 @@ const courseMap = {
             { id: "eigenvalues", title: "Eigenvalues", href: "/signals/eigenvalues?origin=coursemenu" },
             { id: "circuits", title: "Circuits", href: "/signals/circuits?origin=coursemenu" },
         ]
-    },
-    soro: {
-        title: "Soft Robotics",
-        pages: [
-            { id: "history", title: "Background", href: "/soro/history?origin=coursemenu" },
-            { id: "mech_prop", title: "Mechanical Properties", href: "/soro/mech_prop?origin=coursemenu" },
-            { id: "mech_prog", title: "Mechanical Programming", href: "/soro/mech_prog?origin=coursemenu" },
-            { id: "actuators", title: "Actuators", href: "/soro/actuators?origin=coursemenu" },
-            { id: "sensors", title: "Sensors", href: "/soro/sensors?origin=coursemenu" },
-            { id: "controls", title: "Control Systems", href: "/soro/controls?origin=coursemenu" },
-            { id: "applications", title: "Applications", href: "/soro/applications?origin=coursemenu" },
-            { id: "design_process", title: "Design Processes", href: "/soro/design_process?origin=coursemenu" },
-            { id: "prototyping", title: "Prototyping", href: "/soro/prototyping?origin=coursemenu" },
-        ]
-    },
-    cons: {
-        title: "Conservation",
-        pages: [
-            { id: "introduction_to_variables_and_properties", title: "Variables and Properties", href: "/cons/introduction_to_variables_and_properties?origin=coursemenu" },
-            { id: "conservation_and_accounting_laws", title: "Conservation Laws", href: "/cons/conservation_and_accounting_laws?origin=coursemenu" },
-            { id: "problem_solving_approaches", title: "Problem Solving Approaches", href: "/cons/problem_solving_approaches?origin=coursemenu" },
-            { id: "conservation_of_mass", title: "Conservation of Mass", href: "/cons/conservation_of_mass?origin=coursemenu" },
-            { id: "conservation_of_energy", title: "Conservation of Energy", href: "/cons/conservation_of_energy?origin=coursemenu" },
-            { id: "conservation_of_momentum", title: "Conservation of Momentum", href: "/cons/conservation_of_momentum?origin=coursemenu" },
-        ]
-    },
-    transfer: {
-        title: "Heat & Mass Transfer",
-        pages: [
-            { id: "foundations_of_Transport_&_Flow", title: "Foundations of Transport", href: "/transfer/foundations_of_Transport_&_Flow?origin=coursemenu" },
-            { id: "Modes_of_heat_&_mass_transfer_overview", title: "Modes Overview", href: "/transfer/Modes_of_heat_&_mass_transfer_overview?origin=coursemenu" },
-            { id: "Transport_in_a_biomedical_context", title: "Biomedical Context", href: "/transfer/Transport_in_a_biomedical_context?origin=coursemenu" },
-            { id: "Reference_Library_&_Resources", title: "Reference Library", href: "/transfer/Reference_Library_&_Resources?origin=coursemenu" },
-            { id: "Thermodynamic_laws", title: "Thermodynamic Laws", href: "/transfer/Thermodynamic_laws?origin=coursemenu" },
-            { id: "Governing_equation_&_boundary_conditions", title: "Governing Equation & BCs", href: "/transfer/Governing_equation_&_boundary_conditions?origin=coursemenu" },
-            { id: "Conduction", title: "Conduction", href: "/transfer/Conduction?origin=coursemenu" },
-            { id: "Convection", title: "Convection (Heat)", href: "/transfer/Convection?origin=coursemenu" },
-            { id: "Radiation", title: "Radiation", href: "/transfer/Radiation?origin=coursemenu" },
-            { id: "Change_of_phase", title: "Change of Phase", href: "/transfer/Change_of_phase?origin=coursemenu" },
-            { id: "Mass_Equilibrium_and_Kinetics", title: "Mass Equilibrium", href: "/transfer/Mass_Equilibrium_and_Kinetics?origin=coursemenu" },
-            { id: "mass_ge_bc", title: "Governing Equation (Mass)", href: "/transfer/mass_ge_bc?origin=coursemenu" },
-            { id: "Diffusion", title: "Diffusion", href: "/transfer/Diffusion?origin=coursemenu" },
-            { id: "Porous_Media_Flow", title: "Porous Media Flow", href: "/transfer/Porous_Media_Flow?origin=coursemenu" },
-            { id: "Convective_Mass_Transfer", title: "Convection (Mass)", href: "/transfer/Convective_Mass_Transfer?origin=coursemenu" },
-            { id: "Momentum_&_Biofluids", title: "Momentum & Biofluids", href: "/transfer/Momentum_&_Biofluids?origin=coursemenu" },
-        ]
-    },
-    design: {
-        title: "Bioengineering Design",
-        pages: [
-            { id: "biodesign", title: "Biodesign", href: "/design/biodesign?origin=coursemenu" },
-            { id: "hcd", title: "Human Centered Design", href: "/design/hcd?origin=coursemenu" },
-            { id: "icorps", title: "I-Corps", href: "/design/icorps?origin=coursemenu" },
-            { id: "team", title: "Team Resources", href: "/design/team?origin=coursemenu" },
-            { id: "client", title: "Client Interactions", href: "/design/client?origin=coursemenu" },
-            { id: "interviews", title: "Stakeholder Interviews", href: "/design/interviews?origin=coursemenu" },
-            { id: "research", title: "Background Research", href: "/design/research?origin=coursemenu" },
-            { id: "documentation", title: "Documentation", href: "/design/documentation?origin=coursemenu" },
-            { id: "cad", title: "CAD", href: "/design/cad?origin=coursemenu" },
-            { id: "printing", title: "3D Printing", href: "/design/printing?origin=coursemenu" },
-            { id: "laser", title: "Laser Cutting", href: "/design/laser?origin=coursemenu" },
-            { id: "soldering", title: "Soldering", href: "/design/soldering?origin=coursemenu" },
-        ]
     }
 };
 
-const currentCourseData = course ? courseMap[course] : null;
+const currentCourseData = course === 'signals' ? courseMap.signals : null;
 ---
 
 <style>

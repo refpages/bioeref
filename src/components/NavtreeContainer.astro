@@ -4,7 +4,7 @@
     let name;
 
     if (page != undefined){
-        if (page === "underconstruction_page") {
+        if (course === "signals" && page === "underconstruction_page") {
             name = "Signal to Noise Ratio (SNR)";
         } else {
             const underscore_to_spaces = page.replaceAll("_", " ").toLowerCase();

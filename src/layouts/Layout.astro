@@ -14,7 +14,7 @@ const pathSegments = current_path.pathname.split('/').filter(Boolean);
 const course = pathSegments[0];
 const pagename = pathSegments[1];
 
-const hasCourseNav = Boolean(course && pagename);
+const hasCourseNav = Boolean(course === 'signals' && pagename);
 ---
 
 <!doctype html>
@@ -78,7 +78,7 @@ const hasCourseNav = Boolean(course && pagename);
 			<NavtreeContainer page={pagename} course={course}>
 				<slot name="navtree" />
 			</NavtreeContainer>
-			<div class="w-100 pt-0 pt-xl-3 px-xl-2"> 
+			<div class={`w-100 pt-0 pt-xl-3 ${hasCourseNav ? 'px-xl-2' : ''}`}> 
 				<slot />
 			</div>
 			{hasCourseNav && (
