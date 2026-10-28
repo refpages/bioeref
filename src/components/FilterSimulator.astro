@@ -1,0 +1,159 @@
+---
+// FilterSimulator.astro
+// Simple, Intuitive Interactive Filter Lab
+---
+
+<div class="filter-simulator-container card shadow-sm border my-3">
+    <!-- Header -->
+    <div class="card-header bg-white border-bottom py-2 px-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-funnel-fill text-warning fs-4"></i>
+            <div>
+                <h5 class="mb-0 text-primary fw-bold">Interactive Filter Lab</h5>
+                <span class="text-muted small" style="font-size: 0.78rem;">See how cutoff frequency (<em>f<sub>c</sub></em>) removes noise and restores clean signals.</span>
+            </div>
+        </div>
+        <div>
+            <span id="flt-status-badge" class="badge bg-success-subtle text-success border border-success px-2 py-1" style="font-size: 0.8rem;">
+                <i class="bi bi-check-circle-fill me-1"></i> Well-Tuned: Noise Filtered Out
+            </span>
+        </div>
+    </div>
+
+    <div class="card-body p-3">
+        <!-- Top Selector & Controls -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+            <div class="d-flex align-items-center gap-2 flex-grow-1" style="max-width: 480px;">
+                <label for="flt-preset-select" class="small fw-bold text-secondary mb-0 text-nowrap">Filter Scenario:</label>
+                <select id="flt-preset-select" class="form-select form-select-sm" style="font-weight: 600;">
+                    <option value="ecg_noise" selected>1. Low-Pass: Remove High-Freq Noise from ECG</option>
+                    <option value="ecg_drift">2. High-Pass: Remove Breathing Drift from ECG</option>
+                    <option value="notch_hum">3. Notch: Eliminate 5 Hz Electrical Hum</option>
+                    <option value="sine_noise">4. Low-Pass: Clean 1 Hz Sine Wave</option>
+                </select>
+            </div>
+
+            <div class="d-flex align-items-center gap-1 ms-auto">
+                <button type="button" class="btn btn-sm btn-outline-secondary px-2 py-1 d-inline-flex align-items-center gap-1" id="flt-reset-btn" title="Reset parameters">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                    <span class="small">Reset</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Plots Section: Clean Stacked Layout -->
+        <div class="d-flex flex-column gap-3 mb-3">
+            <!-- 1. Time Domain: Before vs. After -->
+            <div class="p-2 rounded-3 border bg-light position-relative">
+                <div class="d-flex justify-content-between align-items-center px-1 mb-1" style="font-size: 0.82rem;">
+                    <span class="fw-bold text-dark">
+                        <i class="bi bi-activity text-warning me-1"></i> Time Domain: Before vs. After Filter
+                    </span>
+                    <span class="badge bg-white text-secondary font-monospace border" id="flt-time-cursor">
+                        t = 0.00 s | y(t) = 0.00 V
+                    </span>
+                </div>
+
+                <div class="canvas-wrapper position-relative" style="height: 180px;">
+                    <canvas id="flt-time-canvas" class="w-100 h-100 rounded border bg-white" style="cursor: crosshair; touch-action: none;"></canvas>
+                    <div class="position-absolute bottom-0 start-0 m-2 px-2 py-0 bg-white bg-opacity-75 rounded border" style="pointer-events: none; font-size: 0.72rem;">
+                        <span class="text-primary fw-bold">━ Clean Filtered Signal y(t)</span>
+                        <span class="ms-2 text-muted">╌╌ Raw Noisy Input x(t)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Filter Frequency Response |H(f)| -->
+            <div class="p-2 rounded-3 border bg-light position-relative">
+                <div class="d-flex justify-content-between align-items-center px-1 mb-1" style="font-size: 0.82rem;">
+                    <span class="fw-bold text-dark">
+                        <i class="bi bi-graph-up text-primary me-1"></i> Filter Frequency Response: |<em>H</em>(<em>f</em>)|
+                    </span>
+                    <span class="badge bg-white text-secondary font-monospace border" id="flt-freq-cursor">
+                        fc = 2.00 Hz | Cutoff = -3.0 dB
+                    </span>
+                </div>
+
+                <div class="canvas-wrapper position-relative" style="height: 150px;">
+                    <canvas id="flt-freq-canvas" class="w-100 h-100 rounded border bg-white" style="cursor: crosshair; touch-action: none;"></canvas>
+                    <div class="position-absolute bottom-0 start-0 m-2 px-2 py-0 bg-white bg-opacity-75 rounded border" style="pointer-events: none; font-size: 0.72rem;">
+                        <span class="text-success fw-bold">■ Passband (&gt; -3 dB)</span>
+                        <span class="text-danger fw-bold ms-2">╌ -3 dB Cutoff Line</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 Simple, Intuitive Sliders in Clean Columns -->
+        <div class="row g-2 mb-3">
+            <!-- Cutoff Frequency Slider -->
+            <div class="col-12 col-md-6">
+                <div class="p-2 rounded border bg-light h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="flt-fc-slider" class="small fw-bold text-dark mb-0" id="flt-fc-label" style="font-size: 0.82rem;">
+                            Cutoff Frequency (<em>f<sub>c</sub></em>):
+                        </label>
+                        <span class="badge bg-white text-primary border font-monospace px-2 py-0" id="flt-fc-val" style="font-size: 0.85rem;">2.0 Hz</span>
+                    </div>
+                    <input type="range" class="form-range" id="flt-fc-slider" min="0.5" max="6.0" step="0.1" value="2.0">
+                    <div class="d-flex justify-content-between small text-muted" style="font-size: 0.72rem;">
+                        <span id="flt-slider-min-hint">0.5 Hz (Narrow)</span>
+                        <span class="text-primary fw-semibold" id="flt-slider-center-hint">Slide to change cutoff</span>
+                        <span id="flt-slider-max-hint">6.0 Hz (Wide)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Sharpness / Order -->
+            <div class="col-12 col-md-6">
+                <div class="p-2 rounded border bg-light h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label class="small fw-bold text-dark mb-0" style="font-size: 0.82rem;">Filter Sharpness (Order):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-2 py-0" id="flt-order-badge" style="font-size: 0.85rem;">Standard (2nd)</span>
+                    </div>
+                    <div class="btn-group btn-group-sm w-100 mt-1" role="group">
+                        <button type="button" class="btn btn-outline-secondary flt-order-btn" data-order="1">Gentle (1st Order)</button>
+                        <button type="button" class="btn btn-outline-primary flt-order-btn active" data-order="2">Standard (2nd Order)</button>
+                        <button type="button" class="btn btn-outline-secondary flt-order-btn" data-order="4">Sharp (4th Order)</button>
+                    </div>
+                    <div class="small text-muted mt-1" id="flt-order-hint" style="font-size: 0.72rem;">
+                        Roll-off rate: -40 dB/decade (40 dB attenuation for every 10x frequency increase)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Guidance HUD -->
+        <div class="p-2 px-3 bg-white rounded border d-flex flex-wrap justify-content-between align-items-center gap-2" style="font-size: 0.82rem;">
+            <div class="d-flex flex-wrap align-items-center gap-3 font-monospace">
+                <span><strong>Cutoff Gain:</strong> <span class="text-danger">-3.0 dB (0.71 V/V)</span></span>
+                <span><strong>Noise Removed:</strong> <span id="flt-noise-atten" class="text-success fw-bold">93% (-23 dB)</span></span>
+            </div>
+            <div class="text-muted text-end flex-grow-1" id="flt-guidance-text" style="font-size: 0.8rem;">
+                Adjust <em>f<sub>c</sub></em> to see the noise vanish without squishing the heartbeat!
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .filter-simulator-container {
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+    .flt-order-btn.active {
+        font-weight: 700;
+    }
+    .form-range::-webkit-slider-thumb {
+        background: #ff5f05;
+        width: 14px;
+        height: 14px;
+    }
+    .form-range::-moz-range-thumb {
+        background: #ff5f05;
+        width: 14px;
+        height: 14px;
+    }
+</style>
+
+<script is:inline src="/static/js/filter_simulator.js"></script>

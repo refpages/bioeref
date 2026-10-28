@@ -1,0 +1,182 @@
+---
+// TimeDomainSimulator.astro
+// Streamlined, Responsive Time-Domain Signal Lab
+---
+
+<div class="time-domain-simulator-container card shadow-sm border my-3">
+    <!-- Header -->
+    <div class="card-header bg-white border-bottom py-2 px-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-soundwave text-warning fs-4"></i>
+            <div>
+                <h5 class="mb-0 text-primary fw-bold">Time-Domain Signal Lab</h5>
+                <span class="text-muted small" style="font-size: 0.78rem;">Explore waveform synthesis, time-shifting, and continuous vs. discrete sampling.</span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <span id="td-status-badge" class="badge bg-primary-subtle text-primary border border-primary px-2 py-1" style="font-size: 0.8rem;">
+                Sinusoid
+            </span>
+            <span id="td-causality-badge" class="badge bg-secondary-subtle text-secondary border border-secondary px-2 py-1" style="font-size: 0.8rem;">
+                Non-Causal
+            </span>
+        </div>
+    </div>
+
+    <div class="card-body p-3">
+        <!-- Top Toolbar: Waveform & Presets in a compact bar -->
+        <div class="row g-2 align-items-center mb-3">
+            <div class="col-12 col-md-auto d-flex align-items-center gap-1">
+                <label for="td-wave-select" class="small fw-bold text-secondary mb-0 me-1">Signal:</label>
+                <select id="td-wave-select" class="form-select form-select-sm" style="width: auto; min-width: 140px; font-weight: 600;">
+                    <option value="sine" selected>Sinusoid cos(ωt)</option>
+                    <option value="ecg">ECG (Cardiac PQRST)</option>
+                    <option value="step">Unit Step u(t)</option>
+                    <option value="pulse">Rectangular Pulse</option>
+                    <option value="ramp">Triangle / Ramp</option>
+                    <option value="expo">Exponential Decay</option>
+                    <option value="sinc">Sinc Function</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md d-flex flex-wrap align-items-center gap-1">
+                <span class="small text-muted me-1 d-none d-lg-inline">Presets:</span>
+                <button type="button" class="btn btn-sm btn-outline-primary td-preset-btn px-2 py-0 active" data-preset="sine">1 Hz Sine</button>
+                <button type="button" class="btn btn-sm btn-outline-danger td-preset-btn px-2 py-0" data-preset="ecg">ECG 75 BPM</button>
+                <button type="button" class="btn btn-sm btn-outline-success td-preset-btn px-2 py-0" data-preset="step">Step u(t-1)</button>
+                <button type="button" class="btn btn-sm btn-outline-warning text-dark td-preset-btn px-2 py-0" data-preset="pulse">Pulse</button>
+                <button type="button" class="btn btn-sm btn-outline-info text-dark td-preset-btn px-2 py-0" data-preset="expo">e<sup>-t</sup></button>
+            </div>
+
+            <div class="col-auto ms-auto d-flex align-items-center gap-1">
+                <button type="button" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1 px-2 py-0" id="td-play-btn" title="Animate time sweep">
+                    <i class="bi bi-play-fill" id="td-play-icon"></i>
+                    <span id="td-play-text" class="small">Play</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary px-2 py-0" id="td-reset-btn" title="Reset parameters">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Single Canvas -->
+        <div class="canvas-card p-2 rounded-3 border bg-light position-relative mb-3">
+            <div class="d-flex justify-content-between align-items-center px-1 mb-1" style="font-size: 0.8rem;">
+                <span class="fw-bold text-dark font-monospace" id="td-formula-readout">
+                    x(t) = 1.00 &middot; cos(2&pi;&middot;1.00t)
+                </span>
+                <span class="badge bg-white text-secondary font-monospace border" id="td-cursor-readout">
+                    t = 0.00 s | x(t) = 1.00
+                </span>
+            </div>
+
+            <div class="canvas-wrapper position-relative" style="height: 250px;">
+                <canvas id="td-main-canvas" class="w-100 h-100 rounded border bg-white" style="cursor: crosshair; touch-action: none;"></canvas>
+                <div class="position-absolute bottom-0 start-0 m-2 px-2 py-0 bg-white bg-opacity-75 rounded border" style="pointer-events: none; font-size: 0.72rem;">
+                    <span class="text-primary fw-bold" id="td-curve-legend">━ Analog x(t)</span>
+                    <span id="td-ref-legend" class="d-none ms-2 text-muted">╌╌ Original (t₀=0)</span>
+                    <span id="td-stem-legend" class="d-none ms-2 text-danger fw-bold">● Discrete x[n]</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simplified Sliders in 3 Clean Columns -->
+        <div class="row g-2 mb-2">
+            <!-- Amplitude -->
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="td-amp-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.82rem;">Amplitude (<em>A</em>):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="td-amp-val">1.00</span>
+                    </div>
+                    <input type="range" class="form-range" id="td-amp-slider" min="0.2" max="2.5" step="0.1" value="1.0">
+                </div>
+            </div>
+
+            <!-- Frequency / Rate -->
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="td-freq-slider" class="form-label small fw-semibold mb-0" id="td-freq-label" style="font-size: 0.82rem;">Frequency (<em>f</em>):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="td-freq-val">1.00 Hz</span>
+                    </div>
+                    <input type="range" class="form-range" id="td-freq-slider" min="0.2" max="3.0" step="0.1" value="1.0">
+                </div>
+            </div>
+
+            <!-- Time Shift -->
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="td-shift-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.82rem;">Time Shift (<em>t</em><sub>0</sub>):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="td-shift-val">0.00 s</span>
+                    </div>
+                    <input type="range" class="form-range" id="td-shift-slider" min="-3.0" max="3.0" step="0.1" value="0.0">
+                </div>
+            </div>
+        </div>
+
+        <!-- Toggles Row: Discrete Sampling & Time Reversal -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 p-2 rounded border bg-light mb-2">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="td-mode-switch">
+                    <label class="form-check-label small fw-semibold" for="td-mode-switch" style="font-size: 0.82rem;">Discrete Stem Sampling (<em>x</em>[<em>n</em>])</label>
+                </div>
+                <div class="d-flex align-items-center gap-1" id="td-fs-container" style="opacity: 0.35; pointer-events: none;">
+                    <label for="td-fs-slider" class="form-label small mb-0 text-muted" style="font-size: 0.78rem;"><em>f<sub>s</sub></em>:</label>
+                    <input type="range" class="form-range" id="td-fs-slider" min="2" max="16" step="1" value="6" style="width: 70px;">
+                    <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="td-fs-val" style="font-size: 0.75rem;">6 Hz</span>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="td-reversal-switch">
+                    <label class="form-check-label small fw-semibold" for="td-reversal-switch" style="font-size: 0.82rem;">Time Reversal (<em>x</em>(&minus;<em>t</em>))</label>
+                </div>
+                <span id="td-shift-hint" class="badge bg-secondary-subtle text-secondary border font-monospace py-1" style="font-size: 0.75rem;">t₀ = 0.0s</span>
+            </div>
+        </div>
+
+        <!-- Compact Bottom HUD: Live Info & Educational Note -->
+        <div class="p-2 px-3 bg-white rounded border d-flex flex-wrap justify-content-between align-items-center gap-2" style="font-size: 0.82rem;">
+            <div class="d-flex flex-wrap align-items-center gap-3 font-monospace">
+                <span><strong>Period <em>T</em>:</strong> <span id="metric-period" class="text-primary">1.00 s</span></span>
+                <span><strong>Peak:</strong> <span id="metric-vpp" class="text-primary">&plusmn;1.00 V</span></span>
+                <span><strong>RMS:</strong> <span id="metric-rms" class="text-primary">0.71 V</span></span>
+            </div>
+            <div class="text-muted text-end flex-grow-1" id="td-quick-explanation" style="font-size: 0.8rem;">
+                Sinusoidal oscillation with period <em>T</em> = 1/<em>f</em>.
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .time-domain-simulator-container {
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+    .td-preset-btn {
+        font-size: 0.78rem;
+        line-height: 1.5;
+        border-radius: 4px;
+    }
+    .td-preset-btn.active {
+        box-shadow: 0 0 0 2px rgba(19, 41, 75, 0.25);
+        font-weight: 700;
+    }
+    .form-range::-webkit-slider-thumb {
+        background: #ff5f05;
+        width: 14px;
+        height: 14px;
+    }
+    .form-range::-moz-range-thumb {
+        background: #ff5f05;
+        width: 14px;
+        height: 14px;
+    }
+</style>
+
+<script is:inline src="/static/js/time_domain_simulator.js"></script>

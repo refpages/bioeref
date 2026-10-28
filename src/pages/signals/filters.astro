@@ -19,6 +19,7 @@ import CalloutCard from "../../components/CalloutCard.astro"
 import Warning from "../../components/Warning.astro"
 import Example from "../../components/Example.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
+import FilterSimulator from "../../components/FilterSimulator.astro"
 ---
 <Layout title="Filters">
     <div slot="navtree">
@@ -27,6 +28,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#How'>How Are Filters Applied?</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Gain'>Gain and Decibels</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types'>Filter Design</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive Filter Lab</a></li>
         </ul>
     </div>
     
@@ -66,6 +68,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
             </div>
         </Example>
     </SubSection>
+
     <SubSection title="Filter Design" id="Types">
         <p>Below are diagrams of how different filters are constructed from different electrical components and show how component values affect the behavior of the filter.</p>
         <div class="alert alert-secondary d-flex align-items-center gap-3 my-3 p-3 rounded" role="alert">
@@ -74,6 +77,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
                 <strong>Section in Progress:</strong> Schematics and component design equations (<InlineEquation equation="f_c = \\frac{1}{2\\pi RC}"/>) for passive and active low-pass, high-pass, and band-pass topologies are currently being compiled.
             </div>
         </div>
+    </SubSection>
+
+    <SubSection title="Interactive Filter Lab" id="Simulator">
+        <p>Experiment with filter topologies, cutoff frequencies, and noise attenuation in real time using the interactive simulator below. Choose between low-pass, high-pass, band-pass, and notch filters, adjust the <InlineEquation equation="-3\text{ dB}"/> cutoff frequency <InlineEquation equation="f_c"/> and filter order, and observe how noise is attenuated in both the frequency response <InlineEquation equation="|H(f)|"/> and the time-domain waveform <InlineEquation equation="y(t)"/>.</p>
+        <FilterSimulator />
     </SubSection>
 
     <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">

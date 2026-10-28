@@ -21,6 +21,7 @@ import Example from "../../components/Example.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
 import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
+import FourierSimulator from "../../components/FourierSimulator.astro"
 ---
 <Layout title="Fourier Transform">
   <div slot="navtree">
@@ -28,6 +29,7 @@ import Col from "../../components/Col.astro"
       <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Introduction'>Introduction</a></li>
       <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Fourier Transform'>Fourier Transform</a></li>
       <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Frequency Domain'>Frequency Domain</a></li>
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive Fourier Lab</a></li>
     </ul>
   </div>
   
@@ -75,7 +77,12 @@ import Col from "../../components/Col.astro"
     <Image src="/signals/frequencyexample.png"><span class="fw-bold">Figure 3.</span> A frequency domain plot of the time domain signal above, the x-axis now represents frequency in Hz.</Image>
     <p>Notice that the three peaks still describe the amplitude and frequency of the signals in Figure 1. There are only three straight lines because no noise and no other frequencies are present. No matter how messy a signal looks in the time domain, the frequency domain plot easily decomposes the signal into its component parts. When noise and non-discrete frequencies are added, frequency domain plots can look messy too, but more tools exist to interpret frequency plots such as power spectrum, Bode plots, and <a href="/signals/filters">filters</a>.</p>
     <p>By breaking down a signal this way, we are able to identify frequencies with large amplitudes that influence the signal a lot, or components of noise that might be filtered out. This domain is the most useful for assessing what the impact of transformations from systems may have, and allows us to simplify math when we do <a href="/signals/convolution">convolutions</a>.</p>
-</SubSection>
+  </SubSection>
+
+  <SubSection title="Interactive Fourier Transform & Frequency Domain Lab" id="Simulator">
+    <p>Experiment with signal synthesis and frequency-domain decomposition using the interactive simulator below. Directly recreate the three-tone example from Figures 1–3, explore harmonic synthesis of square and triangle waves, and observe how high-frequency noise is isolated in the frequency spectrum <InlineEquation equation="|X(f)|"/>.</p>
+    <FourierSimulator />
+  </SubSection>
 
     <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
         <a href="/signals/time_domain?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">

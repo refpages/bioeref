@@ -19,12 +19,14 @@ import CalloutCard from "../../components/CalloutCard.astro"
 import Warning from "../../components/Warning.astro"
 import Example from "../../components/Example.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
+import TimeDomainSimulator from "../../components/TimeDomainSimulator.astro"
 ---
 <Layout title="Time Domain">
 <div slot="navtree">
     <ul class="list-group list-group-flush py-0">
         <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Introduction'>Introduction</a></li>
         <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Signal Characteristics'>Signal Characteristics</a></li>
+        <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive Time-Domain Lab</a></li>
     </ul>
 </div>
 
@@ -157,6 +159,11 @@ import DisplayTable from "../../components/DisplayTable.astro"
 
 
 <p>Once we know the waveform and characteristics of a particular signal, we can start to predict its behavior and apply transformations to better understand the signal and its components.</p>
+</SubSection>
+
+<SubSection title="Interactive Time-Domain Signal Lab" id="Simulator">
+    <p>Experiment with signals in the time domain using the interactive simulator below. Select different canonical waveforms (including the biomedical ECG cycle), modify amplitude and frequency parameters, test time transformations (such as time-delay <InlineEquation equation="t_0 > 0"/>, time-advance <InlineEquation equation="t_0 < 0"/>, and time-reversal <InlineEquation equation="x(-t)"/>), and toggle discrete sampling to visualize how continuous signals are represented by sample stems <InlineEquation equation="x[n]"/>.</p>
+    <TimeDomainSimulator />
 </SubSection>
 
     <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
