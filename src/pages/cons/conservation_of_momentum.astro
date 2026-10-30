@@ -24,7 +24,7 @@ import Warning from "../../components/Warning.astro"
 <Layout title="Conservation of Momentum">
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Overview: Types of Momentum'>Overview: Types of Momentum</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types of Momentum'>Types of Momentum</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation Statements'>Conservation statements</a><ul class='list-group list-group-flush py-0'>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Linear Momentum'>Linear Momentum</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Angular Momentum'>Angular Momentum</a></li></ul>
@@ -36,20 +36,19 @@ import Warning from "../../components/Warning.astro"
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Mechanical Energy Accounting'>Mechanical Energy Accounting</a></li>
 </ul>
 </div>
-<SubSection title="Overview: Types of Momentum" id="Overview: Types of Momentum">
+<SubSection title="Types of Momentum" id="Types of Momentum">
 
-<p>Any moving object possesses both linear and angular momentum. Linear momentum <InlineEquation equation="\\dot{\\vec{p}}" /> is an extensive property that quantifies the motion of a particle or a system proportional to the mass. Angular momentum <InlineEquation equation="\\dot{\\vec{L}}" /> is an extensive property, proportional to the mass of the system, which applies to any object undergoing motion, particularly rotational motion about a point. 
+<p>Any moving object possesses both linear and angular momentum. <b>Linear momentum <InlineEquation equation="\\dot{\\vec{p}}" /></b> is an extensive property that quantifies the motion of a particle or a system proportional to the mass. <b>Angular momentum <InlineEquation equation="\\dot{\\vec{L}}" /></b> is an extensive property, proportional to the mass of the system, which applies to any object undergoing motion, particularly rotational motion about a point. 
 Angular momentum is used to describe the torque on bodies in static and dynamic analyses of structures. 
 Whereas linear momentum is parallel to the motion of an object, angular momentum is normal to an object’s motion.</p>
 
 
-<DisplayEquation title="Linear Momentum" background="True" equation="\\dot{\\vec{p}}=\\dot{m}\\vec{v}" title="" />
-<p>and</p>
-<DisplayEquation title="Angular Momentum" background="True" equation="\\dot{\\vec{L}}=\\vec{r} \\times \\dot{\\vec{p}} = \\vec{r} \\times (\\dot{m}\\vec{v})" title="" />
+<DisplayEquation title="Linear Momentum" background="True" equation="\\dot{\\vec{p}}=\\dot{m}\\vec{v}" />
+<DisplayEquation title="Angular Momentum" background="True" equation="\\dot{\\vec{L}}=\\vec{r} \\times \\dot{\\vec{p}} = \\vec{r} \\times (\\dot{m}\\vec{v})" />
 
-<p>When a force acts on a system, it may produce a torque <InlineEquation equation="\\vec{\\tau}" />, which is a measure of how a force changes the rotational motion of an object. Torque has both magnitude and direction and is calculated as the cross product of the position vector <InlineEquation equation="\\vec{r}" /> and the applied external force <InlineEquation equation="\\vec{F}" />:</p>
+<p>When a force acts on a system, it may produce a <b>torque <InlineEquation equation="\\vec{\\tau}" /></b>, which is a measure of how a force changes the rotational motion of an object. Torque has both magnitude and direction and is calculated as the cross product of the position vector <InlineEquation equation="\\vec{r}" /> and the applied external force <InlineEquation equation="\\vec{F}" />:</p>
 
-<DisplayEquation title="Torque" background="True" equation="\\vec{\\tau}=\\vec{r} \\times \\vec{F}" title="" />
+<DisplayEquation title="Torque" background="True" equation="\\vec{\\tau}=\\vec{r} \\times \\vec{F}" />
 
 </SubSection>
 <SubSection title="Conservation Statements" id="Conservation statements">
