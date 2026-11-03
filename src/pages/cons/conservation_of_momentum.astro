@@ -17,6 +17,7 @@ import InlineEquation from "../../components/InlineEquation.astro"
 import DisplayEquation from "../../components/DisplayEquation.astro"
 import DisplayEquationCustom from "../../components/DisplayEquationCustom.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
+import Example from "../../components/Example.astro"
 import Row from "../../components/Row.astro"
 import Col from "../../components/Col.astro"
 import Warning from "../../components/Warning.astro"
@@ -100,6 +101,25 @@ An important result from above is that the pressure varies as a function of the 
                 <DisplayEquation equation="\\begin{aligned} \\sum{F_y} &amp;= 0  \\\\ P(z)A - W &amp;= 0   \\\\   P(z)A - (\\rho \\ A \\ z) \\ g &amp;=  0 \\\\   P(z)  &amp;= \\rho \\ g \\ z          \\end{aligned}"/>
 			 </p>
     </DisplayEquation>
+
+<Example title="Comparing Force and Pressure" solution="True" id="Pressure">
+<div class="d-flex flex-column">
+<p> Consider containers A and B below, which container has a greater force on the base of the container due to hydrostatic pressure? </p>
+<Image src="/cons/ForcePressure.png">
+</Image>
+</div>
+<div slot="solution">
+<p> Neither. The force on the base of each container due to hydrostatic pressure is equal. </p>
+<DisplayEquation equation="F = PA" />
+<DisplayEquation equation="P = - \\rho g \\Delta Z" />
+<DisplayEquation equation="F = - A \\rho g \\Delta Z" />
+<p> For conatiners A and B...</p>
+<DisplayEquation equation="A_A = A_B = A" />
+<DisplayEquation equation="\\Delta Z_A = \\Delta Z_B = x+y" />
+<DisplayEquation equation="F_A = F_B = - A \\rho g(x+y)" />
+<p> Since we are concerned with the force at the <b>base</b> of the containers, the cross sectional areas are equal and therefore the force is equal.</p>
+</div>
+</Example>
 
 <Warning title="Don't confuse pressure with force!" id="force-pressure">
     <p>   Pressure is a force distributed over an area (force per area) and therefore has units of Pascals (Pa). To calculate the resultant force from hydrostatic fluid pressure, you must use  
