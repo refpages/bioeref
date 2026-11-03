@@ -83,6 +83,43 @@ In a closed (but not isolated) system, movement of momentum through bulk materia
 
 <DisplayEquation background="True" equation="\\sum(\\vec{r} \\times \\vec{F})=\\sum(\\vec{r} \\times \\vec{F})_x=\\sum(\\vec{r} \\times \\vec{F})_y=\\sum(\\vec{r} \\times \\vec{F})_z=0"  />
 
+<Example title="Rigid Body Statics Problem" solution="True" id="Force">
+<div class="d-flex flex-column">
+<p> You are helping your little brother hold his <InlineEquation equation="8 lb_m"/> bowling ball. You are holding the bowling ball with the force of your hands at a <InlineEquation equation="45^\\circ"/> angle from horizontal. </p>
+<Enumerate>
+<Item> What forces are you and your brother exerting if the ball is stationary? </Item>
+<Item> How are the forces different if you are holding the ball with the force of your hands at a 60 degree angle from horizontal? </Item>
+</Enumerate>
+<Image src="/cons/Bowling.png">
+</Image>
+</div>
+<div slot="solution">
+<Image src="/cons/FreeBodyDiagram.png">
+</Image>
+<p><b> Part 1 </b></p>
+<DisplayEquation equation="F_{hands,y} = F_{grav} = mg" />
+<DisplayEquation equation="m = 8lb_{m} = 0.4536 \\frac{g}{lb_{m}} = 3.63g" />
+<DisplayEquation equation="g = 9.81 \\frac{m}{s^2}" />
+<DisplayEquation equation="F_{grav} = 0.4536 * 9.81 = 35.6 N" />
+<DisplayEquation equation="F_{grav} = 35.6 N" background="true"/>
+<DisplayEquation equation="F_{hands,y} = F_{hands}sin(\\omega)" />
+<DisplayEquation equation="35.6 = F_{hands}sin(45)" />
+<DisplayEquation equation="F_{hands} = 50.3N" background="true" />
+<DisplayEquation equation="F_{hands,x} = F_{hands}sin(\\omega)" />
+<DisplayEquation equation="F_{hands,x} = 50.3cos(45)" />
+<DisplayEquation equation="F_{hands,x} = 35.6N" />
+<DisplayEquation equation="F_{hands,x} = F_{bro}" />
+<DisplayEquation equation="F_{bro} = 35.6N" background="true" />
+<p><b> Part B </b></p>
+<DisplayEquation equation="F_{grav} = 35.6 N" background="true"/>
+<DisplayEquation equation="F_{hands,y} = 35.6 = F_{hands}sin(60)" />
+<DisplayEquation equation="F_{hands} = 41.1N" background="true" />
+<DisplayEquation equation="F_{hands,x} = F_{bro} = F_{hands}cos(60)" />
+<DisplayEquation equation="F_{bro} = 41.1cos(60)" />
+<DisplayEquation equation="F_{bro} = 20.6N" background="true" />
+<p> The force exerted by you and your brother will decrease since <InlineEquation equation="F_{hands}"/> will be acting more in the y direction to better counteract gravity. </p>
+</div>
+</Example>
 </SubSection>
 
 
