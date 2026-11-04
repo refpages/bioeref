@@ -1,5 +1,5 @@
 // time_domain_simulator.js
-// Streamlined, Responsive Time-Domain Signal Lab
+// Streamlined, Responsive Time-Domain Signal Lab with ECG Heart Rate (BPM)
 (function() {
     function initTimeDomainLab() {
         const mainCanvas = document.getElementById('td-main-canvas');
@@ -32,6 +32,8 @@
 
         // Metrics
         const metricPeriod = document.getElementById('metric-period');
+        const metricBpmWrapper = document.getElementById('metric-bpm-wrapper');
+        const metricBpm = document.getElementById('metric-bpm');
         const metricVpp = document.getElementById('metric-vpp');
         const metricRms = document.getElementById('metric-rms');
         const quickExplanation = document.getElementById('td-quick-explanation');
@@ -138,65 +140,72 @@
         // Transformed signal evaluation: x(a(t - t0))
         function evaluateSignal(t) {
             let effT = t - timeShift;
-            if (isReversed) effT = -effT;
+            if (isReversed) {
+                effT = -(t - timeShift);
+            }
             return rawWaveform(effT, amplitude, frequency);
         }
 
-        // Draw grid and axes
+        // Background & Grid
         function drawGrid(width, height, dark) {
             ctx.clearRect(0, 0, width, height);
 
-            const gridColor = dark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)';
-            const axisColor = dark ? 'rgba(255, 255, 255, 0.45)' : 'rgba(19, 41, 75, 0.55)';
-            const textColor = dark ? '#a0aec0' : '#4a5568';
+            ctx.fillStyle = dark ? '#1e2124' : '#ffffff';
+            ctx.fillRect(0, 0, width, height);
 
-            // Vertical grid lines
+            // Minor grid
+            ctx.strokeStyle = dark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)';
             ctx.lineWidth = 1;
-            ctx.strokeStyle = gridColor;
-            for (let t = Math.ceil(tMin); t <= Math.floor(tMax); t += 1.0) {
+            ctx.beginPath();
+            for (let t = Math.ceil(tMin * 2) / 2; t <= tMax; t += 0.5) {
                 const x = tToX(t, width);
-                ctx.beginPath();
                 ctx.moveTo(x, 0);
                 ctx.lineTo(x, height);
-                ctx.stroke();
             }
+            for (let y = Math.ceil(yMin * 2) / 2; y <= yMax; y += 0.5) {
+                const yPos = yToY(y, height);
+                ctx.moveTo(0, yPos);
+                ctx.lineTo(width, yPos);
+            }
+            ctx.stroke();
 
-            // Horizontal grid lines
+            // Major grid
+            ctx.strokeStyle = dark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.09)';
+            ctx.beginPath();
+            for (let t = Math.ceil(tMin); t <= Math.floor(tMax); t += 1.0) {
+                const x = tToX(t, width);
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+            }
             for (let y = Math.ceil(yMin); y <= Math.floor(yMax); y += 1.0) {
-                const py = yToY(y, height);
-                ctx.beginPath();
-                ctx.moveTo(0, py);
-                ctx.lineTo(width, py);
-                ctx.stroke();
+                const yPos = yToY(y, height);
+                ctx.moveTo(0, yPos);
+                ctx.lineTo(width, yPos);
             }
+            ctx.stroke();
 
+            // Zero axes
             const zeroX = tToX(0, width);
             const zeroY = yToY(0, height);
 
-            ctx.strokeStyle = axisColor;
+            ctx.strokeStyle = dark ? 'rgba(255, 255, 255, 0.45)' : 'rgba(0, 0, 0, 0.35)';
             ctx.lineWidth = 1.5;
-
-            // X axis
             ctx.beginPath();
+            ctx.moveTo(zeroX, 0);
+            ctx.lineTo(zeroX, height);
             ctx.moveTo(0, zeroY);
             ctx.lineTo(width, zeroY);
             ctx.stroke();
 
-            // Y axis
-            ctx.beginPath();
-            ctx.moveTo(zeroX, 0);
-            ctx.lineTo(zeroX, height);
-            ctx.stroke();
-
-            // Axis numbers
-            ctx.fillStyle = textColor;
-            ctx.font = '10px "SourceSansPro", sans-serif';
+            // Axis labels & tick numbers
+            ctx.fillStyle = dark ? '#a0aec0' : '#718096';
+            ctx.font = '10px monospace';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
 
             for (let t = Math.ceil(tMin); t <= Math.floor(tMax); t += 1.0) {
                 if (t === 0) continue;
-                ctx.fillText(t + 's', tToX(t, width), zeroY + 4);
+                ctx.fillText(t.toFixed(0) + 's', tToX(t, width), zeroY + 4);
             }
 
             ctx.textAlign = 'right';
@@ -338,7 +347,18 @@
                 ctx.restore();
             }
 
-            // 5. Hover indicator
+            // 5. Telemetry Heart Rate Badge (if ECG)
+            if (waveform === 'ecg') {
+                const bpm = Math.round(frequency * 60);
+                ctx.save();
+                ctx.font = 'bold 11px monospace';
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#dc3545';
+                ctx.fillText(`♥ Heart Rate: ${bpm} BPM (T = ${(1.0 / frequency).toFixed(2)}s)`, width - 10, 18);
+                ctx.restore();
+            }
+
+            // 6. Hover indicator
             if (hoveredTime !== null) {
                 const hx = tToX(hoveredTime, width);
                 const hVal = evaluateSignal(hoveredTime);
@@ -367,7 +387,19 @@
         // Update UI metrics & readouts
         function updateDiagnostics() {
             ampVal.textContent = amplitude.toFixed(2);
-            freqVal.textContent = frequency.toFixed(2) + (waveform === 'expo' ? '' : ' Hz');
+            const bpm = Math.round(frequency * 60);
+
+            if (waveform === 'ecg') {
+                freqLabel.innerHTML = 'Heart Rate (BPM) / (<em>f</em>):';
+                freqVal.innerHTML = `<span class="text-danger fw-bold">${bpm} BPM</span> <span class="text-muted" style="font-size:0.75rem;">(${frequency.toFixed(2)} Hz)</span>`;
+            } else if (waveform === 'expo') {
+                freqLabel.innerHTML = 'Decay Rate (<em>a</em>):';
+                freqVal.textContent = frequency.toFixed(2) + ' s⁻¹';
+            } else {
+                freqLabel.innerHTML = 'Frequency (<em>f</em>):';
+                freqVal.textContent = frequency.toFixed(2) + ' Hz';
+            }
+
             shiftVal.textContent = (timeShift >= 0 ? '+' : '') + timeShift.toFixed(2) + ' s';
             fsVal.textContent = fs.toFixed(0) + ' Hz';
 
@@ -397,7 +429,7 @@
                     fStr += `${amplitude.toFixed(1)} &middot; cos(2&pi;&middot;${frequency.toFixed(1)}t)`;
                     break;
                 case 'ecg':
-                    fStr += `ECG(t) [75 BPM cardiac cycle]`;
+                    fStr += `ECG(t) [${bpm} BPM | Period T = ${(1.0 / frequency).toFixed(2)} s]`;
                     break;
                 case 'step':
                     fStr += `${amplitude.toFixed(1)} &middot; u(t)`;
@@ -431,13 +463,17 @@
                     isPeriodic = true;
                     expl = `Periodic wave (T = ${periodSec}s). Shifting right delays the signal; shifting left advances it.`;
                     break;
-                case 'ecg':
-                    statusBadge.textContent = 'ECG Heartbeat';
+                case 'ecg': {
+                    let rhythm = 'Normal';
+                    if (bpm > 100) rhythm = 'Tachycardia (> 100 BPM)';
+                    else if (bpm < 60) rhythm = 'Bradycardia (< 60 BPM)';
+                    statusBadge.textContent = `ECG Heartbeat (${bpm} BPM)`;
                     statusBadge.className = 'badge bg-danger-subtle text-danger border border-danger px-2 py-1';
                     isCausal = false;
                     isPeriodic = true;
-                    expl = 'PQRST complex: P (atrial), QRS (ventricular spike), and T (repolarization).';
+                    expl = `Cardiac cycle at <strong>${bpm} BPM</strong> (${rhythm}, T = ${periodSec}s): P (atrial), sharp QRS (ventricular contraction), and T (repolarization).`;
                     break;
+                }
                 case 'step':
                     statusBadge.textContent = 'Unit Step u(t)';
                     statusBadge.className = 'badge bg-success-subtle text-success border border-success px-2 py-1';
@@ -485,6 +521,14 @@
 
             // Quick metrics
             metricPeriod.textContent = isPeriodic ? `${periodSec} s` : 'N/A';
+            if (metricBpmWrapper) {
+                if (waveform === 'ecg') {
+                    metricBpmWrapper.classList.remove('d-none');
+                    metricBpm.textContent = `${bpm} BPM`;
+                } else {
+                    metricBpmWrapper.classList.add('d-none');
+                }
+            }
             metricVpp.textContent = `±${amplitude.toFixed(2)} V`;
             metricRms.textContent = waveform === 'sine' ? (amplitude * 0.707).toFixed(2) + ' V' : (amplitude * 0.5).toFixed(2) + ' V';
             quickExplanation.innerHTML = expl;
@@ -493,11 +537,6 @@
         // Control listeners
         waveSelect.addEventListener('change', function() {
             waveform = this.value;
-            if (waveform === 'expo') {
-                freqLabel.innerHTML = 'Decay Rate (<em>a</em>):';
-            } else {
-                freqLabel.innerHTML = 'Frequency (<em>f</em>):';
-            }
             presetButtons.forEach(b => b.classList.remove('active'));
             updateDiagnostics();
             draw();
@@ -567,7 +606,7 @@
                     case 'ecg':
                         waveform = 'ecg';
                         amplitude = 1.0;
-                        frequency = 1.25;
+                        frequency = 1.25; // 1.25 Hz = 75 BPM
                         timeShift = 0.0;
                         isDiscrete = false;
                         isReversed = false;
@@ -608,12 +647,6 @@
                 fsContainer.style.opacity = '0.35';
                 fsContainer.style.pointerEvents = 'none';
                 stemLegend.classList.add('d-none');
-
-                if (waveform === 'expo') {
-                    freqLabel.innerHTML = 'Decay Rate (<em>a</em>):';
-                } else {
-                    freqLabel.innerHTML = 'Frequency (<em>f</em>):';
-                }
 
                 updateDiagnostics();
                 draw();

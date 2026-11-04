@@ -18,6 +18,18 @@
         const fcSlider = document.getElementById('flt-fc-slider');
         const fcVal = document.getElementById('flt-fc-val');
         const fcLabel = document.getElementById('flt-fc-label');
+        const sliderMinHint = document.getElementById('flt-slider-min-hint');
+        const sliderCenterHint = document.getElementById('flt-slider-center-hint');
+        const sliderMaxHint = document.getElementById('flt-slider-max-hint');
+
+        // Bandwidth controls (for Band-Pass)
+        const bwGroup = document.getElementById('flt-bw-group');
+        const bwSlider = document.getElementById('flt-bw-slider');
+        const bwVal = document.getElementById('flt-bw-val');
+        const bandRangeHint = document.getElementById('flt-band-range-hint');
+
+        // Filter Sharpness / Order
+        const orderLabel = document.getElementById('flt-order-label');
         const orderBadge = document.getElementById('flt-order-badge');
         const orderHint = document.getElementById('flt-order-hint');
         const orderButtons = document.querySelectorAll('.flt-order-btn');
@@ -29,9 +41,10 @@
         const guidanceText = document.getElementById('flt-guidance-text');
 
         // State
-        let currentPreset = 'ecg_noise'; // 'ecg_noise', 'ecg_drift', 'notch_hum', 'sine_noise'
-        let filterType = 'lowpass'; // 'lowpass', 'highpass', 'notch'
-        let fc = 2.0; // Cutoff frequency (Hz)
+        let currentPreset = 'ecg_noise'; // 'ecg_noise', 'ecg_drift', 'ecg_bandpass', 'notch_hum', 'sine_noise'
+        let filterType = 'lowpass'; // 'lowpass', 'highpass', 'bandpass', 'notch'
+        let fc = 2.0; // Cutoff frequency or center frequency (Hz)
+        let bw = 2.0; // Bandwidth (Hz) for bandpass
         let order = 2; // 1, 2, or 4
 
         // Hover tracking
@@ -64,6 +77,30 @@
             drawAll();
         }
 
+        // Get effective notch bandwidth based on sharpness (order)
+        function getNotchBandwidth() {
+            if (order === 1) return 1.8; // Gentle: broad notch (Q ~ 2.8)
+            if (order === 2) return 0.8; // Standard: balanced notch (Q ~ 6.25)
+            return 0.3;                  // Sharp (4th): surgical notch (Q ~ 16.7)
+        }
+
+        // Calculate -3 dB cutoff frequencies
+        function getBandEdges() {
+            if (filterType === 'bandpass') {
+                const halfBw = bw / 2.0;
+                const fL = Math.sqrt(fc * fc + halfBw * halfBw) - halfBw;
+                const fH = Math.sqrt(fc * fc + halfBw * halfBw) + halfBw;
+                return { fL: Math.max(0.05, fL), fH: Math.min(fMax, fH) };
+            } else if (filterType === 'notch') {
+                const notchBw = getNotchBandwidth();
+                const halfBw = notchBw / 2.0;
+                const fL = Math.sqrt(fc * fc + halfBw * halfBw) - halfBw;
+                const fH = Math.sqrt(fc * fc + halfBw * halfBw) + halfBw;
+                return { fL: Math.max(0.05, fL), fH: Math.min(fMax, fH) };
+            }
+            return { fL: fc, fH: fc };
+        }
+
         // Mathematical Filter Response: |H(f)| & Phase
         function getFilterResponse(f) {
             if (f < 0.0001) f = 0.0001;
@@ -78,14 +115,20 @@
                 const ratio = Math.pow(fc / f, 2 * order);
                 magLinear = 1.0 / Math.sqrt(1.0 + ratio);
                 phase = order * (Math.PI / 2.0 - Math.atan(f / fc));
+            } else if (filterType === 'bandpass') {
+                // Butterworth Bandpass Response
+                const delta = Math.abs(f * f - fc * fc) / (f * bw + 0.00001);
+                const ratio = Math.pow(delta, 2 * order);
+                magLinear = 1.0 / Math.sqrt(1.0 + ratio);
+                phase = -order * Math.atan((f * f - fc * fc) / (f * bw + 0.00001));
             } else if (filterType === 'notch') {
+                // Notch Filter with Sharpness (Order & Q factor)
                 const f0 = fc;
-                const bw = 1.0;
-                const num = f * f - f0 * f0;
-                const den = f * bw;
-                const ratio = Math.pow(num / den, 2);
+                const notchBw = getNotchBandwidth();
+                const delta = Math.abs(f * f - f0 * f0) / (f * notchBw + 0.00001);
+                const ratio = Math.pow(delta, 2 * order);
                 magLinear = Math.sqrt(ratio / (1.0 + ratio));
-                phase = Math.atan(den / (num + 0.0001));
+                phase = -order * Math.atan((f * notchBw) / (f * f - f0 * f0 + 0.00001));
             }
 
             magLinear = Math.max(0.005, magLinear);
@@ -109,6 +152,15 @@
                 list.push({ f: 2.4, a: 1.1, phase: -0.4, color: '#0d6efd', isNoise: false, label: 'Harmonic (2.4 Hz)' });
                 // Unwanted slow baseline wander from breathing at 0.2 Hz
                 list.push({ f: 0.2, a: 1.8, phase: 0, color: '#dc3545', isNoise: true, label: 'Drift (0.2 Hz)' });
+            } else if (currentPreset === 'ecg_bandpass') {
+                // Bandpass scenario: Desired ECG (1.2 Hz, 2.4 Hz, 3.2 Hz) + BOTH low drift and high noise!
+                list.push({ f: 1.2, a: 2.0, phase: 0, color: '#0d6efd', isNoise: false, label: 'ECG (1.2 Hz)' });
+                list.push({ f: 2.4, a: 1.1, phase: -0.4, color: '#0d6efd', isNoise: false, label: 'Harmonic (2.4 Hz)' });
+                list.push({ f: 3.2, a: 1.4, phase: 0.5, color: '#0d6efd', isNoise: false, label: 'QRS (3.2 Hz)' });
+                // Low-frequency breathing drift (0.2 Hz)
+                list.push({ f: 0.2, a: 1.6, phase: 0, color: '#dc3545', isNoise: true, label: 'Drift (0.2 Hz)' });
+                // High-frequency muscle noise (5.5 Hz)
+                list.push({ f: 5.5, a: 1.3, phase: 0.3, color: '#dc3545', isNoise: true, label: 'Noise (5.5 Hz)' });
             } else if (currentPreset === 'notch_hum') {
                 // ECG signal + 5.0 Hz interference hum
                 list.push({ f: 1.2, a: 2.0, phase: 0, color: '#0d6efd', isNoise: false, label: 'ECG (1.2 Hz)' });
@@ -146,6 +198,7 @@
             drawTimePlot(components);
             drawFreqPlot(components);
             updateStatusAndHUD(components);
+            updateOrderDisplay();
         }
 
         // ---------------- Time Domain Plot ----------------
@@ -214,14 +267,14 @@
             timeCtx.lineTo(padding.left + plotW, yZero);
             timeCtx.stroke();
 
-            // 1. Raw Noisy Input x(t) (dashed gray)
+            // 1. Raw Noisy Input x(t) - Crisp, Sharp Dotted Graph
             timeCtx.save();
-            timeCtx.strokeStyle = dark ? 'rgba(255,255,255,0.38)' : 'rgba(108, 117, 125, 0.45)';
-            timeCtx.lineWidth = 1.4;
-            timeCtx.setLineDash([4, 3]);
+            timeCtx.strokeStyle = dark ? '#94a3b8' : '#475569';
+            timeCtx.lineWidth = 1.6;
+            timeCtx.setLineDash([3, 3]);
             timeCtx.beginPath();
 
-            const steps = 350;
+            const steps = 600;
             for (let i = 0; i <= steps; i++) {
                 const t = tMin + (i / steps) * (tMax - tMin);
                 const y = evaluateRawSignal(t, components);
@@ -240,7 +293,7 @@
             timeCtx.lineJoin = 'round';
             timeCtx.beginPath();
 
-            const fSteps = 450;
+            const fSteps = 500;
             for (let i = 0; i <= fSteps; i++) {
                 const t = tMin + (i / fSteps) * (tMax - tMin);
                 const y = evaluateFilteredSignal(t, components);
@@ -306,20 +359,41 @@
             freqCtx.fillStyle = dark ? '#1e2124' : '#ffffff';
             freqCtx.fillRect(padding.left, padding.top, plotW, plotH);
 
-            // Shaded Passband Region (Gain > -3 dB)
+            const edges = getBandEdges();
+
+            // Shaded Passband Region (Gain > -3 dB) & Stopband Region
             freqCtx.save();
-            freqCtx.fillStyle = dark ? 'rgba(25, 135, 84, 0.18)' : 'rgba(25, 135, 84, 0.10)';
+            const passbandColor = dark ? 'rgba(25, 135, 84, 0.20)' : 'rgba(25, 135, 84, 0.12)';
+            const stopbandColor = dark ? 'rgba(220, 53, 69, 0.18)' : 'rgba(220, 53, 69, 0.12)';
 
             if (filterType === 'lowpass') {
                 const xCutoff = toX(fc);
+                freqCtx.fillStyle = passbandColor;
                 freqCtx.fillRect(padding.left, padding.top, Math.max(0, xCutoff - padding.left), plotH);
             } else if (filterType === 'highpass') {
                 const xCutoff = toX(fc);
+                freqCtx.fillStyle = passbandColor;
                 freqCtx.fillRect(xCutoff, padding.top, Math.max(0, padding.left + plotW - xCutoff), plotH);
+            } else if (filterType === 'bandpass') {
+                const xL = toX(edges.fL);
+                const xH = toX(edges.fH);
+                freqCtx.fillStyle = passbandColor;
+                freqCtx.fillRect(xL, padding.top, Math.max(0, xH - xL), plotH);
+            } else if (filterType === 'notch') {
+                // Passband regions outside notch rejection
+                const xL = toX(edges.fL);
+                const xH = toX(edges.fH);
+                freqCtx.fillStyle = passbandColor;
+                freqCtx.fillRect(padding.left, padding.top, Math.max(0, xL - padding.left), plotH);
+                freqCtx.fillRect(xH, padding.top, Math.max(0, padding.left + plotW - xH), plotH);
+
+                // Stopband notch rejection zone
+                freqCtx.fillStyle = stopbandColor;
+                freqCtx.fillRect(xL, padding.top, Math.max(0, xH - xL), plotH);
             }
             freqCtx.restore();
 
-            // Grid Lines & Ticks (Non-colliding)
+            // Grid Lines & Ticks
             freqCtx.strokeStyle = dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
             freqCtx.lineWidth = 1;
             freqCtx.fillStyle = dark ? '#adb5bd' : '#6c757d';
@@ -365,16 +439,57 @@
             freqCtx.fillText('-3dB', padding.left + plotW - 4, y3db - 5);
             freqCtx.restore();
 
-            // Vertical Cutoff Marker Line
-            const xCutoff = toX(fc);
+            // Vertical Cutoff Marker Lines & Dots
             freqCtx.save();
-            freqCtx.strokeStyle = 'rgba(220, 53, 69, 0.4)';
+            freqCtx.strokeStyle = 'rgba(220, 53, 69, 0.5)';
             freqCtx.lineWidth = 1.2;
             freqCtx.setLineDash([3, 3]);
-            freqCtx.beginPath();
-            freqCtx.moveTo(xCutoff, padding.top);
-            freqCtx.lineTo(xCutoff, padding.top + plotH);
-            freqCtx.stroke();
+
+            if (filterType === 'lowpass' || filterType === 'highpass') {
+                const xCutoff = toX(fc);
+                freqCtx.beginPath();
+                freqCtx.moveTo(xCutoff, padding.top);
+                freqCtx.lineTo(xCutoff, padding.top + plotH);
+                freqCtx.stroke();
+            } else if (filterType === 'bandpass') {
+                // Two cutoff lines at fL and fH, center line at f0
+                const xL = toX(edges.fL);
+                const xH = toX(edges.fH);
+                const x0 = toX(fc);
+
+                freqCtx.beginPath();
+                freqCtx.moveTo(xL, padding.top);
+                freqCtx.lineTo(xL, padding.top + plotH);
+                freqCtx.moveTo(xH, padding.top);
+                freqCtx.lineTo(xH, padding.top + plotH);
+                freqCtx.stroke();
+
+                // Center line
+                freqCtx.strokeStyle = 'rgba(13, 110, 253, 0.4)';
+                freqCtx.beginPath();
+                freqCtx.moveTo(x0, padding.top);
+                freqCtx.lineTo(x0, padding.top + plotH);
+                freqCtx.stroke();
+            } else if (filterType === 'notch') {
+                // Band edge lines at fL and fH, notch center line at f0
+                const xL = toX(edges.fL);
+                const xH = toX(edges.fH);
+                const x0 = toX(fc);
+
+                freqCtx.beginPath();
+                freqCtx.moveTo(xL, padding.top);
+                freqCtx.lineTo(xL, padding.top + plotH);
+                freqCtx.moveTo(xH, padding.top);
+                freqCtx.lineTo(xH, padding.top + plotH);
+                freqCtx.stroke();
+
+                // Notch center line
+                freqCtx.strokeStyle = 'rgba(220, 53, 69, 0.7)';
+                freqCtx.beginPath();
+                freqCtx.moveTo(x0, padding.top);
+                freqCtx.lineTo(x0, padding.top + plotH);
+                freqCtx.stroke();
+            }
             freqCtx.restore();
 
             // Draw Bode Curve |H(f)|
@@ -383,7 +498,7 @@
             freqCtx.lineWidth = 2.4;
             freqCtx.beginPath();
 
-            const cSteps = 250;
+            const cSteps = 300;
             for (let i = 0; i <= cSteps; i++) {
                 const f = fMin + (i / cSteps) * (fMax - fMin);
                 const resp = getFilterResponse(f);
@@ -395,17 +510,46 @@
             freqCtx.stroke();
             freqCtx.restore();
 
-            // Cutoff Marker Dot at (fc, -3 dB)
-            const cutoffResp = getFilterResponse(fc);
-            freqCtx.save();
-            freqCtx.fillStyle = '#dc3545';
-            freqCtx.beginPath();
-            freqCtx.arc(xCutoff, toY(cutoffResp.db), 4.5, 0, 2 * Math.PI);
-            freqCtx.fill();
-            freqCtx.strokeStyle = '#ffffff';
-            freqCtx.lineWidth = 1.5;
-            freqCtx.stroke();
-            freqCtx.restore();
+            // Cutoff Marker Dots at -3 dB points
+            function drawMarkerDot(xf, yf) {
+                freqCtx.save();
+                freqCtx.fillStyle = '#dc3545';
+                freqCtx.beginPath();
+                freqCtx.arc(xf, yf, 4.5, 0, 2 * Math.PI);
+                freqCtx.fill();
+                freqCtx.strokeStyle = '#ffffff';
+                freqCtx.lineWidth = 1.5;
+                freqCtx.stroke();
+                freqCtx.restore();
+            }
+
+            if (filterType === 'lowpass' || filterType === 'highpass') {
+                const cutoffResp = getFilterResponse(fc);
+                drawMarkerDot(toX(fc), toY(cutoffResp.db));
+            } else if (filterType === 'bandpass') {
+                const respL = getFilterResponse(edges.fL);
+                const respH = getFilterResponse(edges.fH);
+                drawMarkerDot(toX(edges.fL), toY(respL.db));
+                drawMarkerDot(toX(edges.fH), toY(respH.db));
+            } else if (filterType === 'notch') {
+                const respL = getFilterResponse(edges.fL);
+                const respH = getFilterResponse(edges.fH);
+                drawMarkerDot(toX(edges.fL), toY(respL.db));
+                drawMarkerDot(toX(edges.fH), toY(respH.db));
+
+                // Notch center dot at resonance
+                const x0 = toX(fc);
+                const resp0 = getFilterResponse(fc);
+                freqCtx.save();
+                freqCtx.fillStyle = '#ff5f05';
+                freqCtx.beginPath();
+                freqCtx.arc(x0, toY(Math.max(dbMin + 1, resp0.db)), 4.5, 0, 2 * Math.PI);
+                freqCtx.fill();
+                freqCtx.strokeStyle = '#ffffff';
+                freqCtx.lineWidth = 1.5;
+                freqCtx.stroke();
+                freqCtx.restore();
+            }
 
             // Component Frequency Markers (ECG vs Noise)
             components.forEach(comp => {
@@ -460,25 +604,69 @@
             freqCtx.strokeRect(padding.left, padding.top, plotW, plotH);
         }
 
-        // ---------------- Status Badge & Guidance HUD ----------------
-        function updateStatusAndHUD(components) {
-            let noiseComp = null;
-            for (let i = 0; i < components.length; i++) {
-                if (components[i].isNoise) {
-                    noiseComp = components[i];
-                    break;
+        // ---------------- Filter Sharpness Labels & Hints ----------------
+        function updateOrderDisplay() {
+            if (filterType === 'notch') {
+                if (orderLabel) orderLabel.textContent = 'Notch Sharpness (Q Factor):';
+                if (order === 1) {
+                    orderBadge.textContent = 'Gentle (Q ≈ 3)';
+                    orderHint.textContent = 'Gentle notch: broad rejection band (BW ≈ 1.8 Hz, Q ≈ 2.8), ±20 dB/dec slope';
+                } else if (order === 2) {
+                    orderBadge.textContent = 'Standard (Q ≈ 6)';
+                    orderHint.textContent = 'Standard notch: balanced rejection band (BW ≈ 0.8 Hz, Q ≈ 6.3), ±40 dB/dec slope';
+                } else if (order === 4) {
+                    orderBadge.textContent = 'Sharp (Q ≈ 17)';
+                    orderHint.textContent = 'Sharp notch: surgical high-Q rejection (BW ≈ 0.3 Hz, Q ≈ 16.7), ±80 dB/dec steep walls';
+                }
+            } else if (filterType === 'bandpass') {
+                if (orderLabel) orderLabel.textContent = 'Bandpass Sharpness (Order):';
+                if (order === 1) {
+                    orderBadge.textContent = 'Gentle (1st)';
+                    orderHint.textContent = 'Gentle bandpass: ±20 dB/decade roll-off outside passband';
+                } else if (order === 2) {
+                    orderBadge.textContent = 'Standard (2nd)';
+                    orderHint.textContent = 'Standard bandpass: ±40 dB/decade roll-off outside passband';
+                } else if (order === 4) {
+                    orderBadge.textContent = 'Sharp (4th)';
+                    orderHint.textContent = 'Sharp bandpass: ±80 dB/decade steep brick-wall passband transition';
+                }
+            } else {
+                if (orderLabel) orderLabel.textContent = 'Filter Sharpness (Order):';
+                if (order === 1) {
+                    orderBadge.textContent = 'Gentle (1st)';
+                    orderHint.textContent = 'Roll-off: -20 dB/decade (gentle slope, slower transition)';
+                } else if (order === 2) {
+                    orderBadge.textContent = 'Standard (2nd)';
+                    orderHint.textContent = 'Roll-off: -40 dB/decade (standard biomedical filter slope)';
+                } else if (order === 4) {
+                    orderBadge.textContent = 'Sharp (4th)';
+                    orderHint.textContent = 'Roll-off: -80 dB/decade (steep brick-wall transition)';
                 }
             }
+        }
 
-            if (noiseComp) {
-                const resp = getFilterResponse(noiseComp.f);
+        // ---------------- Status Badge & Guidance HUD ----------------
+        function updateStatusAndHUD(components) {
+            const noiseComps = components.filter(c => c.isNoise);
+
+            if (noiseComps.length === 1) {
+                const resp = getFilterResponse(noiseComps[0].f);
                 const percentRemoved = Math.max(0, Math.min(99, Math.round((1.0 - resp.magLinear) * 100)));
                 noiseAtten.textContent = `${percentRemoved}% (${resp.db.toFixed(1)} dB)`;
+            } else if (noiseComps.length > 1) {
+                // Average noise attenuation for multiple noise sources (bandpass)
+                let totalAtten = 0;
+                noiseComps.forEach(nc => {
+                    const resp = getFilterResponse(nc.f);
+                    totalAtten += (1.0 - resp.magLinear);
+                });
+                const avgPercent = Math.max(0, Math.min(99, Math.round((totalAtten / noiseComps.length) * 100)));
+                noiseAtten.textContent = `${avgPercent}% (avg)`;
             } else {
                 noiseAtten.textContent = 'None';
             }
 
-            // Simple status feedback
+            // Scenario-specific status feedback
             if (currentPreset === 'ecg_noise' || currentPreset === 'sine_noise') {
                 if (fc < 1.1) {
                     statusBadge.className = 'badge bg-warning-subtle text-warning-emphasis border border-warning px-2 py-1';
@@ -507,16 +695,46 @@
                     statusBadge.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-1"></i> Cutoff Too High: Distorting ECG';
                     guidanceText.innerHTML = 'Lower <em>f<sub>c</sub></em> below 1.0 Hz so the true heartbeat rhythm is not blocked.';
                 }
+            } else if (currentPreset === 'ecg_bandpass') {
+                const edges = getBandEdges();
+                if (edges.fL > 1.3) {
+                    statusBadge.className = 'badge bg-warning-subtle text-warning-emphasis border border-warning px-2 py-1';
+                    statusBadge.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-1"></i> Low Cutoff Too High: ECG Cut Off';
+                    guidanceText.innerHTML = 'Shift center frequency lower or widen bandwidth so 1.2 Hz ECG passes through.';
+                } else if (edges.fH < 2.5) {
+                    statusBadge.className = 'badge bg-warning-subtle text-warning-emphasis border border-warning px-2 py-1';
+                    statusBadge.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-1"></i> High Cutoff Too Low: QRS Dampened';
+                    guidanceText.innerHTML = 'Shift center frequency higher or widen bandwidth to preserve fast QRS spikes.';
+                } else if (edges.fL < 0.4 || edges.fH > 5.0) {
+                    statusBadge.className = 'badge bg-danger-subtle text-danger border border-danger px-2 py-1';
+                    statusBadge.innerHTML = '<i class="bi bi-x-circle-fill me-1"></i> Band Too Wide: Noise/Drift Leaking';
+                    guidanceText.innerHTML = 'Narrow the passband to block both the 0.2 Hz drift and 5.5 Hz muscle noise.';
+                } else {
+                    statusBadge.className = 'badge bg-success-subtle text-success border border-success px-2 py-1';
+                    statusBadge.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Well-Tuned: Drift & Noise Removed!';
+                    guidanceText.innerHTML = 'Bandpass active! Blocks 0.2 Hz baseline drift AND 5.5 Hz noise while isolating clean ECG.';
+                }
             } else if (currentPreset === 'notch_hum') {
-                if (Math.abs(fc - 5.0) <= 0.3) {
+                if (Math.abs(fc - 5.0) <= (order === 4 ? 0.15 : (order === 2 ? 0.35 : 0.6))) {
                     statusBadge.className = 'badge bg-success-subtle text-success border border-success px-2 py-1';
                     statusBadge.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Notch Centered: Hum Eliminated!';
-                    guidanceText.innerHTML = 'The notch filter targets and eliminates the exact 5.0 Hz interference frequency.';
+                    guidanceText.innerHTML = `Notch filter targets 5.0 Hz interference. Sharpness: <strong>${orderBadge.textContent}</strong>.`;
                 } else {
                     statusBadge.className = 'badge bg-warning-subtle text-warning-emphasis border border-warning px-2 py-1';
                     statusBadge.innerHTML = '<i class="bi bi-crosshair me-1"></i> Center Notch at 5.0 Hz';
                     guidanceText.innerHTML = 'Move the notch slider closer to 5.0 Hz to trap and remove the electrical hum.';
                 }
+            }
+        }
+
+        function updateBandRangeHint() {
+            if (filterType === 'bandpass') {
+                const edges = getBandEdges();
+                if (bandRangeHint) {
+                    bandRangeHint.textContent = `Passband: ${edges.fL.toFixed(1)} – ${edges.fH.toFixed(1)} Hz`;
+                }
+                fcVal.textContent = `${fc.toFixed(1)} Hz`;
+                if (bwVal) bwVal.textContent = `${bw.toFixed(1)} Hz`;
             }
         }
 
@@ -533,6 +751,10 @@
                 fcSlider.max = '6.0';
                 fcSlider.value = '2.0';
                 fcLabel.innerHTML = 'Cutoff Frequency (<em>f<sub>c</sub></em>):';
+                sliderMinHint.textContent = '0.5 Hz (Narrow)';
+                sliderCenterHint.textContent = 'Slide to change cutoff';
+                sliderMaxHint.textContent = '6.0 Hz (Wide)';
+                if (bwGroup) bwGroup.style.display = 'none';
             } else if (p === 'ecg_drift') {
                 filterType = 'highpass';
                 fc = 0.8;
@@ -540,6 +762,24 @@
                 fcSlider.max = '3.0';
                 fcSlider.value = '0.8';
                 fcLabel.innerHTML = 'Cutoff Frequency (<em>f<sub>c</sub></em>):';
+                sliderMinHint.textContent = '0.2 Hz (Pass Drift)';
+                sliderCenterHint.textContent = 'Slide to cut breathing drift';
+                sliderMaxHint.textContent = '3.0 Hz (Cut ECG)';
+                if (bwGroup) bwGroup.style.display = 'none';
+            } else if (p === 'ecg_bandpass') {
+                filterType = 'bandpass';
+                fc = 2.2;
+                bw = 2.0;
+                fcSlider.min = '1.0';
+                fcSlider.max = '5.0';
+                fcSlider.value = '2.2';
+                fcLabel.innerHTML = 'Center Frequency (<em>f</em><sub>0</sub>):';
+                sliderMinHint.textContent = '1.0 Hz (Low)';
+                sliderCenterHint.textContent = 'Slide to center passband';
+                sliderMaxHint.textContent = '5.0 Hz (High)';
+                if (bwSlider) bwSlider.value = '2.0';
+                if (bwGroup) bwGroup.style.display = 'block';
+                updateBandRangeHint();
             } else if (p === 'notch_hum') {
                 filterType = 'notch';
                 fc = 5.0;
@@ -547,6 +787,10 @@
                 fcSlider.max = '7.0';
                 fcSlider.value = '5.0';
                 fcLabel.innerHTML = 'Notch Frequency (<em>f</em><sub>0</sub>):';
+                sliderMinHint.textContent = '3.0 Hz';
+                sliderCenterHint.textContent = 'Slide to center on hum';
+                sliderMaxHint.textContent = '7.0 Hz';
+                if (bwGroup) bwGroup.style.display = 'none';
             } else if (p === 'sine_noise') {
                 filterType = 'lowpass';
                 fc = 2.0;
@@ -554,6 +798,10 @@
                 fcSlider.max = '6.0';
                 fcSlider.value = '2.0';
                 fcLabel.innerHTML = 'Cutoff Frequency (<em>f<sub>c</sub></em>):';
+                sliderMinHint.textContent = '0.5 Hz (Narrow)';
+                sliderCenterHint.textContent = 'Slide to change cutoff';
+                sliderMaxHint.textContent = '6.0 Hz (Wide)';
+                if (bwGroup) bwGroup.style.display = 'none';
             }
 
             fcVal.textContent = `${fc.toFixed(1)} Hz`;
@@ -565,8 +813,18 @@
         fcSlider.addEventListener('input', (e) => {
             fc = parseFloat(e.target.value);
             fcVal.textContent = `${fc.toFixed(1)} Hz`;
+            if (filterType === 'bandpass') updateBandRangeHint();
             drawAll();
         });
+
+        if (bwSlider) {
+            bwSlider.addEventListener('input', (e) => {
+                bw = parseFloat(e.target.value);
+                if (bwVal) bwVal.textContent = `${bw.toFixed(1)} Hz`;
+                updateBandRangeHint();
+                drawAll();
+            });
+        }
 
         orderButtons.forEach(btn => {
             btn.addEventListener('click', function() {
@@ -578,16 +836,6 @@
                 this.classList.add('active', 'btn-outline-primary');
 
                 order = parseInt(this.dataset.order);
-                if (order === 1) {
-                    orderBadge.textContent = 'Gentle (1st)';
-                    orderHint.textContent = 'Roll-off: -20 dB/decade (gentle slope, slower transition)';
-                } else if (order === 2) {
-                    orderBadge.textContent = 'Standard (2nd)';
-                    orderHint.textContent = 'Roll-off: -40 dB/decade (standard biomedical filter slope)';
-                } else if (order === 4) {
-                    orderBadge.textContent = 'Sharp (4th)';
-                    orderHint.textContent = 'Roll-off: -80 dB/decade (steep brick-wall transition)';
-                }
                 drawAll();
             });
         });
@@ -602,8 +850,8 @@
                     b.classList.add('active', 'btn-outline-primary');
                 }
             });
-            orderBadge.textContent = 'Standard (2nd)';
-            orderHint.textContent = 'Roll-off rate: -40 dB/decade';
+            bw = 2.0;
+            if (bwSlider) bwSlider.value = '2.0';
             setPreset('ecg_noise');
         });
 
@@ -646,7 +894,15 @@
 
         freqCanvas.addEventListener('pointerleave', () => {
             hoveredFreq = null;
-            freqCursor.textContent = `fc = ${fc.toFixed(2)} Hz | Cutoff = -3.0 dB`;
+            if (filterType === 'bandpass') {
+                const edges = getBandEdges();
+                freqCursor.textContent = `Passband = ${edges.fL.toFixed(1)}–${edges.fH.toFixed(1)} Hz | -3 dB`;
+            } else if (filterType === 'notch') {
+                const notchBw = getNotchBandwidth();
+                freqCursor.textContent = `f0 = ${fc.toFixed(1)} Hz | Notch BW = ${notchBw.toFixed(1)} Hz`;
+            } else {
+                freqCursor.textContent = `fc = ${fc.toFixed(2)} Hz | Cutoff = -3.0 dB`;
+            }
             drawAll();
         });
 

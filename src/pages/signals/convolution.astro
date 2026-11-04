@@ -19,6 +19,7 @@ import CalloutCard from "../../components/CalloutCard.astro"
 import Warning from "../../components/Warning.astro"
 import Example from "../../components/Example.astro"
 import DisplayTable from "../../components/DisplayTable.astro"
+import ConvolutionSimulator from "../../components/ConvolutionSimulator.astro"
 ---
 <Layout title="Convolution">
     <div slot="navtree">
@@ -27,6 +28,7 @@ import DisplayTable from "../../components/DisplayTable.astro"
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#What'>What Is Convolution?</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Properties'>Properties of Convolution</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Example'>Example Problem</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive Convolution Lab</a></li>
         </ul>
     </div>
     
@@ -121,6 +123,11 @@ Product: (3 &times; 0) + (2 &times; 0) + (1 &times; 5) = 5 doses</pre>
           <p>Summing all daily doses, the total number of doses administered across all 7 days is <strong>90 doses</strong>.</p>
         </div>
       </Example>
+    </SubSection>
+
+    <SubSection title="Interactive Convolution Lab" id="Simulator">
+        <p>Experiment with continuous and discrete convolution in real time using the interactive visualizer below. Step through the <strong>Medication Dosing</strong> discrete example from above to watch the patient array and dosing regimen flip and slide, explore continuous signal interactions like two rectangular pulses producing a triangle wave or pharmacokinetic drug clearance, and click <strong>Swap <em>x</em> &harr; <em>h</em></strong> to verify the commutative property (<InlineEquation equation="x(t) * h(t) = h(t) * x(t)"/>).</p>
+        <ConvolutionSimulator />
     </SubSection>
 
     <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">

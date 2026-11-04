@@ -1,0 +1,221 @@
+---
+// ConvolutionSimulator.astro
+// Clean, High-Contrast Interactive Continuous & Discrete Convolution Simulator
+---
+
+<div class="convolution-simulator-container card shadow-sm border my-3">
+    <!-- Header -->
+    <div class="card-header bg-white border-bottom py-2 px-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-layers-half text-warning fs-3"></i>
+            <div>
+                <h5 class="mb-0 text-primary fw-bold">Interactive Convolution Lab</h5>
+                <span class="text-muted small">Visualize continuous and discrete &ldquo;flip-and-slide&rdquo; integration: <em>y</em>(<em>t</em>) = (<em>x</em> * <em>h</em>)(<em>t</em>) = &int; <em>x</em>(&tau;)<em>h</em>(<em>t</em> &minus; &tau;)<em>d</em>&tau;</span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <span id="conv-mode-badge" class="badge bg-primary text-white px-2 py-1 fs-6">
+                Discrete Mode
+            </span>
+            <span id="conv-status-badge" class="badge bg-success-subtle text-success border border-success px-2 py-1 fs-6 fw-bold">
+                Active Overlap
+            </span>
+        </div>
+    </div>
+
+    <div class="card-body p-3 p-md-4">
+        <!-- Top Toolbar: Scenario & Playback Controls -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+            <div class="d-flex align-items-center gap-2 flex-grow-1" style="min-width: 280px; max-width: 540px;">
+                <label for="conv-preset-select" class="fw-bold text-dark mb-0 text-nowrap">Scenario:</label>
+                <select id="conv-preset-select" class="form-select form-select-sm fw-semibold" style="font-size: 0.9rem;">
+                    <option value="medication" selected>1. Medication Dosing Example (Discrete x[n] * h[n])</option>
+                    <option value="rect_rect">2. Two Rectangular Pulses &rarr; Triangle (Continuous)</option>
+                    <option value="pulse_decay">3. Drug Infusion & Exponential Clearance (Pharmacokinetics)</option>
+                    <option value="two_exp">4. Cascaded Exponential Decays (First-Order Systems)</option>
+                    <option value="impulse">5. Impulse Response Identity: x(t) * &delta;(t) = x(t)</option>
+                </select>
+            </div>
+
+            <div class="d-flex align-items-center gap-2 ms-auto flex-wrap">
+                <button type="button" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1 px-3 py-1 fw-semibold" id="conv-swap-btn" title="Swap x and h to demonstrate commutativity: x * h = h * x">
+                    <i class="bi bi-arrow-left-right"></i>
+                    <span>Swap <em>x</em> &harr; <em>h</em></span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary px-2 py-1" id="conv-step-back-btn" title="Step backward">
+                    <i class="bi bi-skip-backward-fill"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1 px-3 py-1 fw-bold" id="conv-play-btn" title="Play or pause sliding animation">
+                    <i class="bi bi-play-fill fs-6" id="conv-play-icon"></i>
+                    <span id="conv-play-text">Play</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary px-2 py-1" id="conv-step-fwd-btn" title="Step forward">
+                    <i class="bi bi-skip-forward-fill"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary px-2 py-1" id="conv-reset-btn" title="Reset to start">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Scrubber Bar -->
+        <div class="p-3 rounded-3 border bg-light mb-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-arrows-expand text-primary fs-5"></i>
+                    <span class="fw-bold text-dark fs-6" id="conv-time-label">Shift Parameter (<em>n</em>):</span>
+                    <span class="badge bg-primary text-white font-monospace px-2 py-1 fs-6 fw-bold" id="conv-time-val">
+                        Day n = 3
+                    </span>
+                </div>
+
+                <!-- Discrete Day Jump Buttons -->
+                <div class="btn-group btn-group-sm" id="conv-discrete-day-pills" role="group" aria-label="Day Selectors">
+                    <button type="button" class="btn btn-outline-primary conv-day-pill px-2 py-0" data-day="1">Day 1</button>
+                    <button type="button" class="btn btn-outline-primary conv-day-pill px-2 py-0" data-day="2">Day 2</button>
+                    <button type="button" class="btn btn-primary active conv-day-pill px-2 py-0 fw-bold" data-day="3">Day 3</button>
+                    <button type="button" class="btn btn-outline-primary conv-day-pill px-2 py-0" data-day="4">Day 4</button>
+                    <button type="button" class="btn btn-outline-primary conv-day-pill px-2 py-0" data-day="5">Day 5</button>
+                    <button type="button" class="btn btn-outline-primary conv-day-pill px-2 py-0" data-day="6">Day 6</button>
+                    <button type="button" class="btn btn-outline-primary conv-day-pill px-2 py-0" data-day="7">Day 7</button>
+                </div>
+
+                <div class="d-none" id="conv-continuous-step-badge">
+                    <span class="badge bg-secondary-subtle text-secondary border font-monospace px-2 py-1">Continuous Mode</span>
+                </div>
+            </div>
+
+            <input type="range" class="form-range w-100" id="conv-time-slider" min="1" max="7" step="1" value="3">
+
+            <div class="d-flex justify-content-between text-muted mt-1" style="font-size: 0.8rem;">
+                <span class="fw-semibold" id="conv-time-min-label">Day 1</span>
+                <span class="fst-italic text-secondary d-none d-md-inline"><i class="bi bi-info-circle me-1"></i>Drag slider or click &amp; drag directly on either plot below</span>
+                <span class="fw-semibold" id="conv-time-max-label">Day 7</span>
+            </div>
+        </div>
+
+        <!-- Dual Plots Section: High Contrast & Spacious -->
+        <div class="d-flex flex-column gap-3 mb-3">
+            <!-- 1. Tau / k Domain Plot: Flip & Slide Stage -->
+            <div class="p-3 rounded-3 border bg-light">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fw-bold text-dark fs-6">
+                            <i class="bi bi-sliders text-primary me-1"></i> 1. Flip &amp; Slide Stage (&tau; Space)
+                        </span>
+                    </div>
+
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <span class="badge bg-primary-subtle text-primary border border-primary px-2 py-1 fw-semibold" id="conv-legend-x-badge">
+                            <i class="bi bi-circle-fill me-1" style="font-size: 0.55rem;"></i><span id="conv-x-legend-text">Input x[k]</span>
+                        </span>
+                        <span class="badge bg-danger-subtle text-danger border border-danger px-2 py-1 fw-semibold" id="conv-legend-h-badge">
+                            <i class="bi bi-square-fill me-1" style="font-size: 0.55rem;"></i><span id="conv-h-legend-text">Sliding h[n &minus; k]</span>
+                        </span>
+                        <span class="badge bg-success-subtle text-success border border-success px-2 py-1 fw-semibold">
+                            <i class="bi bi-check-circle-fill me-1" style="font-size: 0.55rem;"></i>Overlap (<em>x</em> &times; <em>h</em>)
+                        </span>
+                        <span class="badge bg-white text-secondary font-monospace border px-2 py-1" id="conv-tau-cursor">
+                            &tau; = 0.00
+                        </span>
+                    </div>
+                </div>
+
+                <div class="canvas-wrapper position-relative" style="height: 250px;">
+                    <canvas id="conv-tau-canvas" class="w-100 h-100 rounded border bg-white shadow-sm" style="cursor: grab; touch-action: none;"></canvas>
+                    <div class="position-absolute top-0 end-0 m-2 px-2 py-1 bg-white bg-opacity-90 rounded border shadow-sm d-none d-md-block" style="pointer-events: none; font-size: 0.75rem;">
+                        <span class="text-secondary fw-semibold"><i class="bi bi-arrows-expand me-1 text-primary"></i>Click &amp; drag orange signal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Time Domain Output Plot: y(t) or y[n] -->
+            <div class="p-3 rounded-3 border bg-light">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fw-bold text-dark fs-6">
+                            <i class="bi bi-graph-up text-success me-1"></i> 2. Convolution Output: <em>y</em>(<em>t</em>) = (<em>x</em> * <em>h</em>)(<em>t</em>)
+                        </span>
+                    </div>
+
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <span class="badge bg-success-subtle text-success border border-success px-2 py-1 fw-semibold">
+                            <i class="bi bi-circle-fill me-1" style="font-size: 0.55rem;"></i>Convolution Curve <em>y</em>
+                        </span>
+                        <span class="badge bg-danger-subtle text-danger border border-danger px-2 py-1 fw-semibold">
+                            <i class="bi bi-record-circle-fill me-1" style="font-size: 0.55rem;"></i>Active Point
+                        </span>
+                        <span class="badge bg-white text-secondary font-monospace border px-2 py-1" id="conv-y-cursor">
+                            y = 0.00
+                        </span>
+                    </div>
+                </div>
+
+                <div class="canvas-wrapper position-relative" style="height: 250px;">
+                    <canvas id="conv-time-canvas" class="w-100 h-100 rounded border bg-white shadow-sm" style="cursor: crosshair; touch-action: none;"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Step-by-Step Calculation Breakdown Card -->
+        <div id="conv-calc-card" class="p-3 rounded-3 border bg-light mb-3 shadow-sm">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                <span class="fw-bold text-primary fs-6 d-flex align-items-center gap-2">
+                    <i class="bi bi-calculator-fill text-warning fs-5"></i>
+                    <span id="conv-calc-title">Step-by-Step Multiplication &amp; Summation:</span>
+                </span>
+                <span class="badge bg-success text-white font-monospace px-3 py-1 fs-6 fw-bold" id="conv-calc-result-badge">
+                    14 doses
+                </span>
+            </div>
+            <div class="font-monospace p-3 bg-white rounded border my-2 overflow-auto shadow-sm" id="conv-calc-formula" style="font-size: 1.05rem; line-height: 1.7;">
+                <strong>Day 3:</strong> (3 &times; 3) + (2 &times; 2) + (1 &times; 1) = 9 + 4 + 1 = <strong class="text-success">14 doses</strong>
+            </div>
+            <div class="text-secondary fw-semibold mt-1" id="conv-calc-notes" style="font-size: 0.88rem;">
+                Aligning the patient array with reversed dosing regimen to compute daily medicine requirements.
+            </div>
+        </div>
+
+        <!-- Bottom HUD: Live Diagnostics & Educational Note -->
+        <div class="p-3 bg-white rounded-3 border shadow-sm d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex flex-wrap align-items-center gap-4 font-monospace" style="font-size: 0.95rem;">
+                <div><span class="text-muted">Instant Output <em>y</em>:</span> <span id="conv-metric-y" class="text-success fw-bold fs-6">14 doses</span></div>
+                <div><span class="text-muted">Peak <em>y</em><sub>max</sub>:</span> <span id="conv-metric-max" class="text-primary fw-bold fs-6">26 doses (Day 5)</span></div>
+                <div><span class="text-muted">Accumulated:</span> <span id="conv-metric-sum" class="text-danger fw-bold fs-6">25 doses</span></div>
+            </div>
+            <div class="text-secondary text-end flex-grow-1 fw-semibold" id="conv-quick-explanation" style="font-size: 0.88rem;">
+                Day 3: Multi-day overlap of patients and medication schedule.
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .convolution-simulator-container {
+        border-radius: 12px;
+        background-color: #ffffff;
+    }
+    .form-range::-webkit-slider-thumb {
+        background: #ff5f05;
+        width: 18px;
+        height: 18px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .form-range::-moz-range-thumb {
+        background: #ff5f05;
+        width: 18px;
+        height: 18px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .conv-day-pill {
+        font-size: 0.82rem;
+        font-weight: 600;
+    }
+    .conv-day-pill.active {
+        background-color: #0d6efd;
+        color: #ffffff;
+    }
+</style>
+
+<script is:inline src="/static/js/convolution_simulator.js"></script>
+

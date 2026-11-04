@@ -1,0 +1,219 @@
+---
+// LaplaceSimulator.astro
+// Clean, Streamlined Interactive Laplace Transform Lab
+---
+
+<div class="laplace-simulator-container card shadow-sm border my-4">
+    <!-- Header -->
+    <div class="card-header bg-white border-bottom py-2 px-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-symmetry-horizontal text-warning fs-4"></i>
+            <div>
+                <h5 class="mb-0 text-primary fw-bold">Interactive Laplace Transform Lab</h5>
+                <span class="text-muted small" style="font-size: 0.8rem;">
+                    Connect time-domain waveforms <em>f</em>(<em>t</em>) to poles and Region of Convergence (ROC) on the complex <em>s</em>-plane.
+                </span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <span id="lp-signal-badge" class="badge bg-primary-subtle text-primary border border-primary px-2 py-1" style="font-size: 0.82rem;">
+                Damped Cosine
+            </span>
+            <span id="lp-roc-badge" class="badge bg-success-subtle text-success border border-success px-2 py-1 font-monospace" style="font-size: 0.82rem;">
+                ROC: Re(s) &gt; -1.00
+            </span>
+        </div>
+    </div>
+
+    <div class="card-body p-3">
+        <!-- Top Toolbar: Preset Dropdown & View Mode Toggle -->
+        <div class="row g-2 align-items-center mb-3">
+            <!-- Signal Dropdown -->
+            <div class="col-12 col-md-auto d-flex align-items-center gap-2">
+                <label for="lp-signal-select" class="small fw-bold text-secondary mb-0 text-nowrap">
+                    Signal / Transform:
+                </label>
+                <select id="lp-signal-select" class="form-select form-select-sm" style="min-width: 220px; font-weight: 600;">
+                    <option value="damped_cos" selected>1. Damped Cosine: e^(-at) cos(&omega;t)</option>
+                    <option value="exp_decay">2. Exponential Decay: e^(-at)</option>
+                    <option value="damped_sin">3. Damped Sine: e^(-at) sin(&omega;t)</option>
+                    <option value="step">4. Unit Step: u(t)</option>
+                    <option value="pulse">5. Rectangular Pulse: u(t) - u(t - T)</option>
+                    <option value="crit_damped">6. Critically Damped: t &middot; e^(-at)</option>
+                    <option value="pure_cos">7. Pure Oscillation: cos(&omega;t)</option>
+                </select>
+            </div>
+
+            <!-- 4 Clean Quick Presets -->
+            <div class="col-12 col-md d-flex flex-wrap align-items-center gap-1">
+                <span class="small text-muted me-1 d-none d-lg-inline">Presets:</span>
+                <button type="button" class="btn btn-sm btn-outline-primary lp-preset-btn px-2 py-0 active" data-preset="damped_osc">Damped Ringing</button>
+                <button type="button" class="btn btn-sm btn-outline-success lp-preset-btn px-2 py-0" data-preset="exp_decay">Decay</button>
+                <button type="button" class="btn btn-sm btn-outline-info text-dark lp-preset-btn px-2 py-0" data-preset="step">Step</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary lp-preset-btn px-2 py-0" data-preset="pure_cos">Pure &omega;</button>
+            </div>
+
+            <!-- View Tabs & Play/Reset -->
+            <div class="col-auto ms-auto d-flex align-items-center gap-1">
+                <div class="btn-group btn-group-sm" role="group" aria-label="View Toggle">
+                    <button type="button" class="btn btn-outline-secondary lp-view-btn active" data-view="both">Both</button>
+                    <button type="button" class="btn btn-outline-secondary lp-view-btn" data-view="time">Time</button>
+                    <button type="button" class="btn btn-outline-secondary lp-view-btn" data-view="splane">s-Plane</button>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1 px-2 py-1 ms-1" id="lp-play-btn" title="Animate sweep">
+                    <i class="bi bi-play-fill" id="lp-play-icon"></i>
+                    <span id="lp-play-text" class="small">Play</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary px-2 py-1" id="lp-reset-btn" title="Reset parameters">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Plots Section: Clean Stacked Responsive Layout (Never squished) -->
+        <div class="d-flex flex-column gap-3 mb-3">
+            <!-- 1. Time Domain f(t) Canvas Card -->
+            <div class="p-2 rounded-3 border bg-light position-relative" id="lp-time-card">
+                <div class="d-flex justify-content-between align-items-center px-1 mb-1">
+                    <span class="fw-bold text-dark small d-flex align-items-center gap-1">
+                        <i class="bi bi-clock-history text-primary"></i>
+                        <span>Time Domain: <strong class="text-primary font-monospace" id="lp-time-eq-inline">f(t) = e<sup>-1.0t</sup> cos(3.5t)</strong></span>
+                    </span>
+                    <span class="badge bg-white text-secondary font-monospace border" id="lp-time-cursor">
+                        t = 0.00 s | f(t) = 1.00
+                    </span>
+                </div>
+
+                <div class="canvas-wrapper position-relative" style="height: 190px;">
+                    <canvas id="lp-time-canvas" class="w-100 h-100 rounded border bg-white" style="cursor: crosshair; touch-action: none;"></canvas>
+                    <div class="position-absolute top-0 end-0 m-2 px-2 py-0 bg-white bg-opacity-85 rounded border" style="pointer-events: none; font-size: 0.75rem;">
+                        <span class="text-primary fw-bold">━ Signal f(t)</span>
+                        <span class="text-warning fw-bold ms-2" id="lp-envelope-legend">╌╌ Envelope &plusmn;e<sup>-at</sup></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Complex s-Plane & ROC Canvas Card -->
+            <div class="p-2 rounded-3 border bg-light position-relative" id="lp-splane-card">
+                <div class="d-flex justify-content-between align-items-center px-1 mb-1">
+                    <span class="fw-bold text-dark small d-flex align-items-center gap-1">
+                        <i class="bi bi-diagram-3-fill text-warning"></i>
+                        <span>Complex <em>s</em>-Plane &amp; ROC: <strong class="text-dark font-monospace" id="lp-splane-eq-inline">F(s) = (s + 1.0)/[(s + 1.0)&sup2; + 3.5&sup2;]</strong></span>
+                    </span>
+                    <span class="badge bg-white text-secondary font-monospace border" id="lp-splane-cursor">
+                        s = -1.00 &plusmn; 3.50j
+                    </span>
+                </div>
+
+                <div class="canvas-wrapper position-relative" style="height: 200px;">
+                    <canvas id="lp-splane-canvas" class="w-100 h-100 rounded border bg-white" style="cursor: grab; touch-action: none;"></canvas>
+                    <div class="position-absolute top-0 end-0 m-2 px-2 py-0 bg-white bg-opacity-85 rounded border" style="pointer-events: none; font-size: 0.75rem;">
+                        <span class="text-info fw-bold">■ ROC (Convergence)</span>
+                        <span class="text-danger fw-bold ms-2">✕ Pole (Drag!)</span>
+                        <span class="text-warning fw-bold ms-2">━ j&omega; Axis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 Simple, Clear Sliders -->
+        <div class="row g-2 mb-3">
+            <!-- Decay Rate Slider -->
+            <div class="col-12 col-md-6">
+                <div class="p-2 px-3 rounded border bg-light h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="lp-a-slider" class="small fw-bold text-dark mb-0">
+                            Decay Rate (<em>a</em>): <span class="text-muted fw-normal small">(Pole: &sigma; = -<em>a</em>)</span>
+                        </label>
+                        <span class="badge bg-white text-primary border font-monospace px-2 py-1 fs-6" id="lp-a-val">1.00</span>
+                    </div>
+                    <input type="range" class="form-range" id="lp-a-slider" min="-0.5" max="3.0" step="0.05" value="1.0">
+                    <div class="d-flex justify-content-between text-muted small" style="font-size: 0.75rem;">
+                        <span>-0.5 (Growing)</span>
+                        <span class="text-primary fw-semibold" id="lp-a-status-text">Stable Decay (ROC covers j&omega;)</span>
+                        <span>3.0 (Fast Decay)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frequency Slider -->
+            <div class="col-12 col-md-6" id="lp-omega-container">
+                <div class="p-2 px-3 rounded border bg-light h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="lp-omega-slider" class="small fw-bold text-dark mb-0">
+                            Oscillation Frequency (&omega;): <span class="text-muted fw-normal small">(Poles: &plusmn;<em>j</em>&omega;)</span>
+                        </label>
+                        <span class="badge bg-white text-dark border font-monospace px-2 py-1 fs-6" id="lp-omega-val">3.5 rad/s</span>
+                    </div>
+                    <input type="range" class="form-range" id="lp-omega-slider" min="0.0" max="7.0" step="0.1" value="3.5">
+                    <div class="d-flex justify-content-between text-muted small" style="font-size: 0.75rem;">
+                        <span>0.0 rad/s (No Oscillation)</span>
+                        <span class="text-secondary fw-semibold" id="lp-omega-hz-hint">f &approx; 0.56 Hz</span>
+                        <span>7.0 rad/s (Fast)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pulse Duration (Shown only for pulse) -->
+            <div class="col-12 col-md-6" id="lp-twidth-container" style="display: none;">
+                <div class="p-2 px-3 rounded border bg-light h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="lp-twidth-slider" class="small fw-bold text-dark mb-0">Pulse Duration (<em>T</em>):</label>
+                        <span class="badge bg-white text-warning text-dark border font-monospace px-2 py-1 fs-6" id="lp-twidth-val">2.0 s</span>
+                    </div>
+                    <input type="range" class="form-range" id="lp-twidth-slider" min="0.5" max="4.0" step="0.1" value="2.0">
+                    <div class="d-flex justify-content-between text-muted small" style="font-size: 0.75rem;">
+                        <span>0.5 s (Narrow)</span>
+                        <span>Pulse Width</span>
+                        <span>4.0 s (Wide)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Single Clean, Clear Summary Strip -->
+        <div class="p-2 px-3 bg-white rounded border d-flex flex-wrap justify-content-between align-items-center gap-2" style="font-size: 0.85rem;">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+                <span><strong>Poles:</strong> <span class="text-danger fw-bold font-monospace" id="lp-summary-poles">s = -1.00 &plusmn; 3.50j</span></span>
+                <span><strong>ROC:</strong> <span class="text-success fw-bold font-monospace" id="lp-summary-roc">Re(s) &gt; -1.00</span></span>
+                <span class="badge bg-success-subtle text-success border border-success" id="lp-summary-fourier">
+                    <i class="bi bi-check-circle-fill me-1"></i> Fourier Transform Exists
+                </span>
+            </div>
+            <div class="text-muted small text-end flex-grow-1" id="lp-summary-desc">
+                Drag the pole <strong class="text-danger">✕</strong> on the s-plane to explore stability and frequency.
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .laplace-simulator-container {
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+    .lp-preset-btn, .lp-view-btn {
+        font-size: 0.78rem;
+        line-height: 1.5;
+        border-radius: 4px;
+    }
+    .lp-preset-btn.active, .lp-view-btn.active {
+        box-shadow: 0 0 0 2px rgba(19, 41, 75, 0.25);
+        font-weight: 700;
+        background-color: #13294b;
+        color: #ffffff;
+        border-color: #13294b;
+    }
+    .form-range::-webkit-slider-thumb {
+        background: #ff5f05;
+        width: 15px;
+        height: 15px;
+    }
+    .form-range::-moz-range-thumb {
+        background: #ff5f05;
+        width: 15px;
+        height: 15px;
+    }
+</style>
+
+<script is:inline src="/static/js/laplace_simulator.js"></script>

@@ -1,0 +1,300 @@
+---
+// TransferFunctionSimulator.astro
+// Streamlined, Responsive Transfer Function Lab for Signals & Systems / Bioengineering
+---
+
+<div class="transfer-function-simulator-container card shadow-sm border my-3">
+    <!-- Header -->
+    <div class="card-header bg-white border-bottom py-2 px-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-diagram-3-fill text-warning fs-4"></i>
+            <div>
+                <h5 class="mb-0 text-primary fw-bold">Interactive Transfer Function Lab</h5>
+                <span class="text-muted small" style="font-size: 0.78rem;">Explore how Laplace transfer functions shape time-domain signals and combine in series & parallel.</span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <span id="tf-status-badge" class="badge bg-primary-subtle text-primary border border-primary px-2 py-1" style="font-size: 0.8rem;">
+                1st-Order Lag
+            </span>
+            <span id="tf-regime-badge" class="badge bg-secondary-subtle text-secondary border border-secondary px-2 py-1" style="font-size: 0.8rem;">
+                Exponential Decay
+            </span>
+        </div>
+    </div>
+
+    <div class="card-body p-3">
+        <!-- Top Toolbar: Model & Input Selectors & Controls -->
+        <div class="row g-2 align-items-center mb-2">
+            <!-- Model Select -->
+            <div class="col-12 col-sm-auto d-flex align-items-center gap-1">
+                <label for="tf-model-select" class="small fw-bold text-secondary mb-0 me-1" style="font-size: 0.8rem;">Model:</label>
+                <select id="tf-model-select" class="form-select form-select-sm fw-semibold" style="width: auto; min-width: 160px;">
+                    <option value="first" selected>1st-Order Lag H(s)</option>
+                    <option value="second">2nd-Order Resonant H(s)</option>
+                    <option value="series">Series Cascade (H1 &middot; H2)</option>
+                    <option value="parallel">Parallel Branches (H1 &plusmn; H2)</option>
+                </select>
+            </div>
+
+            <!-- Input Signal Select -->
+            <div class="col-12 col-sm-auto d-flex align-items-center gap-1">
+                <label for="tf-input-select" class="small fw-bold text-secondary mb-0 me-1" style="font-size: 0.8rem;">Input <em>u(t)</em>:</label>
+                <select id="tf-input-select" class="form-select form-select-sm fw-semibold" style="width: auto; min-width: 130px;">
+                    <option value="step" selected>Step u(t)</option>
+                    <option value="impulse">Impulse &delta;(t)</option>
+                    <option value="pulse">Pulse (2s)</option>
+                    <option value="sine">Sinusoid sin(2t)</option>
+                </select>
+            </div>
+
+            <!-- Play & Reset Buttons -->
+            <div class="col-auto ms-auto d-flex align-items-center gap-1">
+                <button type="button" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1 px-2 py-1" id="tf-play-btn" title="Animate signal flow and time sweep">
+                    <i class="bi bi-play-fill" id="tf-play-icon"></i>
+                    <span id="tf-play-text" class="small">Play</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary px-2 py-1" id="tf-reset-btn" title="Reset parameters">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Presets Row -->
+        <div class="d-flex flex-wrap align-items-center gap-1 mb-3 pt-1 border-top">
+            <span class="small text-muted me-1 fw-semibold" style="font-size: 0.78rem;">Presets:</span>
+            <button type="button" class="btn btn-sm btn-outline-primary tf-preset-btn px-2 py-0 active" data-preset="first">1st-Order RC</button>
+            <button type="button" class="btn btn-sm btn-outline-danger tf-preset-btn px-2 py-0" data-preset="arterial">Arterial Catheter (&zeta;=0.4)</button>
+            <button type="button" class="btn btn-sm btn-outline-success tf-preset-btn px-2 py-0" data-preset="crit">Pupil Reflex (&zeta;=1.0)</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary tf-preset-btn px-2 py-0" data-preset="over">Overdamped (&zeta;=2.0)</button>
+            <button type="button" class="btn btn-sm btn-outline-dark tf-preset-btn px-2 py-0" data-preset="example1">Fig 1: 4/(s+3)(s+4)</button>
+            <button type="button" class="btn btn-sm btn-outline-warning text-dark tf-preset-btn px-2 py-0" data-preset="parallel">Fig 2: Parallel Diff</button>
+        </div>
+
+        <!-- Visual 1: Compact Full-Width Block Diagram Strip -->
+        <div class="canvas-card p-2 rounded-3 border bg-light position-relative mb-2">
+            <div class="d-flex justify-content-between align-items-center px-1 mb-1" style="font-size: 0.75rem;">
+                <span class="fw-bold text-dark">
+                    <i class="bi bi-bounding-box-circles me-1 text-primary"></i> Block Diagram Signal Flow: <em>Y(s) = H(s) &middot; U(s)</em>
+                </span>
+                <span class="badge bg-white text-secondary font-monospace border" id="tf-topology-title">
+                    1st-Order Single Block
+                </span>
+            </div>
+            <div class="canvas-wrapper position-relative" style="height: 76px;">
+                <canvas id="tf-block-canvas" class="w-100 h-100 rounded border bg-white"></canvas>
+            </div>
+        </div>
+
+        <!-- Visual 2: Full-Width Response Plot -->
+        <div class="canvas-card p-2 rounded-3 border bg-light position-relative mb-2">
+            <div class="d-flex flex-wrap justify-content-between align-items-center px-1 mb-1 gap-2" style="font-size: 0.78rem;">
+                <span class="fw-bold text-dark">
+                    <i class="bi bi-activity text-primary me-1"></i> Time-Domain Response <em>y(t)</em>
+                </span>
+                <div class="d-flex align-items-center gap-2 ms-auto font-monospace">
+                    <span class="badge bg-primary-subtle text-primary border" id="tf-formula-readout">
+                        H(s) = 1.00 / (0.80s + 1)
+                    </span>
+                    <span class="badge bg-white text-secondary border" id="tf-cursor-readout">
+                        Hover over plot to inspect
+                    </span>
+                </div>
+            </div>
+
+            <div class="canvas-wrapper position-relative" style="height: 230px;">
+                <canvas id="tf-response-canvas" class="w-100 h-100 rounded border bg-white" style="cursor: crosshair; touch-action: none;"></canvas>
+                <div class="position-absolute bottom-0 start-0 m-2 px-2 py-0 bg-white bg-opacity-75 rounded border" style="pointer-events: none; font-size: 0.72rem;">
+                    <span class="text-primary fw-bold">━ Output <em>y(t)</em></span>
+                    <span class="ms-2 text-warning fw-bold">╌╌ Input <em>u(t)</em></span>
+                    <span id="tf-intermediate-legend" class="ms-2 fw-bold d-none" style="color: #20c997;">⋯⋯ Intermediate <em>y</em><sub>1</sub>(<em>t</em>)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sliders: Clean Multi-Column Layout -->
+        <!-- 1st-Order Sliders -->
+        <div id="tf-first-controls" class="row g-2 mb-2">
+            <div class="col-12 col-sm-6">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-first-k-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.8rem;">DC Gain (<em>K</em>):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-first-k-val">1.00</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-first-k-slider" min="0.2" max="3.0" step="0.1" value="1.0">
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-first-tau-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.8rem;">Time Constant (<em>&tau;</em>):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-first-tau-val">0.80 s</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-first-tau-slider" min="0.1" max="3.0" step="0.05" value="0.8">
+                </div>
+            </div>
+        </div>
+
+        <!-- 2nd-Order Sliders -->
+        <div id="tf-second-controls" class="row g-2 mb-2 d-none">
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-second-zeta-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.8rem;">Damping (<em>&zeta;</em>):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-second-zeta-val">0.40</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-second-zeta-slider" min="0.0" max="2.5" step="0.05" value="0.4">
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-second-wn-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.8rem;">Natural Freq (<em>&omega;<sub>n</sub></em>):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-second-wn-val">4.00 rad/s</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-second-wn-slider" min="0.5" max="10.0" step="0.25" value="4.0">
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-second-k-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.8rem;">DC Gain (<em>K</em>):</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-second-k-val">1.00</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-second-k-slider" min="0.2" max="3.0" step="0.1" value="1.0">
+                </div>
+            </div>
+        </div>
+
+        <!-- Series Cascade Sliders -->
+        <div id="tf-series-controls" class="row g-2 mb-2 d-none">
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-series-tau1-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.8rem;">Block 1 <em>&tau;</em><sub>1</sub>:</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-series-tau1-val">0.33 s</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-series-tau1-slider" min="0.1" max="2.0" step="0.05" value="0.33">
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-series-tau2-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.8rem;">Block 2 <em>&tau;</em><sub>2</sub>:</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-series-tau2-val">0.25 s</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-series-tau2-slider" min="0.1" max="2.0" step="0.05" value="0.25">
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-series-k-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.8rem;">Combined <em>K</em>:</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-series-k-val">1.00</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-series-k-slider" min="0.2" max="5.0" step="0.1" value="1.0">
+                </div>
+            </div>
+        </div>
+
+        <!-- Parallel Sliders -->
+        <div id="tf-parallel-controls" class="row g-2 mb-2 d-none">
+            <div class="col-6 col-sm-3">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-par-k1-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.78rem;"><em>K</em><sub>1</sub>:</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-par-k1-val">1.00</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-par-k1-slider" min="0.2" max="2.5" step="0.1" value="1.0">
+                </div>
+            </div>
+            <div class="col-6 col-sm-3">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-par-tau1-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.78rem;"><em>&tau;</em><sub>1</sub>:</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-par-tau1-val">0.50 s</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-par-tau1-slider" min="0.1" max="2.5" step="0.05" value="0.5">
+                </div>
+            </div>
+            <div class="col-6 col-sm-3">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-par-k2-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.78rem;"><em>K</em><sub>2</sub>:</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-par-k2-val">1.00</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-par-k2-slider" min="0.2" max="2.5" step="0.1" value="1.0">
+                </div>
+            </div>
+            <div class="col-6 col-sm-3">
+                <div class="p-2 rounded border bg-light">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="tf-par-tau2-slider" class="form-label small fw-semibold mb-0" style="font-size: 0.78rem;"><em>&tau;</em><sub>2</sub>:</label>
+                        <span class="badge bg-white text-dark border font-monospace px-1 py-0" id="tf-par-tau2-val">1.20 s</span>
+                    </div>
+                    <input type="range" class="form-range" id="tf-par-tau2-slider" min="0.1" max="2.5" step="0.05" value="1.2">
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-between align-items-center px-2 py-1 bg-white rounded border">
+                <span class="small text-muted" style="font-size: 0.78rem;">Summing Junction Operation:</span>
+                <button type="button" class="btn btn-sm btn-outline-danger fw-bold px-2 py-0" id="tf-par-sign-btn">
+                    Sign: (-)
+                </button>
+            </div>
+        </div>
+
+        <!-- Live Metrics HUD -->
+        <div class="p-2 px-3 bg-white rounded border d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2" style="font-size: 0.8rem;">
+            <div class="d-flex flex-wrap align-items-center gap-3 font-monospace">
+                <span><strong>DC Gain:</strong> <span id="tf-metric-gain" class="text-primary">1.00</span></span>
+                <span><strong>Settling <em>t<sub>s</sub></em>:</strong> <span id="tf-metric-ts" class="text-primary">3.20 s</span></span>
+                <span><strong>Rise <em>t<sub>r</sub></em>:</strong> <span id="tf-metric-tr" class="text-primary">1.76 s</span></span>
+                <span><strong>Overshoot:</strong> <span id="tf-metric-os" class="text-danger">0%</span></span>
+            </div>
+            <div class="font-monospace text-muted">
+                <strong>Poles:</strong> <span id="tf-metric-poles" class="badge bg-light text-dark border">s = -1.25</span>
+            </div>
+        </div>
+
+        <!-- Educational Insight Card -->
+        <div class="p-2 px-3 bg-light rounded border" id="tf-analysis-card">
+            <div class="d-flex align-items-start gap-2">
+                <i class="bi bi-lightbulb-fill text-warning fs-5 mt-0"></i>
+                <div>
+                    <strong id="tf-analysis-title" class="d-block text-dark small">1st-Order Exponential Lag</strong>
+                    <p id="tf-analysis-desc" class="small text-muted mb-0" style="font-size: 0.8rem; line-height: 1.4;">
+                        Standard 1st-order transfer function. The time constant &tau; determines response speed: reaches 63.2% of steady-state at t = &tau; and 98% at t = 4&tau;. Commonly models 1-compartment drug clearance and RC lowpass filtering.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .transfer-function-simulator-container {
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+    .tf-preset-btn {
+        font-size: 0.78rem;
+        line-height: 1.5;
+        border-radius: 4px;
+    }
+    .tf-preset-btn.active {
+        box-shadow: 0 0 0 2px rgba(19, 41, 75, 0.25);
+        font-weight: 700;
+    }
+    .form-range::-webkit-slider-thumb {
+        background: #ff5f05;
+        width: 14px;
+        height: 14px;
+    }
+    .form-range::-moz-range-thumb {
+        background: #ff5f05;
+        width: 14px;
+        height: 14px;
+    }
+</style>
+
+<script is:inline src="/static/js/transfer_function_simulator.js"></script>
