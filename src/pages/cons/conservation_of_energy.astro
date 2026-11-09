@@ -149,9 +149,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
 </Image>
 </div>
 </Example>
-
-<DisplayEquation title="Approximating Enthalpy" background="True" equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out}) "/>
-
 <DisplayEquation equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out})" background="True" title="Approximating Enthalpy"   id="hfp-eq" derivation="True">
             <p> Derived with respect to a cylinder: </p>
 				<Image src='/cons/Enthalpy.png' width='4'> </Image>
@@ -161,28 +158,6 @@ import DisplayTable from "../../components/DisplayTable.astro"
                                 <p> If <InlineEquation equation="m_{in} = m_{out}" /></p>
                                 <DisplayEquation equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out})" background="True"/>			
 </DisplayEquation>
-
-<p>Wondering where this equation came from? Check out the derivation below: </p>
-<Example title="Enthalpy Derivation" solution="True" id="Derivation">
-<div class="d-flex flex-row">
-<p> Derived with respect to a cylinder: </p>
-<Image src="/cons/Enthalpy.png">
-        </Image>
-</div>
-<div slot="solution">
- <DisplayEquation equation="\\sum_{in} \\dot{m}_{in} (\\hat{E}_{P,in}+\\hat{E}_{K,in}+\\hat{H}_{in}) - \\sum_{out} \\dot{m}_{out} (\\hat{E}_{P,out}+\\hat{E}_{K,out}+\\hat{H}_{out})" />
-
-        <DisplayEquation equation="\\dot{m}_{in} (\\hat{H}_{ref} - \\hat{H}_{in}) + \\dot{m}_{out} (\\hat{H}_{out} - \\hat{H}_{ref})" />
-
-        <DisplayEquation equation="\\dot{m}_{in} (-\\hat{H}_{in}) + \\dot{m}_{out} (\\hat{H}_{out})" />
-
-        <p> If <InlineEquation equation="m_{in} = m_{out}" /></p>
-
-        <DisplayEquation equation="\\Delta \\dot{H} = -\\dot{m} (\\hat{H}_{in} - \\hat{H}_{out})" background="True"/>
-
-</div>
-</Example>
-
 </SubSection>
 
 <SubSection title="Systems with Chemical Reactions" id="Systems with Chemical Reactions">
