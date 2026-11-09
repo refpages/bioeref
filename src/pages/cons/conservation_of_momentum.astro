@@ -26,10 +26,7 @@ import Warning from "../../components/Warning.astro"
 <div slot="navtree">
 <ul class="list-group list-group-flush py-0">
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types of Momentum'>Types of Momentum</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation Statements'>Conservation statements</a><ul class='list-group list-group-flush py-0'>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Linear Momentum'>Linear Momentum</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Angular Momentum'>Angular Momentum</a></li></ul>
-</li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Conservation Statements'>Conservation statements</li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Rigid Body Statics'>Rigid Body Statics</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Fluid Statics'>Fluid Statics</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Collision Systems'>Collision systems</a></li>
@@ -61,19 +58,13 @@ import Warning from "../../components/Warning.astro"
 <DisplayEquation title="Torque" background="True" equation="\\vec{\\tau}=\\vec{r} \\times \\vec{F}" />
 
 </SubSection>
+
 <SubSection title="Conservation Statements" id="Conservation statements">
 <p>Linear and angular momentum are always conserved in the universe. Thus, momentum cannot be produced or destroyed in a system or in the universe. Recall that the Generation and Consumption terms describe the production and destruction of an extensive property in a system. In problems involving momentum, Generation and Consumption terms are eliminated from the accounting equation, which then reduces to the conservation equation.</p>
+<b><DisplayEquation title="Linear Momentum Accounting Equation" background="True"  equation="\\sum_{in}\\dot{\\vec{p}}_{in} - \\sum_{out}\\dot{\\vec{p}}_{out} + \\sum{\\vec{F}}=\\frac{d\\vec{p}^{sys}}{dt}" /></b>
+<b><DisplayEquation title="Angular Momentum Accounting Equation" background="True"  equation="\\sum_{in}\\dot{\\vec{L}}_{in} - \\sum_{out}\\dot{\\vec{L}}_{out} + \\sum(\\vec{r} \\times \\vec{F})=\\frac{d\\vec{L}^{sys}}{dt}" /></b>
 </SubSection>
-<SubSubSection title="Linear Momentum" id="Linear Momentum">
 
-<DisplayEquation title="Linear Momentum Accounting Equation." background="True"  equation="\\sum_{in}\\dot{\\vec{p}}_{in} - \\sum_{out}\\dot{\\vec{p}}_{out} + \\sum{\\vec{F}}=\\frac{d\\vec{p}^{sys}}{dt}" title="" />
-
-</SubSubSection>
-<SubSubSection title="Angular Momentum" id="Angular Momentum">
-
-<DisplayEquation title="Angular Momentum Accounting Equation." background="True"  equation="\\sum_{in}\\dot{\\vec{L}}_{in} - \\sum_{out}\\dot{\\vec{L}}_{out} + \\sum(\\vec{r} \\times \\vec{F})=\\frac{d\\vec{L}^{sys}}{dt}" title="" />
-
-</SubSubSection>
 <SubSection title="Rigid Body Statics" id="Rigid Body Statics">
 <p>One common class of engineering problems involves the application of the conservation of momentum to closed, steady-state systems. 
 In a closed (but not isolated) system, movement of momentum through bulk material transport across the system boundary does not occur. However, external forces may act on the system. The conservation statement of a closed, steady-state system can be reduced to:</p>
