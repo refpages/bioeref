@@ -27,6 +27,7 @@ import TransferFunctionSimulator from "../../components/TransferFunctionSimulato
     <div slot="navtree">
         <ul class="list-group list-group-flush py-0">
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#What'>What Are Transfer Functions?</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#EigenvaluesAndPoles'>Eigenvalues and Transfer Function Poles</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive Transfer Function Lab</a></li>
         </ul>
     </div>
@@ -60,6 +61,98 @@ import TransferFunctionSimulator from "../../components/TransferFunctionSimulato
         </Example>
 
         <p class="mt-3">Try practicing with systems that combine these aspects, and use the table of common Laplace transforms (<a href="/signals/laplace#Facts">here</a>) to convert your frequency-domain outputs back to the time domain.</p>
+    </SubSection>
+
+    <SubSection title="Eigenvalues and Transfer Function Poles" id="EigenvaluesAndPoles">
+        <p>In linear systems analysis, the roots of the transfer function's denominator polynomial are termed the <strong>poles</strong> of the system. From the perspective of differential equations and linear algebra, these poles are identical to the <strong>eigenvalues</strong> of the system's dynamic state matrix. Eigenvalues and poles govern how a system evolves over time along its principal directions, defining the natural modes of the system independent of the applied input.</p>
+
+        <SubSubSection title="State-Space Characteristic Equation and Dynamic Modes" id="StateSpaceModes">
+            <p>Consider a continuous-time linear time-invariant (LTI) system expressed in state-space representation with state vector <InlineEquation equation="\\mathbf{x}(t) \\in \\mathbb{R}^n"/>, input <InlineEquation equation="\\mathbf{u}(t) \\in \\mathbb{R}^m"/>, and output <InlineEquation equation="\\mathbf{y}(t) \\in \\mathbb{R}^p"/>:</p>
+            <DisplayEquation equation="\\dot{\\mathbf{x}}(t) = \\mathbf{A}\\mathbf{x}(t) + \\mathbf{B}\\mathbf{u}(t)"/>
+            <DisplayEquation equation="\\mathbf{y}(t) = \\mathbf{C}\\mathbf{x}(t) + \\mathbf{D}\\mathbf{u}(t)"/>
+            <p>The natural response describes the unforced behavior of the system (<InlineEquation equation="\\mathbf{u}(t) = \\mathbf{0}"/>):</p>
+            <DisplayEquation equation="\\dot{\\mathbf{x}}(t) = \\mathbf{A}\\mathbf{x}(t)"/>
+            <p>Assuming an exponential solution mode of the form <InlineEquation equation="\\mathbf{x}(t) = \\mathbf{v}e^{\\lambda t}"/>, where <InlineEquation equation="\\mathbf{v}"/> is a constant non-zero vector and <InlineEquation equation="\\lambda"/> is a scalar rate, substituting this into the unforced state equation yields:</p>
+            <DisplayEquation equation="\\lambda \\mathbf{v} e^{\\lambda t} = \\mathbf{A}\\mathbf{v} e^{\\lambda t} \\implies (\\lambda \\mathbf{I} - \\mathbf{A})\\mathbf{v} = \\mathbf{0}"/>
+            <p>For non-trivial solutions (<InlineEquation equation="\\mathbf{v} \\neq \\mathbf{0}"/>), the characteristic matrix <InlineEquation equation="\\lambda \\mathbf{I} - \\mathbf{A}"/> must have a determinant of zero. This yields the <strong>characteristic equation</strong> of the system:</p>
+            <DisplayEquation equation="\\det(\\lambda \\mathbf{I} - \\mathbf{A}) = 0"/>
+            <p>The <InlineEquation equation="n"/> roots <InlineEquation equation="\\lambda_1, \\lambda_2, \\dots, \\lambda_n"/> of this polynomial are the <strong>eigenvalues</strong> of matrix <InlineEquation equation="\\mathbf{A}"/>. Each eigenvalue <InlineEquation equation="\\lambda_i"/> produces a fundamental characteristic time-domain mode of the form <InlineEquation equation="e^{\\lambda_i t}"/>. These exponential modes serve as the natural basis functions that compose any transient response of the system.</p>
+        </SubSubSection>
+
+        <SubSubSection title="Equivalence Between Transfer Function Poles and Eigenvalues" id="PoleEquivalence">
+            <p>To see how the state-space eigenvalues directly map to the Laplace transfer function, take the Laplace transform of the state-space equations with zero initial conditions (<InlineEquation equation="\\mathbf{x}(0) = \\mathbf{0}"/>):</p>
+            <DisplayEquation equation="s\\mathbf{X}(s) = \\mathbf{A}\\mathbf{X}(s) + \\mathbf{B}\\mathbf{U}(s) \\implies (s\\mathbf{I} - \\mathbf{A})\\mathbf{X}(s) = \\mathbf{B}\\mathbf{U}(s)"/>
+            <p>Solving for <InlineEquation equation="\\mathbf{X}(s) = (s\\mathbf{I} - \\mathbf{A})^{-1}\\mathbf{B}\\mathbf{U}(s)"/> and substituting into the output equation <InlineEquation equation="\\mathbf{Y}(s) = \\mathbf{C}\\mathbf{X}(s) + \\mathbf{D}\\mathbf{U}(s)"/> gives the transfer function matrix:</p>
+            <DisplayEquation equation="\\mathbf{H}(s) = \\frac{\\mathbf{Y}(s)}{\\mathbf{U}(s)} = \\mathbf{C}(s\\mathbf{I} - \\mathbf{A})^{-1}\\mathbf{B} + \\mathbf{D}"/>
+            <p>Recall from matrix algebra that the inverse of <InlineEquation equation="s\\mathbf{I} - \\mathbf{A}"/> can be written using its adjugate and determinant:</p>
+            <DisplayEquation equation="(s\\mathbf{I} - \\mathbf{A})^{-1} = \\frac{\\text{adj}(s\\mathbf{I} - \\mathbf{A})}{\\det(s\\mathbf{I} - \\mathbf{A})}"/>
+            <p>Substituting this relation into the transfer function formula reveals:</p>
+            <DisplayEquation equation="\\mathbf{H}(s) = \\frac{\\mathbf{C}\\,\\text{adj}(s\\mathbf{I} - \\mathbf{A})\\mathbf{B} + \\mathbf{D}\\det(s\\mathbf{I} - \\mathbf{A})}{\\det(s\\mathbf{I} - \\mathbf{A})} = \\frac{\\mathbf{N}(s)}{D(s)}"/>
+            <p>Notice that the scalar denominator polynomial <InlineEquation equation="D(s)"/> of the transfer function is identically equal to the characteristic polynomial:</p>
+            <DisplayEquation equation="D(s) = \\det(s\\mathbf{I} - \\mathbf{A})"/>
+            <p>Therefore, setting the denominator to zero to find the transfer function <strong>poles</strong> (<InlineEquation equation="D(s) = 0"/>) is mathematically identical to solving the eigenvalue characteristic equation (<InlineEquation equation="\\det(\\lambda \\mathbf{I} - \\mathbf{A}) = 0"/>):</p>
+            <DisplayEquation equation="D(s) = 0 \\implies s = \\lambda_i"/>
+            <p>Under minimal realizations (where no state modes are cancelled between numerator and denominator), the <strong>poles of a transfer function are exactly the eigenvalues of the system matrix</strong>.</p>
+        </SubSubSection>
+
+        <SubSubSection title="Real vs. Complex Conjugate Poles and Natural Responses" id="RealVsComplex">
+            <p>When computing the output response via partial fraction expansion, terms appear in the form <InlineEquation equation="\\frac{r_i}{s - p_i} = \\frac{r_i}{s - \\lambda_i}"/>. Inverse Laplace transforming each partial fraction term yields an exponential time function <InlineEquation equation="r_i e^{\\lambda_i t}"/>. Writing the complex pole/eigenvalue in Cartesian form as <InlineEquation equation="s = \\sigma + j\\omega"/> allows us to classify the natural responses into two primary families:</p>
+
+            <DisplayTable id="pole_response_comparison_table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Pole / Eigenvalue Type</th>
+                        <th style="width: 25%;">Complex Coordinate</th>
+                        <th style="width: 25%;">Natural Response Mode</th>
+                        <th style="width: 25%;">Physical Behavior</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Purely Real Pole (<InlineEquation equation="\\lambda = \\sigma"/>)</strong></td>
+                        <td><InlineEquation equation="\\omega = 0"/>, lying on the real axis</td>
+                        <td><InlineEquation equation="y(t) \\propto e^{\\sigma t}"/></td>
+                        <td>
+                            Monotonic exponential decay (<InlineEquation equation="\\sigma < 0"/>) with time constant <InlineEquation equation="\\tau = 1/|\\sigma|"/>, or monotonic exponential divergence (<InlineEquation equation="\\sigma > 0"/>). No oscillation occurs.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complex Conjugate Pole Pair (<InlineEquation equation="\\lambda = \\sigma \\pm j\\omega"/>)</strong></td>
+                        <td><InlineEquation equation="\\omega \\neq 0"/>, symmetric across the real axis</td>
+                        <td><InlineEquation equation="y(t) \\propto e^{\\sigma t} \\cos(\\omega t + \\phi)"/></td>
+                        <td>
+                            Sinusoidal oscillation at frequency <InlineEquation equation="\\omega"/> enveloped by exponential damping (<InlineEquation equation="\\sigma < 0"/>), exponential growth (<InlineEquation equation="\\sigma > 0"/>), or constant amplitude (<InlineEquation equation="\\sigma = 0"/>).
+                        </td>
+                    </tr>
+                </tbody>
+            </DisplayTable>
+
+            <p class="mt-3">The physical contrast between these two behaviors is fundamental to systems engineering:</p>
+            <ul>
+                <li>
+                    <strong>Purely Real Poles (<InlineEquation equation="\\lambda = \\sigma"/>):</strong> 
+                    Represent overdamped or first-order dynamics (such as a simple resistor-capacitor <InlineEquation equation="RC"/> low-pass filter or thermal dissipation). The response changes smoothly without ringing or overshoot. 
+                    If <InlineEquation equation="\\sigma < 0"/>, the signal decays exponentially toward equilibrium at rate <InlineEquation equation="|\\sigma|"/>. The closer <InlineEquation equation="\\sigma"/> is to the imaginary axis (smaller <InlineEquation equation="|\\sigma|"/>), the slower the decay, making it a <em>dominant pole</em> that dictates settling time. If <InlineEquation equation="\\sigma > 0"/>, the response diverges monotonically to infinity.
+                </li>
+                <li>
+                    <strong>Complex Conjugate Pairs (<InlineEquation equation="\\lambda = \\sigma \\pm j\\omega"/>):</strong> 
+                    Represent underdamped second-order dynamics where two energy-storage elements exchange energy back and forth (such as mass-spring-damper mechanics or inductor-capacitor <InlineEquation equation="LC"/> tank circuits). 
+                    Because physical differential equations have real coefficients, complex poles always appear in conjugate pairs. Combining their exponential terms via Euler's identity produces:
+                    <DisplayEquation equation="y_{\\text{pair}}(t) = 2|r| e^{\\sigma t} \\cos(\\omega t + \\angle r)"/>
+                    Here, the real part <InlineEquation equation="\\sigma"/> serves as the envelope decay/growth rate, while the imaginary part <InlineEquation equation="\\omega"/> determines the oscillation frequency (ringing rate in rad/s).
+                </li>
+            </ul>
+
+            <CalloutCard title="Connecting Poles to System Stability">
+                <p class="mb-2">Because the real part <InlineEquation equation="\\sigma = \\text{Re}(\\lambda)"/> appears directly in the exponent <InlineEquation equation="e^{\\sigma t}"/>, it strictly dictates whether transients decay to zero (stable, <InlineEquation equation="\\sigma < 0"/>), remain bounded (marginally stable, <InlineEquation equation="\\sigma = 0"/>), or blow up to infinity (unstable, <InlineEquation equation="\\sigma > 0"/>).</p>
+                <div class="mt-3">
+                    <a href="/signals/stability?origin=coursemenu" class="btn btn-primary d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                        <span>Explore Pole-Zero Mapping on the System Stability Page</span>
+                    </a>
+                </div>
+            </CalloutCard>
+        </SubSubSection>
     </SubSection>
 
     <SubSection title="Interactive Transfer Function Lab" id="Simulator">

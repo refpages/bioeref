@@ -1,28 +1,466 @@
 ---
 import Layout from "../../layouts/Layout.astro" 
 import Section from "../../components/Section.astro" 
-import SubSection from "../../components/SubSection.astro" 
+import SubSection from "../../components/SubSection.astro"
+import InlineEquation from "../../components/InlineEquation.astro"
+import DisplayEquation from "../../components/DisplayEquation.astro"
+import CircuitSimulator from "../../components/CircuitSimulator.astro"
+import CalloutCard from "../../components/CalloutCard.astro"
 ---
 <Layout title="Circuits">
     <div slot="navtree">
         <ul class="list-group list-group-flush py-0">
-            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#status'>Status</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Overview'>Circuits Overview</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive Circuit &amp; Current Lab</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#WhatAreCircuits'>What are Circuits?</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Filtering'>Using Circuits for Filtering</a></li>
         </ul>
     </div>
+
     <Section title="Circuits" />
-    <SubSection title="Under Construction" id="status">
-        <div class="alert alert-info d-flex align-items-center my-4" role="alert">
-            <i class="bi bi-tools me-2 fs-4"></i>
-            <div>
-                This topic is currently under development. Content will be added soon!
+
+    <SubSection title="Circuits Overview" id="Overview">
+        <p>
+            Circuits traditionally consist of wires, power/current sources, resistors, capacitors, and inductors, and can be used for a vast variety of purposes. Due to the ways that these components affect voltage and current in a circuit, circuits are a useful way for us to physically interact with signals without needing digital filtering or circuit analysis. We have certain building blocks, and can construct circuits based on the parameters we need, which are current, voltage, and resistance. We can use this to solve most problems and construct physical filters. These allow us to avoid digital components and filters as they are often used to replicate the effect of physical components computationally. Using simple circuit components can reduce the footprint and the size scale of the device for portability and reduces energy consumption.
+        </p>
+
+        <div class="card p-3 my-3 border bg-light-subtle shadow-sm">
+            <h6 class="fw-bold text-primary mb-2">Example: Passive RC Low Pass Filter</h6>
+            <div class="d-flex justify-content-center my-2">
+                <svg viewBox="0 0 460 170" class="img-fluid rounded border bg-white p-2" style="max-width: 480px; width: 100%; height: auto;">
+                    <!-- Input Source -->
+                    <circle cx="50" cy="85" r="22" fill="none" stroke="#0d6efd" stroke-width="2.5"/>
+                    <path d="M 38 85 Q 44 72 50 85 T 62 85" fill="none" stroke="#0d6efd" stroke-width="2"/>
+                    <text x="50" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d6efd">Vin</text>
+
+                    <!-- Top wire from source to resistor -->
+                    <line x1="50" y1="63" x2="50" y2="40" stroke="#334155" stroke-width="2.5"/>
+                    <line x1="50" y1="40" x2="130" y2="40" stroke="#334155" stroke-width="2.5"/>
+
+                    <!-- Resistor R (horizontal zigzag) -->
+                    <path d="M 130 40 L 140 30 L 155 50 L 170 30 L 185 50 L 200 30 L 210 40" fill="none" stroke="#d97706" stroke-width="2.5"/>
+                    <text x="170" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#d97706">Resistor, R</text>
+
+                    <!-- Current arrow -->
+                    <line x1="230" y1="28" x2="270" y2="28" stroke="#f59e0b" stroke-width="2"/>
+                    <polygon points="275,28 266,24 266,32" fill="#f59e0b"/>
+                    <text x="250" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#f59e0b">I</text>
+
+                    <!-- Wire from resistor to node -->
+                    <line x1="210" y1="40" x2="300" y2="40" stroke="#334155" stroke-width="2.5"/>
+                    <circle cx="300" cy="40" r="3.5" fill="#334155"/>
+
+                    <!-- Wire to Vout top -->
+                    <line x1="300" y1="40" x2="410" y2="40" stroke="#334155" stroke-width="2.5"/>
+                    <circle cx="410" cy="40" r="4" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+
+                    <!-- Vertical branch through Capacitor C -->
+                    <line x1="300" y1="40" x2="300" y2="76" stroke="#334155" stroke-width="2.5"/>
+                    <!-- Capacitor plates -->
+                    <line x1="278" y1="76" x2="322" y2="76" stroke="#0284c7" stroke-width="3.5"/>
+                    <line x1="278" y1="88" x2="322" y2="88" stroke="#0284c7" stroke-width="3.5"/>
+                    <rect x="278" y="77" width="44" height="10" fill="#0284c7" opacity="0.3"/>
+                    <text x="230" y="86" text-anchor="middle" font-size="12" font-weight="bold" fill="#0284c7">Capacitor, C</text>
+                    <line x1="300" y1="88" x2="300" y2="130" stroke="#334155" stroke-width="2.5"/>
+
+                    <!-- Bottom wire -->
+                    <line x1="50" y1="107" x2="50" y2="130" stroke="#334155" stroke-width="2.5"/>
+                    <line x1="50" y1="130" x2="410" y2="130" stroke="#334155" stroke-width="2.5"/>
+                    <circle cx="300" cy="130" r="3.5" fill="#334155"/>
+                    <circle cx="410" cy="130" r="4" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+
+                    <!-- Ground at bottom -->
+                    <line x1="300" y1="130" x2="300" y2="145" stroke="#334155" stroke-width="2"/>
+                    <line x1="288" y1="145" x2="312" y2="145" stroke="#334155" stroke-width="2.5"/>
+                    <line x1="292" y1="150" x2="308" y2="150" stroke="#334155" stroke-width="2"/>
+                    <line x1="296" y1="155" x2="304" y2="155" stroke="#334155" stroke-width="1.5"/>
+
+                    <!-- Output voltage label -->
+                    <text x="435" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#198754">Vout</text>
+                    <path d="M 418 48 L 418 122" fill="none" stroke="#198754" stroke-width="1.5" stroke-dasharray="3,2"/>
+                </svg>
             </div>
+            <small class="text-muted text-center d-block">Figure: Passive first-order RC low-pass filter topology.</small>
         </div>
     </SubSection>
 
-    <div class="d-flex justify-content-start mt-4 pt-3 border-top">
-        <a href="/signals/eigenvalues?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+    <SubSection title="Interactive Circuit &amp; Current Lab" id="Simulator">
+        <p>
+            Use the interactive circuit simulator and calculator below to investigate how altering physical component values (<InlineEquation equation="R"/> and <InlineEquation equation="C"/>) changes total circuit impedance (<InlineEquation equation="|Z|"/>), alters instantaneous current draw <InlineEquation equation="i(t)"/>, and shapes the output voltage <InlineEquation equation="V_{out}"/>. Switch between Low-Pass, High-Pass, and Resistive Divider modes in real time:
+        </p>
+        <CircuitSimulator />
+    </SubSection>
+
+    <SubSection title="What are circuits?" id="WhatAreCircuits">
+        <p>
+            Circuits traditionally consist of wires, power/current sources, resistors, capacitors, and inductors, and can be used for a vast variety of purposes. In bioengineering, circuits provide the hardware foundation for acquiring biopotentials (such as ECG, EMG, and EEG) and physically filtering out electrical noise before digital conversion.
+        </p>
+
+        <CalloutCard title="Cross-Course Connection: Dr. Jenny Amos on Circuits & Conservation Laws">
+            <p class="mb-2">
+                Circuit analysis in biomedical engineering relies fundamentally on the conservation of charge and energy. To review the core circuit elements, voltage-current relationships, and Kirchhoff’s Laws taught by <strong>Dr. Jenny Amos</strong> in BIOE 202, explore these companion reference pages:
+            </p>
+            <div class="row g-2 mt-2">
+                <div class="col-12 col-md-6">
+                    <a href="/cons/conservation_of_charge" class="btn btn-outline-primary btn-sm w-100 text-start d-flex align-items-center gap-2 py-2 px-3 shadow-sm h-100">
+                        <i class="bi bi-lightning-charge-fill text-warning fs-4"></i>
+                        <div>
+                            <div class="fw-bold">Conservation of Charge (BIOE 202)</div>
+                            <small class="text-muted">Kirchhoff's Current Law (KCL), Voltage Law (KVL), and Resistors</small>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <a href="/cons/conservation_and_accounting_laws" class="btn btn-outline-primary btn-sm w-100 text-start d-flex align-items-center gap-2 py-2 px-3 shadow-sm h-100">
+                        <i class="bi bi-journal-bookmark-fill text-primary fs-4"></i>
+                        <div>
+                            <div class="fw-bold">Conservation &amp; Accounting Laws</div>
+                            <small class="text-muted">Universal system boundaries and conservation statements</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-3 text-muted small">
+                <i class="bi bi-person-badge text-secondary me-1"></i> Taught by <strong>Dr. Jenny Amos</strong> in BIOE 202 (Conservation Principles). Explore her course curriculum on the <a href="/cons" class="fw-bold text-decoration-none">Conservation Principles Portal</a> or visit <a href="https://bioengineering.illinois.edu/people/jamos" target="_blank" rel="noopener noreferrer" class="fw-bold text-decoration-none">Dr. Amos's Faculty Profile</a>.
+            </div>
+        </CalloutCard>
+
+        <p class="mt-3">
+            Below is a table of basic elements in a circuit and their purpose:
+        </p>
+
+        <div class="table-responsive my-3">
+            <table class="table table-bordered table-hover align-middle shadow-sm">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th style="width: 22%;">Element Name</th>
+                        <th style="width: 38%;">Symbol</th>
+                        <th style="width: 40%;">Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fw-bold text-primary">Resistor</td>
+                        <td class="text-center py-3 bg-white">
+                            <div class="d-flex justify-content-center align-items-center gap-4">
+                                <div>
+                                    <svg viewBox="0 0 100 40" style="width: 90px; height: 35px;">
+                                        <path d="M 5 20 L 20 20 L 26 8 L 38 32 L 50 8 L 62 32 L 74 8 L 80 20 L 95 20" fill="none" stroke="#212529" stroke-width="2.5"/>
+                                    </svg>
+                                    <div class="small text-muted">Resistor</div>
+                                </div>
+                                <div class="border-start ps-3">
+                                    <svg viewBox="0 0 80 40" style="width: 70px; height: 35px;">
+                                        <line x1="5" y1="20" x2="25" y2="20" stroke="#212529" stroke-width="2"/>
+                                        <circle cx="28" cy="20" r="3" fill="#ffffff" stroke="#212529" stroke-width="2"/>
+                                        <line x1="28" y1="18" x2="52" y2="6" stroke="#212529" stroke-width="2.5"/>
+                                        <circle cx="55" cy="20" r="3" fill="#ffffff" stroke="#212529" stroke-width="2"/>
+                                        <line x1="58" y1="20" x2="75" y2="20" stroke="#212529" stroke-width="2"/>
+                                    </svg>
+                                    <div class="small text-muted">Switch</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Limits or controls the flow of current by converting some electrical energy into heat.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">Inductor</td>
+                        <td class="text-center py-3 bg-white">
+                            <svg viewBox="0 0 140 40" style="width: 130px; height: 35px;">
+                                <line x1="5" y1="25" x2="25" y2="25" stroke="#212529" stroke-width="2.5"/>
+                                <path d="M 25 25 C 25 10, 45 10, 45 25 C 45 10, 65 10, 65 25 C 65 10, 85 10, 85 25 C 85 10, 105 10, 105 25" fill="none" stroke="#212529" stroke-width="2.5"/>
+                                <line x1="105" y1="25" x2="135" y2="25" stroke="#212529" stroke-width="2.5"/>
+                            </svg>
+                            <div class="small text-muted">Inductor Coil</div>
+                        </td>
+                        <td>Stores energy in a magnetic field and resists sudden changes in current.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">Capacitor</td>
+                        <td class="text-center py-3 bg-white">
+                            <div class="d-flex justify-content-center align-items-center gap-4">
+                                <div>
+                                    <svg viewBox="0 0 90 40" style="width: 80px; height: 35px;">
+                                        <line x1="5" y1="20" x2="38" y2="20" stroke="#212529" stroke-width="2.5"/>
+                                        <line x1="38" y1="6" x2="38" y2="34" stroke="#212529" stroke-width="3"/>
+                                        <line x1="48" y1="6" x2="48" y2="34" stroke="#212529" stroke-width="3"/>
+                                        <line x1="48" y1="20" x2="85" y2="20" stroke="#212529" stroke-width="2.5"/>
+                                    </svg>
+                                    <div class="small text-muted">Non-polarized</div>
+                                </div>
+                                <div class="border-start ps-3">
+                                    <svg viewBox="0 0 90 40" style="width: 80px; height: 35px;">
+                                        <line x1="5" y1="20" x2="38" y2="20" stroke="#212529" stroke-width="2.5"/>
+                                        <line x1="38" y1="6" x2="38" y2="34" stroke="#212529" stroke-width="3"/>
+                                        <path d="M 48 6 Q 44 20 48 34" fill="none" stroke="#212529" stroke-width="3"/>
+                                        <line x1="47" y1="20" x2="85" y2="20" stroke="#212529" stroke-width="2.5"/>
+                                    </svg>
+                                    <div class="small text-muted">Polarized</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Stores energy in an electric field and resists sudden changes in voltage.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">Voltage Source</td>
+                        <td class="text-center py-3 bg-white">
+                            <div class="d-flex justify-content-center align-items-center gap-3">
+                                <div>
+                                    <svg viewBox="0 0 60 55" style="width: 50px; height: 45px;">
+                                        <circle cx="30" cy="27" r="18" fill="none" stroke="#dc3545" stroke-width="2.5"/>
+                                        <path d="M 20 27 Q 25 18 30 27 T 40 27" fill="none" stroke="#dc3545" stroke-width="2"/>
+                                    </svg>
+                                    <div class="small text-muted">AC Source</div>
+                                </div>
+                                <div>
+                                    <svg viewBox="0 0 60 55" style="width: 50px; height: 45px;">
+                                        <line x1="30" y1="5" x2="30" y2="18" stroke="#dc3545" stroke-width="2"/>
+                                        <line x1="16" y1="18" x2="44" y2="18" stroke="#dc3545" stroke-width="3"/>
+                                        <line x1="22" y1="26" x2="38" y2="26" stroke="#dc3545" stroke-width="2"/>
+                                        <line x1="16" y1="34" x2="44" y2="34" stroke="#dc3545" stroke-width="3"/>
+                                        <line x1="22" y1="42" x2="38" y2="42" stroke="#dc3545" stroke-width="2"/>
+                                        <line x1="30" y1="42" x2="30" y2="52" stroke="#dc3545" stroke-width="2"/>
+                                        <text x="50" y="22" font-size="11" font-weight="bold" fill="#dc3545">+</text>
+                                        <text x="50" y="44" font-size="13" font-weight="bold" fill="#dc3545">-</text>
+                                    </svg>
+                                    <div class="small text-muted">DC Battery</div>
+                                </div>
+                                <div>
+                                    <svg viewBox="0 0 60 55" style="width: 50px; height: 45px;">
+                                        <circle cx="30" cy="27" r="18" fill="none" stroke="#dc3545" stroke-width="2.5"/>
+                                        <text x="30" y="22" font-size="12" font-weight="bold" text-anchor="middle" fill="#dc3545">+</text>
+                                        <text x="30" y="38" font-size="14" font-weight="bold" text-anchor="middle" fill="#dc3545">-</text>
+                                    </svg>
+                                    <div class="small text-muted">DC Independent</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Provides a fixed voltage across its terminals, pushing current through the circuit.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">Current Source</td>
+                        <td class="text-center py-3 bg-white">
+                            <div class="d-flex justify-content-center align-items-center gap-4">
+                                <div>
+                                    <svg viewBox="0 0 65 55" style="width: 55px; height: 45px;">
+                                        <circle cx="32" cy="27" r="18" fill="none" stroke="#212529" stroke-width="2.5"/>
+                                        <line x1="32" y1="38" x2="32" y2="17" stroke="#212529" stroke-width="2"/>
+                                        <polygon points="32,15 27,22 37,22" fill="#212529"/>
+                                    </svg>
+                                    <div class="small text-muted">Independent</div>
+                                </div>
+                                <div class="border-start ps-3">
+                                    <svg viewBox="0 0 65 55" style="width: 55px; height: 45px;">
+                                        <polygon points="32,8 50,27 32,46 14,27" fill="none" stroke="#212529" stroke-width="2.5"/>
+                                        <line x1="32" y1="37" x2="32" y2="18" stroke="#212529" stroke-width="2"/>
+                                        <polygon points="32,16 28,23 36,23" fill="#212529"/>
+                                    </svg>
+                                    <div class="small text-muted">Controlled (Dependent)</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Provides a fixed current to the circuit, no matter what voltage that requires.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">Ground</td>
+                        <td class="text-center py-3 bg-white">
+                            <div class="d-flex justify-content-center align-items-center gap-3">
+                                <div>
+                                    <svg viewBox="0 0 50 45" style="width: 45px; height: 40px;">
+                                        <line x1="25" y1="5" x2="25" y2="22" stroke="#212529" stroke-width="2.5"/>
+                                        <line x1="10" y1="22" x2="40" y2="22" stroke="#212529" stroke-width="2.5"/>
+                                        <line x1="12" y1="22" x2="7" y2="34" stroke="#212529" stroke-width="2"/>
+                                        <line x1="25" y1="22" x2="20" y2="34" stroke="#212529" stroke-width="2"/>
+                                        <line x1="38" y1="22" x2="33" y2="34" stroke="#212529" stroke-width="2"/>
+                                    </svg>
+                                    <div class="small text-muted">Chassis Ground</div>
+                                </div>
+                                <div>
+                                    <svg viewBox="0 0 50 45" style="width: 45px; height: 40px;">
+                                        <line x1="25" y1="5" x2="25" y2="20" stroke="#212529" stroke-width="2.5"/>
+                                        <line x1="10" y1="20" x2="40" y2="20" stroke="#212529" stroke-width="3"/>
+                                        <line x1="15" y1="26" x2="35" y2="26" stroke="#212529" stroke-width="2.5"/>
+                                        <line x1="20" y1="32" x2="30" y2="32" stroke="#212529" stroke-width="2"/>
+                                    </svg>
+                                    <div class="small text-muted">Earth Ground</div>
+                                </div>
+                                <div>
+                                    <svg viewBox="0 0 50 45" style="width: 45px; height: 40px;">
+                                        <line x1="25" y1="5" x2="25" y2="20" stroke="#212529" stroke-width="2.5"/>
+                                        <polygon points="12,20 38,20 25,36" fill="none" stroke="#212529" stroke-width="2.5"/>
+                                    </svg>
+                                    <div class="small text-muted">Signal Ground</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Acts as the common reference point (0 V) from which all other voltages in the circuit are measured.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </SubSection>
+
+    <SubSection title="Using Circuits for Filtering" id="Filtering">
+        <p>
+            Due to the ways that circuit components affect voltage and current, circuits are a useful way for us to physically interact with signals without needing digital filtering or circuit analysis. We can construct circuits based on the parameters we need, which are current, voltage, and resistance.
+        </p>
+        <p>
+            We can use this to construct physical filters. These allow us to avoid digital components and filters as they are often used to replicate the effect of physical components computationally. Using simple circuit components can reduce the footprint and the size scale of the device for portability and reduces energy consumption.
+        </p>
+
+        <div class="table-responsive my-3">
+            <table class="table table-bordered table-hover align-middle shadow-sm">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th style="width: 45%;">Filter</th>
+                        <th style="width: 55%;">Circuit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-3">
+                            <strong class="text-primary fs-6">Low Pass Filter:</strong> an RC filter circuit made out of a resistor (<InlineEquation equation="R"/>) and a capacitor (<InlineEquation equation="C"/>) connected together to reject all unwanted high frequency signals.
+                            <div class="mt-2 text-muted small">
+                                <strong>Cutoff Frequency:</strong> <InlineEquation equation="f_c = \\frac{1}{2\\pi RC}"/>
+                            </div>
+                        </td>
+                        <td class="text-center p-3 bg-white">
+                            <svg viewBox="0 0 380 150" class="img-fluid" style="max-width: 400px; width: 100%; height: auto;">
+                                <circle cx="40" cy="75" r="20" fill="none" stroke="#0d6efd" stroke-width="2"/>
+                                <path d="M 28 75 Q 34 65 40 75 T 52 75" fill="none" stroke="#0d6efd" stroke-width="1.8"/>
+                                <text x="40" y="112" text-anchor="middle" font-size="12" font-weight="bold" fill="#0d6efd">Vin</text>
+                                <line x1="40" y1="55" x2="40" y2="35" stroke="#334155" stroke-width="2"/>
+                                <line x1="40" y1="35" x2="110" y2="35" stroke="#334155" stroke-width="2"/>
+                                <path d="M 110 35 L 120 25 L 132 45 L 144 25 L 156 45 L 168 25 L 176 35" fill="none" stroke="#d97706" stroke-width="2"/>
+                                <text x="143" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#d97706">Resistor, R</text>
+                                <line x1="176" y1="35" x2="250" y2="35" stroke="#334155" stroke-width="2"/>
+                                <circle cx="250" cy="35" r="3" fill="#334155"/>
+                                <line x1="250" y1="35" x2="340" y2="35" stroke="#334155" stroke-width="2"/>
+                                <circle cx="340" cy="35" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                                <!-- Capacitor C -->
+                                <line x1="250" y1="35" x2="250" y2="68" stroke="#334155" stroke-width="2"/>
+                                <line x1="230" y1="68" x2="270" y2="68" stroke="#0284c7" stroke-width="3"/>
+                                <line x1="230" y1="78" x2="270" y2="78" stroke="#0284c7" stroke-width="3"/>
+                                <rect x="230" y="69" width="40" height="8" fill="#0284c7" opacity="0.3"/>
+                                <text x="185" y="77" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">Capacitor, C</text>
+                                <line x1="250" y1="78" x2="250" y2="115" stroke="#334155" stroke-width="2"/>
+                                <!-- Bottom -->
+                                <line x1="40" y1="95" x2="40" y2="115" stroke="#334155" stroke-width="2"/>
+                                <line x1="40" y1="115" x2="340" y2="115" stroke="#334155" stroke-width="2"/>
+                                <circle cx="250" cy="115" r="3" fill="#334155"/>
+                                <circle cx="340" cy="115" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                                <!-- Ground -->
+                                <line x1="250" y1="115" x2="250" y2="128" stroke="#334155" stroke-width="2"/>
+                                <line x1="240" y1="128" x2="260" y2="128" stroke="#334155" stroke-width="2"/>
+                                <line x1="243" y1="133" x2="257" y2="133" stroke="#334155" stroke-width="1.5"/>
+                                <line x1="247" y1="138" x2="253" y2="138" stroke="#334155" stroke-width="1"/>
+                                <text x="360" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#198754">Vout</text>
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3">
+                            <strong class="text-primary fs-6">High Pass Filter:</strong> an RC filter circuit made out of a resistor (<InlineEquation equation="R"/>) and a capacitor (<InlineEquation equation="C"/>) connected together to modify, reshape or reject all unwanted low frequency signals to produce a first-order frequency response.
+                            <div class="mt-2 text-muted small">
+                                <strong>Cutoff Frequency:</strong> <InlineEquation equation="f_c = \\frac{1}{2\\pi RC}"/>
+                            </div>
+                        </td>
+                        <td class="text-center p-3 bg-white">
+                            <svg viewBox="0 0 380 150" class="img-fluid" style="max-width: 400px; width: 100%; height: auto;">
+                                <circle cx="40" cy="75" r="20" fill="none" stroke="#0d6efd" stroke-width="2"/>
+                                <path d="M 28 75 Q 34 65 40 75 T 52 75" fill="none" stroke="#0d6efd" stroke-width="1.8"/>
+                                <text x="40" y="112" text-anchor="middle" font-size="12" font-weight="bold" fill="#0d6efd">Vin</text>
+                                <line x1="40" y1="55" x2="40" y2="35" stroke="#334155" stroke-width="2"/>
+                                <line x1="40" y1="35" x2="135" y2="35" stroke="#334155" stroke-width="2"/>
+                                <!-- Series Capacitor C -->
+                                <line x1="135" y1="20" x2="135" y2="50" stroke="#0284c7" stroke-width="3"/>
+                                <line x1="145" y1="20" x2="145" y2="50" stroke="#0284c7" stroke-width="3"/>
+                                <text x="140" y="14" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">Capacitor, C</text>
+                                <line x1="145" y1="35" x2="250" y2="35" stroke="#334155" stroke-width="2"/>
+                                <circle cx="250" cy="35" r="3" fill="#334155"/>
+                                <line x1="250" y1="35" x2="340" y2="35" stroke="#334155" stroke-width="2"/>
+                                <circle cx="340" cy="35" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                                <!-- Shunt Resistor R -->
+                                <line x1="250" y1="35" x2="250" y2="52" stroke="#334155" stroke-width="2"/>
+                                <path d="M 250 52 L 242 58 L 258 66 L 242 74 L 258 82 L 242 90 L 250 96" fill="none" stroke="#d97706" stroke-width="2"/>
+                                <text x="288" y="78" text-anchor="middle" font-size="11" font-weight="bold" fill="#d97706">Resistor, R</text>
+                                <line x1="250" y1="96" x2="250" y2="115" stroke="#334155" stroke-width="2"/>
+                                <!-- Bottom -->
+                                <line x1="40" y1="95" x2="40" y2="115" stroke="#334155" stroke-width="2"/>
+                                <line x1="40" y1="115" x2="340" y2="115" stroke="#334155" stroke-width="2"/>
+                                <circle cx="250" cy="115" r="3" fill="#334155"/>
+                                <circle cx="340" cy="115" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                                <!-- Ground -->
+                                <line x1="250" y1="115" x2="250" y2="128" stroke="#334155" stroke-width="2"/>
+                                <line x1="240" y1="128" x2="260" y2="128" stroke="#334155" stroke-width="2"/>
+                                <line x1="243" y1="133" x2="257" y2="133" stroke="#334155" stroke-width="1.5"/>
+                                <line x1="247" y1="138" x2="253" y2="138" stroke="#334155" stroke-width="1"/>
+                                <text x="360" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#198754">Vout</text>
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3">
+                            <strong class="text-primary fs-6">Band Pass Filter:</strong> used to filter out certain frequencies that lie within a specific band or range of frequencies while attenuating all those that lie outside the band.
+                            <div class="mt-2 text-muted small">
+                                Combines a high-pass stage and low-pass stage to isolate a desired bioelectric frequency band (e.g., ECG 0.5–100 Hz).
+                            </div>
+                        </td>
+                        <td class="text-center p-3 bg-white">
+                            <svg viewBox="0 0 460 160" class="img-fluid" style="max-width: 480px; width: 100%; height: auto;">
+                                <circle cx="35" cy="80" r="18" fill="none" stroke="#0d6efd" stroke-width="2"/>
+                                <path d="M 25 80 Q 30 70 35 80 T 45 80" fill="none" stroke="#0d6efd" stroke-width="1.6"/>
+                                <text x="35" y="112" text-anchor="middle" font-size="11" font-weight="bold" fill="#0d6efd">Vin</text>
+                                <line x1="35" y1="62" x2="35" y2="40" stroke="#334155" stroke-width="2"/>
+                                <line x1="35" y1="40" x2="85" y2="40" stroke="#334155" stroke-width="2"/>
+                                <!-- R1 -->
+                                <path d="M 85 40 L 92 32 L 102 48 L 112 32 L 122 48 L 130 40" fill="none" stroke="#d97706" stroke-width="2"/>
+                                <text x="107" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="#d97706">R1</text>
+                                <line x1="130" y1="40" x2="160" y2="40" stroke="#334155" stroke-width="2"/>
+                                <!-- C1 -->
+                                <line x1="160" y1="28" x2="160" y2="52" stroke="#0284c7" stroke-width="2.5"/>
+                                <line x1="168" y1="28" x2="168" y2="52" stroke="#0284c7" stroke-width="2.5"/>
+                                <text x="164" y="22" text-anchor="middle" font-size="10" font-weight="bold" fill="#0284c7">C1</text>
+                                <line x1="168" y1="40" x2="260" y2="40" stroke="#334155" stroke-width="2"/>
+                                <circle cx="260" cy="40" r="3" fill="#334155"/>
+                                <!-- Shunt C2 -->
+                                <line x1="260" y1="40" x2="260" y2="68" stroke="#334155" stroke-width="2"/>
+                                <line x1="248" y1="68" x2="272" y2="68" stroke="#0284c7" stroke-width="2.5"/>
+                                <line x1="248" y1="76" x2="272" y2="76" stroke="#0284c7" stroke-width="2.5"/>
+                                <text x="235" y="75" text-anchor="middle" font-size="10" font-weight="bold" fill="#0284c7">C2</text>
+                                <line x1="260" y1="76" x2="260" y2="120" stroke="#334155" stroke-width="2"/>
+                                <circle cx="260" cy="120" r="3" fill="#334155"/>
+                                <!-- Shunt R2 -->
+                                <line x1="260" y1="40" x2="340" y2="40" stroke="#334155" stroke-width="2"/>
+                                <circle cx="340" cy="40" r="3" fill="#334155"/>
+                                <line x1="340" y1="40" x2="340" y2="62" stroke="#334155" stroke-width="2"/>
+                                <path d="M 340 62 L 333 68 L 347 75 L 333 82 L 347 89 L 340 95" fill="none" stroke="#d97706" stroke-width="2"/>
+                                <text x="360" y="80" text-anchor="middle" font-size="10" font-weight="bold" fill="#d97706">R2</text>
+                                <line x1="340" y1="95" x2="340" y2="120" stroke="#334155" stroke-width="2"/>
+                                <circle cx="340" cy="120" r="3" fill="#334155"/>
+                                <!-- Terminals -->
+                                <line x1="340" y1="40" x2="420" y2="40" stroke="#334155" stroke-width="2"/>
+                                <circle cx="420" cy="40" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                                <line x1="35" y1="98" x2="35" y2="120" stroke="#334155" stroke-width="2"/>
+                                <line x1="35" y1="120" x2="420" y2="120" stroke="#334155" stroke-width="2"/>
+                                <circle cx="420" cy="120" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                                <text x="440" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#198754">Vout</text>
+                            </svg>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </SubSection>
+
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+        <a href="/signals/stability?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
             <i class="bi bi-arrow-left"></i>
-            <span>Previous: Eigenvalues</span>
+            <span>Previous: System Stability</span>
+        </a>
+        <a href="/signals/filters?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+            <span>Next: Filters</span>
+            <i class="bi bi-arrow-right"></i>
         </a>
     </div>
 </Layout>

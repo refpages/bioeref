@@ -1,0 +1,279 @@
+---
+// CircuitSimulator.astro
+// Clean, Spacious, and High-Contrast Interactive Circuit, Current, and Filter Lab
+---
+<div class="circuit-lab-container card shadow-sm border my-4">
+    <!-- Header -->
+    <div class="card-header bg-primary text-white p-3 p-md-4 d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3">
+            <div class="bg-white bg-opacity-25 p-2 rounded-3 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                <i class="bi bi-cpu-fill fs-4 text-warning"></i>
+            </div>
+            <div>
+                <h4 class="mb-0 fw-bold">Interactive Circuit, Current &amp; Filter Lab</h4>
+                <div class="text-white-50 small mt-1">Explore how physical circuit components dictate current flow, impedance, and signal filtering</div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <span class="badge bg-white text-primary px-3 py-2 fs-6 fw-bold shadow-sm" id="circuit-mode-badge">RC Low-Pass Filter</span>
+            <span class="badge bg-success text-white px-3 py-2 fs-6 fw-bold shadow-sm" id="circuit-state-badge">Passband</span>
+        </div>
+    </div>
+
+    <div class="card-body p-3 p-md-4 bg-light-subtle">
+        <!-- Control Toolbar: Topology & Actions -->
+        <div class="card border p-3 mb-4 bg-white shadow-sm">
+            <div class="row g-3 align-items-center">
+                <!-- Topology Select -->
+                <div class="col-12 col-lg-5">
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="circuit-topology-select" class="form-label fw-bold text-secondary mb-0 text-nowrap" style="font-size: 0.9rem;">
+                            <i class="bi bi-diagram-3-fill me-1 text-primary"></i> Topology:
+                        </label>
+                        <select id="circuit-topology-select" class="form-select border-primary-subtle shadow-sm fw-semibold" style="font-size: 0.9rem;">
+                            <option value="lowpass" selected>RC Low-Pass Filter (Series R, Shunt C)</option>
+                            <option value="highpass">RC High-Pass Filter (Series C, Shunt R)</option>
+                            <option value="ohms">Resistive Divider (Ohm's Law: Series R1, R2)</option>
+                            <option value="bandpass">RC Band-Pass Filter (Cascaded Sections)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="col-12 col-lg-7 d-flex justify-content-start justify-content-lg-end align-items-center gap-2 flex-wrap">
+                    <button id="circuit-set-fc-btn" class="btn btn-outline-primary btn-sm px-3 py-1 shadow-sm text-nowrap fw-semibold" title="Jump input frequency to cutoff frequency fc">
+                        <i class="bi bi-crosshair me-1"></i> Tune to <em>f</em><sub>c</sub> (-3 dB)
+                    </button>
+                    <button id="circuit-speed-btn" class="btn btn-outline-secondary btn-sm px-3 py-1 shadow-sm text-nowrap fw-semibold" title="Toggle simulation animation speed">
+                        <i class="bi bi-speedometer2 me-1"></i> <span id="circuit-speed-text">Speed: Normal</span>
+                    </button>
+                    <button id="circuit-play-btn" class="btn btn-warning btn-sm px-3 py-1 shadow-sm d-inline-flex align-items-center gap-1 text-nowrap fw-semibold">
+                        <i class="bi bi-pause-fill fs-6" id="circuit-play-icon"></i>
+                        <span id="circuit-play-text">Pause</span>
+                    </button>
+                    <button id="circuit-reset-btn" class="btn btn-outline-secondary btn-sm px-3 py-1 shadow-sm text-nowrap fw-semibold" title="Reset default components">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dual Visualizers: Schematic & Oscilloscope -->
+        <div class="row g-3 mb-4">
+            <!-- Canvas 1: Live Animated Schematic Diagram with Current Flow -->
+            <div class="col-12 col-lg-6">
+                <div class="card border h-100 shadow-sm bg-body">
+                    <div class="card-header bg-white py-2 px-3 d-flex justify-content-between align-items-center border-bottom">
+                        <span class="fw-bold text-primary small d-flex align-items-center gap-1">
+                            <i class="bi bi-lightning-charge-fill text-warning fs-6"></i> Circuit Schematic
+                        </span>
+                        <span class="badge bg-warning-subtle text-warning-emphasis font-monospace border px-2 py-0" style="font-size: 0.75rem;">
+                            Electrons <em>i(t)</em>
+                        </span>
+                    </div>
+                    <div class="card-body p-2 position-relative d-flex justify-content-center align-items-center bg-white" style="min-height: 290px;">
+                        <canvas id="circuit-schem-canvas" class="w-100 rounded" style="height: 280px; display: block;"></canvas>
+                    </div>
+                    <div class="card-footer bg-light py-2 px-3 border-top">
+                        <div class="row g-1 text-center font-monospace" style="font-size: 0.8rem;">
+                            <div class="col-4 text-truncate text-primary fw-semibold"><strong>Vin:</strong> <span id="schem-footer-vin">5.0V</span></div>
+                            <div class="col-4 text-truncate text-warning-emphasis fw-semibold"><strong>Ipk:</strong> <span id="schem-footer-current">3.1mA</span></div>
+                            <div class="col-4 text-truncate text-success fw-semibold"><strong>Vout:</strong> <span id="schem-footer-vout">4.2V</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canvas 2: Live Dual-Trace Oscilloscope -->
+            <div class="col-12 col-lg-6">
+                <div class="card border h-100 shadow-sm bg-body">
+                    <div class="card-header bg-white py-2 px-3 d-flex justify-content-between align-items-center border-bottom">
+                        <span class="fw-bold text-success small d-flex align-items-center gap-1">
+                            <i class="bi bi-activity text-success fs-6"></i> Oscilloscope
+                        </span>
+                        <div class="d-flex gap-1 font-monospace" style="font-size: 0.72rem;">
+                            <span class="badge bg-primary-subtle text-primary border px-1 py-0">Vin</span>
+                            <span class="badge bg-success-subtle text-success border px-1 py-0">Vout</span>
+                            <span class="badge bg-warning-subtle text-warning-emphasis border px-1 py-0">i(t)</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-2 position-relative d-flex justify-content-center align-items-center bg-white" style="min-height: 290px;">
+                        <canvas id="circuit-scope-canvas" class="w-100 rounded" style="height: 280px; display: block;"></canvas>
+                    </div>
+                    <div class="card-footer bg-light py-2 px-3 border-top">
+                        <div class="row g-1 text-center font-monospace" style="font-size: 0.8rem;">
+                            <div class="col-4 text-truncate text-primary fw-semibold"><strong>f:</strong> <span id="scope-footer-freq">1.0kHz</span></div>
+                            <div class="col-4 text-truncate text-success fw-semibold"><strong>Gain:</strong> <span id="scope-footer-gain">-1.4dB</span></div>
+                            <div class="col-4 text-truncate text-warning-emphasis fw-semibold"><strong>Phase:</strong> <span id="scope-footer-phase">-32°</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Component Parameter Sliders (Spacious 2-Column Layout, 1 Slider Per Row) -->
+        <div class="card p-3 p-md-4 border shadow-sm mb-4 bg-white">
+            <div class="row g-4">
+                <!-- Group 1: AC Signal Generator -->
+                <div class="col-12 col-md-6">
+                    <div class="p-3 rounded-3 border bg-light-subtle h-100">
+                        <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+                            <i class="bi bi-broadcast text-primary fs-5"></i>
+                            <h6 class="fw-bold text-primary mb-0">1. AC Signal Generator</h6>
+                        </div>
+
+                        <!-- Vin Slider -->
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label for="circuit-vin-slider" class="form-label mb-0 small fw-bold text-secondary">
+                                    Input Amplitude (<em>V</em><sub>in</sub>):
+                                </label>
+                                <span id="circuit-vin-val" class="badge bg-primary text-white font-monospace px-2 py-1 fs-6">5.0 V</span>
+                            </div>
+                            <input type="range" class="form-range" id="circuit-vin-slider" min="1" max="12" step="0.5" value="5.0">
+                            <div class="d-flex justify-content-between text-muted" style="font-size: 0.75rem;">
+                                <span>1.0 V</span>
+                                <span>12.0 V</span>
+                            </div>
+                        </div>
+
+                        <!-- Frequency Slider -->
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label for="circuit-freq-slider" class="form-label mb-0 small fw-bold text-secondary">
+                                    Frequency (<em>f</em>):
+                                </label>
+                                <span id="circuit-freq-val" class="badge bg-info text-dark font-monospace px-2 py-1 fs-6">1.00 kHz</span>
+                            </div>
+                            <input type="range" class="form-range" id="circuit-freq-slider" min="0" max="100" step="1" value="50">
+                            <div class="d-flex justify-content-between text-muted" style="font-size: 0.75rem;">
+                                <span>10 Hz</span>
+                                <span>100 kHz</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group 2: Circuit Components -->
+                <div class="col-12 col-md-6">
+                    <div class="p-3 rounded-3 border bg-light-subtle h-100">
+                        <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+                            <i class="bi bi-tools text-warning-emphasis fs-5"></i>
+                            <h6 class="fw-bold text-warning-emphasis mb-0">2. Circuit Component Values</h6>
+                        </div>
+
+                        <!-- Resistance Slider -->
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label for="circuit-r-slider" class="form-label mb-0 small fw-bold text-secondary">
+                                    Resistance (<em>R</em>):
+                                </label>
+                                <span id="circuit-r-val" class="badge bg-warning text-dark font-monospace px-2 py-1 fs-6">1.00 kΩ</span>
+                            </div>
+                            <input type="range" class="form-range" id="circuit-r-slider" min="0" max="100" step="1" value="33.3">
+                            <div class="d-flex justify-content-between text-muted" style="font-size: 0.75rem;">
+                                <span>100 Ω</span>
+                                <span>100 kΩ</span>
+                            </div>
+                        </div>
+
+                        <!-- Capacitance Slider -->
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label for="circuit-c-slider" class="form-label mb-0 small fw-bold text-secondary">
+                                    Capacitance (<em>C</em>):
+                                </label>
+                                <span id="circuit-c-val" class="badge bg-danger text-white font-monospace px-2 py-1 fs-6">100.00 nF</span>
+                            </div>
+                            <input type="range" class="form-range" id="circuit-c-slider" min="0" max="100" step="1" value="50">
+                            <div class="d-flex justify-content-between text-muted" style="font-size: 0.75rem;">
+                                <span>1 nF</span>
+                                <span>10 µF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Step-by-Step Circuit Calculator Card (Clean, Simple, Spacious) -->
+        <div class="p-3 p-md-4 rounded-3 border bg-white shadow-sm">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-calculator-fill text-warning fs-5"></i>
+                    <div>
+                        <h6 class="mb-0 fw-bold text-primary">Circuit &amp; Filter Calculator</h6>
+                    </div>
+                </div>
+                <div>
+                    <span class="badge bg-primary text-white font-monospace px-3 py-1 fs-6 fw-bold shadow-sm" id="circuit-calc-current">
+                        Total Current: 2.21 mA RMS (3.13 mA pk)
+                    </span>
+                </div>
+            </div>
+
+            <!-- Clean, Spacious 6 Metric Cards: 2 cols on mobile/tablet, 3 cols on desktop -->
+            <div class="row g-2 g-md-3 my-2 font-monospace">
+                <!-- 1. Cutoff Frequency -->
+                <div class="col-6 col-lg-4">
+                    <div class="p-2 p-md-3 border rounded-3 bg-light-subtle h-100 text-center shadow-sm">
+                        <div class="text-secondary small fw-bold mb-1">Cutoff (<em>f</em><sub>c</sub>)</div>
+                        <div class="fw-bold text-primary fs-5" id="circuit-calc-fc">1.59 kHz</div>
+                    </div>
+                </div>
+
+                <!-- 2. Output Voltage -->
+                <div class="col-6 col-lg-4">
+                    <div class="p-2 p-md-3 border rounded-3 bg-light-subtle h-100 text-center shadow-sm">
+                        <div class="text-secondary small fw-bold mb-1">Output (<em>V</em><sub>out</sub>)</div>
+                        <div class="fw-bold text-success fs-5" id="circuit-calc-vout">4.24 V</div>
+                    </div>
+                </div>
+
+                <!-- 3. Voltage Gain -->
+                <div class="col-6 col-lg-4">
+                    <div class="p-2 p-md-3 border rounded-3 bg-light-subtle h-100 text-center shadow-sm">
+                        <div class="text-secondary small fw-bold mb-1">Gain (|<em>H</em>|)</div>
+                        <div class="fw-bold text-success fs-5" id="circuit-calc-gain">-1.4 dB</div>
+                        <div class="text-muted" style="font-size: 0.75rem;" id="circuit-calc-gain-sub">84.7% pass</div>
+                    </div>
+                </div>
+
+                <!-- 4. Capacitive Reactance -->
+                <div class="col-6 col-lg-4">
+                    <div class="p-2 p-md-3 border rounded-3 bg-light-subtle h-100 text-center shadow-sm">
+                        <div class="text-secondary small fw-bold mb-1">Reactance (<em>X</em><sub>C</sub>)</div>
+                        <div class="fw-bold text-secondary fs-5" id="circuit-calc-xc">1.59 kΩ</div>
+                    </div>
+                </div>
+
+                <!-- 5. Total Impedance -->
+                <div class="col-6 col-lg-4">
+                    <div class="p-2 p-md-3 border rounded-3 bg-light-subtle h-100 text-center shadow-sm">
+                        <div class="text-secondary small fw-bold mb-1">Impedance (|<em>Z</em>|)</div>
+                        <div class="fw-bold text-dark fs-5" id="circuit-calc-z">1.88 kΩ</div>
+                    </div>
+                </div>
+
+                <!-- 6. Phase Angle -->
+                <div class="col-6 col-lg-4">
+                    <div class="p-2 p-md-3 border rounded-3 bg-light-subtle h-100 text-center shadow-sm">
+                        <div class="text-secondary small fw-bold mb-1">Phase (&phi;)</div>
+                        <div class="fw-bold text-warning-emphasis fs-5" id="circuit-hud-phase">-32.1°</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mathematical Formula Breakdown Box (Clean 2-line layout) -->
+            <div class="font-monospace p-3 bg-light rounded-3 border my-3 shadow-sm small" id="circuit-calc-formula" style="line-height: 1.6;">
+                <div><strong>Cutoff:</strong> <em>f</em><sub>c</sub> = 1 / (2&pi;RC) = <strong class="text-primary">1.59 kHz</strong></div>
+                <div><strong>Ohm's Law:</strong> <em>I</em><sub>RMS</sub> = <em>V</em><sub>in</sub> / |<em>Z</em>| = <strong class="text-success">2.21 mA</strong> &bull; <em>I</em><sub>pk</sub> = <strong class="text-warning-emphasis">3.13 mA</strong></div>
+            </div>
+            <div class="text-secondary small fw-semibold" id="circuit-calc-explanation">
+                Adjust component values to observe how resistance and capacitance dictate circuit impedance and current flow.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline src="/static/js/circuit_simulator.js"></script>
