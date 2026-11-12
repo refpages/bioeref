@@ -36,16 +36,27 @@ import Warning from "../../components/Warning.astro"
 </div>
 
 <SubSection title="Types of Charge" id="Types of Charge">
-<!--
-<p> Electrical energy, <InlineEquation equation="E_E"/>, describes energy moving from one electrical potential to another. It is consumed or generated. The basis of all energy comes from electrons, protons, and neutrons. </p>
-<p> Charge is denoted by q and is expressed in Coulombs. For example, one electron has a charge of -1.602e-19 Coulombs, and one proton has a charge of +1.602e-19 Coulombs. A neutron has no charge. </p>
--->
- <div class="alert alert-info d-flex align-items-center my-4" role="alert">
-            <i class="bi bi-tools me-2 fs-4"></i>
-            <div>
-                This topic is currently under development. Content will be added soon!
-            </div>
-        </div>
+<p>The electron, proton, and neutron are fundamental particles that make up all atoms. Electrons and protons have an elementary charge equal in magnitude but opposite in sign. <b>Charge</b> is denoted by q and is expressed in Coulombs. One elementary charge equals <InlineEquation equation="1.602 x 10^{-19}C" />. </p>
+ <p class="text-center"><em>Fundamental Particles</em></p>
+  <DisplayTable id="dim-table">
+    <thead>
+      <tr>
+        <th>Fundamental Particle</th><th>Mass (g)</th><th>Elementary Charge</th><th>Charge (C)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Electron</th><td><InlineEquation equation="9.11 x 10^{-28}" /></td><td>-1</td><td><InlineEquation equation="-1.602 x 10^{-19}" /></td>
+      </tr>
+      <tr>
+        <th>Proton</th><td><InlineEquation equation="1.67 x 10^{-24}" /></td><td>+1</td><td><InlineEquation equation="+1.602 x 10^{-19}" /></td>
+      </tr>
+      <tr>
+        <th>Neutron</th><td><InlineEquation equation="1.67 x 10^{-24}" /></td><td>0</td><td>0</td>
+      </tr>
+    </tbody>
+  </DisplayTable>
+
 </SubSection>
 
 </Layout>
