@@ -107,6 +107,11 @@ import Warning from "../../components/Warning.astro"
 <SubSubSection title="Differential" id="Differential">
 <b><DisplayEquation equation="\\sum_{k} \\dot{q}_{+,k} + \\sum_{k} \\dot{q}_{+,j} + \\dot{q}_{+,gen} - \\dot{q}_{+,cons} = \\frac{\\delta q_{+}^{sys}}{\\delta t}" title="Positive" background="True"/></b>
 <b><DisplayEquation equation="\\sum_{k} \\dot{q}_{-,k} + \\sum_{k} \\dot{q}_{-,j} + \\dot{q}_{-,gen} - \\dot{q}_{-,cons} = \\frac{\\delta q_{-}^{sys}}{\\delta t}" title="Neagtive" background="True"/></b>
+<CalloutContainer slot="cards">
+<CalloutCard title="Attention!">
+<p>Note that the q̇ (±,gen)  and q̇ (±,cons) terms are not current, they are generation or consumption by charge reactions. </p>
+</CalloutCard>
+</CalloutContainer>
 </SubSubSection>
 
 <SubSubSection title="Integral" id="Integral">
@@ -114,4 +119,17 @@ import Warning from "../../components/Warning.astro"
 <b><DisplayEquation equation="\\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{-,k} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{-,j} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{-,gen} \\delta t - \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{-,cons} \\delta t = \\int_{t_f}^{t_0} \\sum_{k} \\frac{\\delta q_{-}^{sys}}{\\delta t} \\delta t" title="Negative" background="True"/></b>
 </SubSubSection>
 
+<SubSection title="Net Conservation Statements" id="Net Conservation Statements">
+<p>Net charge is always conserved, so the conservation statements can be written for net charge rather than for positive and negative charge separately. To do this, we use the following equation for net charge.</p>
+<b><DisplayEquation equation="q=q_{+}+q_{-}" title="Net Charge" background="True"/></b>
+<p>Positive and negative charges are always generated in pairs with consumption and generation, so net conservation equations can be reduced to the following forms:</p>
+<b><DisplayEquation equation="\\sum_{k} q_{k} + \\sum_{j} q_{j} = q_{f}^{sys} q_{0}^{sys}" title="Net Algebraic Equation" background="True"/></b>
+<b><DisplayEquation equation="\\sum_{k} \\dot{i}_{k} + \\sum_{j} \\dot{i}_{j} = \\frac{\\delta q^{sys}}{\\delta t}" title="Net Differential Equation" background="True"/></b>
+<b><DisplayEquation equation="\\int_{t_f}^{t_0} \\sum_{k} \\dot{i}_{k} \\delta t + \\int_{t_f}^{t_0} \\sum_{j} \\dot{i}_{j} \\delta t = \\int_{t_f}^{t_0} \\frac{\\delta q^{sys}}{\\delta t} \\delta t" title="Net Integral Equation" background="True"/></b>
+<CalloutContainer slot="cards">
+<CalloutCard title="Attention!">
+<p>Recall that q̇ = i (current)</p>
+</CalloutCard>
+</CalloutContainer>
+</SubSection>
 </Layout>
