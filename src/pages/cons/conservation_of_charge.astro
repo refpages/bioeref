@@ -33,7 +33,7 @@ import Warning from "../../components/Warning.astro"
 </li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Net Conservation Statements'>Net Conservation Statements</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Current Law'>Kirchhoffs Current Law</a></li>
-<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Fluid Statics'>Resistors</a></li>
+<li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Resistors'>Resistors</a></li>
 <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Voltage Law'>Kirchhoffs Voltage Law</a></li>
 </ul>
 </div>
@@ -139,5 +139,29 @@ import Warning from "../../components/Warning.astro"
 <p>Given the following diagram, we can balance the current:</p>
 <Image src='/cons/CurrentLaw.png' width="3" > </Image>
 <p>For a circuit with n nodes, you will have n equations but only n-1 will be linearly independent.</p>
+</SubSection>
+
+<SubSection title="Resistors" id="Resistors">
+<p>Resistors are a common element found in circuits. When electricity moves through a resistor, the voltage drops, but the current remains the same. The energy is consumed, it is converted into another type of energy like thermal energy (heat). Resistors can be used to regulate the electricity in a circuit.</p>
+<p>Resistance can be found with the following equation</p>
+<b><DisplayEquation equation="R=\\frac{\\rho l}{A}" background="True"/></b>
+<p>where</p>
+<Itemize>
+<Item> <InlineEquation equation="\\rho"/> = resistivity constant of a material </Item>
+<Item> <InlineEquation equation="l"/> = length of resistor </Item>
+<Item> <InlineEquation equation="A"/> = cross sectional area of resistor </Item>
+</Itemize>
+<p>Resistors can be arranged in series or parallel in a circuit.  </p>
+<p>Resistors in <b>series</b>:</p> 
+<Image src='/cons/SeriesResistors.png' width="4" > </Image>
+<p>Resistors in series are connected by the same wire in one loop to the voltage source. The equivalent (net) resistance of a circuit in series can be expressed as:</p>
+<b><DisplayEquation equation="R_{eq}=R_{1}+R_{2}" background="True"/></b>
+<p>Resistors in <b>parallel</b>:</p>
+<Image src='/cons/ParallelResistors.png' width="5" > </Image>
+<p>Resistors in parallel are connected through two loops, where both loops connect to the voltage source. The equivalent (net) resistance of a circuit in parallel can be expressed as:</p>
+<b><DisplayEquation equation="\\frac{1}{R_{eq}}=\\frac{1}{R_{1}}+\\frac{1}{R_{2}}" background="True"/></b>
+</SubSection>
+
+<SubSection title="Kirchoff's Voltage Law" id="Voltage Law">
 </SubSection>
 </Layout>
