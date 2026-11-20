@@ -105,13 +105,13 @@ import Warning from "../../components/Warning.astro"
 </SubSubSection>
 
 <SubSubSection title="Differential" id="Differential">
-<b><DisplayEquation equation="\\sum_{k} \\dot{q_{+,k}} + \\sum_{k} \\dot{q_{+,j}} + \\dot{q_{+,gen}} - \\dot{q_{+,cons}} = \\frac{\\delta q_{+}^{sys}}{\\delta t}" title="Positive" background="True"/></b>
-<b><DisplayEquation equation="\\sum_{k} \\dot{q_{-,k}} + \\sum_{k} \\dot{q_{-,j}} + \\dot{q_{-,gen}} - \\dot{q_{-,cons}} = \\frac{\\delta q_{-}^{sys}}{\\delta t}" title="Neagtive" background="True"/></b>
+<b><DisplayEquation equation="\\sum_{k} \\dot{q}_{+,k} + \\sum_{k} \\dot{q}_{+,j} + \\dot{q}_{+,gen} - \\dot{q}_{+,cons} = \\frac{\\delta q_{+}^{sys}}{\\delta t}" title="Positive" background="True"/></b>
+<b><DisplayEquation equation="\\sum_{k} \\dot{q}_{-,k} + \\sum_{k} \\dot{q}_{-,j} + \\dot{q}_{-,gen} - \\dot{q}_{-,cons} = \\frac{\\delta q_{-}^{sys}}{\\delta t}" title="Neagtive" background="True"/></b>
 </SubSubSection>
 
 <SubSubSection title="Integral" id="Integral">
-<b><DisplayEquation equation="\\int_{t_f}^{t_0} \\sum_{k} \\dot{q_{+,k}} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q_{+,j}} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q_{+,gen}} \\delta t - \\int_{t_f}^{t_0} \\sum_{k} \\dot{q_{+,cons}} \\delta t = \\int_{t_f}^{t_0} \\sum_{k} \\frac{\\delta q_{+}^{sys}}{\\delta t} \\delta t" title="Positive" background="True"/></b>
-<b><DisplayEquation equation="\\int_{t_f}^{t_0} \\sum_{k} \\dot{q_{-,k}} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q_{-,j}} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q_{-,gen}} \\delta t - \\int_{t_f}^{t_0} \\sum_{k} \\dot{q_{-,cons}} \\delta t = \\int_{t_f}^{t_0} \\sum_{k} \\frac{\\delta q_{-}^{sys}}{\\delta t} \\delta t" title="Negative" background="True"/></b>
+<b><DisplayEquation equation="\\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{+,k} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{+,j} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{+,gen} \\delta t - \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{+,cons} \\delta t = \\int_{t_f}^{t_0} \\sum_{k} \\frac{\\delta q_{+}^{sys}}{\\delta t} \\delta t" title="Positive" background="True"/></b>
+<b><DisplayEquation equation="\\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{-,k} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{-,j} \\delta t + \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{-,gen} \\delta t - \\int_{t_f}^{t_0} \\sum_{k} \\dot{q}_{-,cons} \\delta t = \\int_{t_f}^{t_0} \\sum_{k} \\frac{\\delta q_{-}^{sys}}{\\delta t} \\delta t" title="Negative" background="True"/></b>
 </SubSubSection>
 
 </Layout>
