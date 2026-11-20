@@ -161,6 +161,20 @@ import Warning from "../../components/Warning.astro"
 <Image src='/cons/ParallelResistors.png' width="5" > </Image>
 <p>Resistors in parallel are connected through two loops, where both loops connect to the voltage source. The equivalent (net) resistance of a circuit in parallel can be expressed as:</p>
 <b><DisplayEquation equation="\\frac{1}{R_{eq}}=\\frac{1}{R_{1}}+\\frac{1}{R_{2}}" background="True"/></b>
+
+<Example title="Calculating Effectice Resistance" solution="True" id="Resistor">
+<div class="d-flex flex-column">
+<p>Find <InlineEquation equation="R_{eff}"/> of this circuit</p>
+<Image src='/cons/ResistorExample1.png' width="4" > </Image>
+</div>
+<div slot="solution">
+<p>We can break up the circuit into parts. First we will focus on the parallel resistors <InlineEquation equation="R_{2}"/> and <InlineEquation equation="R_{3}"/>.
+<Image src='/cons/ResistorExample1a.png' width="4" > </Image>
+<p>Now that we collapsed the resistors in parallel in to one resistor, we can treat <InlineEquation equation="R_{1}"/> and <InlineEquation equation="R_{2,3}"/> as resistors in series.
+<Image src='/cons/ResistorExample1b.png' width="4" > </Image>
+<p><b>Solution:</b> <InlineEquation equation="R_{eff}=7.1 \\ohm"/></p>
+</div>
+</Example>
 </SubSection>
 
 <SubSection title="Kirchoff's Voltage Law" id="Voltage Law">
