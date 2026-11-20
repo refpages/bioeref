@@ -175,6 +175,24 @@ import Warning from "../../components/Warning.astro"
 <p><b>Solution:</b> <InlineEquation equation="R_{eff}=7.1 \\Omega"/></p>
 </div>
 </Example>
+
+<Example title="Challenge! Calculating Resistance" solution="True" id="Challenge Resistor">
+<div class="d-flex flex-column">
+<p>For the following circuit, calculate the total resistance, or <InlineEquation equation="R_{eff}"/>.</p>
+<Image src='/cons/ResistorExample.png' width="4" > </Image>
+</div>
+<div slot="solution">
+<p>We can break up the circuit into parts</p>
+<Image src='/cons/ResistorExampleDiagram.jpeg' width="4" > </Image>
+<p>First, we will focus on section A.</p>
+<Image src='/cons/ResistorExampleA.jpeg' width="2" > </Image>
+<p>Next, we will focus on section B.</p>
+<Image src='/cons/ResistorExampleB.jpeg' width="2" > </Image>
+<p>Now that we have reduced the resistors into 4 resistors in series, we can calculate the total resistance.
+<Image src='/cons/ResistorExampleC.jpeg' width="4" > </Image>
+<p><b>Solution:</b> <InlineEquation equation="R_{eff}=4.11 \\Omega"/></p>
+</div>
+</Example>
 </SubSection>
 
 <SubSection title="Kirchoff's Voltage Law" id="Voltage Law">
