@@ -147,13 +147,13 @@ import Warning from "../../components/Warning.astro"
 <Image src='/cons/KCL1.jpeg' width="3" > </Image>
 </div>
 <div slot="solution">
-<p>Start by balancing the current for the system and at each node. Since we do not know the direction of <InlineEquation equation="i_{5}"/> or <InlineEquation equation="i_{7}"/>, we can assume <InlineEquation equation="i_{5}"/> moves towards Node B and <InlineEquation equation="i_{7}"/> moves away from Node C.</p>
+<p>Start by balancing the current for the system and at each node. Since we do not know the direction of <InlineEquation equation="i_{5}"/> or <InlineEquation equation="i_{7}"/>, we can assume a direction for <InlineEquation equation="i_{5}"/> and <InlineEquation equation="i_{7}"/>. In this solution, the direction of <InlineEquation equation="i_{5}"/> is assumed to move towards Node B and the direction of <InlineEquation equation="i_{7}"/> is assumed to move away from Node C.</p>
 <Image src='/cons/KCL1a.jpeg' width="4" > </Image>
-<p>Looking at Node A, we know  <InlineEquation equation="i_{1} = 6.4A"/>,  <InlineEquation equation="i_{2} = 3.7A"/>, and <InlineEquation equation="i_{3} = 10i_{4}"/>. We can solve for i4 and then i3</p>
+<p>Looking at Node A, we know  <InlineEquation equation="i_{1} = 6.4A"/>,  <InlineEquation equation="i_{2} = 3.7A"/>, and <InlineEquation equation="i_{3} = 10i_{4}"/>. We can solve for i4 and then i3.</p>
 <Image src='/cons/KCL1b.jpeg' width="4" > </Image>
-<p>Looking at Node B, we know <InlineEquation equation="i_{6} = 5.5A"/> and we found <InlineEquation equation="i_{4} = 0.3A"/>. We can solve for <InlineEquation equation="i_{5}"/></p>
+<p>Looking at Node B, we know <InlineEquation equation="i_{6} = 5.5A"/> and we found <InlineEquation equation="i_{4} = 0.3A"/>. We can solve for <InlineEquation equation="i_{5}"/>.</p>
 <Image src='/cons/KCL1c.jpeg' width="4" > </Image>
-<p>Looking at Node C, we know <InlineEquation equation="i_{6} = 5.5A"/> and we found <InlineEquation equation="i_{3} = 3.0A"/>. We can solve for <InlineEquation equation="i_{7}"/></p>
+<p>Looking at Node C, we know <InlineEquation equation="i_{6} = 5.5A"/> and we found <InlineEquation equation="i_{3} = 3.0A"/>. We can solve for <InlineEquation equation="i_{7}"/>.</p>
 <Image src='/cons/KCL1d.jpeg' width="4" > </Image>
 <p><b>Solution:</b></p>
 <Itemize>
