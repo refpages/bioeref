@@ -144,17 +144,17 @@ import Warning from "../../components/Warning.astro"
 <Example title="Closed Circuit with 3 Nodes" solution="True" id="KCL">
 <div class="d-flex flex-column">
 <p>There is a closed circuit with 7 wires and 3 nodes (A, B, and C). The following currents are given: <InlineEquation equation="i_{1} = 6.4A"/>,  <InlineEquation equation="i_{2} = 3.7A"/>,  <InlineEquation equation="i_{6} = 5.5A"/>, and <InlineEquation equation="i_{3}"/> is 10 times the magnitude of <InlineEquation equation="i_{4}"/>. Determine the magnitude and direction of each current.</p>
-<Image src='/cons/KCL1.png' width="3" > </Image>
+<Image src='/cons/KCL1.jpeg' width="3" > </Image>
 </div>
 <div slot="solution">
 <p>Start by balancing the current for the system and at each node. Since we do not know the direction of <InlineEquation equation="i_{5}"/> or <InlineEquation equation="i_{7}"/>, we can assume <InlineEquation equation="i_{5}"/> moves towards Node B and <InlineEquation equation="i_{7}"/> moves away from Node C.</p>
-<Image src='/cons/KCL1a.jpeg' width="3" > </Image>
+<Image src='/cons/KCL1a.jpeg' width="4" > </Image>
 <p>Looking at Node A, we know  <InlineEquation equation="i_{1} = 6.4A"/>,  <InlineEquation equation="i_{2} = 3.7A"/>, and <InlineEquation equation="i_{3} = 10i_{4}"/>. We can solve for i4 and then i3</p>
-<Image src='/cons/KCL1b.jpeg' width="2" > </Image>
+<Image src='/cons/KCL1b.jpeg' width="4" > </Image>
 <p>Looking at Node B, we know <InlineEquation equation="i_{6} = 5.5A"/> and we found <InlineEquation equation="i_{4} = 0.3A"/>. We can solve for <InlineEquation equation="i_{5}"/></p>
-<Image src='/cons/KCL1c.jpeg' width="2" > </Image>
+<Image src='/cons/KCL1c.jpeg' width="4" > </Image>
 <p>Looking at Node C, we know <InlineEquation equation="i_{6} = 5.5A"/> and we found <InlineEquation equation="i_{3} = 3.0A"/>. We can solve for <InlineEquation equation="i_{7}"/></p>
-<Image src='/cons/KCL1d.jpeg' width="2" > </Image>
+<Image src='/cons/KCL1d.jpeg' width="4" > </Image>
 <p><b>Solution:</b></p>
 <Itemize>
 <Item><InlineEquation equation="i_{1} = 6.4A"/></Item>
