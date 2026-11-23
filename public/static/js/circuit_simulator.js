@@ -57,7 +57,7 @@
         const scopeFooterPhase = document.getElementById('scope-footer-phase');
 
         // Simulation parameters
-        let topology = 'lowpass'; // 'lowpass', 'highpass', 'ohms', 'bandpass'
+        let topology = topologySelect ? topologySelect.value : 'highpass'; // 'highpass', 'lowpass', 'ohms', 'bandpass'
         let vIn = 5.0; // Peak Volts
         let freqHz = 1000; // Hz
         let resistance = 1000; // Ohms (1k)
@@ -848,8 +848,8 @@
             resistance = 1000;
             cSlider.value = 50; // 0.1 uF
             capacitance = 1e-7;
-            topologySelect.value = 'lowpass';
-            topology = 'lowpass';
+            topologySelect.value = 'highpass';
+            topology = 'highpass';
             visualPhase = 0;
             electronPhase = 0;
             speedMultiplier = 1.0;

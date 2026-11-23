@@ -5,6 +5,7 @@ import SubSection from "../../components/SubSection.astro"
 import InlineEquation from "../../components/InlineEquation.astro"
 import DisplayEquation from "../../components/DisplayEquation.astro"
 import CircuitSimulator from "../../components/CircuitSimulator.astro"
+import OhmsLawCircuit from "../../components/OhmsLawCircuit.astro"
 import CalloutCard from "../../components/CalloutCard.astro"
 ---
 <Layout title="Circuits">
@@ -24,69 +25,12 @@ import CalloutCard from "../../components/CalloutCard.astro"
             Circuits traditionally consist of wires, power/current sources, resistors, capacitors, and inductors, and can be used for a vast variety of purposes. Due to the ways that these components affect voltage and current in a circuit, circuits are a useful way for us to physically interact with signals without needing digital filtering or circuit analysis. We have certain building blocks, and can construct circuits based on the parameters we need, which are current, voltage, and resistance. We can use this to solve most problems and construct physical filters. These allow us to avoid digital components and filters as they are often used to replicate the effect of physical components computationally. Using simple circuit components can reduce the footprint and the size scale of the device for portability and reduces energy consumption.
         </p>
 
-        <div class="card p-3 my-3 border bg-light-subtle shadow-sm">
-            <h6 class="fw-bold text-primary mb-2">Example: Passive RC Low Pass Filter</h6>
-            <div class="d-flex justify-content-center my-2">
-                <svg viewBox="0 0 460 170" class="img-fluid rounded border bg-white p-2" style="max-width: 480px; width: 100%; height: auto;">
-                    <!-- Input Source -->
-                    <circle cx="50" cy="85" r="22" fill="none" stroke="#0d6efd" stroke-width="2.5"/>
-                    <path d="M 38 85 Q 44 72 50 85 T 62 85" fill="none" stroke="#0d6efd" stroke-width="2"/>
-                    <text x="50" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d6efd">Vin</text>
-
-                    <!-- Top wire from source to resistor -->
-                    <line x1="50" y1="63" x2="50" y2="40" stroke="#334155" stroke-width="2.5"/>
-                    <line x1="50" y1="40" x2="130" y2="40" stroke="#334155" stroke-width="2.5"/>
-
-                    <!-- Resistor R (horizontal zigzag) -->
-                    <path d="M 130 40 L 140 30 L 155 50 L 170 30 L 185 50 L 200 30 L 210 40" fill="none" stroke="#d97706" stroke-width="2.5"/>
-                    <text x="170" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#d97706">Resistor, R</text>
-
-                    <!-- Current arrow -->
-                    <line x1="230" y1="28" x2="270" y2="28" stroke="#f59e0b" stroke-width="2"/>
-                    <polygon points="275,28 266,24 266,32" fill="#f59e0b"/>
-                    <text x="250" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#f59e0b">I</text>
-
-                    <!-- Wire from resistor to node -->
-                    <line x1="210" y1="40" x2="300" y2="40" stroke="#334155" stroke-width="2.5"/>
-                    <circle cx="300" cy="40" r="3.5" fill="#334155"/>
-
-                    <!-- Wire to Vout top -->
-                    <line x1="300" y1="40" x2="410" y2="40" stroke="#334155" stroke-width="2.5"/>
-                    <circle cx="410" cy="40" r="4" fill="#ffffff" stroke="#198754" stroke-width="2"/>
-
-                    <!-- Vertical branch through Capacitor C -->
-                    <line x1="300" y1="40" x2="300" y2="76" stroke="#334155" stroke-width="2.5"/>
-                    <!-- Capacitor plates -->
-                    <line x1="278" y1="76" x2="322" y2="76" stroke="#0284c7" stroke-width="3.5"/>
-                    <line x1="278" y1="88" x2="322" y2="88" stroke="#0284c7" stroke-width="3.5"/>
-                    <rect x="278" y="77" width="44" height="10" fill="#0284c7" opacity="0.3"/>
-                    <text x="230" y="86" text-anchor="middle" font-size="12" font-weight="bold" fill="#0284c7">Capacitor, C</text>
-                    <line x1="300" y1="88" x2="300" y2="130" stroke="#334155" stroke-width="2.5"/>
-
-                    <!-- Bottom wire -->
-                    <line x1="50" y1="107" x2="50" y2="130" stroke="#334155" stroke-width="2.5"/>
-                    <line x1="50" y1="130" x2="410" y2="130" stroke="#334155" stroke-width="2.5"/>
-                    <circle cx="300" cy="130" r="3.5" fill="#334155"/>
-                    <circle cx="410" cy="130" r="4" fill="#ffffff" stroke="#198754" stroke-width="2"/>
-
-                    <!-- Ground at bottom -->
-                    <line x1="300" y1="130" x2="300" y2="145" stroke="#334155" stroke-width="2"/>
-                    <line x1="288" y1="145" x2="312" y2="145" stroke="#334155" stroke-width="2.5"/>
-                    <line x1="292" y1="150" x2="308" y2="150" stroke="#334155" stroke-width="2"/>
-                    <line x1="296" y1="155" x2="304" y2="155" stroke="#334155" stroke-width="1.5"/>
-
-                    <!-- Output voltage label -->
-                    <text x="435" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#198754">Vout</text>
-                    <path d="M 418 48 L 418 122" fill="none" stroke="#198754" stroke-width="1.5" stroke-dasharray="3,2"/>
-                </svg>
-            </div>
-            <small class="text-muted text-center d-block">Figure: Passive first-order RC low-pass filter topology.</small>
-        </div>
+        <OhmsLawCircuit />
     </SubSection>
 
     <SubSection title="Interactive Circuit &amp; Current Lab" id="Simulator">
         <p>
-            Use the interactive circuit simulator and calculator below to investigate how altering physical component values (<InlineEquation equation="R"/> and <InlineEquation equation="C"/>) changes total circuit impedance (<InlineEquation equation="|Z|"/>), alters instantaneous current draw <InlineEquation equation="i(t)"/>, and shapes the output voltage <InlineEquation equation="V_{out}"/>. Switch between Low-Pass, High-Pass, and Resistive Divider modes in real time:
+            Use the interactive circuit simulator and calculator below to investigate how altering physical component values (<InlineEquation equation="R"/> and <InlineEquation equation="C"/>) changes total circuit impedance (<InlineEquation equation="|Z|"/>), alters instantaneous current draw <InlineEquation equation="i(t)"/>, and shapes the output voltage <InlineEquation equation="V_{out}"/>. Switch between High-Pass, Low-Pass, and Resistive Divider modes in real time:
         </p>
         <CircuitSimulator />
     </SubSection>
@@ -96,16 +40,16 @@ import CalloutCard from "../../components/CalloutCard.astro"
             Circuits traditionally consist of wires, power/current sources, resistors, capacitors, and inductors, and can be used for a vast variety of purposes. In bioengineering, circuits provide the hardware foundation for acquiring biopotentials (such as ECG, EMG, and EEG) and physically filtering out electrical noise before digital conversion.
         </p>
 
-        <CalloutCard title="Cross-Course Connection: Dr. Jenny Amos on Circuits & Conservation Laws">
+        <CalloutCard title="Cross-Course Connection: Circuits & Conservation Laws (BIOE 201)">
             <p class="mb-2">
-                Circuit analysis in biomedical engineering relies fundamentally on the conservation of charge and energy. To review the core circuit elements, voltage-current relationships, and Kirchhoff’s Laws taught by <strong>Dr. Jenny Amos</strong> in BIOE 202, explore these companion reference pages:
+                Circuit analysis in biomedical engineering relies fundamentally on the conservation of charge and energy. To review the core circuit elements, voltage-current relationships, and Kirchhoff’s Laws taught in BIOE 201, explore these companion reference pages:
             </p>
             <div class="row g-2 mt-2">
                 <div class="col-12 col-md-6">
                     <a href="/cons/conservation_of_charge" class="btn btn-outline-primary btn-sm w-100 text-start d-flex align-items-center gap-2 py-2 px-3 shadow-sm h-100">
                         <i class="bi bi-lightning-charge-fill text-warning fs-4"></i>
                         <div>
-                            <div class="fw-bold">Conservation of Charge (BIOE 202)</div>
+                            <div class="fw-bold">Conservation of Charge (BIOE 201)</div>
                             <small class="text-muted">Kirchhoff's Current Law (KCL), Voltage Law (KVL), and Resistors</small>
                         </div>
                     </a>
@@ -121,7 +65,7 @@ import CalloutCard from "../../components/CalloutCard.astro"
                 </div>
             </div>
             <div class="mt-3 text-muted small">
-                <i class="bi bi-person-badge text-secondary me-1"></i> Taught by <strong>Dr. Jenny Amos</strong> in BIOE 202 (Conservation Principles). Explore her course curriculum on the <a href="/cons" class="fw-bold text-decoration-none">Conservation Principles Portal</a> or visit <a href="https://bioengineering.illinois.edu/people/jamos" target="_blank" rel="noopener noreferrer" class="fw-bold text-decoration-none">Dr. Amos's Faculty Profile</a>.
+                <i class="bi bi-journal-text text-secondary me-1"></i> Foundational principles taught in BIOE 201 (Conservation Principles). Explore the course curriculum on the <a href="/cons" class="fw-bold text-decoration-none">Conservation Principles Portal</a>.
             </div>
         </CalloutCard>
 
@@ -319,47 +263,6 @@ import CalloutCard from "../../components/CalloutCard.astro"
                 <tbody>
                     <tr>
                         <td class="p-3">
-                            <strong class="text-primary fs-6">Low Pass Filter:</strong> an RC filter circuit made out of a resistor (<InlineEquation equation="R"/>) and a capacitor (<InlineEquation equation="C"/>) connected together to reject all unwanted high frequency signals.
-                            <div class="mt-2 text-muted small">
-                                <strong>Cutoff Frequency:</strong> <InlineEquation equation="f_c = \\frac{1}{2\\pi RC}"/>
-                            </div>
-                        </td>
-                        <td class="text-center p-3 bg-white">
-                            <svg viewBox="0 0 380 150" class="img-fluid" style="max-width: 400px; width: 100%; height: auto;">
-                                <circle cx="40" cy="75" r="20" fill="none" stroke="#0d6efd" stroke-width="2"/>
-                                <path d="M 28 75 Q 34 65 40 75 T 52 75" fill="none" stroke="#0d6efd" stroke-width="1.8"/>
-                                <text x="40" y="112" text-anchor="middle" font-size="12" font-weight="bold" fill="#0d6efd">Vin</text>
-                                <line x1="40" y1="55" x2="40" y2="35" stroke="#334155" stroke-width="2"/>
-                                <line x1="40" y1="35" x2="110" y2="35" stroke="#334155" stroke-width="2"/>
-                                <path d="M 110 35 L 120 25 L 132 45 L 144 25 L 156 45 L 168 25 L 176 35" fill="none" stroke="#d97706" stroke-width="2"/>
-                                <text x="143" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#d97706">Resistor, R</text>
-                                <line x1="176" y1="35" x2="250" y2="35" stroke="#334155" stroke-width="2"/>
-                                <circle cx="250" cy="35" r="3" fill="#334155"/>
-                                <line x1="250" y1="35" x2="340" y2="35" stroke="#334155" stroke-width="2"/>
-                                <circle cx="340" cy="35" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
-                                <!-- Capacitor C -->
-                                <line x1="250" y1="35" x2="250" y2="68" stroke="#334155" stroke-width="2"/>
-                                <line x1="230" y1="68" x2="270" y2="68" stroke="#0284c7" stroke-width="3"/>
-                                <line x1="230" y1="78" x2="270" y2="78" stroke="#0284c7" stroke-width="3"/>
-                                <rect x="230" y="69" width="40" height="8" fill="#0284c7" opacity="0.3"/>
-                                <text x="185" y="77" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">Capacitor, C</text>
-                                <line x1="250" y1="78" x2="250" y2="115" stroke="#334155" stroke-width="2"/>
-                                <!-- Bottom -->
-                                <line x1="40" y1="95" x2="40" y2="115" stroke="#334155" stroke-width="2"/>
-                                <line x1="40" y1="115" x2="340" y2="115" stroke="#334155" stroke-width="2"/>
-                                <circle cx="250" cy="115" r="3" fill="#334155"/>
-                                <circle cx="340" cy="115" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
-                                <!-- Ground -->
-                                <line x1="250" y1="115" x2="250" y2="128" stroke="#334155" stroke-width="2"/>
-                                <line x1="240" y1="128" x2="260" y2="128" stroke="#334155" stroke-width="2"/>
-                                <line x1="243" y1="133" x2="257" y2="133" stroke="#334155" stroke-width="1.5"/>
-                                <line x1="247" y1="138" x2="253" y2="138" stroke="#334155" stroke-width="1"/>
-                                <text x="360" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#198754">Vout</text>
-                            </svg>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="p-3">
                             <strong class="text-primary fs-6">High Pass Filter:</strong> an RC filter circuit made out of a resistor (<InlineEquation equation="R"/>) and a capacitor (<InlineEquation equation="C"/>) connected together to modify, reshape or reject all unwanted low frequency signals to produce a first-order frequency response.
                             <div class="mt-2 text-muted small">
                                 <strong>Cutoff Frequency:</strong> <InlineEquation equation="f_c = \\frac{1}{2\\pi RC}"/>
@@ -385,6 +288,47 @@ import CalloutCard from "../../components/CalloutCard.astro"
                                 <path d="M 250 52 L 242 58 L 258 66 L 242 74 L 258 82 L 242 90 L 250 96" fill="none" stroke="#d97706" stroke-width="2"/>
                                 <text x="288" y="78" text-anchor="middle" font-size="11" font-weight="bold" fill="#d97706">Resistor, R</text>
                                 <line x1="250" y1="96" x2="250" y2="115" stroke="#334155" stroke-width="2"/>
+                                <!-- Bottom -->
+                                <line x1="40" y1="95" x2="40" y2="115" stroke="#334155" stroke-width="2"/>
+                                <line x1="40" y1="115" x2="340" y2="115" stroke="#334155" stroke-width="2"/>
+                                <circle cx="250" cy="115" r="3" fill="#334155"/>
+                                <circle cx="340" cy="115" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                                <!-- Ground -->
+                                <line x1="250" y1="115" x2="250" y2="128" stroke="#334155" stroke-width="2"/>
+                                <line x1="240" y1="128" x2="260" y2="128" stroke="#334155" stroke-width="2"/>
+                                <line x1="243" y1="133" x2="257" y2="133" stroke="#334155" stroke-width="1.5"/>
+                                <line x1="247" y1="138" x2="253" y2="138" stroke="#334155" stroke-width="1"/>
+                                <text x="360" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#198754">Vout</text>
+                            </svg>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3">
+                            <strong class="text-primary fs-6">Low Pass Filter:</strong> an RC filter circuit made out of a resistor (<InlineEquation equation="R"/>) and a capacitor (<InlineEquation equation="C"/>) connected together to reject all unwanted high frequency signals.
+                            <div class="mt-2 text-muted small">
+                                <strong>Cutoff Frequency:</strong> <InlineEquation equation="f_c = \\frac{1}{2\\pi RC}"/>
+                            </div>
+                        </td>
+                        <td class="text-center p-3 bg-white">
+                            <svg viewBox="0 0 380 150" class="img-fluid" style="max-width: 400px; width: 100%; height: auto;">
+                                <circle cx="40" cy="75" r="20" fill="none" stroke="#0d6efd" stroke-width="2"/>
+                                <path d="M 28 75 Q 34 65 40 75 T 52 75" fill="none" stroke="#0d6efd" stroke-width="1.8"/>
+                                <text x="40" y="112" text-anchor="middle" font-size="12" font-weight="bold" fill="#0d6efd">Vin</text>
+                                <line x1="40" y1="55" x2="40" y2="35" stroke="#334155" stroke-width="2"/>
+                                <line x1="40" y1="35" x2="110" y2="35" stroke="#334155" stroke-width="2"/>
+                                <path d="M 110 35 L 120 25 L 132 45 L 144 25 L 156 45 L 168 25 L 176 35" fill="none" stroke="#d97706" stroke-width="2"/>
+                                <text x="143" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#d97706">Resistor, R</text>
+                                <line x1="176" y1="35" x2="250" y2="35" stroke="#334155" stroke-width="2"/>
+                                <circle cx="250" cy="35" r="3" fill="#334155"/>
+                                <line x1="250" y1="35" x2="340" y2="35" stroke="#334155" stroke-width="2"/>
+                                <circle cx="340" cy="35" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                                <!-- Capacitor C -->
+                                <line x1="250" y1="35" x2="250" y2="68" stroke="#334155" stroke-width="2"/>
+                                <line x1="230" y1="68" x2="270" y2="68" stroke="#0284c7" stroke-width="3"/>
+                                <line x1="230" y1="78" x2="270" y2="78" stroke="#0284c7" stroke-width="3"/>
+                                <rect x="230" y="69" width="40" height="8" fill="#0284c7" opacity="0.3"/>
+                                <text x="185" y="77" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">Capacitor, C</text>
+                                <line x1="250" y1="78" x2="250" y2="115" stroke="#334155" stroke-width="2"/>
                                 <!-- Bottom -->
                                 <line x1="40" y1="95" x2="40" y2="115" stroke="#334155" stroke-width="2"/>
                                 <line x1="40" y1="115" x2="340" y2="115" stroke="#334155" stroke-width="2"/>

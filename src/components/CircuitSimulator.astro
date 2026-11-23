@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="d-flex align-items-center gap-2 flex-wrap">
-            <span class="badge bg-white text-primary px-3 py-2 fs-6 fw-bold shadow-sm" id="circuit-mode-badge">RC Low-Pass Filter</span>
+            <span class="badge bg-white text-primary px-3 py-2 fs-6 fw-bold shadow-sm" id="circuit-mode-badge">RC High-Pass Filter</span>
             <span class="badge bg-success text-white px-3 py-2 fs-6 fw-bold shadow-sm" id="circuit-state-badge">Passband</span>
         </div>
     </div>
@@ -25,14 +25,14 @@
         <div class="card border p-3 mb-4 bg-white shadow-sm">
             <div class="row g-3 align-items-center">
                 <!-- Topology Select -->
-                <div class="col-12 col-lg-5">
-                    <div class="d-flex align-items-center gap-2">
+                <div class="col-12 col-xl-7">
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
                         <label for="circuit-topology-select" class="form-label fw-bold text-secondary mb-0 text-nowrap" style="font-size: 0.9rem;">
                             <i class="bi bi-diagram-3-fill me-1 text-primary"></i> Topology:
                         </label>
-                        <select id="circuit-topology-select" class="form-select border-primary-subtle shadow-sm fw-semibold" style="font-size: 0.9rem;">
-                            <option value="lowpass" selected>RC Low-Pass Filter (Series R, Shunt C)</option>
-                            <option value="highpass">RC High-Pass Filter (Series C, Shunt R)</option>
+                        <select id="circuit-topology-select" class="form-select border-primary-subtle shadow-sm fw-semibold w-100" style="font-size: 0.9rem; min-width: 320px;">
+                            <option value="highpass" selected>RC High-Pass Filter (Series C, Shunt R)</option>
+                            <option value="lowpass">RC Low-Pass Filter (Series R, Shunt C)</option>
                             <option value="ohms">Resistive Divider (Ohm's Law: Series R1, R2)</option>
                             <option value="bandpass">RC Band-Pass Filter (Cascaded Sections)</option>
                         </select>
@@ -40,7 +40,7 @@
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="col-12 col-lg-7 d-flex justify-content-start justify-content-lg-end align-items-center gap-2 flex-wrap">
+                <div class="col-12 col-xl-5 d-flex justify-content-start justify-content-xl-end align-items-center gap-2 flex-wrap">
                     <button id="circuit-set-fc-btn" class="btn btn-outline-primary btn-sm px-3 py-1 shadow-sm text-nowrap fw-semibold" title="Jump input frequency to cutoff frequency fc">
                         <i class="bi bi-crosshair me-1"></i> Tune to <em>f</em><sub>c</sub> (-3 dB)
                     </button>

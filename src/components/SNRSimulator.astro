@@ -1,0 +1,692 @@
+---
+// SNRSimulator.astro
+// Interactive Signal-to-Noise Ratio (SNR) Laboratory for Biomedical Instrumentation
+---
+
+<div class="snr-simulator-card card shadow-sm border my-4">
+    <!-- Header -->
+    <div class="card-header bg-white border-bottom py-3 px-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-soundwave text-warning fs-3"></i>
+            <div>
+                <h5 class="mb-0 text-primary fw-bold">Interactive SNR & Biomedical Instrumentation Lab</h5>
+                <span class="text-muted small">Explore how noise corrupts biopotentials and why high SNR is mandatory before amplification and ADC conversion.</span>
+            </div>
+        </div>
+        <div>
+            <span id="snr-status-badge" class="badge bg-success-subtle text-success border border-success px-3 py-2 rounded-pill fs-6">
+                <i class="bi bi-shield-check me-1"></i> Diagnostic Quality: High SNR
+            </span>
+        </div>
+    </div>
+
+    <div class="card-body p-3 p-md-4">
+        <!-- Top Toolbar: Preset Scenarios -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <span class="small fw-bold text-secondary text-nowrap">Clinical Presets:</span>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Clinical Presets">
+                    <button type="button" class="btn btn-outline-success snr-preset-btn active" data-snr="24" data-noise="combined" data-amp="false">
+                        <i class="bi bi-heart-pulse me-1"></i> Diagnostic Lead II (+24 dB)
+                    </button>
+                    <button type="button" class="btn btn-outline-primary snr-preset-btn" data-snr="12" data-noise="hum" data-amp="false">
+                        <i class="bi bi-lightning-charge me-1"></i> 60 Hz Powerline Hum (+12 dB)
+                    </button>
+                    <button type="button" class="btn btn-outline-warning text-dark snr-preset-btn" data-snr="4" data-noise="wander" data-amp="false">
+                        <i class="bi bi-activity me-1"></i> Motion Artifact (+4 dB)
+                    </button>
+                    <button type="button" class="btn btn-outline-danger snr-preset-btn" data-snr="-4" data-noise="emg" data-amp="false">
+                        <i class="bi bi-exclamation-octagon me-1"></i> Severe EMG Artifact (-4 dB)
+                    </button>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-2 ms-auto">
+                <button type="button" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1" id="snr-reset-btn" title="Reset to default">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                    <span>Reset</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Waveform Canvases -->
+        <div class="row g-3 mb-3">
+            <!-- 1. Clean Reference Signal -->
+            <div class="col-12">
+                <div class="p-2 rounded-3 border bg-light position-relative">
+                    <div class="d-flex justify-content-between align-items-center px-1 mb-1" style="font-size: 0.82rem;">
+                        <span class="fw-bold text-dark">
+                            <i class="bi bi-activity text-success me-1"></i> Reference Clean Biopotential: <span class="font-monospace text-success">x<sub>signal</sub>(t)</span>
+                        </span>
+                        <span class="badge bg-white text-secondary font-monospace border" id="snr-clean-cursor">
+                            t = 0.00 s | V = 0.00 mV
+                        </span>
+                    </div>
+
+                    <div class="canvas-wrapper position-relative" style="height: 140px;">
+                        <canvas id="snr-clean-canvas" class="w-100 h-100 rounded border bg-white" style="cursor: crosshair; touch-action: none;"></canvas>
+                        <div class="position-absolute bottom-0 start-0 m-2 px-2 py-0 bg-white bg-opacity-75 rounded border shadow-xs" style="pointer-events: none; font-size: 0.75rem;">
+                            <span class="text-success fw-bold">━ Desired Biological Signal (P-Q-R-S-T Lead II)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Corrupted Measured Signal -->
+            <div class="col-12">
+                <div class="p-2 rounded-3 border bg-light position-relative">
+                    <div class="d-flex justify-content-between align-items-center px-1 mb-1" style="font-size: 0.82rem;">
+                        <span class="fw-bold text-dark">
+                            <i class="bi bi-graph-up-arrow text-danger me-1"></i> Measured Corrupted Biopotential: <span class="font-monospace text-danger">y(t) = x<sub>signal</sub>(t) + n<sub>noise</sub>(t)</span>
+                        </span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span id="snr-clip-badge" class="badge bg-danger text-white border border-danger px-2 py-0" style="display: none; font-size: 0.75rem;">
+                                <i class="bi bi-exclamation-diamond-fill me-1"></i> Op-Amp Rail Saturated / Clipped!
+                            </span>
+                            <span class="badge bg-white text-secondary font-monospace border" id="snr-noisy-cursor">
+                                t = 0.00 s | V = 0.00 mV
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="canvas-wrapper position-relative" style="height: 180px;">
+                        <canvas id="snr-noisy-canvas" class="w-100 h-100 rounded border bg-white" style="cursor: crosshair; touch-action: none;"></canvas>
+                        <div class="position-absolute bottom-0 start-0 m-2 px-2 py-0 bg-white bg-opacity-75 rounded border shadow-xs" style="pointer-events: none; font-size: 0.75rem;">
+                            <span class="text-danger fw-bold" id="snr-noisy-legend">━ Corrupted Signal + Noise</span>
+                            <span class="ms-2 fw-semibold text-secondary">┄┄ True Signal Baseline</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls: Sliders and Toggles -->
+        <div class="row g-3 mb-3">
+            <!-- SNR Slider -->
+            <div class="col-12 col-md-6">
+                <div class="p-3 rounded border bg-light h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <label for="snr-slider" class="small fw-bold text-dark mb-0">
+                                Signal-to-Noise Ratio (<span class="font-monospace">SNR<sub>dB</sub></span>):
+                            </label>
+                            <span class="badge bg-primary text-white font-monospace px-2 py-1 fs-6" id="snr-slider-val">+24.0 dB</span>
+                        </div>
+                        <input type="range" class="form-range" id="snr-slider" min="-10" max="30" step="1" value="24">
+                        <div class="d-flex justify-content-between small text-muted" style="font-size: 0.72rem;">
+                            <span class="text-danger fw-semibold">-10 dB (Heavy Noise)</span>
+                            <span class="text-secondary fw-semibold">0 dB (Signal = Noise)</span>
+                            <span class="text-success fw-semibold">+30 dB (Crystal Clean)</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 pt-2 border-top">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <label class="small fw-bold text-dark mb-0">Target Biopotential Source:</label>
+                        </div>
+                        <div class="btn-group btn-group-sm w-100" role="group">
+                            <input type="radio" class="btn-check" name="snr-signal-src" id="snr-src-ecg" value="ecg" checked>
+                            <label class="btn btn-outline-primary" for="snr-src-ecg">Lead II ECG (Heart)</label>
+
+                            <input type="radio" class="btn-check" name="snr-signal-src" id="snr-src-sine" value="sine">
+                            <label class="btn btn-outline-primary" for="snr-src-sine">Sine Wave (Calibration)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Noise Type & Amplification/ADC Stage -->
+            <div class="col-12 col-md-6">
+                <div class="p-3 rounded border bg-light h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <label for="snr-noise-type" class="small fw-bold text-dark mb-1">Noise Interference Profile:</label>
+                        <select id="snr-noise-type" class="form-select form-select-sm fw-semibold mb-2">
+                            <option value="combined" selected>Combined Clinical Noise (60Hz + Drift + EMG)</option>
+                            <option value="hum">60 Hz AC Power-Line Hum (Electromagnetic Coupling)</option>
+                            <option value="wander">Respiration & Motion Artifact (Baseline Wander, ~0.25 Hz)</option>
+                            <option value="emg">High-Frequency Electromyogram (Somatic Muscle EMG)</option>
+                        </select>
+                        <p class="text-muted small mb-0" id="snr-noise-desc" style="font-size: 0.78rem;">
+                            Realistic clinic environment: includes fluorescent light hum (60 Hz), chest motion from breathing, and high-frequency muscle tremor.
+                        </p>
+                    </div>
+
+                    <!-- Medical Device Hardware Stage: Amp & ADC Saturation -->
+                    <div class="mt-3 pt-2 border-top">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="snr-amp-toggle">
+                            <label class="form-check-label small fw-bold text-dark" for="snr-amp-toggle">
+                                <i class="bi bi-cpu text-primary me-1"></i> Simulate Pre-Amp (Gain = 1500&times;) &amp; ADC Rail Limits
+                            </label>
+                        </div>
+                        <span class="text-muted small d-block mt-1" style="font-size: 0.75rem;">
+                            Demonstrates what happens if biopotential noise is amplified before filtering: output swings hit the &plusmn;2.5 V rails, clipping the waveform!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-Time Metrics & Mathematical Readout -->
+        <div class="row g-2 mb-3">
+            <div class="col-6 col-md-3">
+                <div class="p-2 rounded border bg-white text-center shadow-xs">
+                    <span class="text-muted small d-block" style="font-size: 0.72rem;">Logarithmic Ratio</span>
+                    <strong class="font-monospace text-primary fs-5" id="snr-readout-db">+24.0 dB</strong>
+                    <span class="text-secondary small d-block font-monospace" style="font-size: 0.7rem;">10 log<sub>10</sub>(P<sub>sig</sub>/P<sub>noise</sub>)</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-2 rounded border bg-white text-center shadow-xs">
+                    <span class="text-muted small d-block" style="font-size: 0.72rem;">Linear Power Ratio</span>
+                    <strong class="font-monospace text-success fs-5" id="snr-readout-linear">251.2 : 1</strong>
+                    <span class="text-secondary small d-block font-monospace" style="font-size: 0.7rem;">P<sub>signal</sub> / P<sub>noise</sub></span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-2 rounded border bg-white text-center shadow-xs">
+                    <span class="text-muted small d-block" style="font-size: 0.72rem;">Amplitude Ratio</span>
+                    <strong class="font-monospace text-dark fs-5" id="snr-readout-amp">15.8 : 1</strong>
+                    <span class="text-secondary small d-block font-monospace" style="font-size: 0.7rem;">A<sub>signal</sub> / A<sub>noise</sub></span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-2 rounded border bg-white text-center shadow-xs">
+                    <span class="text-muted small d-block" style="font-size: 0.72rem;">Noise RMS Voltage</span>
+                    <strong class="font-monospace text-danger fs-5" id="snr-readout-vrms">0.063 mV</strong>
+                    <span class="text-secondary small d-block font-monospace" style="font-size: 0.7rem;">v<sub>RMS, noise</sub> (at skin)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guidance HUD / Diagnostic Assessment -->
+        <div class="p-2 px-3 bg-white rounded border d-flex flex-wrap justify-content-between align-items-center gap-2" style="font-size: 0.82rem;">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-info-circle-fill text-primary"></i>
+                <span class="fw-semibold text-dark">Clinical Feasibility:</span>
+                <span id="snr-diagnostic-text" class="text-secondary">
+                    Clear P-wave, QRS complex, and T-wave. Highly reliable for rhythm monitoring and automated ischemia detection.
+                </span>
+            </div>
+            <div class="text-muted small text-end">
+                <span class="badge bg-light text-dark border">Rule of Thumb: Diagnostic ECG requires SNR &gt; 20 dB</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .snr-simulator-card {
+        border-radius: 12px;
+        background-color: #ffffff;
+    }
+    .snr-preset-btn {
+        transition: all 0.2s ease;
+        font-size: 0.8rem;
+    }
+    .snr-preset-btn.active {
+        box-shadow: 0 0 0 2px rgba(19, 41, 75, 0.25);
+        font-weight: 700;
+    }
+    .form-range::-webkit-slider-thumb {
+        background: #ff5f05;
+        width: 16px;
+        height: 16px;
+    }
+    .form-range::-moz-range-thumb {
+        background: #ff5f05;
+        width: 16px;
+        height: 16px;
+    }
+    .form-range:focus::-webkit-slider-thumb {
+        box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(255, 95, 5, 0.25);
+    }
+</style>
+
+<script is:inline>
+(function() {
+    function initSNRSimulator() {
+        const cleanCanvas = document.getElementById('snr-clean-canvas');
+        const noisyCanvas = document.getElementById('snr-noisy-canvas');
+        if (!cleanCanvas || !noisyCanvas) return;
+
+        const cleanCtx = cleanCanvas.getContext('2d');
+        const noisyCtx = noisyCanvas.getContext('2d');
+        if (!cleanCtx || !noisyCtx) return;
+
+        // UI elements
+        const slider = document.getElementById('snr-slider');
+        const sliderVal = document.getElementById('snr-slider-val');
+        const noiseSelect = document.getElementById('snr-noise-type');
+        const noiseDesc = document.getElementById('snr-noise-desc');
+        const ampToggle = document.getElementById('snr-amp-toggle');
+        const statusBadge = document.getElementById('snr-status-badge');
+        const clipBadge = document.getElementById('snr-clip-badge');
+        const diagnosticText = document.getElementById('snr-diagnostic-text');
+        const noisyLegend = document.getElementById('snr-noisy-legend');
+
+        const readoutDb = document.getElementById('snr-readout-db');
+        const readoutLinear = document.getElementById('snr-readout-linear');
+        const readoutAmp = document.getElementById('snr-readout-amp');
+        const readoutVrms = document.getElementById('snr-readout-vrms');
+
+        const cleanCursor = document.getElementById('snr-clean-cursor');
+        const noisyCursor = document.getElementById('snr-noisy-cursor');
+        const resetBtn = document.getElementById('snr-reset-btn');
+        const presetBtns = document.querySelectorAll('.snr-preset-btn');
+        const srcEcgRadio = document.getElementById('snr-src-ecg');
+        const srcSineRadio = document.getElementById('snr-src-sine');
+
+        // Noise descriptions map
+        const descriptions = {
+            combined: "Realistic clinic environment: includes fluorescent light hum (60 Hz), chest motion from breathing, and high-frequency muscle tremor.",
+            hum: "60 Hz AC mains hum coupled capacitively from room wiring, power supplies, and unshielded medical cables into the high-impedance patient circuit.",
+            wander: "Low-frequency (0.1 - 0.5 Hz) baseline wander caused by chest wall expansion during respiration and electrode-electrolyte polarization shifts.",
+            emg: "Broadband stochastic electromyogram noise generated by voluntary or involuntary patient skeletal muscle tremor and shivering (20 - 500 Hz)."
+        };
+
+        // Parameters
+        const duration = 2.0; // 2 seconds
+        const sampleRate = 500; // 500 Hz
+        const N = Math.floor(duration * sampleRate);
+        const timeArr = new Float32Array(N);
+        const cleanArr = new Float32Array(N);
+        const noisyArr = new Float32Array(N);
+        const amplifiedArr = new Float32Array(N);
+
+        // Precompute time vector
+        for (let i = 0; i < N; i++) {
+            timeArr[i] = i / sampleRate;
+        }
+
+        // Noise generators (deterministic pseudorandom seed for reproducible, silky waveform rendering)
+        const whiteNoiseArr = new Float32Array(N);
+        let seed = 12345;
+        function rand() {
+            seed = (seed * 1664525 + 1013904223) % 4294967296;
+            return seed / 4294967296;
+        }
+        for (let i = 0; i < N; i += 2) {
+            const u1 = Math.max(1e-7, rand());
+            const u2 = rand();
+            const z0 = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+            const z1 = Math.sqrt(-2.0 * Math.log(u1)) * Math.sin(2.0 * Math.PI * u2);
+            whiteNoiseArr[i] = z0;
+            if (i + 1 < N) whiteNoiseArr[i + 1] = z1;
+        }
+
+        // Helper: Realistic Lead II ECG signal generator at time t
+        function ecgValue(t) {
+            const period = 1.0; // 60 bpm
+            const phase = t % period;
+
+            // Gaussian wave components
+            function gauss(p, mean, amp, std) {
+                const diff = p - mean;
+                return amp * Math.exp(-(diff * diff) / (2 * std * std));
+            }
+
+            let v = 0;
+            // P wave: atrial depolarization (0.15 mV, 180ms)
+            v += gauss(phase, 0.18, 0.18, 0.035);
+            // Q wave: septal depolarization (-0.15 mV)
+            v += gauss(phase, 0.33, -0.15, 0.010);
+            // R wave: ventricular depolarization (+1.00 mV)
+            v += gauss(phase, 0.36, 1.10, 0.012);
+            // S wave: late ventricular depolarization (-0.25 mV)
+            v += gauss(phase, 0.39, -0.25, 0.012);
+            // T wave: ventricular repolarization (+0.25 mV)
+            v += gauss(phase, 0.62, 0.28, 0.055);
+
+            return v;
+        }
+
+        // Helper: Pure Sine signal generator (1.5 Hz, 1.0 mV peak)
+        function sineValue(t) {
+            return 1.0 * Math.sin(2 * Math.PI * 1.5 * t);
+        }
+
+        // Generate clean signal
+        function generateSignals() {
+            const isSine = srcSineRadio && srcSineRadio.checked;
+            const snrDb = parseFloat(slider.value);
+            const noiseType = noiseSelect.value;
+            const isAmpMode = ampToggle.checked;
+
+            // 1. Fill clean signal
+            let sumSq = 0;
+            for (let i = 0; i < N; i++) {
+                const t = timeArr[i];
+                const s = isSine ? sineValue(t) : ecgValue(t);
+                cleanArr[i] = s;
+                sumSq += s * s;
+            }
+            const pSignal = sumSq / N; // Signal Power in mV^2
+
+            // 2. Compute target noise power based on SNR_dB = 10 * log10(P_sig / P_noise)
+            // P_noise = P_sig / (10^(snrDb / 10))
+            const snrLinear = Math.pow(10, snrDb / 10);
+            const pNoiseTarget = pSignal / snrLinear;
+            const targetNoiseRms = Math.sqrt(pNoiseTarget);
+
+            // 3. Generate raw noise array based on noise profile
+            const rawNoise = new Float32Array(N);
+            let noiseSumSq = 0;
+
+            for (let i = 0; i < N; i++) {
+                const t = timeArr[i];
+                let n = 0;
+
+                if (noiseType === 'hum') {
+                    // 60 Hz hum + mild 120 Hz 2nd harmonic
+                    n = Math.sin(2 * Math.PI * 60 * t) + 0.3 * Math.sin(2 * Math.PI * 120 * t);
+                } else if (noiseType === 'wander') {
+                    // 0.25 Hz respiration wander + 0.1 Hz drift
+                    n = Math.sin(2 * Math.PI * 0.25 * t + 0.3) + 0.6 * Math.sin(2 * Math.PI * 0.12 * t);
+                } else if (noiseType === 'emg') {
+                    // Muscle tremor
+                    n = whiteNoiseArr[i];
+                } else {
+                    // Combined clinical noise: 40% hum, 35% wander, 25% EMG
+                    const hum = Math.sin(2 * Math.PI * 60 * t) + 0.25 * Math.sin(2 * Math.PI * 120 * t);
+                    const wander = 1.2 * Math.sin(2 * Math.PI * 0.25 * t) + 0.5 * Math.sin(2 * Math.PI * 0.1 * t);
+                    const emg = 0.8 * whiteNoiseArr[i];
+                    n = 0.45 * hum + 0.40 * wander + 0.30 * emg;
+                }
+
+                rawNoise[i] = n;
+                noiseSumSq += n * n;
+            }
+
+            const rawRms = Math.sqrt(noiseSumSq / N);
+            const scale = rawRms > 0 ? (targetNoiseRms / rawRms) : 0;
+
+            // 4. Create noisy signal
+            let hasClipped = false;
+            const ampGain = 1500; // Op-Amp Gain
+            const vRail = 2.5; // Rail at +/- 2.5V
+
+            for (let i = 0; i < N; i++) {
+                const scaledNoise = rawNoise[i] * scale;
+                const noisy = cleanArr[i] + scaledNoise;
+                noisyArr[i] = noisy;
+
+                if (isAmpMode) {
+                    // Voltage in Volts at Op-Amp Output
+                    const vOut = (noisy / 1000.0) * ampGain;
+                    if (vOut > vRail) {
+                        amplifiedArr[i] = vRail;
+                        hasClipped = true;
+                    } else if (vOut < -vRail) {
+                        amplifiedArr[i] = -vRail;
+                        hasClipped = true;
+                    } else {
+                        amplifiedArr[i] = vOut;
+                    }
+                }
+            }
+
+            // 5. Update Metrics
+            sliderVal.textContent = (snrDb >= 0 ? "+" : "") + snrDb.toFixed(1) + " dB";
+            readoutDb.textContent = (snrDb >= 0 ? "+" : "") + snrDb.toFixed(1) + " dB";
+            readoutLinear.textContent = snrLinear >= 100 ? snrLinear.toFixed(1) + " : 1" : snrLinear.toFixed(2) + " : 1";
+            readoutAmp.textContent = Math.sqrt(snrLinear).toFixed(1) + " : 1";
+            readoutVrms.textContent = targetNoiseRms.toFixed(3) + " mV";
+
+            // Status and Guidance Update
+            if (snrDb >= 20) {
+                statusBadge.className = "badge bg-success-subtle text-success border border-success px-3 py-2 rounded-pill fs-6";
+                statusBadge.innerHTML = '<i class="bi bi-shield-check me-1"></i> Diagnostic Quality: High SNR';
+                diagnosticText.textContent = "Clear P-wave, QRS complex, and T-wave. Highly reliable for rhythm monitoring and automated ischemia detection.";
+            } else if (snrDb >= 10) {
+                statusBadge.className = "badge bg-primary-subtle text-primary border border-primary px-3 py-2 rounded-pill fs-6";
+                statusBadge.innerHTML = '<i class="bi bi-info-circle me-1"></i> Acceptable: Mild Noise';
+                diagnosticText.textContent = "QRS peaks are detectable, but smaller P and T waves are slightly corrupted. Moderate risk of baseline false alarms.";
+            } else if (snrDb >= 0) {
+                statusBadge.className = "badge bg-warning-subtle text-dark border border-warning px-3 py-2 rounded-pill fs-6";
+                statusBadge.innerHTML = '<i class="bi bi-exclamation-triangle me-1"></i> Marginal: Low SNR';
+                diagnosticText.textContent = "Noise amplitude rivals biopotential amplitude. False heart rate calculation and obscured clinical features.";
+            } else {
+                statusBadge.className = "badge bg-danger-subtle text-danger border border-danger px-3 py-2 rounded-pill fs-6";
+                statusBadge.innerHTML = '<i class="bi bi-x-octagon-fill me-1"></i> Severe: Noise Dominates Signal';
+                diagnosticText.textContent = "Clinical failure! Target cardiac biopotential is buried under noise. Patient rhythm completely uninterpretable.";
+            }
+
+            if (isAmpMode) {
+                noisyLegend.textContent = "━ Amplified Output V_out (±2.5V Rails)";
+                clipBadge.style.display = hasClipped ? "inline-block" : "none";
+            } else {
+                noisyLegend.textContent = "━ Corrupted Signal + Noise (mV)";
+                clipBadge.style.display = "none";
+            }
+
+            noiseDesc.textContent = descriptions[noiseType] || "";
+
+            // Redraw Canvases
+            drawWaveforms(isAmpMode);
+        }
+
+        // Draw Canvas helper
+        function resizeCanvas(canvas) {
+            const rect = canvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            const w = Math.floor(rect.width * dpr);
+            const h = Math.floor(rect.height * dpr);
+            if (canvas.width !== w || canvas.height !== h) {
+                canvas.width = w;
+                canvas.height = h;
+            }
+            return { w, h, dpr };
+        }
+
+        function drawWaveforms(isAmpMode) {
+            // 1. Draw Clean Canvas
+            const cInfo = resizeCanvas(cleanCanvas);
+            const w1 = cInfo.w;
+            const h1 = cInfo.h;
+            const dpr = cInfo.dpr;
+
+            cleanCtx.clearRect(0, 0, w1, h1);
+
+            // Grid lines
+            cleanCtx.lineWidth = 1;
+            cleanCtx.strokeStyle = "#e9ecef";
+            cleanCtx.beginPath();
+            // Vertical time grid (0.2s intervals)
+            for (let t = 0; t <= duration; t += 0.2) {
+                const x = (t / duration) * w1;
+                cleanCtx.moveTo(x, 0);
+                cleanCtx.lineTo(x, h1);
+            }
+            // Center horizontal zero line
+            const yZero1 = h1 * 0.70;
+            cleanCtx.moveTo(0, yZero1);
+            cleanCtx.lineTo(w1, yZero1);
+            cleanCtx.stroke();
+
+            // Zero line accent
+            cleanCtx.strokeStyle = "#ced4da";
+            cleanCtx.lineWidth = 1.5;
+            cleanCtx.beginPath();
+            cleanCtx.moveTo(0, yZero1);
+            cleanCtx.lineTo(w1, yZero1);
+            cleanCtx.stroke();
+
+            // Plot clean curve
+            cleanCtx.lineWidth = 2.2 * dpr;
+            cleanCtx.strokeStyle = "#198754"; // Bootstrap success green
+            cleanCtx.beginPath();
+            const scaleY1 = (h1 * 0.50) / 1.2; // 1.2 mV max
+
+            for (let i = 0; i < N; i++) {
+                const x = (timeArr[i] / duration) * w1;
+                const y = yZero1 - cleanArr[i] * scaleY1;
+                if (i === 0) cleanCtx.moveTo(x, y);
+                else cleanCtx.lineTo(x, y);
+            }
+            cleanCtx.stroke();
+
+            // 2. Draw Noisy Canvas
+            const nInfo = resizeCanvas(noisyCanvas);
+            const w2 = nInfo.w;
+            const h2 = nInfo.h;
+
+            noisyCtx.clearRect(0, 0, w2, h2);
+
+            // Grid lines
+            noisyCtx.lineWidth = 1;
+            noisyCtx.strokeStyle = "#e9ecef";
+            noisyCtx.beginPath();
+            for (let t = 0; t <= duration; t += 0.2) {
+                const x = (t / duration) * w2;
+                noisyCtx.moveTo(x, 0);
+                noisyCtx.lineTo(x, h2);
+            }
+            const yZero2 = h2 * 0.50;
+            noisyCtx.moveTo(0, yZero2);
+            noisyCtx.lineTo(w2, yZero2);
+            noisyCtx.stroke();
+
+            if (isAmpMode) {
+                // Draw +/- 2.5V Rail Lines in dashed red
+                const railMargin = h2 * 0.12;
+                const topRailY = railMargin;
+                const bottomRailY = h2 - railMargin;
+
+                noisyCtx.setLineDash([6 * dpr, 4 * dpr]);
+                noisyCtx.strokeStyle = "#dc3545";
+                noisyCtx.lineWidth = 1.5 * dpr;
+                noisyCtx.beginPath();
+                noisyCtx.moveTo(0, topRailY);
+                noisyCtx.lineTo(w2, topRailY);
+                noisyCtx.moveTo(0, bottomRailY);
+                noisyCtx.lineTo(w2, bottomRailY);
+                noisyCtx.stroke();
+                noisyCtx.setLineDash([]);
+
+                // Text labels for rails
+                noisyCtx.fillStyle = "#dc3545";
+                noisyCtx.font = `bold ${Math.round(10 * dpr)}px sans-serif`;
+                noisyCtx.fillText("+2.5 V (+Vsat Op-Amp Rail)", 8 * dpr, topRailY - 4 * dpr);
+                noisyCtx.fillText("-2.5 V (-Vsat Op-Amp Rail)", 8 * dpr, bottomRailY + 12 * dpr);
+
+                // Plot amplified signal
+                noisyCtx.lineWidth = 1.8 * dpr;
+                noisyCtx.strokeStyle = "#ff5f05"; // UIUC Orange
+                noisyCtx.beginPath();
+                const vMax = 2.5;
+                const scaleAmpY = (h2 * 0.5 - railMargin) / vMax;
+
+                for (let i = 0; i < N; i++) {
+                    const x = (timeArr[i] / duration) * w2;
+                    const y = yZero2 - amplifiedArr[i] * scaleAmpY;
+                    if (i === 0) noisyCtx.moveTo(x, y);
+                    else noisyCtx.lineTo(x, y);
+                }
+                noisyCtx.stroke();
+            } else {
+                // Standard unamplified noisy plot
+                // Draw reference clean signal in light dashed grey
+                noisyCtx.setLineDash([4 * dpr, 4 * dpr]);
+                noisyCtx.strokeStyle = "#adb5bd";
+                noisyCtx.lineWidth = 1.2 * dpr;
+                noisyCtx.beginPath();
+                const scaleY2 = (h2 * 0.40) / 1.2;
+
+                for (let i = 0; i < N; i++) {
+                    const x = (timeArr[i] / duration) * w2;
+                    const y = yZero2 - cleanArr[i] * scaleY2;
+                    if (i === 0) noisyCtx.moveTo(x, y);
+                    else noisyCtx.lineTo(x, y);
+                }
+                noisyCtx.stroke();
+                noisyCtx.setLineDash([]);
+
+                // Plot noisy corrupted signal
+                const snrDb = parseFloat(slider.value);
+                noisyCtx.lineWidth = 1.8 * dpr;
+                noisyCtx.strokeStyle = snrDb < 0 ? "#dc3545" : (snrDb < 10 ? "#fd7e14" : "#0d6efd");
+                noisyCtx.beginPath();
+
+                for (let i = 0; i < N; i++) {
+                    const x = (timeArr[i] / duration) * w2;
+                    // Clamp to canvas height for safety
+                    const valY = Math.max(-2.5, Math.min(2.5, noisyArr[i]));
+                    const y = yZero2 - valY * scaleY2;
+                    if (i === 0) noisyCtx.moveTo(x, y);
+                    else noisyCtx.lineTo(x, y);
+                }
+                noisyCtx.stroke();
+            }
+        }
+
+        // Event listeners
+        slider.addEventListener('input', generateSignals);
+        noiseSelect.addEventListener('change', generateSignals);
+        ampToggle.addEventListener('change', generateSignals);
+        if (srcEcgRadio) srcEcgRadio.addEventListener('change', generateSignals);
+        if (srcSineRadio) srcSineRadio.addEventListener('change', generateSignals);
+
+        // Reset button
+        resetBtn.addEventListener('click', function() {
+            slider.value = "24";
+            noiseSelect.value = "combined";
+            ampToggle.checked = false;
+            if (srcEcgRadio) srcEcgRadio.checked = true;
+            presetBtns.forEach(b => b.classList.remove('active'));
+            if (presetBtns[0]) presetBtns[0].classList.add('active');
+            generateSignals();
+        });
+
+        // Preset buttons
+        presetBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                presetBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                slider.value = this.dataset.snr;
+                noiseSelect.value = this.dataset.noise;
+                ampToggle.checked = this.dataset.amp === "true";
+                generateSignals();
+            });
+        });
+
+        // Hover cursor inspect
+        function setupInspect(canvas, isNoisy) {
+            canvas.addEventListener('mousemove', function(e) {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const ratio = Math.max(0, Math.min(1, mouseX / rect.width));
+                const t = ratio * duration;
+                const idx = Math.min(N - 1, Math.max(0, Math.floor(ratio * N)));
+
+                if (isNoisy) {
+                    if (ampToggle.checked) {
+                        noisyCursor.textContent = `t = ${t.toFixed(2)} s | V_out = ${amplifiedArr[idx].toFixed(2)} V`;
+                    } else {
+                        noisyCursor.textContent = `t = ${t.toFixed(2)} s | V = ${noisyArr[idx].toFixed(2)} mV`;
+                    }
+                } else {
+                    cleanCursor.textContent = `t = ${t.toFixed(2)} s | V = ${cleanArr[idx].toFixed(2)} mV`;
+                }
+            });
+        }
+        setupInspect(cleanCanvas, false);
+        setupInspect(noisyCanvas, true);
+
+        // Window resize
+        window.addEventListener('resize', () => {
+            generateSignals();
+        });
+
+        // Initial run
+        generateSignals();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSNRSimulator);
+    } else {
+        initSNRSimulator();
+    }
+})();
+</script>

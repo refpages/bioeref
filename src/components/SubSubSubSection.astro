@@ -1,16 +1,19 @@
 ---
 const {title, id=""} = Astro.props;
+const hasCards = Astro.slots.has('cards');
 ---
 
-<div class="callout-grid mt-3">
-    <div class="w-100 px-0 pe-lg-2">
+<div class={hasCards ? "callout-grid mt-3" : "mt-3 w-100"}>
+    <div class={hasCards ? "w-100 px-0 pe-lg-2" : "w-100 px-0"}>
         <h4 class="fw-bold text-center ">
             <a class="text-decoration-none text-body-tertiary" id={id} set:html={title}></a>
         </h4>
 
         <slot />
     </div>
-    <div class="w-100">
-        <slot name="cards"/>
-    </div>
+    {hasCards && (
+        <div class="w-100">
+            <slot name="cards"/>
+        </div>
+    )}
 </div>

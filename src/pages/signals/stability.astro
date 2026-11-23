@@ -70,7 +70,13 @@ import StabilitySimulator from "../../components/StabilitySimulator.astro"
         <p>Using the Laplace transfer function, we can solve for the roots of the numerator and denominator polynomials to determine system behavior. For example, consider the transfer function:</p>
         <DisplayEquation title="" equation="G(s) = \\frac{s+0.5}{(s+3)^{2}(s+2)}"/>
         <p>For numerator, <InlineEquation equation="s = -0.5"/> (zero). For denominator, <InlineEquation equation="s = -3"/> (double pole), <InlineEquation equation="-2"/> (pole). These values are also referred to as Eigenvalues. Since the poles are all negative, the system is stable.</p>
-        <Image src="/signals/stabilityplot.png" alt="a graph with real x-axis and imaginary y-axis. There are two xes along the x-axis at (-3,0) and (-2,0). There is a number two above the x at (-3,0), indicating a double pole. There is a circle at (-0.5,0), indicating a zero."/>
+        <div class="d-flex flex-column align-items-center my-3">
+            <div style="max-width: 360px; width: 100%;">
+                <Image src="/signals/stabilityplot.png" alt="a graph with real x-axis and imaginary y-axis. There are two xes along the x-axis at (-3,0) and (-2,0). There is a number two above the x at (-3,0), indicating a double pole. There is a circle at (-0.5,0), indicating a zero.">
+                    <span class="fw-bold">Figure 1.</span> Pole-zero plot of <InlineEquation equation="G(s)"/> showing a double pole at <InlineEquation equation="s = -3"/>, a pole at <InlineEquation equation="s = -2"/>, and a zero at <InlineEquation equation="s = -0.5"/>.
+                </Image>
+            </div>
+        </div>
     </SubSection>
     
     <SubSection title="Determining System Stability from Graphs" id="Graphs">

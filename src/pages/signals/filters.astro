@@ -1,4 +1,3 @@
-
 ---
 import Layout from "../../layouts/Layout.astro" 
 import Image from "../../components/Image.astro" 
@@ -28,6 +27,9 @@ import FilterSimulator from "../../components/FilterSimulator.astro"
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Applications'>Why Is Filtering Important?</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#How'>How Are Filters Applied?</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Gain'>Gain and Decibels</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#BodePlots'>Bode Plots: Filter Characterization</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Approximations'>Classical Filter Approximations</a></li>
+            <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Biquads'>Cascaded Biquad Sections</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Types'>Filter Design</a></li>
             <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive Filter Lab</a></li>
         </ul>
@@ -35,7 +37,7 @@ import FilterSimulator from "../../components/FilterSimulator.astro"
     
     <Section title="Filters"/>
     <SubSection title="Why Is Filtering Important?" id="Applications">
-        <p>Filters can be found in almost any electronic device, and especially so in medical devices which handle lots of data and measurements. The primary goal of filtering in any system is to get rid of noise while preserving important data for use by physicians. This improves the <a href="/signals/underconstruction_page?origin=coursemenu">signal to noise ratio (SNR)</a> and makes signals more useful and easier to interpret for both people and other machines.</p>
+        <p>Filters can be found in almost any electronic device, and especially so in medical devices which handle lots of data and measurements. The primary goal of filtering in any system is to get rid of noise while preserving important data for use by physicians. This improves the <a href="/signals/signal_to_noise_ratio?origin=coursemenu">signal to noise ratio (SNR)</a> and makes signals more useful and easier to interpret for both people and other machines.</p>
         <p>For example, filters are very useful in ECG readings. While the goal of an ECG is to detect electrical impulses from the heart rhythm, many other electrical signals can interfere such as muscle movements, including breathing, and even 60Hz AC currents nearby. Noisy signals are more difficult to understand and may even prove fatal if a physician cannot quickly and accurately diagnose a patient in events such as a heart attack.</p>
     </SubSection>
     
@@ -51,23 +53,636 @@ import FilterSimulator from "../../components/FilterSimulator.astro"
     </SubSection>
     
     <SubSection title="Gain and Decibels" id="Gain">
-        <p>How much the signal is attenuated is measured in voltage gain or decibel gain where voltage gain is a linear ratio of the amplitude of a signal before and after attenuation/amplification: <InlineEquation equation="\\frac{V_{out}}{V_{in}}"/> with a unit of V/V and decibels are: <InlineEquation equation="dB = 20log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/> in relation to the gain with a unit of dB.</p>
+        <p>How much the signal is attenuated is measured in voltage gain or decibel gain where voltage gain is a linear ratio of the amplitude of a signal before and after attenuation/amplification: <InlineEquation equation="\\frac{V_{out}}{V_{in}}"/> with a unit of V/V and decibels are: <InlineEquation equation="dB = 20\\log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/> in relation to the gain with a unit of dB.</p>
         <p>When a signal is amplified it has a voltage gain of greater than 1 and a positive decibel gain, and when it is attenuated it has a voltage gain between 0 and 1 and a negative decibel gain.</p>
-        <Example title="Find the signal voltage after a decibel gain is applied to it." solution="True">
+        <Example id="gain_ex" title="Find the signal voltage after a decibel gain is applied to it." solution="True">
             <div class="d-flex flex-row">
                 <p>A 16V signal is attenuated by a filter of -40 dB. What is the voltage/amplitude of the signal afterward?</p>
             </div>
             <div slot="solution">
                 <p>First convert the decibel gain into a voltage gain, this way it can be multiplied with the signal voltage directly. Using the equation:</p>
-                <DisplayEquation title="" equation="dB = 20log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
+                <DisplayEquation title="" equation="dB = 20\\log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
                 <p>Plug in the values and solve:</p>
-                <DisplayEquation title="" equation="-40 = 20log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
-                <DisplayEquation title="" equation="-2 = log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
+                <DisplayEquation title="" equation="-40 = 20\\log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
+                <DisplayEquation title="" equation="-2 = \\log_{10}\\left({\\frac{V_{out}}{V_{in}}}\\right)"/>
                 <DisplayEquation title="" equation="10^{-2} = \\frac{V_{out}}{V_{in}}"/>
                 <DisplayEquation title="" equation="0.01 = \\frac{V_{out}}{V_{in}}"/>
                 <p>The voltage gain is 0.01V/V. Multiply the initial signal amplitude of 16V by 0.01V/V for a final amplitude of 0.16V.</p>
             </div>
         </Example>
+    </SubSection>
+
+    <SubSection title="Bode Plots: Characterizing Filter Frequency Response" id="BodePlots">
+        <p>In physical circuits and biomedical instruments, ideal "brick-wall" filters cannot be built because causal physical systems cannot instantaneously drop gain to zero without infinite delay. As emphasized in biomedical instrumentation design:</p>
+        
+        <div class="alert alert-info border-start border-4 border-info d-flex align-items-center gap-3 my-3 p-3 rounded" role="alert">
+            <i class="bi bi-graph-up fs-2 text-info"></i>
+            <div>
+                <strong class="fs-5">Whiteboard Principle:</strong><br>
+                <em>"Bode Plot: Gives us a representation of the actual filter."</em>
+            </div>
+        </div>
+
+        <p>A <strong>Bode plot</strong> is a graphical representation of the transfer function <InlineEquation equation="H(j\omega)"/> of a linear time-invariant (LTI) system as a function of frequency. It consists of two complementary plots sharing a common logarithmic frequency horizontal axis (<InlineEquation equation="\omega"/> in rad/s or <InlineEquation equation="f"/> in Hz):</p>
+
+        <Enumerate>
+            <Item>
+                <strong>Bode Magnitude Plot:</strong> Plots filter gain in decibels (<InlineEquation equation="|H(j\omega)|_{\text{dB}} = 20\log_{10}|H(j\omega)| = 20\log_{10}(V_{\text{out}}/V_{\text{in}})"/>) versus frequency on a <InlineEquation equation="\log_{10}"/> scale.
+            </Item>
+            <Item>
+                <strong>Bode Phase Plot:</strong> Plots the output-to-input phase angle / phase shift (<InlineEquation equation="\angle H(j\omega)"/> in degrees or radians) versus frequency on a <InlineEquation equation="\log_{10}"/> scale.
+            </Item>
+        </Enumerate>
+
+        <h4 class="fw-bold mt-4 mb-2">Why Logarithmic Frequency and Decibel Scales?</h4>
+        <p>The logarithmic axes offer two decisive advantages in biomedical signal analysis:</p>
+        <ul>
+            <li>
+                <strong>Wide Frequency Span:</strong> Biomedical signals span several decades of frequency&mdash;from quasi-DC baseline wander (0.05 Hz) and ECG complexes (0.05&ndash;100 Hz), to EMG action potentials (10&ndash;500 Hz) and ultrasound (1&ndash;15 MHz). A logarithmic scale allows all of these physiological phenomena to be displayed and analyzed on a single chart without crowding low frequencies into the origin.
+            </li>
+            <li>
+                <strong>Linear Asymptotes and Cascade Additivity:</strong> On logarithmic frequency axes, the asymptotic roll-off of physical poles and zeros becomes simple straight lines. Furthermore, because <InlineEquation equation="\log(A \cdot B) = \log(A) + \log(B)"/>, cascading multi-stage filter blocks allows their decibel gains and phase shifts to simply be <em>added</em> together graphically.
+            </li>
+        </ul>
+
+        <h4 class="fw-bold mt-4 mb-2">Filter Roll-Off and Filter Order</h4>
+        <p>The steepness with which a filter attenuates unwanted frequencies beyond the cutoff frequency <InlineEquation equation="f_c"/> is called the <strong>roll-off rate</strong> (or attenuation slope). In a Bode magnitude plot, roll-off is expressed in <strong>decibels per decade (dB/decade)</strong> or <strong>decibels per octave (dB/octave)</strong>:</p>
+
+        <ul>
+            <li>
+                A <strong>decade</strong> is a tenfold increase in frequency (<InlineEquation equation="f_2 / f_1 = 10"/>).
+            </li>
+            <li>
+                An <strong>octave</strong> is a doubling of frequency (<InlineEquation equation="f_2 / f_1 = 2"/>).
+            </li>
+        </ul>
+
+        <p>Because <InlineEquation equation="20\log_{10}(10) = 20\text{ dB}"/> and <InlineEquation equation="20\log_{10}(2) \approx 6.02\text{ dB}"/>, each <InlineEquation equation="-20\text{ dB/decade}"/> corresponds approximately to <InlineEquation equation="-6\text{ dB/octave}"/>. Each reactive energy-storage element (capacitor or inductor)&mdash;and hence each pole in the transfer function&mdash;contributes an additional <InlineEquation equation="-20\text{ dB/decade}"/> to the high-frequency asymptotic slope:</p>
+
+        <div class="row g-3 my-2">
+            <div class="col-md-4">
+                <div class="card h-100 p-3 border shadow-sm bg-light-subtle">
+                    <h6 class="fw-bold text-primary mb-1">1st-Order Filter (<InlineEquation equation="n = 1"/>)</h6>
+                    <ul class="small mb-0 ps-3">
+                        <li>Roll-off: <strong class="text-danger">-20 dB/decade</strong> (-6 dB/octave)</li>
+                        <li>Phase at <InlineEquation equation="f_c"/>: <InlineEquation equation="-45^\circ"/></li>
+                        <li>High-frequency phase: <InlineEquation equation="-90^\circ"/></li>
+                        <li>Example: Single passive RC filter</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-3 border shadow-sm bg-light-subtle">
+                    <h6 class="fw-bold text-primary mb-1">2nd-Order Filter (<InlineEquation equation="n = 2"/>)</h6>
+                    <ul class="small mb-0 ps-3">
+                        <li>Roll-off: <strong class="text-danger">-40 dB/decade</strong> (-12 dB/octave)</li>
+                        <li>Phase at <InlineEquation equation="f_c"/>: <InlineEquation equation="-90^\circ"/></li>
+                        <li>High-frequency phase: <InlineEquation equation="-180^\circ"/></li>
+                        <li>Example: Sallen-Key biquad, RLC filter</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-3 border shadow-sm bg-light-subtle">
+                    <h6 class="fw-bold text-primary mb-1"><InlineEquation equation="n"/>th-Order Filter</h6>
+                    <ul class="small mb-0 ps-3">
+                        <li>Roll-off: <strong class="text-danger">-20n dB/decade</strong> (-6n dB/octave)</li>
+                        <li>Phase at <InlineEquation equation="f_c"/>: <InlineEquation equation="-n \times 45^\circ"/> (Butterworth)</li>
+                        <li>High-frequency phase: <InlineEquation equation="-n \times 90^\circ"/></li>
+                        <li>Formed by cascading <InlineEquation equation="n/2"/> biquad stages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-3 my-3 border bg-light-subtle shadow-sm">
+            <h6 class="fw-bold text-primary mb-2 text-center">Bode Magnitude and Phase Response Diagram</h6>
+            <p class="text-muted small text-center mb-2">The straight dashed lines represent asymptotic approximations; solid colored curves represent actual filter responses. Notice the characteristic <InlineEquation equation="-3\text{ dB}"/> drop and <InlineEquation equation="-45^\circ"/> / <InlineEquation equation="-90^\circ"/> phase shift at the cutoff frequency <InlineEquation equation="f_c"/>.</p>
+            <div class="d-flex justify-content-center my-2">
+                <svg viewBox="0 0 820 540" class="img-fluid rounded border bg-white p-2" style="max-width: 820px; width: 100%; height: auto;">
+                    <!-- Definitions -->
+                    <defs>
+                        <linearGradient id="passbandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#10b981" stop-opacity="0.12"/>
+                            <stop offset="100%" stop-color="#10b981" stop-opacity="0.03"/>
+                        </linearGradient>
+                        <linearGradient id="stopbandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ef4444" stop-opacity="0.04"/>
+                            <stop offset="100%" stop-color="#ef4444" stop-opacity="0.15"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- TOP PANE: BODE MAGNITUDE -->
+                    <rect x="90" y="30" width="700" height="210" fill="#fafafa" stroke="#e2e8f0" stroke-width="1"/>
+                    <!-- Passband & Stopband background regions -->
+                    <rect x="90" y="30" width="350" height="210" fill="url(#passbandGrad)"/>
+                    <rect x="440" y="30" width="350" height="210" fill="url(#stopbandGrad)"/>
+
+                    <!-- Grid lines - Magnitude Horizontal -->
+                    <line x1="90" y1="45" x2="790" y2="45" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="49" text-anchor="end" font-size="11" fill="#64748b">+10 dB</text>
+
+                    <line x1="90" y1="75" x2="790" y2="75" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2,2"/>
+                    <text x="82" y="79" text-anchor="end" font-size="11" font-weight="bold" fill="#0f172a">0 dB</text>
+
+                    <line x1="90" y1="90" x2="790" y2="90" stroke="#f43f5e" stroke-width="1" stroke-dasharray="4,3"/>
+                    <text x="82" y="94" text-anchor="end" font-size="11" font-weight="bold" fill="#f43f5e">-3 dB</text>
+
+                    <line x1="90" y1="135" x2="790" y2="135" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="139" text-anchor="end" font-size="11" fill="#64748b">-20 dB</text>
+
+                    <line x1="90" y1="180" x2="790" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="184" text-anchor="end" font-size="11" fill="#64748b">-40 dB</text>
+
+                    <line x1="90" y1="225" x2="790" y2="225" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="229" text-anchor="end" font-size="11" fill="#64748b">-60 dB</text>
+
+                    <!-- Vertical Grid Decades (aligned across both panes) -->
+                    <!-- 0.01 fc: x=140 | 0.1 fc: x=290 | 1 fc (fc): x=440 | 10 fc: x=590 | 100 fc: x=740 -->
+                    <line x1="140" y1="30" x2="140" y2="240" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="290" y1="30" x2="290" y2="240" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="440" y1="30" x2="440" y2="240" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <line x1="590" y1="30" x2="590" y2="240" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="740" y1="30" x2="740" y2="240" stroke="#e2e8f0" stroke-width="1"/>
+
+                    <!-- Region Labels -->
+                    <text x="240" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">PASSBAND (Gain ≈ 0 dB)</text>
+                    <text x="630" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">STOPBAND (High Attenuation)</text>
+
+                    <!-- Asymptotic Lines (Dashed Gray) -->
+                    <!-- Flat passband asymptote -->
+                    <line x1="90" y1="75" x2="440" y2="75" stroke="#64748b" stroke-width="2" stroke-dasharray="6,4"/>
+                    <!-- 1st order asymptote: (440,75) to (590, 135) to (740, 195) -->
+                    <line x1="440" y1="75" x2="790" y2="215" stroke="#64748b" stroke-width="1.8" stroke-dasharray="6,4"/>
+                    <!-- 2nd order asymptote: (440,75) to (590, 195) -->
+                    <line x1="440" y1="75" x2="620" y2="235" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="4,4"/>
+
+                    <!-- Actual Filter Curves -->
+                    <!-- 1st Order Butterworth Curve (Blue) -->
+                    <path d="M 90 75 Q 360 75 420 84 T 440 90 T 500 110 T 590 138 T 740 197 T 790 216" fill="none" stroke="#0284c7" stroke-width="3"/>
+                    <!-- 2nd Order Butterworth Curve (Purple) -->
+                    <path d="M 90 75 Q 370 75 425 82 T 440 90 T 480 115 T 590 196 T 640 236" fill="none" stroke="#7c3aed" stroke-width="3"/>
+
+                    <!-- -3 dB Cutoff Intersection Point -->
+                    <circle cx="440" cy="90" r="5" fill="#f43f5e"/>
+                    <text x="450" y="88" font-size="11" font-weight="bold" fill="#f43f5e">Cutoff fc (-3 dB)</text>
+
+                    <!-- Slope Callout Arrows & Badges -->
+                    <path d="M 620 145 L 680 168" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrow)"/>
+                    <rect x="635" y="125" width="135" height="22" rx="4" fill="#0284c7" fill-opacity="0.12" stroke="#0284c7"/>
+                    <text x="702" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">1st Order: -20 dB/dec</text>
+
+                    <rect x="525" y="195" width="135" height="22" rx="4" fill="#7c3aed" fill-opacity="0.12" stroke="#7c3aed"/>
+                    <text x="592" y="210" text-anchor="middle" font-size="11" font-weight="bold" fill="#6d28d9">2nd Order: -40 dB/dec</text>
+
+                    <!-- Magnitude Y-axis title -->
+                    <text x="25" y="135" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b" transform="rotate(-90 25 135)">Gain |H(f)| (dB)</text>
+
+                    <!-- BOTTOM PANE: BODE PHASE -->
+                    <rect x="90" y="280" width="700" height="200" fill="#fafafa" stroke="#e2e8f0" stroke-width="1"/>
+                    <rect x="90" y="280" width="350" height="200" fill="url(#passbandGrad)"/>
+                    <rect x="440" y="280" width="350" height="200" fill="url(#stopbandGrad)"/>
+
+                    <!-- Phase Horizontal Gridlines -->
+                    <line x1="90" y1="295" x2="790" y2="295" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2,2"/>
+                    <text x="82" y="299" text-anchor="end" font-size="11" font-weight="bold" fill="#0f172a">0°</text>
+
+                    <line x1="90" y1="335" x2="790" y2="335" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="339" text-anchor="end" font-size="11" fill="#64748b">-45°</text>
+
+                    <line x1="90" y1="375" x2="790" y2="375" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="379" text-anchor="end" font-size="11" fill="#64748b">-90°</text>
+
+                    <line x1="90" y1="415" x2="790" y2="415" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="419" text-anchor="end" font-size="11" fill="#64748b">-135°</text>
+
+                    <line x1="90" y1="455" x2="790" y2="455" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="459" text-anchor="end" font-size="11" fill="#64748b">-180°</text>
+
+                    <!-- Vertical Frequency Decades (Phase Pane) -->
+                    <line x1="140" y1="280" x2="140" y2="480" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="290" y1="280" x2="290" y2="480" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="440" y1="280" x2="440" y2="480" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <line x1="590" y1="280" x2="590" y2="480" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="740" y1="280" x2="740" y2="480" stroke="#e2e8f0" stroke-width="1"/>
+
+                    <!-- Frequency Axis Labels -->
+                    <text x="140" y="500" text-anchor="middle" font-size="11" fill="#64748b">0.01 fc</text>
+                    <text x="290" y="500" text-anchor="middle" font-size="11" fill="#64748b">0.1 fc</text>
+                    <text x="440" y="500" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">1.0 fc (Cutoff)</text>
+                    <text x="590" y="500" text-anchor="middle" font-size="11" fill="#64748b">10 fc</text>
+                    <text x="740" y="500" text-anchor="middle" font-size="11" fill="#64748b">100 fc</text>
+                    <text x="440" y="525" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">Frequency (Log Scale, Decades)</text>
+
+                    <!-- Phase Curves -->
+                    <!-- 1st Order Phase Curve: 0° -> -45° at fc -> -90° -->
+                    <path d="M 90 295 Q 260 295 350 305 T 440 335 T 530 365 T 700 375 T 790 375" fill="none" stroke="#0284c7" stroke-width="3"/>
+                    <circle cx="440" cy="335" r="4.5" fill="#0284c7"/>
+                    <text x="450" y="333" font-size="10.5" font-weight="bold" fill="#0284c7">1st Order: -45° at fc</text>
+
+                    <!-- 2nd Order Phase Curve: 0° -> -90° at fc -> -180° -->
+                    <path d="M 90 295 Q 280 295 365 315 T 440 375 T 515 435 T 670 455 T 790 455" fill="none" stroke="#7c3aed" stroke-width="3"/>
+                    <circle cx="440" cy="375" r="4.5" fill="#7c3aed"/>
+                    <text x="450" y="380" font-size="10.5" font-weight="bold" fill="#7c3aed">2nd Order: -90° at fc</text>
+
+                    <!-- Phase Y-axis title -->
+                    <text x="25" y="380" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b" transform="rotate(-90 25 380)">Phase Shift ∠H(f) (°)</text>
+                </svg>
+            </div>
+            <div class="d-flex justify-content-center gap-4 mt-2 small">
+                <span class="d-inline-flex align-items-center gap-1"><span class="badge" style="background-color: #0284c7; width: 14px; height: 14px;"></span> <strong>1st Order (-20 dB/decade, -45° at cutoff)</strong></span>
+                <span class="d-inline-flex align-items-center gap-1"><span class="badge" style="background-color: #7c3aed; width: 14px; height: 14px;"></span> <strong>2nd Order (-40 dB/decade, -90° at cutoff)</strong></span>
+            </div>
+        </div>
+
+        <Example id="bode_rolloff_ex" title="Calculating Noise Attenuation Using Filter Roll-Off" solution="True">
+            <div class="d-flex flex-row">
+                <p>An ECG amplifier incorporates a <strong>2nd-order low-pass Butterworth filter</strong> with a cutoff frequency of <InlineEquation equation="f_c = 6\text{ Hz}"/> to remove unwanted 60 Hz AC powerline hum while preserving low-frequency cardiovascular rhythms. Calculate how many decibels of attenuation the filter provides at 60 Hz, and find the percentage of power remaining in the 60 Hz interference.</p>
+            </div>
+            <div slot="solution">
+                <p><strong>Step 1: Calculate the frequency ratio in decades.</strong></p>
+                <p>The interference frequency <InlineEquation equation="f = 60\text{ Hz}"/> is compared to the cutoff frequency <InlineEquation equation="f_c = 6\text{ Hz}"/>:</p>
+                <DisplayEquation equation="\frac{f}{f_c} = \frac{60\text{ Hz}}{6\text{ Hz}} = 10 \implies 1\text{ decade above cutoff}"/>
+                
+                <p class="mt-2"><strong>Step 2: Apply the asymptotic roll-off formula for a 2nd-order filter.</strong></p>
+                <p>For an <InlineEquation equation="n"/>th-order filter, the roll-off slope is <InlineEquation equation="-20n\text{ dB/decade}"/>. For <InlineEquation equation="n = 2"/>:</p>
+                <DisplayEquation equation="\text{Attenuation Rate} = -20(2) = -40\text{ dB/decade}"/>
+                <p>Since 60 Hz is exactly 1 decade above 6 Hz, the attenuation is approximately:</p>
+                <DisplayEquation equation="\text{Gain}(60\text{ Hz}) \approx -40\text{ dB}"/>
+
+                <p class="mt-2"><strong>Step 3: Convert decibels to voltage ratio and power ratio.</strong></p>
+                <DisplayEquation equation="-40\text{ dB} = 20\log_{10}\left(\frac{V_{\text{out}}}{V_{\text{in}}}\right) \implies \frac{V_{\text{out}}}{V_{\text{in}}} = 10^{-40/20} = 10^{-2} = 0.01\text{ V/V}"/>
+                <p>The voltage amplitude is reduced to 1% of its original value. Since power is proportional to voltage squared:</p>
+                <DisplayEquation equation="\frac{P_{\text{out}}}{P_{\text{in}}} = \left(\frac{V_{\text{out}}}{V_{\text{in}}}\right)^2 = (0.01)^2 = 0.0001 = 0.01\%"/>
+                <p>The 2nd-order filter eliminates 99.99% of the 60 Hz powerline noise power while leaving frequencies below 6 Hz largely unaffected.</p>
+            </div>
+        </Example>
+    </SubSection>
+
+    <SubSection title="Classical Filter Approximations" id="Approximations">
+        <p>In analog circuit synthesis and digital IIR filter design, an ideal "brick-wall" filter is physically impossible because its rectangular frequency response has an infinite, non-causal impulse response (the sinc function, extending from <InlineEquation equation="t = -\infty"/> to <InlineEquation equation="+\infty"/>). To achieve a causal, realizable filter, engineers use mathematical polynomial approximations that trade off four competing design objectives:</p>
+
+        <div class="row g-2 my-2 text-center">
+            <div class="col-6 col-md-3">
+                <div class="p-2 border rounded bg-light-subtle h-100">
+                    <strong class="text-primary d-block">1. Passband Flatness</strong>
+                    <small class="text-muted">No ripple or distortion in desired signals</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-2 border rounded bg-light-subtle h-100">
+                    <strong class="text-primary d-block">2. Transition Steepness</strong>
+                    <small class="text-muted">Sharp roll-off between passband &amp; stopband</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-2 border rounded bg-light-subtle h-100">
+                    <strong class="text-primary d-block">3. Stopband Attenuation</strong>
+                    <small class="text-muted">Deep suppression of out-of-band interference</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-2 border rounded bg-light-subtle h-100">
+                    <strong class="text-primary d-block">4. Phase Linearity</strong>
+                    <small class="text-muted">Constant group delay, zero pulse dispersion</small>
+                </div>
+            </div>
+        </div>
+
+        <p class="mt-3">The four classical approximations each optimize one or more of these tradeoffs for specific biomedical instruments:</p>
+
+        <SubSubSection title="1. Bessel (Thomson) Filter: Maximally Flat Group Delay" id="BesselFilter">
+            <p>The <strong>Bessel filter</strong> (developed by W. E. Thomson using Bessel polynomials) is optimized for <strong>linear phase response</strong> across its passband, which corresponds mathematically to a <strong>maximally flat group delay</strong>:</p>
+            <DisplayEquation equation="\tau_g(\omega) = -\frac{d\phi(\omega)}{d\omega} \approx \text{constant}"/>
+            <p><strong>Time-Domain Advantage:</strong> When all sinusoidal frequency components in a complex biological signal experience the exact same time delay through the filter, the signal preserves its shape without <em>phase dispersion</em>, overshoot, or ringing. Transient pulses, steep step transitions, and physiological wave contours pass through unaltered.</p>
+            <p><strong>Frequency-Domain Trade-off:</strong> The Bessel filter has the gentlest (slowest) transition steepness among all classical filters. It rolls off far more slowly than a Butterworth or Chebyshev filter of the same order.</p>
+            <CalloutCard title="Biomedical Application: Morphological Waveform Preservation">
+                <p class="mb-1">Bessel filters are the gold standard for clinical signals where the <strong>exact time-domain shape and amplitude</strong> of a transient pulse carry life-or-death diagnostic information:</p>
+                <ul class="mb-0">
+                    <li><strong>Electrocardiography (ECG):</strong> Preserves subtle ST-segment elevation/depression (indicative of myocardial infarction) and sharp R-wave peaks without introducing artificial ringing that could mimic biphasic arrhythmias.</li>
+                    <li><strong>Arterial Blood Pressure (ABP) &amp; Pulse Wave Velocity (PWV):</strong> Faithfully reproduces the systolic upstroke slope (<InlineEquation equation="dP/dt"/>) and the delicate dicrotic notch reflecting aortic valve closure.</li>
+                    <li><strong>Electrophysiology Patch-Clamp &amp; Action Potentials:</strong> Preserves single-neuron action potential peak height and spike half-width during rapid depolarization.</li>
+                </ul>
+            </CalloutCard>
+        </SubSubSection>
+
+        <SubSubSection title="2. Butterworth Filter: Maximally Flat Passband Magnitude" id="ButterworthFilter">
+            <p>The <strong>Butterworth filter</strong> is mathematically designed so that the first <InlineEquation equation="2n - 1"/> derivatives of its squared magnitude response are zero at <InlineEquation equation="\omega = 0"/>. Its magnitude function is expressed as:</p>
+            <DisplayEquation equation="|H(j\omega)|^2 = \frac{1}{1 + \left(\frac{\omega}{\omega_c}\right)^{2n}}"/>
+            <p><strong>Frequency-Domain Characteristics:</strong> Perfectly flat, monotonic magnitude response in the passband with <strong>zero ripple</strong> anywhere in the passband or stopband. The magnitude drops smoothly through exactly <InlineEquation equation="-3\text{ dB}"/> at the cutoff frequency <InlineEquation equation="\omega = \omega_c"/>, asymptotically rolling off at <InlineEquation equation="-20n\text{ dB/decade}"/>.</p>
+            <p><strong>Time-Domain Trade-off:</strong> The phase response is moderately non-linear near the cutoff frequency, resulting in moderate group delay distortion and slight ringing on abrupt step transients.</p>
+            <CalloutCard title="Biomedical Application: General-Purpose Bioinstrumentation Workhorse">
+                <p class="mb-1">Because of its smooth response and complete absence of amplitude ripple, the Butterworth filter is the standard all-around filter across biomedical engineering:</p>
+                <ul class="mb-0">
+                    <li><strong>Electromyography (EMG):</strong> Filtering broadband surface muscle signals (10&ndash;500 Hz) where all frequencies in the passband must be weighted with uniform unity gain.</li>
+                    <li><strong>General Bioelectric Signal Conditioning:</strong> Pre-filtering and band-limiting before analog-to-digital conversion (ADC) to prevent aliasing without corrupting signal amplitudes.</li>
+                </ul>
+            </CalloutCard>
+        </SubSubSection>
+
+        <SubSubSection title="3. Chebyshev Filter: Steeper Roll-Off via Permitted Ripple" id="ChebyshevFilter">
+            <p>The <strong>Chebyshev filter</strong> (derived using Chebyshev polynomials <InlineEquation equation="T_n(\omega)"/>) achieves a significantly sharper roll-off between passband and stopband than a Butterworth filter of the same order. It accomplishes this steeper transition by permitting controlled ripple (equiripple oscillation) in one of its bands:</p>
+
+            <div class="row g-3 my-2">
+                <div class="col-md-6">
+                    <div class="card h-100 p-3 border shadow-sm bg-light-subtle">
+                        <h6 class="fw-bold text-primary mb-1">Chebyshev Type I (Standard Chebyshev)</h6>
+                        <ul class="small mb-0 ps-3">
+                            <li><strong>Passband:</strong> Equiripple oscillation (designer selects ripple level, e.g., 0.5 dB, 1 dB, or 3 dB).</li>
+                            <li><strong>Stopband:</strong> Monotonic smooth decay (no stopband ripple).</li>
+                            <li><strong>Advantage:</strong> Much steeper cutoff slope than Butterworth for the same order <InlineEquation equation="n"/>.</li>
+                            <li><strong>Cost:</strong> Passband amplitude distortion and non-linear phase distortion near cutoff.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 p-3 border shadow-sm bg-light-subtle">
+                        <h6 class="fw-bold text-primary mb-1">Chebyshev Type II (Inverse Chebyshev)</h6>
+                        <ul class="small mb-0 ps-3">
+                            <li><strong>Passband:</strong> Monotonically maximally flat (zero passband ripple, identical to Butterworth at low frequencies).</li>
+                            <li><strong>Stopband:</strong> Equiripple lobes with transmission zeros.</li>
+                            <li><strong>Advantage:</strong> Eliminates passband distortion while maintaining sharp roll-off.</li>
+                            <li><strong>Cost:</strong> Finite stopband attenuation floor (stopband lobes).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <CalloutCard title="Biomedical Application: EEG Sub-Band Separation & Frequency Channelizers">
+                <p class="mb-1">Chebyshev filters are prized when adjacent biomedical frequency channels sit very close together and must be sharply separated:</p>
+                <ul class="mb-0">
+                    <li><strong>Electroencephalography (EEG) Rhythms:</strong> Isolating tightly adjacent neurological brainwave bands: Delta (0.5&ndash;4 Hz), Theta (4&ndash;8 Hz), Alpha (8&ndash;13 Hz), Beta (13&ndash;30 Hz), and Gamma (&gt;30 Hz).</li>
+                    <li><strong>Cochlear Implants &amp; Audiometry:</strong> Multi-channel filter banks decomposing acoustic speech into narrow frequency bins.</li>
+                </ul>
+            </CalloutCard>
+        </SubSubSection>
+
+        <SubSubSection title="4. Elliptic (Cauer) Filter: Steepest Transition Bandwidth" id="EllipticFilter">
+            <p>The <strong>Elliptic filter</strong> (also known as the Cauer filter) uses Jacobian elliptic functions to distribute equiripple oscillations across <strong>both the passband and the stopband</strong> simultaneously. It incorporates finite transmission zeros (<InlineEquation equation="H(j\omega) = 0"/>) along the imaginary axis in the stopband.</p>
+            <p><strong>Defining Advantage:</strong> The Elliptic filter provides the <strong>steepest possible transition</strong> from passband to stopband for any given filter order <InlineEquation equation="n"/>. It approaches the ideal brick-wall transition faster than any other classical polynomial approximation.</p>
+            <p><strong>Trade-off:</strong> The phase response is extremely non-linear, group delay fluctuates wildly near cutoff, and step responses exhibit prolonged ringing and transient distortion.</p>
+            <CalloutCard title="Biomedical Application: Ultra-Sharp Brick-Wall Notches & Narrow-Guard Anti-Aliasing">
+                <p class="mb-1">Elliptic filters are deployed when transition space is at an absolute premium:</p>
+                <ul class="mb-0">
+                    <li><strong>Brick-Wall Powerline Notch Filters:</strong> Surgically removing 60 Hz hum with extremely narrow transition bands so that 58 Hz and 62 Hz biomedical rhythms are completely preserved.</li>
+                    <li><strong>Anti-Aliasing with Tight Nyquist Guard Bands:</strong> In portable telemetry where sampling rates must be kept low to conserve battery power, an elliptic pre-filter cuts off frequencies right before the Nyquist limit <InlineEquation equation="f_s/2"/>.</li>
+                </ul>
+            </CalloutCard>
+        </SubSubSection>
+
+        <div class="card p-3 my-4 border bg-light-subtle shadow-sm">
+            <h6 class="fw-bold text-primary mb-2 text-center">Visual Comparison of Classical Filter Frequency Responses (4th Order)</h6>
+            <p class="text-muted small text-center mb-2">Normalized frequency response showing the contrast in passband flatness, transition steepness, and stopband ripple across the four classical filter types.</p>
+            <div class="d-flex justify-content-center my-2">
+                <svg viewBox="0 0 840 440" class="img-fluid rounded border bg-white p-2" style="max-width: 840px; width: 100%; height: auto;">
+                    <defs>
+                        <linearGradient id="rippleZone" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.15"/>
+                            <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.02"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Plot Area -->
+                    <rect x="90" y="30" width="710" height="340" fill="#fafafa" stroke="#e2e8f0" stroke-width="1"/>
+
+                    <!-- Passband Ripple Zone (0 dB to -1 dB) up to fc -->
+                    <rect x="90" y="80" width="280" height="20" fill="url(#rippleZone)"/>
+                    <line x1="90" y1="100" x2="370" y2="100" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3"/>
+                    <text x="365" y="112" text-anchor="end" font-size="10" font-weight="bold" fill="#d97706">Passband Ripple Band (-1 dB)</text>
+
+                    <!-- Horizontal Gain Gridlines -->
+                    <line x1="90" y1="80" x2="800" y2="80" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2,2"/>
+                    <text x="82" y="84" text-anchor="end" font-size="11" font-weight="bold" fill="#0f172a">0 dB</text>
+
+                    <line x1="90" y1="120" x2="800" y2="120" stroke="#f43f5e" stroke-width="1" stroke-dasharray="4,3"/>
+                    <text x="82" y="124" text-anchor="end" font-size="11" font-weight="bold" fill="#f43f5e">-3 dB</text>
+
+                    <line x1="90" y1="180" x2="800" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="184" text-anchor="end" font-size="11" fill="#64748b">-15 dB</text>
+
+                    <line x1="90" y1="240" x2="800" y2="240" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="244" text-anchor="end" font-size="11" fill="#64748b">-30 dB</text>
+
+                    <line x1="90" y1="300" x2="800" y2="300" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="304" text-anchor="end" font-size="11" fill="#64748b">-45 dB</text>
+
+                    <line x1="90" y1="360" x2="800" y2="360" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="82" y="364" text-anchor="end" font-size="11" fill="#64748b">-60 dB</text>
+
+                    <!-- Vertical Frequency Gridlines -->
+                    <!-- 0.2 fc: x=140 | 0.5 fc: x=240 | 1.0 fc: x=370 | 1.5 fc: x=490 | 2.0 fc: x=600 | 3.0 fc: x=720 -->
+                    <line x1="140" y1="30" x2="140" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="240" y1="30" x2="240" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="370" y1="30" x2="370" y2="370" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4,4"/>
+                    <line x1="490" y1="30" x2="490" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="600" y1="30" x2="600" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+                    <line x1="720" y1="30" x2="720" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+
+                    <!-- X-Axis Labels -->
+                    <text x="140" y="390" text-anchor="middle" font-size="11" fill="#64748b">0.2 fc</text>
+                    <text x="240" y="390" text-anchor="middle" font-size="11" fill="#64748b">0.5 fc</text>
+                    <text x="370" y="390" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">1.0 fc (Cutoff)</text>
+                    <text x="490" y="390" text-anchor="middle" font-size="11" fill="#64748b">1.5 fc</text>
+                    <text x="600" y="390" text-anchor="middle" font-size="11" fill="#64748b">2.0 fc</text>
+                    <text x="720" y="390" text-anchor="middle" font-size="11" fill="#64748b">3.0 fc</text>
+                    <text x="445" y="415" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">Normalized Frequency (f / fc)</text>
+                    <text x="25" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b" transform="rotate(-90 25 200)">Magnitude Gain |H(f)| (dB)</text>
+
+                    <!-- Ideal Brick-Wall (Gray Dashed) -->
+                    <path d="M 90 80 L 370 80 L 370 365 L 800 365" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,4"/>
+                    <text x="378" y="160" font-size="10" font-weight="bold" fill="#64748b">Ideal "Brick-Wall"</text>
+
+                    <!-- 1. Bessel (Purple / Violet) - Smooth, gentle roll-off -->
+                    <path d="M 90 80 Q 220 81 290 89 T 370 120 T 460 175 T 570 245 T 700 320 T 800 365" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-dasharray="6,3"/>
+
+                    <!-- 2. Butterworth (Blue) - Maximally flat passband, intermediate slope -->
+                    <path d="M 90 80 Q 260 80 320 84 T 370 120 T 430 195 T 520 285 T 620 365" fill="none" stroke="#0284c7" stroke-width="3"/>
+
+                    <!-- 3. Chebyshev Type I (Orange / Amber) - Passband ripple, steep slope -->
+                    <path d="M 90 80 Q 130 98 170 80 T 250 97 T 320 81 T 370 120 T 405 210 T 470 315 T 530 365" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+
+                    <!-- 4. Elliptic / Cauer (Red / Crimson) - Ripples in passband & stopband, steepest cliff -->
+                    <path d="M 90 82 Q 135 98 180 81 T 260 98 T 330 82 T 370 120 T 385 240 T 395 365 L 405 365 Q 430 295 455 365 L 465 365 Q 495 310 525 365 L 800 365" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+
+                    <!-- Cutoff Dot Marker -->
+                    <circle cx="370" cy="120" r="5" fill="#f43f5e"/>
+
+                    <!-- Inset Legend Card -->
+                    <g transform="translate(540, 42)">
+                        <rect width="250" height="135" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" opacity="0.95"/>
+                        <text x="12" y="20" font-size="11" font-weight="bold" fill="#0f172a">Filter Approximation Legend</text>
+                        
+                        <line x1="12" y1="36" x2="42" y2="36" stroke="#8b5cf6" stroke-width="2.5" stroke-dasharray="5,2"/>
+                        <text x="48" y="40" font-size="10.5" fill="#1e293b"><strong>Bessel:</strong> Gentle slope, linear phase</text>
+
+                        <line x1="12" y1="58" x2="42" y2="58" stroke="#0284c7" stroke-width="3"/>
+                        <text x="48" y="62" font-size="10.5" fill="#1e293b"><strong>Butterworth:</strong> Maximally flat (0 ripple)</text>
+
+                        <line x1="12" y1="80" x2="42" y2="80" stroke="#ea580c" stroke-width="2.5"/>
+                        <text x="48" y="84" font-size="10.5" fill="#1e293b"><strong>Chebyshev I:</strong> Passband ripple, steep</text>
+
+                        <line x1="12" y1="102" x2="42" y2="102" stroke="#dc2626" stroke-width="2.5"/>
+                        <text x="48" y="106" font-size="10.5" fill="#1e293b"><strong>Elliptic:</strong> Ripples in both, steepest</text>
+
+                        <line x1="12" y1="122" x2="42" y2="122" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,3"/>
+                        <text x="48" y="125" font-size="10" fill="#64748b"><strong>Ideal Brick-Wall:</strong> Non-causal limit</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <h4 class="fw-bold mt-4 mb-2">Comprehensive Comparison of Filter Approximations</h4>
+        <p>The table below summarizes the key trade-offs between passband ripple, stopband ripple, roll-off transition steepness, phase linearity, and primary biomedical applications:</p>
+
+        <DisplayTable id="filter_approximations_summary_table">
+            <thead>
+                <tr class="table-primary">
+                    <th style="width: 15%;">Filter Type</th>
+                    <th style="width: 14%;">Passband Ripple</th>
+                    <th style="width: 14%;">Stopband Ripple</th>
+                    <th style="width: 17%;">Transition Steepness</th>
+                    <th style="width: 18%;">Phase Linearity / Delay</th>
+                    <th style="width: 22%;">Biomedical Application</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Bessel</strong><br><small class="text-muted">(Thomson)</small></td>
+                    <td><span class="badge bg-success">None</span><br>Monotonic</td>
+                    <td><span class="badge bg-success">None</span><br>Monotonic</td>
+                    <td><span class="text-danger fw-bold">Gentle</span><br>Slowest roll-off</td>
+                    <td><strong class="text-success">Maximally Flat Group Delay</strong><br>Linear phase; zero pulse distortion or overshoot</td>
+                    <td><strong>Waveform Morphology:</strong> Arterial blood pressure pulses (<InlineEquation equation="dP/dt"/>), ECG ST-segment elevation, neural spike sorting</td>
+                </tr>
+                <tr>
+                    <td><strong>Butterworth</strong></td>
+                    <td><span class="badge bg-success">None</span><br><strong>Maximally Flat</strong></td>
+                    <td><span class="badge bg-success">None</span><br>Monotonic</td>
+                    <td><span class="text-primary fw-bold">Moderate</span><br><InlineEquation equation="-20n\text{ dB/dec}"/></td>
+                    <td><strong>Moderate</strong><br>Non-linear near cutoff; minor step overshoot</td>
+                    <td><strong>General Bioinstrumentation:</strong> Surface EMG broadband filtering (10&ndash;500 Hz), general bio-amplifiers, anti-aliasing</td>
+                </tr>
+                <tr>
+                    <td><strong>Chebyshev Type I</strong></td>
+                    <td><span class="badge bg-warning text-dark">Equiripple</span><br>(e.g. 0.5&ndash;1 dB)</td>
+                    <td><span class="badge bg-success">None</span><br>Monotonic</td>
+                    <td><span class="text-success fw-bold">Steep</span><br>Significantly faster than Butterworth</td>
+                    <td><strong>Noticeably Non-linear</strong><br>Group delay ripple; pronounced step ringing</td>
+                    <td><strong>EEG Sub-band Separation:</strong> Resolving tightly packed brainwave bands (Delta, Theta, Alpha, Beta, Gamma), audiometry</td>
+                </tr>
+                <tr>
+                    <td><strong>Chebyshev Type II</strong><br><small class="text-muted">(Inverse)</small></td>
+                    <td><span class="badge bg-success">None</span><br>Maximally Flat</td>
+                    <td><span class="badge bg-warning text-dark">Equiripple</span><br>Has stopband lobes</td>
+                    <td><span class="text-success fw-bold">Steep</span><br>Faster than Butterworth</td>
+                    <td><strong>Non-linear near cutoff</strong><br>Linear in lower passband</td>
+                    <td><strong>Flat Bioelectric Passbands:</strong> Applications where amplitude ripples in the passband are unacceptable, but stopband floor is tolerated</td>
+                </tr>
+                <tr>
+                    <td><strong>Elliptic</strong><br><small class="text-muted">(Cauer)</small></td>
+                    <td><span class="badge bg-warning text-dark">Equiripple</span></td>
+                    <td><span class="badge bg-warning text-dark">Equiripple</span><br>(Finite zeros)</td>
+                    <td><strong class="text-danger">Steepest Possible</strong><br>Sharpest brick-wall transition</td>
+                    <td><strong>Highly Non-linear</strong><br>Severe group delay spikes; substantial transient ringing</td>
+                    <td><strong>Ultra-Sharp Notches &amp; Guard Bands:</strong> 60 Hz brick-wall powerline notches with narrow guard bands; tight anti-aliasing before low-rate ADC</td>
+                </tr>
+            </tbody>
+        </DisplayTable>
+    </SubSection>
+
+    <SubSection title="Cascaded Second-Order Sections (Biquads)" id="Biquads">
+        <p>When designing high-order active filters (<InlineEquation equation="n \ge 3"/>, such as a 4th-order or 6th-order Butterworth, Chebyshev, or Bessel filter), one could theoretically try to build a single op-amp circuit containing three or more capacitors in a complex feedback loop. However, in physical electronic design, this approach is avoided due to severe component sensitivity:</p>
+
+        <div class="alert alert-warning border-start border-4 border-warning d-flex align-items-center gap-3 my-3 p-3 rounded" role="alert">
+            <i class="bi bi-exclamation-triangle-fill fs-2 text-warning"></i>
+            <div>
+                <strong>Why Not Build a Single High-Order Op-Amp Circuit?</strong><br>
+                In an <InlineEquation equation="n"/>th-order polynomial, the roots (poles) are extremely sensitive to component tolerance variations. A 1% drift in a single resistor or capacitor in a 6th-order single-stage circuit can shift pole locations drastically, causing peak resonance, distortion, or even pushing poles into the right-half plane (<InlineEquation equation="\sigma > 0"/>), causing spontaneous self-oscillation and circuit instability!
+            </div>
+        </div>
+
+        <p>The universal, robust solution in both analog hardware and digital IIR filter design is to factor the high-order transfer function into a series cascade of <strong>Second-Order Sections (SOS)</strong>, commonly known as <strong>Biquads</strong> (biquadratic transfer functions):</p>
+
+        <DisplayEquation equation="H(s) = H_1(s) \cdot H_2(s) \cdot H_3(s) \cdots H_k(s) = \prod_{i=1}^k \frac{b_{2i}s^2 + b_{1i}s + b_{0i}}{s^2 + \frac{\omega_{0i}}{Q_i}s + \omega_{0i}^2}"/>
+
+        <p>For an even-order filter (e.g. <InlineEquation equation="n = 4"/> or <InlineEquation equation="n = 6"/>), the circuit consists of <InlineEquation equation="k = n / 2"/> biquad stages in series. For an odd-order filter (e.g. <InlineEquation equation="n = 3"/> or <InlineEquation equation="n = 5"/>), one simple 1st-order <InlineEquation equation="RC"/> stage is combined with <InlineEquation equation="(n-1)/2"/> biquad stages.</p>
+
+        <div class="card p-3 my-3 border bg-light-subtle shadow-sm">
+            <h6 class="fw-bold text-primary mb-2 text-center">Cascaded Second-Order Biquad Block Diagram</h6>
+            <p class="text-muted small text-center mb-2">As highlighted on the lecture whiteboard: <InlineEquation equation="[\cdot] \to [\cdot] \to [\cdot]"/>. Factoring higher-order transfer functions into cascaded second-order sections isolates each conjugate pole pair, preventing instability and simplifying active op-amp implementation.</p>
+            <div class="d-flex justify-content-center my-2">
+                <svg viewBox="0 0 840 220" class="img-fluid rounded border bg-white p-2" style="max-width: 840px; width: 100%; height: auto;">
+                    <defs>
+                        <marker id="arrowBiquad" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7"/>
+                        </marker>
+                    </defs>
+
+                    <!-- Input Wire -->
+                    <line x1="15" y1="80" x2="70" y2="80" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowBiquad)"/>
+                    <text x="40" y="65" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">Vin(t)</text>
+                    <text x="40" y="105" text-anchor="middle" font-size="10.5" fill="#64748b">U(s)</text>
+
+                    <!-- Biquad Stage 1 -->
+                    <rect x="75" y="30" width="195" height="100" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="172" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">Biquad Stage 1</text>
+                    <text x="172" y="74" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">H₁(s) — Low Q Pair</text>
+                    <rect x="90" y="85" width="165" height="32" rx="4" fill="#ffffff" stroke="#bfdbfe"/>
+                    <text x="172" y="105" text-anchor="middle" font-size="10.5" fill="#1e293b">s² + (ω₀₁/Q₁)s + ω₀₁²</text>
+
+                    <!-- Intermediate Arrow 1 -->
+                    <line x1="270" y1="80" x2="330" y2="80" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowBiquad)"/>
+                    <text x="300" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">V₁(s)</text>
+
+                    <!-- Biquad Stage 2 -->
+                    <rect x="335" y="30" width="195" height="100" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="432" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">Biquad Stage 2</text>
+                    <text x="432" y="74" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">H₂(s) — Mid Q Pair</text>
+                    <rect x="350" y="85" width="165" height="32" rx="4" fill="#ffffff" stroke="#bfdbfe"/>
+                    <text x="432" y="105" text-anchor="middle" font-size="10.5" fill="#1e293b">s² + (ω₀₂/Q₂)s + ω₀₂²</text>
+
+                    <!-- Intermediate Arrow 2 with Dots -->
+                    <line x1="530" y1="80" x2="560" y2="80" stroke="#0284c7" stroke-width="2"/>
+                    <circle cx="575" cy="80" r="2.5" fill="#64748b"/>
+                    <circle cx="587" cy="80" r="2.5" fill="#64748b"/>
+                    <circle cx="599" cy="80" r="2.5" fill="#64748b"/>
+                    <line x1="612" y1="80" x2="635" y2="80" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrowBiquad)"/>
+
+                    <!-- Biquad Stage k -->
+                    <rect x="640" y="30" width="180" height="100" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="730" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">Biquad Stage k</text>
+                    <text x="730" y="74" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">H_k(s) — High Q Pair</text>
+                    <rect x="650" y="85" width="160" height="32" rx="4" fill="#ffffff" stroke="#bfdbfe"/>
+                    <text x="730" y="105" text-anchor="middle" font-size="10.5" fill="#1e293b">s² + (ω₀_k/Q_k)s + ω₀_k²</text>
+
+                    <!-- Output Wire -->
+                    <!-- Output line from 820 to 835 -->
+                    <line x1="820" y1="80" x2="835" y2="80" stroke="#0284c7" stroke-width="2.5"/>
+
+                    <!-- Bottom Summary Banner -->
+                    <rect x="40" y="155" width="760" height="48" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+                    <text x="420" y="175" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">
+                        Total Cascade Response: H_total(s) = H₁(s) · H₂(s) ··· H_k(s)
+                    </text>
+                    <text x="420" y="193" text-anchor="middle" font-size="11" fill="#475569">
+                        Decibel Gain: |H_total|dB = |H₁|dB + |H₂|dB + ··· + |H_k|dB &nbsp;|&nbsp; Phase: ∠H_total = ∠H₁ + ∠H₂ + ··· + ∠H_k
+                    </text>
+                </svg>
+            </div>
+        </div>
+
+        <h4 class="fw-bold mt-4 mb-2">Key Engineering Advantages of Cascaded Biquad Sections:</h4>
+        <Enumerate>
+            <Item>
+                <strong>Decoupled Pole Tuning:</strong> Each biquad section implements exactly one complex conjugate pole pair (<InlineEquation equation="s_{1,2} = -\frac{\omega_0}{2Q} \pm j\omega_0\sqrt{1 - \frac{1}{4Q^2}}"/>). Adjusting the resistor or capacitor values in stage 1 modifies only stage 1's pole pair, leaving the other poles completely unaffected.
+            </Item>
+            <Item>
+                <strong>Proven Active Topologies:</strong> Each biquadratic section can be directly constructed using standard, highly reliable active op-amp topologies, most notably the <strong>Sallen-Key topology</strong> (non-inverting, low component count) or the <strong>Multiple-Feedback (MFB) topology</strong> (inverting, high Q stability).
+            </Item>
+            <Item>
+                <strong>Optimal Dynamic Range &amp; Noise Sequencing:</strong> In physical circuits, cascading stages in order from <em>lowest Q to highest Q</em> prevents signal peaks from driving op-amps into saturation/clipping early in the signal chain, optimizing the signal-to-noise ratio across the entire instrument.
+            </Item>
+        </Enumerate>
     </SubSection>
 
     <SubSection title="Filter Design" id="Types">
@@ -90,7 +705,7 @@ import FilterSimulator from "../../components/FilterSimulator.astro"
             <i class="bi bi-arrow-left"></i>
             <span>Previous: Fourier Transform</span>
         </a>
-        <a href="/signals/underconstruction_page?origin=coursemenu&topic=snr" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+        <a href="/signals/signal_to_noise_ratio?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
             <span>Next: Signal to Noise Ratio (SNR)</span>
             <i class="bi bi-arrow-right"></i>
         </a>

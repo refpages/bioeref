@@ -1,0 +1,382 @@
+---
+import Layout from "../../layouts/Layout.astro" 
+import Image from "../../components/Image.astro" 
+import CalloutContainer from "../../components/CalloutContainer.astro" 
+import Section from "../../components/Section.astro" 
+import SubSection from "../../components/SubSection.astro" 
+import SubSubSection from "../../components/SubSubSection.astro" 
+import SubSubSubSection from "../../components/SubSubSubSection.astro" 
+import OrangeText from "../../components/OrangeText.astro" 
+import TealText from "../../components/TealText.astro" 
+import Enumerate from "../../components/Enumerate.astro" 
+import Item from "../../components/Item.astro" 
+import Itemize from "../../components/Itemize.astro" 
+import InlineEquation from "../../components/InlineEquation.astro" 
+import DisplayEquation from "../../components/DisplayEquation.astro"
+import Center from "../../components/Center.astro"
+import CalloutCard from "../../components/CalloutCard.astro"
+import Warning from "../../components/Warning.astro"
+import DisplayTable from "../../components/DisplayTable.astro"
+import SNRSimulator from "../../components/SNRSimulator.astro"
+---
+
+<Layout title="Signal to Noise Ratio (SNR)">
+  <div slot="navtree">
+    <ul class="list-group list-group-flush py-0">
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#What'>What is SNR?</a></li>
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#MathematicalFormulation'>Mathematical Formulation</a></li>
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#NoiseSources'>Biomedical Noise Sources</a></li>
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#SignalChain'>The Instrumentation Chain & Amplification</a></li>
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#ClinicalImpact'>Clinical Stakes & Medical Device Constraints</a></li>
+      <li class='list-group-item py-0'><a class='text-decoration-none subsection' href='#Simulator'>Interactive SNR Laboratory</a></li>
+    </ul>
+  </div>
+  
+  <Section title="Signal to Noise Ratio (SNR)"/>
+  <p class="lead">In biomedical engineering and medical instrumentation, measuring physiological phenomena requires capturing extremely delicate electrical potentials directly from the human body. The <strong>Signal-to-Noise Ratio (SNR)</strong> quantifies the fidelity of an acquired signal by comparing the power of the desired physiological data against unwanted background noise.</p>
+
+  <SubSection title="What is Signal to Noise Ratio (SNR)?" id="What">
+      <p>Whether monitoring cardiac activity with an <strong>electrocardiogram (ECG / EKG)</strong>, tracking neural firing with an <strong>electroencephalogram (EEG)</strong>, or measuring muscle exertion with an <strong>electromyogram (EMG)</strong>, biological signals do not exist in a vacuum. They are corrupted by external electromagnetic interference, physiological motion, and intrinsic semiconductor noise.</p>
+      
+      <p>The <strong>Signal to Noise Ratio (SNR)</strong> is defined as the ratio between the power of the informative target signal and the power of the background interference. A high SNR means the physiological waveform is crisp, clear, and clinically interpretable. Conversely, a low SNR means the target biopotential is obscured or overwhelmed by interference.</p>
+
+      <!-- Clean vs Corrupted Comparison SVG -->
+      <div class="card shadow-sm border my-4">
+        <div class="card-header bg-white border-bottom py-2 px-3 fw-bold text-primary">
+          <i class="bi bi-activity text-warning me-2"></i> Clinical Waveform Comparison: Clean vs. Corrupted ECG
+        </div>
+        <div class="card-body p-3">
+          <div class="row align-items-center g-3">
+            <div class="col-12 col-lg-7">
+              <svg viewBox="0 0 600 280" class="w-100 rounded border bg-white" style="max-height: 280px;" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background Grid -->
+                <defs>
+                  <pattern id="ecgGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f3f5" stroke-width="1"/>
+                  </pattern>
+                </defs>
+                <rect width="600" height="280" fill="url(#ecgGrid)" />
+
+                <!-- Divider -->
+                <line x1="0" y1="140" x2="600" y2="140" stroke="#dee2e6" stroke-width="1.5" stroke-dasharray="4 4" />
+
+                <!-- TOP: Clean ECG -->
+                <text x="15" y="25" fill="#198754" font-weight="bold" font-size="13" font-family="sans-serif">Clean Target Biopotential: Lead II ECG (High SNR &gt; 25 dB)</text>
+                <text x="15" y="42" fill="#6c757d" font-size="11" font-family="sans-serif">P-wave, QRS complex, and T-wave clearly visible with flat baseline</text>
+
+                <!-- P-Q-R-S-T Annotations -->
+                <text x="180" y="80" fill="#198754" font-size="11" font-weight="bold" font-family="sans-serif">P</text>
+                <text x="212" y="125" fill="#198754" font-size="11" font-weight="bold" font-family="sans-serif">Q</text>
+                <text x="227" y="32" fill="#198754" font-size="12" font-weight="bold" font-family="sans-serif">R</text>
+                <text x="245" y="128" fill="#198754" font-size="11" font-weight="bold" font-family="sans-serif">S</text>
+                <text x="310" y="70" fill="#198754" font-size="11" font-weight="bold" font-family="sans-serif">T</text>
+
+                <!-- Clean Path 1 (Beat 1) -->
+                <path d="M 20 100 L 70 100 C 80 100, 85 85, 95 85 C 105 85, 110 100, 120 100 L 130 100 L 135 110 L 145 35 L 155 115 L 160 100 L 180 100 C 195 100, 205 75, 220 75 C 235 75, 245 100, 260 100 L 300 100 C 310 100, 315 85, 325 85 C 335 85, 340 100, 350 100 L 360 100 L 365 110 L 375 35 L 385 115 L 390 100 L 410 100 C 425 100, 435 75, 450 75 C 465 75, 475 100, 490 100 L 580 100" 
+                      fill="none" stroke="#198754" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                <!-- BOTTOM: Corrupted ECG (+ Noise) -->
+                <text x="15" y="165" fill="#dc3545" font-weight="bold" font-size="13" font-family="sans-serif">Corrupted Biopotential: Signal + Noise (Low SNR &lt; 3 dB)</text>
+                <text x="15" y="182" fill="#6c757d" font-size="11" font-family="sans-serif">Corrupted by 60 Hz line hum, patient respiration drift, and EMG tremor</text>
+
+                <!-- Corrupted Path with drift and high frequency ripple -->
+                <path d="M 20 230 Q 80 200, 140 238 Q 200 270, 260 220 Q 320 190, 380 245 Q 440 275, 500 225 L 580 235"
+                      fill="none" stroke="#ffc107" stroke-width="1.2" stroke-dasharray="3 3" />
+                <text x="495" y="265" fill="#d39e00" font-size="10" font-family="sans-serif">Baseline Drift</text>
+
+                <path d="M 20 228 L 25 232 L 30 225 L 35 233 L 40 222 L 45 229 L 50 224 L 55 230 L 60 221 L 65 228 L 70 218 L 75 226 L 80 214 L 85 208 L 90 215 L 95 202 L 100 210 L 105 214 L 110 220 L 115 227 L 120 223 L 125 230 L 130 236 L 135 244 L 140 210 L 143 175 L 145 168 L 148 215 L 152 258 L 156 248 L 160 239 L 165 246 L 170 249 L 175 255 L 180 252 L 185 260 L 190 256 L 195 262 L 200 258 L 205 254 L 210 248 L 215 242 L 220 230 L 225 235 L 230 228 L 235 234 L 240 226 L 245 230 L 250 222 L 255 228 L 260 219 L 265 225 L 270 216 L 275 222 L 280 212 L 285 218 L 290 208 L 295 214 L 300 205 L 305 211 L 310 202 L 315 208 L 320 200 L 325 195 L 330 202 L 335 194 L 340 204 L 345 212 L 350 220 L 355 228 L 360 235 L 365 245 L 370 205 L 373 172 L 375 165 L 378 220 L 382 265 L 386 250 L 390 245 L 395 252 L 400 256 L 405 262 L 410 268 L 415 264 L 420 270 L 425 265 L 430 260 L 435 252 L 440 245 L 445 238 L 450 232 L 455 238 L 460 230 L 465 235 L 470 227 L 475 232 L 480 224 L 485 229 L 490 221 L 495 226 L 500 218 L 505 223 L 510 228 L 515 232 L 520 227 L 525 233 L 530 228 L 535 234 L 540 229 L 545 235 L 550 230 L 555 236 L 560 231 L 565 237 L 570 232 L 575 236 L 580 233" 
+                      fill="none" stroke="#dc3545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="col-12 col-lg-5">
+              <h6 class="fw-bold text-dark mb-2">Why SNR Governs Patient Diagnosis</h6>
+              <ul class="small text-secondary ps-3 mb-0">
+                <li class="mb-2"><strong>Target Signal:</strong> The electrical depolarization waves propagating across the cardiac myocardium. Typical surface amplitude is only <InlineEquation equation="0.5\\text{ mV} - 2.0\\text{ mV}"/>.</li>
+                <li class="mb-2"><strong>Noise Floor:</strong> Ambient electrical coupling from the electrical power grid (<InlineEquation equation="60\\text{ Hz}"/>), baseline drift from breathing (<InlineEquation equation="0.2\\text{ Hz}"/>), and skeletal muscle shivering (<InlineEquation equation="20 - 500\\text{ Hz}"/>).</li>
+                <li><strong>The Danger:</strong> When noise power approaches or exceeds signal power, critical features like the ST segment (used to diagnose acute heart attacks) are completely obscured.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  </SubSection>
+
+  <SubSection title="Mathematical Formulation of SNR" id="MathematicalFormulation">
+      <p>SNR can be expressed in two primary ways: as a <strong>dimensionless linear ratio</strong> or on a <strong>logarithmic decibel (<InlineEquation equation="\\text{dB}"/>) scale</strong>.</p>
+
+      <SubSubSection title="1. Linear Power Ratio" id="LinearSNR">
+        <p>In linear terms, SNR is the ratio of target signal power (<InlineEquation equation="P_{\\text{signal}}"/>) to unwanted noise power (<InlineEquation equation="P_{\\text{noise}}"/>):</p>
+        <DisplayEquation title="Linear SNR" equation="\\text{SNR} = \\frac{P_{\\text{signal}}}{P_{\\text{noise}}} = \\frac{\\sigma_{\\text{signal}}^2}{\\sigma_{\\text{noise}}^2}"/>
+        <p>Because electrical power dissipated in a resistor is proportional to the square of voltage (<InlineEquation equation="P = \\frac{V_{\\text{RMS}}^2}{R}"/>), the linear SNR is also equal to the square of the root-mean-square (RMS) amplitude ratio:</p>
+        <DisplayEquation title="Linear Amplitude Formulation" equation="\\text{SNR} = \\left( \\frac{A_{\\text{signal}}}{A_{\\text{noise}}} \\right)^2 = \\left( \\frac{V_{\\text{RMS, signal}}}{V_{\\text{RMS, noise}}} \\right)^2"/>
+      </SubSubSection>
+
+      <SubSubSection title="2. Logarithmic Decibel (dB) Representation" id="DecibelSNR">
+        <p>Because physiological signals and noise can span many orders of magnitude, engineers predominantly express SNR in <strong>decibels (dB)</strong>:</p>
+        <DisplayEquation title="Decibel SNR (from Power)" equation="\\text{SNR}_{\\text{dB}} = 10 \\log_{10}\\left( \\frac{P_{\\text{signal}}}{P_{\\text{noise}}} \\right)"/>
+        <p>Using logarithmic identities (<InlineEquation equation="\\log(x^2) = 2\\log(x)"/>), when substituting amplitude or voltage into the decibel definition, the multiplier changes from 10 to 20:</p>
+        <DisplayEquation title="Decibel SNR (from Amplitude or Voltage)" equation="\\text{SNR}_{\\text{dB}} = 20 \\log_{10}\\left( \\frac{A_{\\text{signal}}}{A_{\\text{noise}}} \\right) = 20 \\log_{10}\\left( \\frac{V_{\\text{RMS, signal}}}{V_{\\text{RMS, noise}}} \\right)"/>
+      </SubSubSection>
+
+      <SubSubSection title="Decibel Scale Interpretation" id="DecibelRules">
+        <DisplayTable id="snr-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Decibel Value (<InlineEquation equation="\\text{SNR}_{\\text{dB}}"/>)</th>
+              <th style="width: 25%;">Linear Power (<InlineEquation equation="P_{\\text{sig}} / P_{\\text{noise}}"/>)</th>
+              <th style="width: 25%;">Linear Amplitude (<InlineEquation equation="A_{\\text{sig}} / A_{\\text{noise}}"/>)</th>
+              <th>Physical & Clinical Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge bg-success font-monospace">+40 dB</span></td>
+              <td>10,000 : 1</td>
+              <td>100 : 1</td>
+              <td>Pristine laboratory quality. Noise is imperceptible to human or algorithm.</td>
+            </tr>
+            <tr>
+              <td><span class="badge bg-success font-monospace">+20 dB</span></td>
+              <td>100 : 1</td>
+              <td>10 : 1</td>
+              <td>Diagnostic clinical standard for medical telemetry (ECG, pulse oximetry).</td>
+            </tr>
+            <tr>
+              <td><span class="badge bg-primary font-monospace">+10 dB</span></td>
+              <td>10 : 1</td>
+              <td>3.16 : 1</td>
+              <td>Acceptable for basic heart-rate threshold counting; subtle morphologies degraded.</td>
+            </tr>
+            <tr>
+              <td><span class="badge bg-warning text-dark font-monospace">0 dB</span></td>
+              <td>1 : 1</td>
+              <td>1 : 1</td>
+              <td><strong>Threshold of parity:</strong> Signal power equals noise power. Signal is severely masked.</td>
+            </tr>
+            <tr>
+              <td><span class="badge bg-danger font-monospace">-10 dB</span></td>
+              <td>0.1 : 1 (1 : 10)</td>
+              <td>0.316 : 1 (1 : 3.16)</td>
+              <td>Noise power is 10× greater than signal power. Advanced filtering / averaging required.</td>
+            </tr>
+            <tr>
+              <td><span class="badge bg-danger font-monospace">-20 dB</span></td>
+              <td>0.01 : 1 (1 : 100)</td>
+              <td>0.1 : 1 (1 : 10)</td>
+              <td>Extreme noise. Common in raw evoked potential EEG or deep neural probes before lock-in amplification.</td>
+            </tr>
+          </tbody>
+        </DisplayTable>
+      </SubSubSection>
+  </SubSection>
+
+  <SubSection title="Biomedical Noise Sources" id="NoiseSources">
+      <p>Biomedical instrumentation designers encounter several distinct categories of noise. Effective filtering requires identifying whether the interference is narrow-band, low-frequency drift, or wideband stochastic noise:</p>
+
+      <div class="row g-3 my-2">
+        <div class="col-md-6">
+          <div class="card h-100 border-start border-4 border-primary shadow-xs">
+            <div class="card-body p-3">
+              <h6 class="fw-bold text-primary mb-1">
+                <i class="bi bi-lightning-charge me-1"></i> 60 Hz / 50 Hz Powerline Hum
+              </h6>
+              <p class="small text-muted mb-2"><strong>Mechanism:</strong> Capacitive and inductive coupling between the patient's body (acting as an antenna) and the AC power grid in hospital rooms.</p>
+              <p class="small text-secondary mb-0"><strong>Solution:</strong> High Common-Mode Rejection Ratio (CMRR) instrumentation amplifiers, right-leg drive (RLD) active grounding, and sharp 60 Hz analog/digital notch filters.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-start border-4 border-warning shadow-xs">
+            <div class="card-body p-3">
+              <h6 class="fw-bold text-dark mb-1">
+                <i class="bi bi-water me-1"></i> Baseline Wander & Motion Artifacts
+              </h6>
+              <p class="small text-muted mb-2"><strong>Mechanism:</strong> Patient respiration (<InlineEquation equation="0.1 - 0.5\\text{ Hz}"/>) expands the thoracic cavity, modulating electrode contact impedance and half-cell battery potential.</p>
+              <p class="small text-secondary mb-0"><strong>Solution:</strong> High-pass analog filtering with cutoff <InlineEquation equation="f_c \\approx 0.05 - 0.5\\text{ Hz}"/> to remove DC offset while preserving low-frequency ST segment data.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-start border-4 border-danger shadow-xs">
+            <div class="card-body p-3">
+              <h6 class="fw-bold text-danger mb-1">
+                <i class="bi bi-soundwave me-1"></i> Electromyogram (EMG) Muscle Tremor
+              </h6>
+              <p class="small text-muted mb-2"><strong>Mechanism:</strong> Somatic muscle contraction, shivering, or patient agitation generates asynchronous motor unit action potentials (<InlineEquation equation="20 - 500\\text{ Hz}"/>).</p>
+              <p class="small text-secondary mb-0"><strong>Solution:</strong> Low-pass filtering (<InlineEquation equation="f_c \\approx 35 - 150\\text{ Hz}"/>) and spatial averaging across multiple diagnostic leads.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-start border-4 border-secondary shadow-xs">
+            <div class="card-body p-3">
+              <h6 class="fw-bold text-secondary mb-1">
+                <i class="bi bi-thermometer-half me-1"></i> Thermal & Semiconductor Noise
+              </h6>
+              <p class="small text-muted mb-2"><strong>Mechanism:</strong> Johnson-Nyquist thermal agitation of electrons inside electrode gels and skin resistance (<InlineEquation equation="v_n = \\sqrt{4kTR\\Delta f}"/>) plus <InlineEquation equation="1/f"/> flicker noise in op-amps.</p>
+              <p class="small text-secondary mb-0"><strong>Solution:</strong> Low-noise biopotential preamplifiers (JFET/CMOS inputs), high conductive electrode gels, and restricting measurement bandwidth.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </SubSection>
+
+  <SubSection title="The Instrumentation Chain: Amplification & ADC Conversion" id="SignalChain">
+      <p>A fundamental lesson in medical device engineering is: <strong>Noise must be controlled and filtered before high-gain amplification and Analog-to-Digital Conversion (ADC)</strong>. To understand why, examine the typical biomedical signal acquisition pipeline:</p>
+
+      <!-- Instrumentation Chain Diagram -->
+      <div class="card shadow-sm border my-4">
+        <div class="card-header bg-white border-bottom py-2 px-3 fw-bold text-primary">
+          <i class="bi bi-diagram-3-fill text-warning me-2"></i> Typical Biomedical Acquisition Signal Chain
+        </div>
+        <div class="card-body p-3 text-center">
+          <svg viewBox="0 0 760 170" class="w-100" style="max-height: 180px;" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#13294b"/>
+              </marker>
+            </defs>
+
+            <!-- Box 1: Patient / Electrodes -->
+            <rect x="10" y="45" width="120" height="70" rx="8" fill="#e7f1ff" stroke="#0d6efd" stroke-width="2"/>
+            <text x="70" y="75" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0d6efd" text-anchor="middle">Patient / Skin</text>
+            <text x="70" y="93" font-family="sans-serif" font-size="10" fill="#495057" text-anchor="middle">Electrodes (Ag/AgCl)</text>
+            <text x="70" y="106" font-family="sans-serif" font-size="9" fill="#6c757d" text-anchor="middle">V_sig ~ 1 mV</text>
+
+            <!-- Arrow 1 -->
+            <line x1="130" y1="80" x2="168" y2="80" stroke="#13294b" stroke-width="2" marker-end="url(#arrow)"/>
+            <text x="149" y="70" font-family="sans-serif" font-size="9" fill="#dc3545" text-anchor="middle">+ Noise</text>
+
+            <!-- Box 2: Instrumentation Amp -->
+            <rect x="170" y="45" width="130" height="70" rx="8" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+            <text x="235" y="75" font-family="sans-serif" font-size="12" font-weight="bold" fill="#856404" text-anchor="middle">Pre-Amplifier</text>
+            <text x="235" y="93" font-family="sans-serif" font-size="10" fill="#495057" text-anchor="middle">Instrumentation Amp</text>
+            <text x="235" y="106" font-family="sans-serif" font-size="9" fill="#856404" text-anchor="middle">Gain G = 1000x</text>
+
+            <!-- Arrow 2 -->
+            <line x1="300" y1="80" x2="338" y2="80" stroke="#13294b" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <!-- Box 3: Analog Filter -->
+            <rect x="340" y="45" width="125" height="70" rx="8" fill="#d1e7dd" stroke="#198754" stroke-width="2"/>
+            <text x="402" y="75" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f5132" text-anchor="middle">Analog Filter</text>
+            <text x="402" y="93" font-family="sans-serif" font-size="10" fill="#495057" text-anchor="middle">Bandpass + Notch</text>
+            <text x="402" y="106" font-family="sans-serif" font-size="9" fill="#0f5132" text-anchor="middle">Attenuate Noise</text>
+
+            <!-- Arrow 3 -->
+            <line x1="465" y1="80" x2="503" y2="80" stroke="#13294b" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <!-- Box 4: ADC -->
+            <rect x="505" y="45" width="115" height="70" rx="8" fill="#e2d9f3" stroke="#6f42c1" stroke-width="2"/>
+            <text x="562" y="75" font-family="sans-serif" font-size="12" font-weight="bold" fill="#432874" text-anchor="middle">ADC</text>
+            <text x="562" y="93" font-family="sans-serif" font-size="10" fill="#495057" text-anchor="middle">Analog-to-Digital</text>
+            <text x="562" y="106" font-family="sans-serif" font-size="9" fill="#432874" text-anchor="middle">16-bit, 0-3.3V</text>
+
+            <!-- Arrow 4 -->
+            <line x1="620" y1="80" x2="648" y2="80" stroke="#13294b" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <!-- Box 5: DSP / Microcontroller -->
+            <rect x="650" y="45" width="100" height="70" rx="8" fill="#cfe2ff" stroke="#13294b" stroke-width="2"/>
+            <text x="700" y="75" font-family="sans-serif" font-size="12" font-weight="bold" fill="#13294b" text-anchor="middle">MCU / DSP</text>
+            <text x="700" y="93" font-family="sans-serif" font-size="10" fill="#495057" text-anchor="middle">Computer</text>
+            <text x="700" y="106" font-family="sans-serif" font-size="9" fill="#13294b" text-anchor="middle">Diagnostic UI</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="row g-4 my-2">
+        <div class="col-md-6">
+          <div class="card h-100 border-0 shadow-sm bg-light">
+            <div class="card-body p-3">
+              <h5 class="fw-bold text-danger d-flex align-items-center gap-2">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                1. Op-Amp Rail Saturation (Clipping)
+              </h5>
+              <p class="small text-secondary">
+                A biological potential like an ECG is typically only <InlineEquation equation="1\\text{ mV} = 0.001\\text{ V}"/>. To bring this signal into a usable voltage range for microcontrollers, the pre-amplifier applies massive gain, often <InlineEquation equation="G = 1,000\\times - 5,000\\times"/>.
+              </p>
+              <p class="small text-secondary">
+                However, linear amplifiers amplify <strong>everything</strong> present at their input:
+              </p>
+              <DisplayEquation title="" equation="V_{\\text{out}}(t) = G \\cdot \\left[ v_{\\text{signal}}(t) + v_{\\text{noise}}(t) \\right]"/>
+              <p class="small text-secondary mb-0">
+                If the input has low SNR with <InlineEquation equation="5\\text{ mV}"/> of 60 Hz hum, the desired output would be <InlineEquation equation="1000 \\times 6\\text{ mV} = 6.0\\text{ V}"/>. Because modern medical embedded systems operate on <InlineEquation equation="\\pm 2.5\\text{ V}"/> or single <InlineEquation equation="+3.3\\text{ V}"/> rails, the amplifier <strong>rails and saturates</strong>. The peaks of the ECG are clipped flat against the power rails, permanently erasing diagnostic timing.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card h-100 border-0 shadow-sm bg-light">
+            <div class="card-body p-3">
+              <h5 class="fw-bold text-primary d-flex align-items-center gap-2">
+                <i class="bi bi-layers-fill"></i>
+                2. ADC Dynamic Range & Bit Swamping
+              </h5>
+              <p class="small text-secondary">
+                An Analog-to-Digital Converter (ADC) divides its full-scale input span (<InlineEquation equation="V_{\\text{FS}}"/>) into <InlineEquation equation="2^N"/> discrete digital steps, where <InlineEquation equation="N"/> is the bit resolution (e.g., 16 bits = 65,536 levels).
+              </p>
+              <p class="small text-secondary">
+                The quantization voltage step is:
+              </p>
+              <DisplayEquation title="" equation="Q = \\frac{V_{\\text{FS}}}{2^N}"/>
+              <p class="small text-secondary mb-0">
+                If an un-filtered signal with massive low-frequency noise (such as a <InlineEquation equation="1.5\\text{ V}"/> baseline wander) enters the ADC, the system gain must be turned down to prevent overflow. As a result, the actual <InlineEquation equation="1\\text{ mV}"/> ECG waveform is mapped across only a few dozen quantization steps, drastically lowering the <strong>Effective Number of Bits (ENOB)</strong> and rendering fine morphological details undetectable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </SubSection>
+
+  <SubSection title="Clinical Stakes & Medical Device Constraints" id="ClinicalImpact">
+      <p>In consumer audio or telecommunications, poor SNR results in static or dropped calls. In medical devices, <strong>poor SNR can be fatal</strong>:</p>
+
+      <div class="alert alert-danger d-flex align-items-start gap-3 p-3 my-3 rounded" role="alert">
+        <i class="bi bi-shield-x fs-2 text-danger flex-shrink-0"></i>
+        <div>
+          <h6 class="alert-heading fw-bold mb-1">Clinical Diagnostic Risks:</h6>
+          <ul class="mb-0 ps-3 small">
+            <li><strong>False Alarm Fatigue:</strong> Motion artifacts mimicking ventricular tachycardia cause up to 80% of ICU bedside monitor alarms to be false positives, leading healthcare providers to experience alarm desensitization.</li>
+            <li><strong>Missed Ischemia / Infarction:</strong> An ST-segment elevation of merely <InlineEquation equation="0.1\\text{ mV} (1\\text{ mm})"/> is the clinical criterion for emergency coronary catheterization (STEMI). If noise amplitude exceeds <InlineEquation equation="0.1\\text{ mV}"/>, early heart attack detection fails.</li>
+            <li><strong>Inappropriate Defibrillator Shock:</strong> Implantable Cardioverter Defibrillators (ICDs) that misidentify electromyogram muscle noise as ventricular fibrillation can deliver agonizing and dangerous high-energy shocks to conscious patients.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm bg-light my-3">
+        <div class="card-body p-3">
+          <h6 class="fw-bold text-dark d-flex align-items-center gap-2 mb-2">
+            <i class="bi bi-currency-dollar text-success fs-5"></i>
+            The Engineering Tradeoff: Performance vs. Cost (<InlineEquation equation="\\uparrow \\$[\\text{MedA}]"/>)
+          </h6>
+          <p class="small text-secondary mb-2">
+            Achieving higher SNR in medical instrumentation requires escalating engineering investment: ultra-low-noise preamps, differential shielded cabling, precision active grounding (Right Leg Drive), multi-pole linear-phase analog filters, and high-resolution sigma-delta ADCs.
+          </p>
+          <p class="small text-secondary mb-0">
+            Meeting stringent regulatory standards—such as <strong>FDA 510(k) clearances</strong>, <strong>IEC 60601-1</strong> (medical electrical safety), and <strong>IEC 60601-2-47</strong> (ambulatory ECG fidelity)—demands rigorous noise budget analysis from sensor contact to cloud dashboard.
+          </p>
+        </div>
+      </div>
+  </SubSection>
+
+  <SubSection title="Interactive SNR Laboratory" id="Simulator">
+      <p>Use the interactive simulation below to observe how noise corrupts biological potentials in real time. Adjust the <strong><InlineEquation equation="\\text{SNR}_{\\text{dB}}"/> slider</strong>, switch between clinical noise sources (60 Hz powerline hum, respiratory baseline wander, somatic EMG tremor), and toggle the <strong>Pre-Amp Amplification & ADC Railing</strong> switch to watch how low SNR destroys clinical diagnostic capability.</p>
+      
+      <SNRSimulator />
+  </SubSection>
+
+  <!-- Bottom Navigation -->
+  <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+      <a href="/signals/filters?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+          <i class="bi bi-arrow-left"></i>
+          <span>Previous: Filtering</span>
+      </a>
+      <a href="/signals/convolution?origin=coursemenu" class="btn btn-outline-primary d-inline-flex align-items-center gap-2">
+          <span>Next: Convolution</span>
+          <i class="bi bi-arrow-right"></i>
+      </a>
+  </div>
+</Layout>

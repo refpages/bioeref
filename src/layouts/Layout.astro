@@ -14,6 +14,7 @@ const pathSegments = current_path.pathname.split('/').filter(Boolean);
 const course = pathSegments[0];
 const pagename = pathSegments[1];
 
+const isSignalsCourse = Boolean(course === 'signals');
 const hasCourseNav = Boolean(course === 'signals' && pagename);
 ---
 
@@ -74,7 +75,7 @@ const hasCourseNav = Boolean(course === 'signals' && pagename);
 	</head>
 	<body style="width: 100%;">
 		<Navbar />
-		<div class={`container-xxl content ${hasCourseNav ? 'has-course-nav' : ''} mb-5`}>
+		<div class={`container-xxl content ${hasCourseNav ? 'has-course-nav' : ''} ${isSignalsCourse ? 'is-signals-course' : ''} mb-5`}>
 			<NavtreeContainer page={pagename} course={course}>
 				<slot name="navtree" />
 			</NavtreeContainer>
@@ -201,6 +202,33 @@ const hasCourseNav = Boolean(course === 'signals' && pagename);
 	@media (min-width: 992px){
 		.callout-grid{
 			grid-template-columns: 20fr 7fr;
+		}
+	}
+
+	/* BioE 205 (Signals & Systems) full-width expansion:
+	   Utilize the full width of the screen so the entire page is used */
+	.container-xxl.has-course-nav,
+	.container-xxl.is-signals-course {
+		max-width: 100% !important;
+		width: 100% !important;
+		padding-left: clamp(1rem, 2.5vw, 2.5rem) !important;
+		padding-right: clamp(1rem, 2.5vw, 2.5rem) !important;
+	}
+
+	@media (min-width: 992px){
+		.has-course-nav .callout-grid,
+		.is-signals-course .callout-grid {
+			display: block !important;
+			grid-template-columns: 1fr !important;
+		}
+		.has-course-nav .callout-grid > div:last-child,
+		.is-signals-course .callout-grid > div:last-child {
+			display: none !important;
+		}
+		.has-course-nav .callout-grid > div:first-child,
+		.is-signals-course .callout-grid > div:first-child {
+			padding-right: 0 !important;
+			width: 100% !important;
 		}
 	}
 </style>

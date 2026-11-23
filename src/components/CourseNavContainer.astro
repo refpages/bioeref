@@ -12,7 +12,7 @@ const courseMap = {
             { id: "time_domain", title: "Time Domain", href: "/signals/time_domain?origin=coursemenu" },
             { id: "fourier_transform", title: "Fourier Transform and Frequency Domain", href: "/signals/fourier_transform?origin=coursemenu" },
             { id: "filters", title: "Filtering", href: "/signals/filters?origin=coursemenu" },
-            { id: "snr", title: "Signal to Noise Ratio (SNR)", href: "/signals/underconstruction_page?origin=coursemenu&topic=snr" },
+            { id: "signal_to_noise_ratio", title: "Signal to Noise Ratio (SNR)", href: "/signals/signal_to_noise_ratio?origin=coursemenu" },
             { id: "convolution", title: "Convolution", href: "/signals/convolution?origin=coursemenu" },
             { id: "laplace", title: "Laplace Transform", href: "/signals/laplace?origin=coursemenu" },
             { id: "transfer_functions", title: "Transfer Functions and System Response", href: "/signals/transfer_functions?origin=coursemenu" },
@@ -86,6 +86,8 @@ const currentCourseData = course === 'signals' ? courseMap.signals : null;
                         if (cp.id === page) {
                             isActive = true;
                         } else if (page === "circuits" && cp.id === "circuits") {
+                            isActive = true;
+                        } else if ((page === "signal_to_noise_ratio" || page === "snr") && (cp.id === "signal_to_noise_ratio" || cp.id === "snr")) {
                             isActive = true;
                         } else if (page === "underconstruction_page" && (cp.id === "snr" || cp.id === "underconstruction_page")) {
                             isActive = true;
